@@ -1,0 +1,9 @@
+package be.heh.app.model.repositories;
+
+import be.heh.app.model.entities.app.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer>  {
+}
