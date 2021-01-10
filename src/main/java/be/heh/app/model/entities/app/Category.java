@@ -31,8 +31,8 @@ public class Category extends AbstractLang {
     @OneToMany
     List<TagType> tagTypeList;
 
-    public void addParagraphType(ParagraphType ... paragraphTypes) {
-        paragraphTypeList.addAll(Arrays.asList(paragraphTypes));
+    public void addParagraphType(ParagraphType ... paragraphType) {
+        paragraphTypeList.addAll(Arrays.asList(paragraphType));
     }
 
     public void addTagType(TagType ... tagType) {

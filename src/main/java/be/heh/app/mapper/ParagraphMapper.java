@@ -14,7 +14,6 @@ public final class ParagraphMapper {
         paragraph.setContent(paragraphValidator.getContent());
         paragraph.setParagraphType(paragraphType);
         paragraph.setUser(user);
-        paragraph.setPage(page);
         return paragraph;
     }
 

@@ -44,7 +44,7 @@ public class PageController {
 
 	@GetMapping("/page/{id}")
 	public Page getPage(@PathVariable("id") int id) {
-		if (!pageRepository.findById(id).isPresent()) {
+		if (pageRepository.findById(id).isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
 		} else {
 			return pageRepository.findById(id).get();
@@ -53,9 +53,9 @@ public class PageController {
 
 	@PostMapping("/page")
 	public Page insertPage(@Valid @RequestBody PageValidator pageValidator) {
-		if (!categoryRepository.findById(pageValidator.getCategoryId()).isPresent()) {
+		if (categoryRepository.findById(pageValidator.getCategoryId()).isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-		} else if (!userRepository.findById(pageValidator.getUserId()).isPresent()) {
+		} else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
 		} else {
 			Page page = PageMapper.map(pageValidator, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());

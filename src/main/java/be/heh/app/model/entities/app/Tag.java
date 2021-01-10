@@ -28,10 +28,6 @@ public class Tag extends AbstractEntity {
     @ManyToOne
     TagType tagType;
 
-    @JoinColumn(name = "page_id")
-    @ManyToOne
-    Page page;
-
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;

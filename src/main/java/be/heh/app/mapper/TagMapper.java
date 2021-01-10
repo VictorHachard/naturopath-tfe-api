@@ -13,7 +13,6 @@ public final class TagMapper {
         tag.setName(tagValidator.getName());
         tag.setDescription(tagValidator.getDescription());
         tag.setTagType(tagType);
-        tag.setPage(page);
         tag.setUser(user);
         return tag;
     }

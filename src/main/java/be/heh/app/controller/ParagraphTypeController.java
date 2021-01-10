@@ -41,7 +41,7 @@ public class ParagraphTypeController {
 
     @GetMapping("/paragraphType/{id}")
     public ParagraphType getParagraphType(@PathVariable("id") int id) {
-        if (!paragraphTypeRepository.findById(id).isPresent()) {
+        if (paragraphTypeRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this paragraphTypeId");
         } else {
             return paragraphTypeRepository.findById(id).get();
@@ -57,9 +57,9 @@ public class ParagraphTypeController {
 
     @PostMapping("/paragraphTypeLink/{categoryId}/{paragraphTypeId}")
     public void link(@PathVariable("categoryId") int categoryId, @PathVariable("paragraphTypeId") int paragraphTypeId) {
-        if (!categoryRepository.findById(categoryId).isPresent()) {
+        if (categoryRepository.findById(categoryId).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (!paragraphTypeRepository.findById(paragraphTypeId).isPresent()) {
+        } else if (paragraphTypeRepository.findById(paragraphTypeId).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this paragraphTypeId");
         } else {
             Category category = categoryRepository.findById(categoryId).get();

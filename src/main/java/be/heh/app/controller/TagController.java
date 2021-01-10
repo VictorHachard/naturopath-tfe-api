@@ -1,7 +1,10 @@
 package be.heh.app.controller;
 
 import be.heh.app.controller.validators.TagValidator;
+import be.heh.app.mapper.ParagraphMapper;
 import be.heh.app.mapper.TagMapper;
+import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.Paragraph;
 import be.heh.app.model.entities.app.Tag;
 import be.heh.app.model.repositories.PageRepository;
 import be.heh.app.model.repositories.TagRepository;
@@ -48,7 +51,7 @@ public class TagController {
 
     @GetMapping("/tag/{id}")
     public Tag getTag(@PathVariable("id") int id) {
-        if (!tagRepository.findById(id).isPresent()) {
+        if (tagRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this tagId");
         } else {
             return tagRepository.findById(id).get();
@@ -57,15 +60,24 @@ public class TagController {
 
     @PostMapping("/tag")
     public Tag insertTag(@Valid @RequestBody TagValidator tagValidator) {
-        if (!pageRepository.findById(tagValidator.getPageId()).isPresent()) {
+        if (pageRepository.findById(tagValidator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");
-        } else if (!userRepository.findById(tagValidator.getUserId()).isPresent()) {
+        } else if (userRepository.findById(tagValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else if (!tagTypeRepository.findById(tagValidator.getTagTypeId()).isPresent()) {
+        } else if (tagTypeRepository.findById(tagValidator.getTagTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
             Tag tag = TagMapper.map(tagValidator, pageRepository.findById(tagValidator.getPageId()).get(), tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
+            if (!pageRepository.findById(tagValidator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Tag don't math the rule");
+            } else if (!pageRepository.findById(tagValidator.getPageId()).get().verifyTypeTag(tag.getTagType())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the tag is duplicate");
+            }
+            Page page = pageRepository.findById(tagValidator.getPageId()).get();
+            page.addTag(tag);
+
             tagRepository.save(tag);
+            pageRepository.save(page);
             return tag;
         }
     }

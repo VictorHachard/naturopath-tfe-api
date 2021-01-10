@@ -36,7 +36,7 @@ public class CategoryController {
 
 	@GetMapping("/category/{id}")
 	public Category getCategory(@PathVariable("id") int id) {
-		if (!categoryRepository.findById(id).isPresent()) {
+		if (categoryRepository.findById(id).isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
 		} else {
 			return categoryRepository.findById(id).get();
@@ -53,7 +53,7 @@ public class CategoryController {
 	@DeleteMapping("/category/{id}")
 	public Category deleteCategory(@PathVariable("id") int id) {
 		//TODO delete link
-		if (!categoryRepository.findById(id).isPresent()) {
+		if (categoryRepository.findById(id).isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
 		} else {
 			Category category = categoryRepository.findById(id).get();

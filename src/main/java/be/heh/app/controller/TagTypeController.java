@@ -41,7 +41,7 @@ public class TagTypeController {
 
     @GetMapping("/tagType/{id}")
     public TagType getTagType(@PathVariable("id") int id) {
-        if (!tagTypeRepository.findById(id).isPresent()) {
+        if (tagTypeRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this TagTypeId");
         } else {
             return tagTypeRepository.findById(id).get();
@@ -57,9 +57,9 @@ public class TagTypeController {
 
     @PostMapping("/tagTypeLink/{categoryId}/{tagTypeId}")
     public void link(@PathVariable("categoryId") int categoryId, @PathVariable("tagTypeId") int tagTypeId) {
-        if (!categoryRepository.findById(categoryId).isPresent()) {
+        if (categoryRepository.findById(categoryId).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (!tagTypeRepository.findById(tagTypeId).isPresent()) {
+        } else if (tagTypeRepository.findById(tagTypeId).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this tagTypeId");
         } else {
             Category category = categoryRepository.findById(categoryId).get();

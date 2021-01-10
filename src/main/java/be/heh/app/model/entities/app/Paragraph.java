@@ -28,10 +28,6 @@ public class Paragraph extends AbstractEntity {
     @ManyToOne
     ParagraphType paragraphType;
 
-    @JoinColumn(name = "page_id")
-    @ManyToOne
-    Page page;
-
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;
