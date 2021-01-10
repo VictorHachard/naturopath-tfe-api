@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class PageValidator {
+public class TagValidator {
 
     @NotNull(message = "")
     String name;
@@ -20,7 +20,10 @@ public class PageValidator {
     String description;
 
     @NotNull(message = "")
-    int categoryId;
+    int tagTypeId;
+
+    @NotNull(message = "")
+    int pageId;
 
     @NotNull(message = "")
     int userId;

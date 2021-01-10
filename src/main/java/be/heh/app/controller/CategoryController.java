@@ -1,6 +1,5 @@
 package be.heh.app.controller;
 
-import be.heh.app.controller.validators.AbstractController;
 import be.heh.app.controller.validators.CategoryValidator;
 import be.heh.app.mapper.CategoryMapper;
 import be.heh.app.model.entities.app.Category;
@@ -21,15 +20,27 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class CategoryController extends AbstractController {
+public class CategoryController {
 
 	@Autowired
 	CategoryRepository categoryRepository;
 
 	@GetMapping("/category")
 	public List<Category> getAllCategory() {
-		this.getAll(categoryRepository, this.getClass().getSimpleName());
-		return categoryRepository.findAll();
+		if (categoryRepository.findAll().isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category in the database");
+		} else {
+			return categoryRepository.findAll();
+		}
+	}
+
+	@GetMapping("/category/{id}")
+	public Category getCategory(@PathVariable("id") int id) {
+		if (!categoryRepository.findById(id).isPresent()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
+		} else {
+			return categoryRepository.findById(id).get();
+		}
 	}
 
 	@PostMapping("/category")
@@ -37,6 +48,18 @@ public class CategoryController extends AbstractController {
 		Category category = CategoryMapper.map(categoryValidator);
 		categoryRepository.save(category);
 		return category;
+	}
+
+	@DeleteMapping("/category/{id}")
+	public Category deleteCategory(@PathVariable("id") int id) {
+		//TODO delete link
+		if (!categoryRepository.findById(id).isPresent()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
+		} else {
+			Category category = categoryRepository.findById(id).get();
+			categoryRepository.delete(category);
+			return category;
+		}
 	}
 
 }

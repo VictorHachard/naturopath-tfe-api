@@ -24,8 +24,16 @@ public class Tag extends AbstractEntity {
     @Column(name = "description")
     String description;
 
-    @JoinColumn(name = "tagType_id")
+    @JoinColumn(name = "tag_type_id")
     @ManyToOne
     TagType tagType;
+
+    @JoinColumn(name = "page_id")
+    @ManyToOne
+    Page page;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    User user;
 
 }

@@ -21,11 +21,19 @@ public class Paragraph extends AbstractEntity {
     @Column(name = "title")
     String title;
 
-    @Column(name = "description")
-    String description;
+    @Column(name = "content")
+    String content;
 
     @JoinColumn(name = "paragraph_type_id")
     @ManyToOne
     ParagraphType paragraphType;
+
+    @JoinColumn(name = "page_id")
+    @ManyToOne
+    Page page;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    User user;
 
 }

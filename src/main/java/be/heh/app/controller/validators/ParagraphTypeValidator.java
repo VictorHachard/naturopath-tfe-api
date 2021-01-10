@@ -11,18 +11,12 @@ import javax.validation.constraints.NotNull;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class PageValidator {
+public class ParagraphTypeValidator {
 
     @NotNull(message = "")
     String name;
 
     @NotNull(message = "")
     String description;
-
-    @NotNull(message = "")
-    int categoryId;
-
-    @NotNull(message = "")
-    int userId;
 
 }

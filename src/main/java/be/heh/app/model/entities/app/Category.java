@@ -4,7 +4,10 @@ import be.heh.app.model.entities.commons.AbstractLang;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -27,5 +30,13 @@ public class Category extends AbstractLang {
 
     @OneToMany
     List<TagType> tagTypeList;
+
+    public void addParagraphType(ParagraphType ... paragraphTypes) {
+        paragraphTypeList.addAll(Arrays.asList(paragraphTypes));
+    }
+
+    public void addTagType(TagType ... tagType) {
+        tagTypeList.addAll(Arrays.asList(tagType));
+    }
 
 }

@@ -22,10 +22,4 @@ public class CategoryValidator {
     @NotNull
     String lang;
 
-    /*@OneToMany
-    List<ParagraphType> paragraphTypeList;
-
-    @OneToMany
-    List<TagType> tagTypeList;*/
-
 }

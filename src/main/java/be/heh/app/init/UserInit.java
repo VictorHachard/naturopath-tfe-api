@@ -1,7 +1,6 @@
 package be.heh.app.init;
 
 import be.heh.app.model.entities.app.User;
-import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.model.repositories.UserRepository;
 import be.heh.app.model.repositories.UserSecurityRepository;
 import lombok.AccessLevel;
@@ -11,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Component
 @Startup
