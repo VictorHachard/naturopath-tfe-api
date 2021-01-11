@@ -89,7 +89,7 @@ public abstract class AbstractService {
     @Autowired
     MessageMapper messageMapper;
 
-    // Mapper
+    // Facade
 
     @Autowired
     InnerTagFacade innerTagFacade;

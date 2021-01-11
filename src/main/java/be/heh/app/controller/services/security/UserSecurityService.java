@@ -3,11 +3,19 @@ package be.heh.app.controller.services.security;
 import be.heh.app.controller.services.commons.AbstractSecurityService;
 import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.model.entities.app.Category;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Service
+// Lombok
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Log
 public class UserSecurityService extends AbstractSecurityService {
 
     public List<Category> getAllCategory() {
