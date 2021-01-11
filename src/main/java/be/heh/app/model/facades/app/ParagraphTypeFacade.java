@@ -1,9 +1,9 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.controller.validators.ParagraphTypeValidator;
+import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.model.entities.app.ParagraphType;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.ParagraphTypeRepository;
+import be.heh.app.model.repositories.app.ParagraphTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

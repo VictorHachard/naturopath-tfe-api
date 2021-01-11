@@ -1,7 +1,7 @@
 package be.heh.app.controller.services.security;
 
 import be.heh.app.controller.services.commons.AbstractSecurityService;
-import be.heh.app.controller.validators.CategoryValidator;
+import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.model.entities.app.Category;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

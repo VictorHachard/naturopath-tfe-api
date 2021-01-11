@@ -1,7 +1,7 @@
 package be.heh.app.init;
 
 import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.repositories.CategoryRepository;
+import be.heh.app.model.repositories.app.CategoryRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;

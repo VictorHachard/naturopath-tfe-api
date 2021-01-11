@@ -1,7 +1,7 @@
 package be.heh.app.controller.services.commons;
 
-import be.heh.app.mappers.*;
-import be.heh.app.model.repositories.*;
+import be.heh.app.mappers.app.*;
+import be.heh.app.model.repositories.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

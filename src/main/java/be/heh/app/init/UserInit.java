@@ -1,8 +1,8 @@
 package be.heh.app.init;
 
 import be.heh.app.model.entities.app.User;
-import be.heh.app.model.repositories.UserRepository;
-import be.heh.app.model.repositories.UserSecurityRepository;
+import be.heh.app.model.repositories.app.UserRepository;
+import be.heh.app.model.repositories.security.UserSecurityRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;

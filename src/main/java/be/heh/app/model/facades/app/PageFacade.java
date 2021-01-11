@@ -5,7 +5,7 @@ import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.PageRepository;
+import be.heh.app.model.repositories.app.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
