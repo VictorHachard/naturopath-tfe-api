@@ -1,7 +1,6 @@
 package be.heh.app.controller.services.commons;
 
 import be.heh.app.mappers.*;
-import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.repositories.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

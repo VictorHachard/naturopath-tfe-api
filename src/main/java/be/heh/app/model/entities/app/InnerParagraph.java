@@ -1,6 +1,5 @@
 package be.heh.app.model.entities.app;
 
-import be.heh.app.controller.validators.ParagraphValidator;
 import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

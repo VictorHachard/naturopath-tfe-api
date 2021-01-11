@@ -2,18 +2,12 @@ package be.heh.app.controller.services;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.TagValidator;
-import be.heh.app.mappers.TagMapper;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Tag;
-import be.heh.app.model.repositories.PageRepository;
-import be.heh.app.model.repositories.TagRepository;
-import be.heh.app.model.repositories.TagTypeRepository;
-import be.heh.app.model.repositories.UserRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

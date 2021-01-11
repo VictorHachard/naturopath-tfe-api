@@ -2,18 +2,11 @@ package be.heh.app.controller.services;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.PageValidator;
-import be.heh.app.mappers.InnerPageMapper;
-import be.heh.app.mappers.PageMapper;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
-import be.heh.app.model.repositories.CategoryRepository;
-import be.heh.app.model.repositories.InnerPageRepository;
-import be.heh.app.model.repositories.PageRepository;
-import be.heh.app.model.repositories.UserRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,6 +1,5 @@
 package be.heh.app.mappers;
 
-import be.heh.app.controller.validators.PageValidator;
 import be.heh.app.controller.validators.TagValidator;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.User;
