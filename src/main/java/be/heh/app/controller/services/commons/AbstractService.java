@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Log
 public abstract class AbstractService {
 
+    // Repository
+
     @Autowired
     CategoryRepository categoryRepository;
 
@@ -40,7 +42,15 @@ public abstract class AbstractService {
     TagRepository tagRepository;
 
     @Autowired
+    VoteRepository voteRepository;
+
+    @Autowired
+    MessageRepository messageRepository;
+
+    @Autowired
     TagTypeRepository tagTypeRepository;
+
+    // Mapper
 
     @Autowired
     InnerPageMapper innerPageMapper;
@@ -68,5 +78,11 @@ public abstract class AbstractService {
 
     @Autowired
     InnerParagraphMapper innerParagraphMapper;
+
+    @Autowired
+    VoteMapper voteMapper;
+
+    @Autowired
+    MessageMapper messageMapper;
 
 }

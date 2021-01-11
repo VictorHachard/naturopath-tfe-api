@@ -25,9 +25,11 @@ public class MessageValidator {
 
     @NotNull(message = "")
     @Min(1)
-    int id;
+    int typeId;
 
     @NotNull(message = "")
-    String typeMessage;
+    @NotEmpty
+    String type; //InnerPage, InnerParagraph, InnerTag
+
 
 }

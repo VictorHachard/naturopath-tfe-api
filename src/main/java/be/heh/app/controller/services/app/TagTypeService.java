@@ -20,7 +20,6 @@ import java.util.List;
 public class TagTypeService extends AbstractService {
 
     public List<TagType> getAllTagType() {
-
         if (tagTypeRepository.findAll().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType in the database");
         } else {
