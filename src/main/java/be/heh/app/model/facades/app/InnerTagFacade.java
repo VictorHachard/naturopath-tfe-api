@@ -22,4 +22,13 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         return innerTag;
     }
 
+    public InnerTag newInstance(String name, String content, int version, User user) {
+        InnerTag innerTag = new InnerTag();
+        innerTag.setUser(user);
+        innerTag.setContent(content);
+        innerTag.setName(name);
+        innerTag.setVersion(version);
+        return innerTag;
+    }
+
 }

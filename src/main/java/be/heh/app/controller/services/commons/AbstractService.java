@@ -16,6 +16,9 @@ public abstract class AbstractService {
     CategoryRepository categoryRepository;
 
     @Autowired
+    InnerTagRepository innerTagRepository;
+
+    @Autowired
     PageRepository pageRepository;
 
     @Autowired

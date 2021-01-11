@@ -2,6 +2,7 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.services.app.TagService;
+import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.model.entities.app.Tag;
 import lombok.AccessLevel;
@@ -36,6 +37,11 @@ public class TagController extends AbstractController {
     @PostMapping("/tag")
     public Tag insertTag(@Valid @RequestBody TagValidator tagValidator) {
         return tagService.insertTag(tagValidator);
+    }
+
+    @PostMapping("/tag/update/{id}")
+    public Tag insertTag(@Valid @RequestBody TagUpdateValidator tagUpdateValidator, @PathVariable("id") int id) {
+        return tagService.updateTag(tagUpdateValidator, id);
     }
 
 }

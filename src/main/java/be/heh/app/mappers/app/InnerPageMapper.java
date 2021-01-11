@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.User;
@@ -21,6 +22,10 @@ public final class InnerPageMapper {
 
     public InnerPage map(PageValidator pageValidator, User user) {
         return innerPageFacade.newInstance(pageValidator.getTitle(), pageValidator.getDescription(), user);
+    }
+
+    public InnerPage map(PageUpdateValidator pageUpdateValidator, int version, User user) {
+        return innerPageFacade.newInstance(pageUpdateValidator.getTitle(), pageUpdateValidator.getDescription(), version, user);
     }
 
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-public class TagValidator {
+public class TagUpdateValidator {
 
     @NotNull(message = "")
     @NotEmpty
@@ -20,14 +20,6 @@ public class TagValidator {
     @NotNull(message = "")
     @NotEmpty
     String description;
-
-    @NotNull(message = "")
-    @Min(1)
-    int tagTypeId;
-
-    @NotNull(message = "")
-    @Min(1)
-    int pageId;
 
     @NotNull(message = "")
     @Min(1)

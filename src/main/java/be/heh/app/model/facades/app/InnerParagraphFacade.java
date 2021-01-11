@@ -22,4 +22,13 @@ public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
         return innerParagraph;
     }
 
+    public InnerParagraph newInstance(String title, String content, int version, User user) {
+        InnerParagraph innerParagraph = new InnerParagraph();
+        innerParagraph.setUser(user);
+        innerParagraph.setContent(content);
+        innerParagraph.setTitle(title);
+        innerParagraph.setVersion(version);
+        return innerParagraph;
+    }
+
 }

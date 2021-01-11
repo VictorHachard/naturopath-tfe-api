@@ -1,6 +1,7 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Page;
@@ -57,6 +58,22 @@ public class TagService extends AbstractService {
             tagRepository.save(tag);
             pageRepository.save(page);
             return tag;
+        }
+    }
+
+    public Tag updateTag(TagUpdateValidator tagUpdateValidator, int id) {
+        if (userRepository.findById(tagUpdateValidator.getUserId()).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
+        } else if (tagRepository.findById(id).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this id");
+        } else {
+            Tag tag = tagRepository.findById(id).get();
+            InnerTag innerTag = innerTagMapper.map(tagUpdateValidator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(tagUpdateValidator.getUserId()).get());
+            innerTagRepository.save(innerTag);
+            tag.addInnerTag(innerTag);
+            tagRepository.save(tag);
+            return tag;
+            //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");
         }
     }
 }

@@ -22,4 +22,13 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
         return innerPage;
     }
 
+    public InnerPage newInstance(String title, String description, int version, User user) {
+        InnerPage innerPage = new InnerPage();
+        innerPage.setUser(user);
+        innerPage.setDescription(description);
+        innerPage.setTitle(title);
+        innerPage.setVersion(version);
+        return innerPage;
+    }
+
 }
