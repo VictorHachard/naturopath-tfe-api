@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.ParagraphTypeValidator;
 import be.heh.app.mappers.ParagraphTypeMapper;
 import be.heh.app.model.entities.app.Category;
@@ -20,13 +21,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class ParagraphTypeService {
-
-    @Autowired
-    ParagraphTypeRepository paragraphTypeRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
+public class ParagraphTypeService extends AbstractService {
 
     public List<ParagraphType> getAllParagraphType() {
         if (paragraphTypeRepository.findAll().isEmpty()) {
@@ -45,7 +40,7 @@ public class ParagraphTypeService {
     }
 
     public ParagraphType insertParagraphType(ParagraphTypeValidator paragraphTypeValidator) {
-        ParagraphType tag = ParagraphTypeMapper.map(paragraphTypeValidator);
+        ParagraphType tag = paragraphTypeMapper.map(paragraphTypeValidator);
         paragraphTypeRepository.save(tag);
         return tag;
     }

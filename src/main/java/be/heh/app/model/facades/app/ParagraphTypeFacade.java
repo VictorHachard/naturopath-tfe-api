@@ -13,11 +13,6 @@ public class ParagraphTypeFacade extends AbstractFacade<ParagraphType> {
     @Autowired
     ParagraphTypeRepository paragraphTypeRepository;
 
-    @Override
-    public ParagraphType newInstance() {
-        return paragraphTypeRepository.newInstance();
-    }
-
     public ParagraphType newInstance(ParagraphTypeValidator paragraphTypeValidator) {
         ParagraphType paragraphType = new ParagraphType();
         paragraphType.setName(paragraphTypeValidator.getName());

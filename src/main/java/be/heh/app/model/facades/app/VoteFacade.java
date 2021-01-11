@@ -12,9 +12,4 @@ public class VoteFacade extends AbstractFacade<Vote> {
     @Autowired
     VoteRepository voteRepository;
 
-    @Override
-    public Vote newInstance() {
-        return voteRepository.newInstance();
-    }
-
 }

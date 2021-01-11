@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.CategoryValidator;
 import be.heh.app.mappers.CategoryMapper;
 import be.heh.app.model.entities.app.Category;
@@ -18,10 +19,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class CategoryService {
-
-    @Autowired
-    CategoryRepository categoryRepository;
+public class CategoryService extends AbstractService {
 
     public List<Category> getAllCategory() {
         if (categoryRepository.findAll().isEmpty()) {
@@ -40,7 +38,7 @@ public class CategoryService {
     }
 
     public Category insertCategory(CategoryValidator categoryValidator) {
-        Category category = CategoryMapper.map(categoryValidator);
+        Category category = categoryMapper.map(categoryValidator);
         categoryRepository.save(category);
         return category;
     }

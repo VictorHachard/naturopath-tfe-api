@@ -15,11 +15,6 @@ public class TagFacade extends AbstractFacade<Tag> {
     @Autowired
     TagRepository tagRepository;
 
-    @Override
-    public Tag newInstance() {
-        return tagRepository.newInstance();
-    }
-
     public Tag newInstance(InnerTag innerTag, TagType tagType, User user) {
         Tag tag = new Tag();
         tag.addInnerTag(innerTag);

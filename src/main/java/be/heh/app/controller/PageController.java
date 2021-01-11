@@ -25,18 +25,6 @@ import java.util.List;
 public class PageController {
 
 	@Autowired
-	PageRepository pageRepository;
-
-	@Autowired
-	CategoryRepository categoryRepository;
-
-	@Autowired
-	UserRepository userRepository;
-
-	@Autowired
-	InnerPageRepository innerPageRepository;
-
-	@Autowired
 	PageService pageService;
 
 	@GetMapping("/page")

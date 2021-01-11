@@ -9,16 +9,18 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public final class TagMapper {
 
     @Autowired
-    static TagFacade tagFacade;
+    TagFacade tagFacade;
 
-    public static Tag map(InnerTag innerTag, TagType tagType, User user) {
+    public Tag map(InnerTag innerTag, TagType tagType, User user) {
         return tagFacade.newInstance(innerTag, tagType, user);
     }
 

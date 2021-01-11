@@ -38,12 +38,4 @@ public class InnerTag extends AbstractEntity {
     @ManyToOne
     User user;
 
-    public InnerTag(String name, String content, int version, User user) {
-        this.name = name;
-        this.content = content;
-        this.version = version;
-        this.state = "PROGRESS";
-        this.user = user;
-    }
-
 }

@@ -12,11 +12,6 @@ public class CategoryFacade extends AbstractFacade<Category> {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @Override
-    public Category newInstance() {
-        return categoryRepository.newInstance();
-    }
-
     public Category newInstance(String name, String description, String lang) {
         Category category = new Category();
         category.setName(name);

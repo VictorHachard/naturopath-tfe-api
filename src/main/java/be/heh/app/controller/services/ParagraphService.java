@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.ParagraphValidator;
 import be.heh.app.mappers.ParagraphMapper;
 import be.heh.app.model.entities.app.InnerParagraph;
@@ -28,19 +29,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class ParagraphService {
-
-    @Autowired
-    ParagraphRepository paragraphRepository;
-
-    @Autowired
-    PageRepository pageRepository;
-
-    @Autowired
-    ParagraphTypeRepository paragraphTypeRepository;
-
-    @Autowired
-    UserRepository userRepository;
+public class ParagraphService extends AbstractService {
 
     @GetMapping("/paragraph")
     public List<Paragraph> getAllParagraph() {
@@ -69,8 +58,8 @@ public class ParagraphService {
         } else if (paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this paragraphTypeId");
         } else {
-            InnerParagraph innerParagraph = new InnerParagraph(paragraphValidator, userRepository.findById(paragraphValidator.getUserId()).get());
-            Paragraph paragraph = ParagraphMapper.map(innerParagraph, paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).get(), userRepository.findById(paragraphValidator.getUserId()).get());
+            InnerParagraph innerParagraph = innerParagraphMapper.map(paragraphValidator, userRepository.findById(paragraphValidator.getUserId()).get());
+            Paragraph paragraph = paragraphMapper.map(innerParagraph, paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).get(), userRepository.findById(paragraphValidator.getUserId()).get());
             if (!pageRepository.findById(paragraphValidator.getPageId()).get().getCategory().getParagraphTypeList().contains(paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The paragraph don't math the rule");
             } else if (!pageRepository.findById(paragraphValidator.getPageId()).get().verifyTypeParagraph(paragraph.getParagraphType())) {

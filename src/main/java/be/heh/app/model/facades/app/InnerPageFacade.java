@@ -13,11 +13,6 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
     @Autowired
     InnerPageRepository innerPageRepository;
 
-    @Override
-    public InnerPage newInstance() {
-        return innerPageRepository.newInstance();
-    }
-
     public InnerPage newInstance(String title, String description, User user) {
         InnerPage innerPage = new InnerPage();
         innerPage.setUser(user);

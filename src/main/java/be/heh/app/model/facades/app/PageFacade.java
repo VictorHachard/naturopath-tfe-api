@@ -15,13 +15,8 @@ public class PageFacade extends AbstractFacade<Page> {
     @Autowired
     PageRepository pageRepository;
 
-    @Override
-    public Page newInstance() {
-        return pageRepository.newInstance();
-    }
-
     public Page newInstance(InnerPage innerPage, User user, Category category) {
-        Page page = pageRepository.newInstance();
+        Page page = new Page();
         page.addInnerPage(innerPage);
         page.setUser(user);
         page.setCategory(category);

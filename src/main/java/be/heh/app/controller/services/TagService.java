@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.TagValidator;
 import be.heh.app.mappers.TagMapper;
 import be.heh.app.model.entities.app.InnerTag;
@@ -23,19 +24,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class TagService {
-
-    @Autowired
-    TagRepository tagRepository;
-
-    @Autowired
-    PageRepository pageRepository;
-
-    @Autowired
-    TagTypeRepository tagTypeRepository;
-
-    @Autowired
-    UserRepository userRepository;
+public class TagService extends AbstractService {
 
     public List<Tag> getAllTag() {
         if (tagRepository.findAll().isEmpty()) {
@@ -62,7 +51,7 @@ public class TagService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
             InnerTag innerTag = new InnerTag();
-            Tag tag = TagMapper.map(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
+            Tag tag = tagMapper.map(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
             if (!pageRepository.findById(tagValidator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Tag don't math the rule");
             } else if (!pageRepository.findById(tagValidator.getPageId()).get().verifyTypeTag(tag.getTagType())) {

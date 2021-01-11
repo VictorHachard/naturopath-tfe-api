@@ -12,9 +12,4 @@ public class MessageFacade extends AbstractFacade<Message> {
     @Autowired
     MessageRepository messageRepository;
 
-    @Override
-    public Message newInstance() {
-        return messageRepository.newInstance();
-    }
-
 }

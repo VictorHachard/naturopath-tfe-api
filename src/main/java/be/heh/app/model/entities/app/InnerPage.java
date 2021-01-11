@@ -38,12 +38,4 @@ public class InnerPage extends AbstractEntity {
     @ManyToOne
     User user;
 
-    public InnerPage(String title, String description, int version, User user) {
-        this.title = title;
-        this.description = description;
-        this.version = version;
-        this.state = "PROGRESS";
-        this.user = user;
-    }
-
 }

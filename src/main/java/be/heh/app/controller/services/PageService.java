@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.PageValidator;
 import be.heh.app.mappers.InnerPageMapper;
 import be.heh.app.mappers.PageMapper;
@@ -23,19 +24,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class PageService {
-
-    @Autowired
-    PageRepository pageRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    InnerPageRepository innerPageRepository;
+public class PageService extends AbstractService {
 
     public List<Page> getAllPage() {
         if (pageRepository.findAll().isEmpty()) {
@@ -59,9 +48,9 @@ public class PageService {
         } else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
-            InnerPage innerPage = InnerPageMapper.map(pageValidator, userRepository.findById(pageValidator.getUserId()).get());
+            InnerPage innerPage = innerPageMapper.map(pageValidator, userRepository.findById(pageValidator.getUserId()).get());
             innerPageRepository.save(innerPage);
-            Page page = PageMapper.map(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
+            Page page = pageMapper.map(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
             pageRepository.save(page);
             return page;
         }

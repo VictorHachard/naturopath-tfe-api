@@ -13,11 +13,6 @@ public class TagTypeFacade extends AbstractFacade<TagType> {
     @Autowired
     TagTypeRepository tagTypeRepository;
 
-    @Override
-    public TagType newInstance() {
-        return tagTypeRepository.newInstance();
-    }
-
     public TagType newInstance(TagTypeValidator tagTypeValidator) {
         TagType tagType = new TagType();
         tagType.setName(tagTypeValidator.getName());

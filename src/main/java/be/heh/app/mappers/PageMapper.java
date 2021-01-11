@@ -9,16 +9,18 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public final class PageMapper {
 
     @Autowired
-    static PageFacade pageFacade;
+    PageFacade pageFacade;
 
-    public static Page map(InnerPage innerPage, Category category, User user) {
+    public Page map(InnerPage innerPage, Category category, User user) {
         return pageFacade.newInstance(innerPage, user, category);
     }
 

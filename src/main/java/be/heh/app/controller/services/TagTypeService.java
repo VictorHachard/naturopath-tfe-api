@@ -1,5 +1,6 @@
 package be.heh.app.controller.services;
 
+import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.TagTypeValidator;
 import be.heh.app.mappers.TagTypeMapper;
 import be.heh.app.model.entities.app.Category;
@@ -20,15 +21,10 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class TagTypeService {
-
-    @Autowired
-    TagTypeRepository tagTypeRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
+public class TagTypeService extends AbstractService {
 
     public List<TagType> getAllTagType() {
+
         if (tagTypeRepository.findAll().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType in the database");
         } else {
@@ -45,7 +41,7 @@ public class TagTypeService {
     }
 
     public TagType insertTagType(TagTypeValidator tagTypeValidator) {
-        TagType tag = TagTypeMapper.map(tagTypeValidator);
+        TagType tag = tagTypeMapper.map(tagTypeValidator);
         tagTypeRepository.save(tag);
         return tag;
     }

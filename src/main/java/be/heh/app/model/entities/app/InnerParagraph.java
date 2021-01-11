@@ -39,19 +39,4 @@ public class InnerParagraph extends AbstractEntity {
     @ManyToOne
     User user;
 
-    public InnerParagraph(String title, String content, int version, User user) {
-        this.title = title;
-        this.content = content;
-        this.version = version;
-        this.state = "PROGRESS";
-        this.user = user;
-    }
-
-    public InnerParagraph(ParagraphValidator paragraphValidator, User user) {
-        this.title = paragraphValidator.getTitle();
-        this.content = paragraphValidator.getContent();
-        this.version = 0;
-        this.state = "PROGRESS";
-        this.user = user;
-    }
 }

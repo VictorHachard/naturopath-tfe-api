@@ -15,11 +15,6 @@ public class ParagraphFacade extends AbstractFacade<Paragraph> {
     @Autowired
     ParagraphRepository paragraphRepository;
 
-    @Override
-    public Paragraph newInstance() {
-        return paragraphRepository.newInstance();
-    }
-
     public Paragraph newInstance(InnerParagraph innerParagraph, ParagraphType paragraphType, User user) {
         Paragraph paragraph = new Paragraph();
         paragraph.addInnerParagraph(innerParagraph);

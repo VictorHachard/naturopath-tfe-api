@@ -12,9 +12,4 @@ public class UserFacade extends AbstractFacade<User> {
     @Autowired
     UserRepository userRepository;
 
-    @Override
-    public User newInstance() {
-        return userRepository.newInstance();
-    }
-
 }
