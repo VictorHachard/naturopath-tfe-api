@@ -1,18 +1,18 @@
 package be.heh.app.controller;
 
+import be.heh.app.controller.services.PageService;
 import be.heh.app.controller.validators.PageValidator;
-import be.heh.app.mapper.PageMapper;
+import be.heh.app.dto.PageDto;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.repositories.CategoryRepository;
+import be.heh.app.model.repositories.InnerPageRepository;
 import be.heh.app.model.repositories.PageRepository;
 import be.heh.app.model.repositories.UserRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,47 +33,31 @@ public class PageController {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	InnerPageRepository innerPageRepository;
+
+	@Autowired
+	PageService pageService;
+
 	@GetMapping("/page")
 	public List<Page> getAllPage() {
-		if (pageRepository.findAll().isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page in the database");
-		} else {
-			return pageRepository.findAll();
-		}
+		return pageService.getAllPage();
 	}
 
 	@GetMapping("/page/{id}")
 	public Page getPage(@PathVariable("id") int id) {
-		if (pageRepository.findById(id).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-		} else {
-			return pageRepository.findById(id).get();
-		}
+		return pageService.getPage(id);
 	}
 
 	@PostMapping("/page")
-	public Page insertPage(@Valid @RequestBody PageValidator pageValidator) {
-		if (categoryRepository.findById(pageValidator.getCategoryId()).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-		} else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-		} else {
-			Page page = PageMapper.map(pageValidator, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
-			pageRepository.save(page);
-			return page;
-		}
+	public PageDto insertPage(@Valid @RequestBody PageValidator pageValidator) {
+		Page p = pageService.insertPage(pageValidator);
+		return new PageDto(p,"Bien crée");
 	}
 
 	@DeleteMapping("/page/{id}")
 	public Page deletePage(@PathVariable("id") int id) {
-		//TODO delete link
-		if (!pageRepository.findById(id).isPresent()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-		} else {
-			Page page = pageRepository.findById(id).get();
-			pageRepository.delete(page);
-			return page;
-		}
+		return pageService.deletePage(id);
 	}
 
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class PageValidator {
 
     @NotNull(message = "")
-    String name;
+    String title;
 
     @NotNull(message = "")
     String description;

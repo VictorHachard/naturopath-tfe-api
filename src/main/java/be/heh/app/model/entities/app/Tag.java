@@ -4,10 +4,12 @@ import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 // Lombok
@@ -18,12 +20,6 @@ import javax.persistence.ManyToOne;
 @Setter
 public class Tag extends AbstractEntity {
 
-    @Column(name = "name")
-    String name;
-
-    @Column(name = "description")
-    String description;
-
     @JoinColumn(name = "tag_type_id")
     @ManyToOne
     TagType tagType;
@@ -31,5 +27,12 @@ public class Tag extends AbstractEntity {
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;
+
+    @OneToMany
+    List<InnerTag> innerTagList;
+
+    public void addInnerTag(InnerTag ... innerTag) {
+        innerTagList.addAll(Arrays.asList(innerTag));
+    }
 
 }

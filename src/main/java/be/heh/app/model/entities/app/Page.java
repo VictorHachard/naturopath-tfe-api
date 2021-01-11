@@ -4,7 +4,11 @@ import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,15 +21,6 @@ import java.util.List;
 @Setter
 public class Page extends AbstractEntity {
 
-    @Column(name = "name")
-    String name;
-
-    @Column(name = "description")
-    String description;
-
-    @Column(name = "version")
-    int version;
-
     @JoinColumn(name = "categorie_id")
     @ManyToOne
     Category category;
@@ -33,6 +28,9 @@ public class Page extends AbstractEntity {
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;
+
+    @OneToMany
+    List<InnerPage> innerPageList = new ArrayList<>();
 
     @OneToMany
     List<Paragraph> paragraphList;
@@ -44,6 +42,14 @@ public class Page extends AbstractEntity {
         paragraphList.addAll(Arrays.asList(paragraph));
     }
 
+    public void addTag(Tag ... tag) {
+        tagList.addAll(Arrays.asList(tag));
+    }
+
+    public void addInnerPage(InnerPage ... innerPage) {
+        innerPageList.addAll(Arrays.asList(innerPage));
+    }
+
     public boolean verifyTypeParagraph(ParagraphType type) {
         for (Paragraph paragraph: paragraphList) {
             if (paragraph.getParagraphType().getName().equals(type.getName())) {
@@ -51,10 +57,6 @@ public class Page extends AbstractEntity {
             }
         }
         return true;
-    }
-
-    public void addTag(Tag ... tag) {
-        tagList.addAll(Arrays.asList(tag));
     }
 
     public boolean verifyTypeTag(TagType type) {

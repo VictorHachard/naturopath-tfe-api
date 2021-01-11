@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @MappedSuperclass
 // Lombok
@@ -20,5 +19,9 @@ public abstract class AbstractEntity implements Serializable {
     @Id
     @GeneratedValue
     int id;
+
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date createdAt;
 
 }
