@@ -20,4 +20,12 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return category;
     }
 
+    public Category newInstance(String name, String description) {
+        Category category = new Category();
+        category.setName(name);
+        category.setDescription(description);
+        category.setLang("EN");
+        return category;
+    }
+
 }

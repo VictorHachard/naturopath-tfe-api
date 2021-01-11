@@ -21,7 +21,7 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         innerTag.setContent(content);
         innerTag.setName(name);
         innerTag.setVersion(0);
-        innerTag.setEnumState(EnumState.PROGRESS);
+        innerTag.setEnumState(EnumState.DRAFT);
         return innerTag;
     }
 
@@ -31,7 +31,7 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         innerTag.setContent(content);
         innerTag.setName(name);
         innerTag.setVersion(version);
-        innerTag.setEnumState(EnumState.PROGRESS);
+        innerTag.setEnumState(EnumState.DRAFT);
         return innerTag;
     }
 

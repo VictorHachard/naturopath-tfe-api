@@ -1,6 +1,5 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.model.entities.app.ParagraphType;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import be.heh.app.model.repositories.app.ParagraphTypeRepository;
@@ -13,10 +12,10 @@ public class ParagraphTypeFacade extends AbstractFacade<ParagraphType> {
     @Autowired
     ParagraphTypeRepository paragraphTypeRepository;
 
-    public ParagraphType newInstance(ParagraphTypeValidator paragraphTypeValidator) {
+    public ParagraphType newInstance(String name, String description) {
         ParagraphType paragraphType = new ParagraphType();
-        paragraphType.setName(paragraphTypeValidator.getName());
-        paragraphType.setDescription(paragraphTypeValidator.getDescription());
+        paragraphType.setName(name);
+        paragraphType.setDescription(description);
         return paragraphType;
     }
 

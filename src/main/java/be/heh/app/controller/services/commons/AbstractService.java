@@ -1,10 +1,7 @@
 package be.heh.app.controller.services.commons;
 
 import be.heh.app.mappers.app.*;
-import be.heh.app.model.facades.app.InnerPageFacade;
-import be.heh.app.model.facades.app.InnerParagraphFacade;
-import be.heh.app.model.facades.app.InnerTagFacade;
-import be.heh.app.model.facades.app.PageFacade;
+import be.heh.app.model.facades.app.*;
 import be.heh.app.model.repositories.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -92,6 +89,9 @@ public abstract class AbstractService {
     // Facade
 
     @Autowired
+    CategoryFacade categoryFacade;
+
+    @Autowired
     InnerTagFacade innerTagFacade;
 
     @Autowired
@@ -102,5 +102,11 @@ public abstract class AbstractService {
 
     @Autowired
     PageFacade pageFacade;
+
+    @Autowired
+    ParagraphTypeFacade paragraphTypeFacade;
+
+    @Autowired
+    TagTypeFacade tagTypeFacade;
 
 }

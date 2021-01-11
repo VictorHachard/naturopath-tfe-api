@@ -19,7 +19,7 @@ public final class ParagraphTypeMapper {
     ParagraphTypeFacade paragraphTypeFacade;
 
     public ParagraphType map(ParagraphTypeValidator paragraphTypeValidator) {
-        return paragraphTypeFacade.newInstance(paragraphTypeValidator);
+        return paragraphTypeFacade.newInstance(paragraphTypeValidator.getName(), paragraphTypeValidator.getDescription());
     }
 
 }

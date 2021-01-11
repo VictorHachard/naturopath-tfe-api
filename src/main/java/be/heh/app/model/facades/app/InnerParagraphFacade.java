@@ -21,7 +21,7 @@ public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
         innerParagraph.setContent(content);
         innerParagraph.setTitle(title);
         innerParagraph.setVersion(0);
-        innerParagraph.setEnumState(EnumState.PROGRESS);
+        innerParagraph.setEnumState(EnumState.DRAFT);
         return innerParagraph;
     }
 
@@ -31,7 +31,7 @@ public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
         innerParagraph.setContent(content);
         innerParagraph.setTitle(title);
         innerParagraph.setVersion(version);
-        innerParagraph.setEnumState(EnumState.PROGRESS);
+        innerParagraph.setEnumState(EnumState.DRAFT);
         return innerParagraph;
     }
 

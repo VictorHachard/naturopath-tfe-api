@@ -21,7 +21,7 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
         innerPage.setDescription(description);
         innerPage.setTitle(title);
         innerPage.setVersion(0);
-        innerPage.setEnumState(EnumState.PROGRESS);
+        innerPage.setEnumState(EnumState.DRAFT);
         return innerPage;
     }
 
@@ -31,7 +31,7 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
         innerPage.setDescription(description);
         innerPage.setTitle(title);
         innerPage.setVersion(version);
-        innerPage.setEnumState(EnumState.PROGRESS);
+        innerPage.setEnumState(EnumState.DRAFT);
         return innerPage;
     }
 

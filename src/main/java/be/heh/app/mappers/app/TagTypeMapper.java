@@ -19,7 +19,7 @@ public final class TagTypeMapper {
     TagTypeFacade tagTypeFacade;
 
     public TagType map(TagTypeValidator tagTypeValidator) {
-        return tagTypeFacade.newInstance(tagTypeValidator);
+        return tagTypeFacade.newInstance(tagTypeValidator.getName(), tagTypeValidator.getDescription());
     }
 
 }
