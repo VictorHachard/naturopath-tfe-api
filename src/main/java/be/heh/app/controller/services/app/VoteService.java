@@ -3,6 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.VoteValidator;
 import be.heh.app.model.entities.app.*;
+import be.heh.app.model.facades.app.InnerTagFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -46,10 +47,10 @@ public class VoteService extends AbstractService {
             }
             vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerPage innerPage = innerPageRepository.findById(voteValidator.getTypeId()).get();
-            if (innerPage.userAlreadyVote(user)) {
+            if (innerPageFacade.userAlreadyVote(innerPage, user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
-                if (!innerPage.getState().equals("PROGRESS")) {
+                if (!innerPage.isFinalState()) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //pus vote
                 } else {
                     voteRepository.save(vote);
@@ -66,10 +67,10 @@ public class VoteService extends AbstractService {
             }
             vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerParagraph innerParagraph = innerParagraphRepository.findById(voteValidator.getTypeId()).get();
-            if (innerParagraph.userAlreadyVote(user)) {
+            if (innerParagraphFacade.userAlreadyVote(innerParagraph, user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
-                if (!innerParagraph.getState().equals("PROGRESS")) {
+                if (!innerParagraph.isFinalState()) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //pus vote
                 } else {
                     voteRepository.save(vote);
@@ -86,10 +87,10 @@ public class VoteService extends AbstractService {
             }
             vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerTag innerTag = innerTagRepository.findById(voteValidator.getTypeId()).get();
-            if (innerTag.userAlreadyVote(user)) {
+            if (innerTagFacade.userAlreadyVote(innerTag, user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
-                if (!innerTag.getState().equals("PROGRESS")) {
+                if (!innerTag.isFinalState()) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //pus vote
                 } else {
                     voteRepository.save(vote);

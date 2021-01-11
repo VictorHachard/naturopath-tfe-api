@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public class VoteController extends AbstractController {
 
-    @Autowired
-    VoteService voteService;
-
     @GetMapping("/vote")
     public List<Vote> getAllVote() {
         return voteService.getAllVote();

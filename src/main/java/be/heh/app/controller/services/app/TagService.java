@@ -49,7 +49,7 @@ public class TagService extends AbstractService {
             Tag tag = tagMapper.map(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
             if (!pageRepository.findById(tagValidator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Tag don't math the rule");
-            } else if (!pageRepository.findById(tagValidator.getPageId()).get().verifyTypeTag(tag.getTagType())) {
+            } else if (!pageFacade.verifyTypeTag(pageRepository.findById(tagValidator.getPageId()).get(), tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the tag is duplicate");
             }
             Page page = pageRepository.findById(tagValidator.getPageId()).get();

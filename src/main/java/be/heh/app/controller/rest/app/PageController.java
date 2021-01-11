@@ -22,9 +22,6 @@ import java.util.List;
 @Log
 public class PageController extends AbstractController {
 
-	@Autowired
-	PageService pageService;
-
 	@GetMapping("/page")
 	public List<Page> getAllPage() {
 		return pageService.getAllPage();

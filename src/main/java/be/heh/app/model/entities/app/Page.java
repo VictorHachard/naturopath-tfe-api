@@ -59,22 +59,4 @@ public class Page extends AbstractEntity {
         innerPageList.addAll(Arrays.asList(innerPage));
     }
 
-    public boolean verifyTypeParagraph(ParagraphType type) {
-        for (Paragraph paragraph: paragraphList) {
-            if (paragraph.getParagraphType().getName().equals(type.getName())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean verifyTypeTag(TagType type) {
-        for (Tag tag: tagList) {
-            if (tag.getTagType().getName().equals(type.getName())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }

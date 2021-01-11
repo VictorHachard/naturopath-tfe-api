@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public class ParagraphTypeController extends AbstractController {
 
-    @Autowired
-    ParagraphTypeService paragraphTypeService;
-
     @GetMapping("/paragraphType")
     public List<ParagraphType> getAllParagraphType() {
         return paragraphTypeService.getAllParagraphType();

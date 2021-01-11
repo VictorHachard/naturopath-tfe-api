@@ -21,9 +21,6 @@ import java.util.List;
 @Log
 public class TagController extends AbstractController {
 
-    @Autowired
-    TagService tagService;
-
     @GetMapping("/tag")
     public List<Tag> getAllTag() {
         return tagService.getAllTag();

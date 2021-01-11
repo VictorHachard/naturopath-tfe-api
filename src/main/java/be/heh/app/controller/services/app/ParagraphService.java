@@ -49,7 +49,7 @@ public class ParagraphService extends AbstractService {
             Paragraph paragraph = paragraphMapper.map(innerParagraph, paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).get(), userRepository.findById(paragraphValidator.getUserId()).get());
             if (!pageRepository.findById(paragraphValidator.getPageId()).get().getCategory().getParagraphTypeList().contains(paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The paragraph don't math the rule");
-            } else if (!pageRepository.findById(paragraphValidator.getPageId()).get().verifyTypeParagraph(paragraph.getParagraphType())) {
+            } else if (!pageFacade.verifyTypeParagraph(pageRepository.findById(paragraphValidator.getPageId()).get(), paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the paragraph is duplicate");
             }
             innerParagraphRepository.save(innerParagraph);

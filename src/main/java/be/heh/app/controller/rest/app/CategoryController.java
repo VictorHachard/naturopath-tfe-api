@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public class CategoryController extends AbstractController {
 
-	@Autowired
-	CategoryService categoryService;
-
 	@GetMapping("/category")
 	public List<Category> getAllCategory() {
 		return categoryService.getAllCategory();

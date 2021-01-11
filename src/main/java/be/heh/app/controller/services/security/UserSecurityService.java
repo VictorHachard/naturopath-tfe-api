@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-public class UserService extends AbstractSecurityService {
+public class UserSecurityService extends AbstractSecurityService {
 
     public List<Category> getAllCategory() {
         if (categoryRepository.findAll().isEmpty()) {

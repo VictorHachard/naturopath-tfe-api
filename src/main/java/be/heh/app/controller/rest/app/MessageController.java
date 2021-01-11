@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public class MessageController extends AbstractController {
 
-    @Autowired
-    MessageService messageService;
-
     @GetMapping("/message")
     public List<Message> getAllMessage() {
         return messageService.getAllMessage();

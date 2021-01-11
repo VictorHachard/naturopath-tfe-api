@@ -21,9 +21,6 @@ import java.util.List;
 @Log
 public class ParagraphController extends AbstractController {
 
-    @Autowired
-    ParagraphService paragraphService;
-
     @GetMapping("/paragraph")
     public List<Paragraph> getAllParagraph() {
         return paragraphService.getAllParagraph();

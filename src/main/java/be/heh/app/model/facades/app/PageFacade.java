@@ -1,9 +1,6 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.entities.app.InnerPage;
-import be.heh.app.model.entities.app.Page;
-import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import be.heh.app.model.repositories.app.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,24 @@ public class PageFacade extends AbstractFacade<Page> {
         page.setUser(user);
         page.setCategory(category);
         return page;
+    }
+
+    public boolean verifyTypeParagraph(Page page, ParagraphType type) {
+        for (Paragraph paragraph: page.getParagraphList()) {
+            if (paragraph.getParagraphType().getName().equals(type.getName())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean verifyTypeTag(Page page, TagType type) {
+        for (Tag tag: page.getTagList()) {
+            if (tag.getTagType().getName().equals(type.getName())) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

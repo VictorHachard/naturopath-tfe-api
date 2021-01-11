@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public class TagTypeController extends AbstractController {
 
-    @Autowired
-    TagTypeService tagTypeService;
-
     @GetMapping("/tagType")
     public List<TagType> getAllTagType() {
         return tagTypeService.getAllTagType();
