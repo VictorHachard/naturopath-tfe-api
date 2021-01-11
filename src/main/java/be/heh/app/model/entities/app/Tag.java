@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class Tag extends AbstractEntity {
     List<InnerTag> innerTagList;
 
     public void addInnerTag(InnerTag ... innerTag) {
+        if (innerTagList == null) {
+            innerTagList = new ArrayList<>();
+        }
         innerTagList.addAll(Arrays.asList(innerTag));
     }
 

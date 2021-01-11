@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,10 +33,16 @@ public class Category extends AbstractLang {
     List<TagType> tagTypeList;
 
     public void addParagraphType(ParagraphType ... paragraphType) {
+        if (paragraphTypeList == null) {
+            paragraphTypeList = new ArrayList<>();
+        }
         paragraphTypeList.addAll(Arrays.asList(paragraphType));
     }
 
     public void addTagType(TagType ... tagType) {
+        if (tagTypeList == null) {
+            tagTypeList = new ArrayList<>();
+        }
         tagTypeList.addAll(Arrays.asList(tagType));
     }
 

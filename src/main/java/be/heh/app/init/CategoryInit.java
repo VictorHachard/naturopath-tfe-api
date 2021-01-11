@@ -94,7 +94,7 @@ public class CategoryInit {
     @PostConstruct
     public void init() {
         categoryList.forEach(category -> {
-            //categoryRepository.save(category);
+            categoryRepository.save(category);
         });
     }
 

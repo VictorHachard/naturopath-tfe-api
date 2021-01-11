@@ -1,6 +1,5 @@
 package be.heh.app.dto;
 
-import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +11,5 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PageDto {
-
-    Page page;
-
-    String msgSucess;
-
+public class UserDto {
 }

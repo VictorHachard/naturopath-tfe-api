@@ -39,7 +39,7 @@ public class UserInit {
     @PostConstruct
     public void init() {
         userList.forEach(user -> {
-            //userRepository.save(user);
+            userRepository.save(user);
             //userSecurityRepository.save(new UserSecurity());
         });
     }

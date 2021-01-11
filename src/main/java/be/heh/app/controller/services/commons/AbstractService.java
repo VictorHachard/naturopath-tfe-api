@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 // Lombok
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Log
-public class AbstractService {
+public abstract class AbstractService {
 
     @Autowired
     CategoryRepository categoryRepository;
 
     @Autowired
     PageRepository pageRepository;
+
+    @Autowired
+    InnerParagraphRepository innerParagraphRepository;
 
     @Autowired
     UserRepository userRepository;

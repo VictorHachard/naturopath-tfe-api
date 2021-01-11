@@ -39,14 +39,23 @@ public class Page extends AbstractEntity {
     List<Tag> tagList;
 
     public void addParagraph(Paragraph ... paragraph) {
+        if (paragraphList == null) {
+            paragraphList = new ArrayList<>();
+        }
         paragraphList.addAll(Arrays.asList(paragraph));
     }
 
     public void addTag(Tag ... tag) {
+        if (tagList == null) {
+            tagList = new ArrayList<>();
+        }
         tagList.addAll(Arrays.asList(tag));
     }
 
     public void addInnerPage(InnerPage ... innerPage) {
+        if (innerPageList == null) {
+            innerPageList = new ArrayList<>();
+        }
         innerPageList.addAll(Arrays.asList(innerPage));
     }
 

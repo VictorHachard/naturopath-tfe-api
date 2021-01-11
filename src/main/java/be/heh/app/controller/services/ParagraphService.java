@@ -59,10 +59,10 @@ public class ParagraphService extends AbstractService {
             } else if (!pageRepository.findById(paragraphValidator.getPageId()).get().verifyTypeParagraph(paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the paragraph is duplicate");
             }
+            innerParagraphRepository.save(innerParagraph);
+            paragraphRepository.save(paragraph);
             Page page = pageRepository.findById(paragraphValidator.getPageId()).get();
             page.addParagraph(paragraph);
-
-            paragraphRepository.save(paragraph);
             pageRepository.save(page);
             return paragraph;
             //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");

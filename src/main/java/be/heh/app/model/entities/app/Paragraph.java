@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class Paragraph extends AbstractEntity {
     List<InnerParagraph> innerParagraphList;
 
     public void addInnerParagraph(InnerParagraph ... innerParagraph) {
+        if (innerParagraphList == null) {
+            innerParagraphList = new ArrayList<>();
+        }
         innerParagraphList.addAll(Arrays.asList(innerParagraph));
     }
 

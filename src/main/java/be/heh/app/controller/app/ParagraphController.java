@@ -1,4 +1,4 @@
-package be.heh.app.controller;
+package be.heh.app.controller.app;
 
 import be.heh.app.controller.services.ParagraphService;
 import be.heh.app.controller.validators.ParagraphValidator;
