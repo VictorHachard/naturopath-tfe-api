@@ -3,7 +3,6 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.VoteValidator;
 import be.heh.app.model.entities.app.*;
-import be.heh.app.model.facades.app.InnerTagFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

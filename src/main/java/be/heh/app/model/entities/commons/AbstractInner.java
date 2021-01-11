@@ -3,7 +3,7 @@ package be.heh.app.model.entities.commons;
 import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.Vote;
-import be.heh.app.model.entities.app.enumeration.State;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class AbstractInner extends AbstractEntity {
+public abstract class AbstractInner extends AbstractEntity {
 
     @Column(name = "version")
     int version;
@@ -32,7 +32,7 @@ public class AbstractInner extends AbstractEntity {
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    State state;
+    EnumState enumState;
 
     @JoinColumn(name = "user_id")
     @ManyToOne
@@ -53,11 +53,11 @@ public class AbstractInner extends AbstractEntity {
         if (voteList.size() == 5) {
             for (Vote vote1: voteList) {
                 if (vote1.getChoice() == 0) {
-                    state = State.NOT_VALIDATED;
+                    enumState = EnumState.NOT_VALIDATED;
                     return false;
                 }
             }
-            state = State.VALIDATED;
+            enumState = EnumState.VALIDATED;
             return false;
         } else {
             return true;
@@ -65,7 +65,7 @@ public class AbstractInner extends AbstractEntity {
     }
 
     public boolean isFinalState() {
-        if (state == State.VALIDATED || state == State.NOT_VALIDATED) {
+        if (enumState == EnumState.VALIDATED || enumState == EnumState.NOT_VALIDATED) {
             return true;
         } else {
             return false;

@@ -1,7 +1,6 @@
 package be.heh.app.controller.rest.commons;
 
 import be.heh.app.controller.services.app.*;
-import be.heh.app.model.entities.security.UserSecurity;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;

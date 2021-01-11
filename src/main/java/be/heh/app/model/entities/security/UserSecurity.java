@@ -1,6 +1,7 @@
 package be.heh.app.model.entities.security;
 
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.security.enumeration.EnumPermission;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -69,7 +70,8 @@ public class UserSecurity implements Serializable {
     Date delete_set;
 
     @Column(name = "permission")
-    String permission;
+    @Enumerated(EnumType.STRING)
+    EnumPermission enumPermission;
 
     @Column(name = "all_emails")
     int all_emails;

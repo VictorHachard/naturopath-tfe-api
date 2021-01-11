@@ -1,7 +1,6 @@
 package be.heh.app.controller.services.commons;
 
 import be.heh.app.mappers.app.*;
-import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.facades.app.InnerPageFacade;
 import be.heh.app.model.facades.app.InnerParagraphFacade;
 import be.heh.app.model.facades.app.InnerTagFacade;

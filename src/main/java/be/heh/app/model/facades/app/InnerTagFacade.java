@@ -1,10 +1,9 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.Vote;
-import be.heh.app.model.entities.app.enumeration.State;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import be.heh.app.model.repositories.app.InnerTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         innerTag.setContent(content);
         innerTag.setName(name);
         innerTag.setVersion(0);
-        innerTag.setState(State.PROGRESS);
+        innerTag.setEnumState(EnumState.PROGRESS);
         return innerTag;
     }
 
@@ -32,7 +31,7 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         innerTag.setContent(content);
         innerTag.setName(name);
         innerTag.setVersion(version);
-        innerTag.setState(State.PROGRESS);
+        innerTag.setEnumState(EnumState.PROGRESS);
         return innerTag;
     }
 
