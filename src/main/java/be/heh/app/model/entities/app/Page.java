@@ -38,6 +38,12 @@ public class Page extends AbstractEntity {
     @OneToMany
     List<Tag> tagList;
 
+    @OneToMany
+    List<Parapage> parapageList;
+
+    @OneToMany
+    List<Paratag> paratagList;
+
     public void addParagraph(Paragraph ... paragraph) {
         if (paragraphList == null) {
             paragraphList = new ArrayList<>();
@@ -50,6 +56,20 @@ public class Page extends AbstractEntity {
             tagList = new ArrayList<>();
         }
         tagList.addAll(Arrays.asList(tag));
+    }
+
+    public void addParatag(Paratag ... paratag) {
+        if (paratagList == null) {
+            paratagList = new ArrayList<>();
+        }
+        paratagList.addAll(Arrays.asList(paratag));
+    }
+
+    public void addParapage(Parapage ... parapage) {
+        if (parapageList == null) {
+            parapageList = new ArrayList<>();
+        }
+        parapageList.addAll(Arrays.asList(parapage));
     }
 
     public void addInnerPage(InnerPage ... innerPage) {

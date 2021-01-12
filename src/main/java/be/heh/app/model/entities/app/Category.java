@@ -4,9 +4,7 @@ import be.heh.app.model.entities.commons.AbstractLang;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +24,30 @@ public class Category extends AbstractLang {
     @Column(name = "description")
     String description;
 
+    @Column(name = "parent")
+    boolean parent;
+
+    @OneToMany
+    List<Category> categoryList;
+
+    @JoinColumn(name = "category_id")
+    @ManyToOne
+    Category parentCategory;
+
     @OneToMany
     List<ParagraphType> paragraphTypeList;
 
     @OneToMany
     List<TagType> tagTypeList;
+
+    public void addCategory(Category ... category) {
+        if (categoryList == null) {
+            categoryList = new ArrayList<>();
+        } if (categoryList.isEmpty()) {
+            parent = true;
+        }
+        categoryList.addAll(Arrays.asList(category));
+    }
 
     public void addParagraphType(ParagraphType ... paragraphType) {
         if (paragraphTypeList == null) {

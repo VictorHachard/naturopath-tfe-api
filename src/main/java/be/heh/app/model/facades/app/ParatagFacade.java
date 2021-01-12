@@ -1,0 +1,23 @@
+package be.heh.app.model.facades.app;
+
+import be.heh.app.model.entities.app.*;
+import be.heh.app.model.facades.commons.AbstractFacade;
+import be.heh.app.model.repositories.app.ParatagRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ParatagFacade extends AbstractFacade<Paratag> {
+
+    @Autowired
+    ParatagRepository paratagRepository;
+
+    public Paratag newInstance(InnerParatag innerParatag, ParatagType paratagType, User user) {
+        Paratag paratag = new Paratag();
+        paratag.addInnerParatag(innerParatag);
+        paratag.setParatagType(paratagType);
+        paratag.setUser(user);
+        return paratag;
+    }
+
+}

@@ -68,7 +68,7 @@ public class MessageService extends AbstractService {
             messageRepository.save(message);
             innerTag.addMessage(message);
             innerTagRepository.save(innerTag);
-        } else {
+        } else { // TODO 2 nouveau inner a ajouter
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "logique  getType est pas bon");
         }
         return message;

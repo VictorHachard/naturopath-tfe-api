@@ -15,6 +15,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public Category newInstance(String name, String description, String lang) {
         Category category = new Category();
         category.setName(name);
+        category.setParent(false);
         category.setDescription(description);
         category.setLang(lang);
         return category;
@@ -23,6 +24,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public Category newInstance(String name, String description) {
         Category category = new Category();
         category.setName(name);
+        category.setParent(false);
         category.setDescription(description);
         category.setLang("EN");
         return category;

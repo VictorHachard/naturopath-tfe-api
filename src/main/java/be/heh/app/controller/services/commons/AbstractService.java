@@ -51,6 +51,24 @@ public abstract class AbstractService {
     @Autowired
     TagTypeRepository tagTypeRepository;
 
+    @Autowired
+    InnerParapageRepository innerParapageRepository;
+
+    @Autowired
+    InnerParatagRepository innerParatagRepository;
+
+    @Autowired
+    ParatagTypeRepository paratagTypeRepository;
+
+    @Autowired
+    ParapageTypeRepository parapageTypeRepository;
+
+    @Autowired
+    ParapageRepository parapageRepository;
+
+    @Autowired
+    ParatagRepository paratagRepository;
+
     // Mapper
 
     @Autowired
@@ -108,5 +126,23 @@ public abstract class AbstractService {
 
     @Autowired
     TagTypeFacade tagTypeFacade;
+
+    @Autowired
+    InnerParapageFacade innerParapageFacade;
+
+    @Autowired
+    InnerParatagFacade innerParatagFacade;
+
+    @Autowired
+    ParatagTypeFacade paratagTypeFacade;
+
+    @Autowired
+    ParapageTypeFacade parapageTypeFacade;
+
+    @Autowired
+    ParapageFacade parapageFacade;
+
+    @Autowired
+    ParatagFacade paratagFacade;
 
 }
