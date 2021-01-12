@@ -6,17 +6,14 @@ import be.heh.app.model.repositories.app.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 public class UserFacade extends AbstractFacade<User> {
 
     @Autowired
     UserRepository userRepository;
 
-    public User newInstance(Date date, String lang) {
+    public User newInstance(String lang) {
         User user = new User();
-        user.setBirth(date);
         user.setLang(lang);
         return user;
     }

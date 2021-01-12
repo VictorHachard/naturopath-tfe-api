@@ -1,7 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.ParagraphTypeValidator;
+import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.model.entities.app.ParagraphType;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -29,8 +29,8 @@ public class ParagraphTypeController extends AbstractController {
     }
 
     @PostMapping("/paragraphType")
-    public ParagraphType insertParagraphType(@Valid @RequestBody ParagraphTypeValidator paragraphTypeValidator) {
-        return paragraphTypeService.insertParagraphType(paragraphTypeValidator);
+    public ParagraphType insertParagraphType(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
+        return paragraphTypeService.insertParagraphType(generalTypeValidator);
     }
 
     @PostMapping("/paragraphType/{paragraphTypeId}/linkToCategory/{categoryId}")

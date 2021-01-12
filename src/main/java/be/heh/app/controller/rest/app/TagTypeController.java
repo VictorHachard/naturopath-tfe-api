@@ -1,7 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.TagTypeValidator;
+import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.model.entities.app.TagType;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -29,8 +29,8 @@ public class TagTypeController extends AbstractController {
     }
 
     @PostMapping("/tagType")
-    public TagType insertTagType(@Valid @RequestBody TagTypeValidator tagTypeValidator) {
-        return tagTypeService.insertTagType(tagTypeValidator);
+    public TagType insertTagType(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
+        return tagTypeService.insertTagType(generalTypeValidator);
     }
 
     @PostMapping("/tagType/{tagTypeId}/linkToCategory/{categoryId}")

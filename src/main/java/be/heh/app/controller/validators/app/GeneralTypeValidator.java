@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-public class TagTypeValidator {
+public class GeneralTypeValidator {
 
     @NotNull(message = "")
     @NotEmpty

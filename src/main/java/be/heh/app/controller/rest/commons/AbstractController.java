@@ -36,4 +36,10 @@ public abstract class AbstractController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ParatagTypeService paratagTypeService;
+
+    @Autowired
+    ParapageTypeService parapageTypeService;
+
 }

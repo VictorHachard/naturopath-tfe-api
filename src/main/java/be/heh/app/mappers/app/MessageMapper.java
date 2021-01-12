@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class MessageMapper {
+public final class MessageMapper {
 
     @Autowired
     MessageFacade messageFacade;

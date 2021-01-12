@@ -1,13 +1,13 @@
-package be.heh.app.mappers.app;
+package be.heh.app.controller.services.app;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class UserMapper {
+public class ParapageTypeService {
 }

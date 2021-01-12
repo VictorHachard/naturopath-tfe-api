@@ -15,13 +15,10 @@ import javax.persistence.ManyToOne;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Vote extends AbstractEntity {
+public class Image extends AbstractEntity {
 
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;
-
-    @JoinColumn(name = "choice")
-    int choice; // 0 pour - 1 contre
 
 }

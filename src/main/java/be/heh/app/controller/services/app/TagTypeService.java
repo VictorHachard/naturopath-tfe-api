@@ -1,7 +1,7 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.TagTypeValidator;
+import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.TagType;
 import lombok.AccessLevel;
@@ -35,8 +35,8 @@ public class TagTypeService extends AbstractService {
         }
     }
 
-    public TagType insertTagType(TagTypeValidator tagTypeValidator) {
-        TagType tag = tagTypeMapper.map(tagTypeValidator);
+    public TagType insertTagType(GeneralTypeValidator generalTypeValidator) {
+        TagType tag = tagTypeMapper.map(generalTypeValidator);
         tagTypeRepository.save(tag);
         return tag;
     }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -26,7 +25,7 @@ public class Init extends AbstractSecurityService {
     static List<ParagraphType> paragraphTypeList = new ArrayList<>();
 
     public void initUser() {
-        userList.add(userFacade.newInstance(new Date("06/06/1999"), "FR"));
+        userList.add(userFacade.newInstance("FR"));
     }
 
     public void initTagType() {
@@ -73,9 +72,28 @@ public class Init extends AbstractSecurityService {
 
     @PostConstruct
     public void init() {
+        initUser();
+        initParagraphType();
+        initTagType();
+        initCategory();
+        initPage();
         userList.forEach(user -> {
             userRepository.save(user);
-            //userSecurityRepository.save(new UserSecurity());
+        });
+        paragraphTypeList.forEach(user -> {
+            paragraphTypeRepository.save(user);
+        });
+        tagTypeList.forEach(user -> {
+            tagTypeRepository.save(user);
+        });
+        categoryList.forEach(user -> {
+            categoryRepository.save(user);
+        });
+        innerPageList.forEach(user -> {
+            innerPageRepository.save(user);
+        });
+        pageList.forEach(user -> {
+            pageRepository.save(user);
         });
     }
 

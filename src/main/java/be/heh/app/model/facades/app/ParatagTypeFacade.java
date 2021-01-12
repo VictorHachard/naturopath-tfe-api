@@ -1,6 +1,5 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.model.entities.app.ParagraphType;
 import be.heh.app.model.entities.app.ParatagType;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import be.heh.app.model.repositories.app.ParatagTypeRepository;

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class VoteMapper {
+public final class VoteMapper {
 
     @Autowired
     VoteFacade voteFacade;

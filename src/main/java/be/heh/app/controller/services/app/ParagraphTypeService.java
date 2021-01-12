@@ -1,7 +1,7 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.ParagraphTypeValidator;
+import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.ParagraphType;
 import lombok.AccessLevel;
@@ -35,8 +35,8 @@ public class ParagraphTypeService extends AbstractService {
         }
     }
 
-    public ParagraphType insertParagraphType(ParagraphTypeValidator paragraphTypeValidator) {
-        ParagraphType tag = paragraphTypeMapper.map(paragraphTypeValidator);
+    public ParagraphType insertParagraphType(GeneralTypeValidator generalTypeValidator) {
+        ParagraphType tag = paragraphTypeMapper.map(generalTypeValidator);
         paragraphTypeRepository.save(tag);
         return tag;
     }

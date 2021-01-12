@@ -145,4 +145,25 @@ public abstract class AbstractService {
     @Autowired
     ParatagFacade paratagFacade;
 
+    /*public List<I> getAll() {
+        if (categoryRepository.findAll().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category in the database");
+        } else {
+            return categoryRepository.findAll();
+        }
+    }
+
+    TypeVariable[] clazz = this.getClass().getTypeParameters();
+    TypeVariable t = clazz[0];
+    Constructor constructor = t.getClass().getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+    AbstractEntity obj = null;
+        try {
+        obj = (AbstractEntity) constructor.newInstance();
+        obj.setCreatedAt(new Date());
+    } catch (Exception e) {
+        Logger.getLogger("AbstractRepository").info(e.getMessage());
+    }
+        return (I) obj;*/
+
 }

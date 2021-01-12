@@ -40,6 +40,10 @@ public class UserSecurity implements Serializable {
     @Column(name = "last_name")
     String last_name;
 
+    @Column(name = "birth")
+    @Temporal(TemporalType.DATE)
+    Date birth;
+
     @Column(name = "validation_token", unique = true)
     String validation_token;
 

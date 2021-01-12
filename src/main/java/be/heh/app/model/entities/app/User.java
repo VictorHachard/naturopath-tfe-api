@@ -5,8 +5,10 @@ import be.heh.app.model.entities.security.UserSecurity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="utilisateur")
@@ -20,10 +22,6 @@ public class User extends AbstractEntity {
 
     @OneToOne
     UserSecurity userSecurity;
-
-    @Column(name = "birth")
-    @Temporal(TemporalType.DATE)
-    Date birth;
 
     @Column(name = "lang")
     String lang;

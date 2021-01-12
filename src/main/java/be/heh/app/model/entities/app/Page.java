@@ -44,6 +44,9 @@ public class Page extends AbstractEntity {
     @OneToMany
     List<Paratag> paratagList;
 
+    @OneToMany
+    List<Image> imageList;
+
     public void addParagraph(Paragraph ... paragraph) {
         if (paragraphList == null) {
             paragraphList = new ArrayList<>();
@@ -77,6 +80,13 @@ public class Page extends AbstractEntity {
             innerPageList = new ArrayList<>();
         }
         innerPageList.addAll(Arrays.asList(innerPage));
+    }
+
+    public void addImage(Image ... image) {
+        if (imageList == null) {
+            imageList = new ArrayList<>();
+        }
+        imageList.addAll(Arrays.asList(image));
     }
 
 }
