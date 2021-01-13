@@ -22,12 +22,12 @@ public class PageController extends AbstractController {
 
 	@GetMapping("/page")
 	public List<Page> getAllPage() {
-		return pageService.getAllPage();
+		return pageService.getAll();
 	}
 
 	@GetMapping("/page/{id}")
 	public Page getPage(@PathVariable("id") int id) {
-		return pageService.getPage(id);
+		return pageService.get(id);
 	}
 
 	@PostMapping("/page")

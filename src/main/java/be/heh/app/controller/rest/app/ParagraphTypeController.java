@@ -20,12 +20,12 @@ public class ParagraphTypeController extends AbstractController {
 
     @GetMapping("/paragraphType")
     public List<ParagraphType> getAllParagraphType() {
-        return paragraphTypeService.getAllParagraphType();
+        return paragraphTypeService.getAll();
     }
 
     @GetMapping("/paragraphType/{id}")
     public ParagraphType getParagraphType(@PathVariable("id") int id) {
-        return paragraphTypeService.getParagraphType(id);
+        return paragraphTypeService.get(id);
     }
 
     @PostMapping("/paragraphType")

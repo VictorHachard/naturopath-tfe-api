@@ -21,22 +21,6 @@ import java.util.List;
 @Log
 public class TagService extends AbstractService<Tag> {
 
-    public List<Tag> getAllTag() {
-        if (tagRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag in the database");
-        } else {
-            return tagRepository.findAll();
-        }
-    }
-
-    public Tag getTag(int id) {
-        if (tagRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this tagId");
-        } else {
-            return tagRepository.findById(id).get();
-        }
-    }
-
     public Tag insertTag(TagValidator tagValidator) {
         if (pageRepository.findById(tagValidator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");

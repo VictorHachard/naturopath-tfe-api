@@ -19,22 +19,6 @@ import java.util.List;
 @Log
 public class TagTypeService extends AbstractService<TagType> {
 
-    public List<TagType> getAllTagType() {
-        if (tagTypeRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType in the database");
-        } else {
-            return tagTypeRepository.findAll();
-        }
-    }
-
-    public TagType getTagType(int id) {
-        if (tagTypeRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this TagTypeId");
-        } else {
-            return tagTypeRepository.findById(id).get();
-        }
-    }
-
     public TagType insertTagType(GeneralTypeValidator generalTypeValidator) {
         TagType tag = tagTypeMapper.map(generalTypeValidator);
         tagTypeRepository.save(tag);

@@ -19,7 +19,7 @@ import java.util.Set;
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InitRepo {
+public class InitRepository {
 
     @Autowired
     UserRepository userRepository;
@@ -84,17 +84,18 @@ public class InitRepo {
     public void init() {
         CategoryRepository.class.getClass();
 
-        Reflections reflections = new Reflections("be.heh.app.model.repositories.app");
-        Set<Class<?>> allClasses =
-                reflections.getSubTypesOf(Object.class);
+        /*Reflections reflections = new Reflections("be.heh.app.model.repositories.app");
+        Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
 
-        System.out.println(allClasses.size());
+        System.out.println(allClasses.size());*/
 
-        repositoryMap.put("Page",pageRepository);
+        repositoryMap.put("Page", pageRepository);
+        repositoryMap.put("Category", categoryRepository);
     }
 
     public static <T>T get(Class c){
-        return (T) repositoryMap.get(c.getSimpleName());
+        System.out.println(c);
+        return (T) repositoryMap.get(c.getSimpleName().replace("Service", ""));
     }
 
 }

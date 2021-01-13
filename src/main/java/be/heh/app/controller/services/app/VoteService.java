@@ -18,22 +18,6 @@ import java.util.List;
 @Log
 public class VoteService extends AbstractService<Vote> {
 
-    public List<Vote> getAllVote() {
-        if (voteRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Vote in the database");
-        } else {
-            return voteRepository.findAll();
-        }
-    }
-
-    public Vote getVote(int id) {
-        if (voteRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Vote with this voteId");
-        } else {
-            return voteRepository.findById(id).get();
-        }
-    }
-
     public Vote insertVote(VoteValidator voteValidator) {
         if (userRepository.findById(voteValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");

@@ -20,22 +20,6 @@ import java.util.List;
 @Log
 public class PageService extends AbstractService<Page> {
 
-    public List<Page> getAllPage() {
-        if (pageRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page in the database");
-        } else {
-            return pageRepository.findAll();
-        }
-    }
-
-    public Page getPage(int id) {
-        if (pageRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-        } else {
-            return pageRepository.findById(id).get();
-        }
-    }
-
     public Page insertPage(PageValidator pageValidator) {
         if (categoryRepository.findById(pageValidator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");

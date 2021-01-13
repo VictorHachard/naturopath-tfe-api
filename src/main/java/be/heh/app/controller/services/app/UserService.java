@@ -13,7 +13,4 @@ import org.springframework.stereotype.Service;
 @Log
 public class UserService extends AbstractService<User> {
 
-
-
-
 }

@@ -23,12 +23,12 @@ public class CategoryController extends AbstractController {
 
 	@GetMapping("/category")
 	public List<Category> getAllCategory() {
-		return categoryService.getAllCategory();
+		return categoryService.getAll();
 	}
 
 	@GetMapping("/category/{id}")
 	public Category getCategory(@PathVariable("id") int id) {
-		return categoryService.getCategory(id);
+		return categoryService.get(id);
 	}
 
 	@PostMapping("/category")

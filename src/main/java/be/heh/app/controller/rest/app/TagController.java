@@ -21,12 +21,12 @@ public class TagController extends AbstractController {
 
     @GetMapping("/tag")
     public List<Tag> getAllTag() {
-        return tagService.getAllTag();
+        return tagService.getAll();
     }
 
     @GetMapping("/tag/{id}")
     public Tag getTag(@PathVariable("id") int id) {
-        return tagService.getTag(id);
+        return tagService.get(id);
     }
 
     @PostMapping("/tag")

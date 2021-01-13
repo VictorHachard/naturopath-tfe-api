@@ -1,11 +1,10 @@
 package be.heh.app.controller.services.commons;
 
-import be.heh.app.init.InitRepo;
+import be.heh.app.init.InitRepository;
 import be.heh.app.mappers.app.*;
 import be.heh.app.model.facades.app.*;
 import be.heh.app.model.repositories.app.*;
 import be.heh.app.model.repositories.commons.AbstractRepository;
-import ch.qos.logback.core.encoder.EchoEncoder;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.annotation.PostConstruct;
-import java.lang.reflect.TypeVariable;
 import java.util.List;
 
 // Lombok
@@ -162,9 +159,10 @@ public class AbstractService<I> {
 
     Class typeObject;
 
-    @PostConstruct
+    /*@PostConstruct
     public void init() {
         String className = this.getClass().getSimpleName().replace("Service", "");
+        System.out.println(className);
         try {
             typeObject = Class.forName("be.heh.app.model.entities.app" + className);
         } catch (Exception e) {
@@ -172,14 +170,23 @@ public class AbstractService<I> {
                 typeObject = Class.forName("be.heh.app.model.entities.app.security" + className);
             } catch (Exception e1) {}
         }
-    }
+    }*/
 
     public List<I> getAll() {
-        AbstractRepository repository = InitRepo.get(typeObject);
+        AbstractRepository repository = InitRepository.get(this.getClass());
         if (repository.findAll().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + typeObject.getSimpleName() + " in the database");
         } else {
             return (List<I>) repository.findAll();
+        }
+    }
+
+    public I get(int id) {
+        AbstractRepository repository = InitRepository.get(typeObject);
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + typeObject.getSimpleName() + " in the database");
+        } else {
+            return (I) repository.findById(id);
         }
     }
 

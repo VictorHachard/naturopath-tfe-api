@@ -18,22 +18,6 @@ import java.util.List;
 @Log
 public class MessageService extends AbstractService<Message> {
 
-    public List<Message> getAllMessage() {
-        if (messageRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Message in the database");
-        } else {
-            return messageRepository.findAll();
-        }
-    }
-
-    public Message getMessage(int id) {
-        if (messageRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Message with this pageId");
-        } else {
-            return messageRepository.findById(id).get();
-        }
-    }
-
     public Message insertMessage(MessageValidator messageValidator) {
         if (userRepository.findById(messageValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");

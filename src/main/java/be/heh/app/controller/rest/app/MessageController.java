@@ -20,12 +20,12 @@ public class MessageController extends AbstractController {
 
     @GetMapping("/message")
     public List<Message> getAllMessage() {
-        return messageService.getAllMessage();
+        return messageService.getAll();
     }
 
     @GetMapping("/message/{id}")
     public Message getMessage(@PathVariable("id") int id) {
-        return messageService.getMessage(id);
+        return messageService.get(id);
     }
 
     @PostMapping("/message")

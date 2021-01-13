@@ -21,12 +21,12 @@ public class ParagraphController extends AbstractController {
 
     @GetMapping("/paragraph")
     public List<Paragraph> getAllParagraph() {
-        return paragraphService.getAllParagraph();
+        return paragraphService.getAll();
     }
 
     @GetMapping("/paragraph/{id}")
     public Paragraph getParagraph(@PathVariable("id") int id) {
-        return paragraphService.getParagraph(id);
+        return paragraphService.get(id);
     }
 
     @PostMapping("/paragraph")

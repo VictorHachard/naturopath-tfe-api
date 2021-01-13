@@ -18,22 +18,6 @@ import java.util.List;
 @Log
 public class CategoryService extends AbstractService<Category> {
 
-    public List<Category> getAllCategory() {
-        if (categoryRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category in the database");
-        } else {
-            return categoryRepository.findAll();
-        }
-    }
-
-    public Category getCategory(int id) {
-        if (categoryRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else {
-            return categoryRepository.findById(id).get();
-        }
-    }
-
     public Category insertCategory(CategoryValidator categoryValidator) {
         Category category = categoryMapper.map(categoryValidator);
         categoryRepository.save(category);

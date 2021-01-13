@@ -20,12 +20,12 @@ public class VoteController extends AbstractController {
 
     @GetMapping("/vote")
     public List<Vote> getAllVote() {
-        return voteService.getAllVote();
+        return voteService.getAll();
     }
 
     @GetMapping("/vote/{id}")
     public Vote getVote(@PathVariable("id") int id) {
-        return voteService.getVote(id);
+        return voteService.get(id);
     }
 
     @PostMapping("/vote")

@@ -19,22 +19,6 @@ import java.util.List;
 @Log
 public class ParagraphTypeService extends AbstractService<ParagraphType> {
 
-    public List<ParagraphType> getAllParagraphType() {
-        if (paragraphTypeRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType in the database");
-        } else {
-            return paragraphTypeRepository.findAll();
-        }
-    }
-
-    public ParagraphType getParagraphType(int id) {
-        if (paragraphTypeRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this paragraphTypeId");
-        } else {
-            return paragraphTypeRepository.findById(id).get();
-        }
-    }
-
     public ParagraphType insertParagraphType(GeneralTypeValidator generalTypeValidator) {
         ParagraphType tag = paragraphTypeMapper.map(generalTypeValidator);
         paragraphTypeRepository.save(tag);

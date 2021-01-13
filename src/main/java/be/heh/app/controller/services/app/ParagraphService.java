@@ -21,22 +21,6 @@ import java.util.List;
 @Log
 public class ParagraphService extends AbstractService<Paragraph> {
 
-    public List<Paragraph> getAllParagraph() {
-        if (paragraphRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Paragraph in the database");
-        } else {
-            return paragraphRepository.findAll();
-        }
-    }
-
-    public Paragraph getParagraph(int id) {
-        if (paragraphRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Paragraph with this paragraphId");
-        } else {
-            return paragraphRepository.findById(id).get();
-        }
-    }
-
     public Paragraph insertParagraph(ParagraphValidator paragraphValidator) {
         if (pageRepository.findById(paragraphValidator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");

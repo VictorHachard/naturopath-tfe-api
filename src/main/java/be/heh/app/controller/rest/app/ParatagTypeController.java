@@ -16,12 +16,12 @@ public class ParatagTypeController extends AbstractController {
 
     /*@GetMapping("/paratagType")
     public List<ParatagType> getAllParatagType() {
-        return paratagTypeService.getAllParatagType();
+        return paratagTypeService.getAll();
     }
 
     @GetMapping("/paratagType/{id}")
     public ParatagType getParatagType(@PathVariable("id") int id) {
-        return paratagTypeService.getParatagType(id);
+        return paratagTypeService.get(id);
     }
 
     @PostMapping("/paratagType")

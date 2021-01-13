@@ -16,12 +16,12 @@ public class ParapageTypeController extends AbstractController {
 
     /*@GetMapping("/parapageType")
     public List<ParapageType> getAllParapageType() {
-        return parapageTypeService.getAllParapageType();
+        return parapageTypeService.getAll();
     }
 
     @GetMapping("/parapageType/{id}")
     public ParapageType getParapageType(@PathVariable("id") int id) {
-        return parapageTypeService.getParapageType(id);
+        return parapageTypeService.get(id);
     }
 
     @PostMapping("/parapageType")
