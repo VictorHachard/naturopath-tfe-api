@@ -26,6 +26,7 @@ public class GenericController {
     }
 
     private void authorized(String objet) {
+        System.out.println(objet);
         if (authorized.contains(objet)) {
             // throw new Exception("BLBAL");
         }
@@ -39,16 +40,28 @@ public class GenericController {
     }
 
     @GetMapping("/{variable}/{id}")
-    public Object get(@PathVariable("variable") String objet, @PathVariable("id") int id) {
+    public Object get(@PathVariable("variable") String objet, @PathVariable("id") String idS) {
+        int id = 0;
+        try {
+            id = Integer.parseInt(idS);
+        } catch (Exception e) {
+            return null;
+        }
         authorized(objet);
-        AbstractService service = InitService.get(this.getClass());
+        AbstractService service = InitService.serviceMap.get(objet);
         return (Object) service.get(id);
     }
 
     @DeleteMapping("/{variable}/{id}")
-    public void delete(@PathVariable("variable") String objet, @PathVariable("id") int id) {
+    public void delete(@PathVariable("variable") String objet, @PathVariable("id") String idS) {
+        int id = 0;
+        try {
+            id = Integer.parseInt(idS);
+        } catch (Exception e) {
+            throw e;
+        }
         authorized(objet);
-        AbstractService service = InitService.get(this.getClass());
+        AbstractService service = InitService.serviceMap.get(objet);
         service.delete(id);
     }
 

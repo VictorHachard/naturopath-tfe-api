@@ -12,6 +12,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserDto extends AbstractDto {
+public class TagDto extends AbstractDto {
+
+    String name;
+
+    String content;
 
 }

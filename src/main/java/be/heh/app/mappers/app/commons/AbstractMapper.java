@@ -1,4 +1,4 @@
-package be.heh.app.controller.rest.commons;
+package be.heh.app.mappers.app.commons;
 
 import be.heh.app.init.AbstractAutowire;
 import lombok.AccessLevel;
@@ -8,5 +8,5 @@ import lombok.extern.java.Log;
 // Lombok
 @FieldDefaults(level = AccessLevel.PROTECTED)
 @Log
-public abstract class AbstractController extends AbstractAutowire {
+public abstract class AbstractMapper extends AbstractAutowire {
 }

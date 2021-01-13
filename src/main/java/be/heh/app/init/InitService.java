@@ -1,12 +1,10 @@
 package be.heh.app.init;
 
-import be.heh.app.controller.services.app.*;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.model.repositories.app.CategoryRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,40 +15,7 @@ import java.util.Map;
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InitService {
-
-    @Autowired
-    TagTypeService tagTypeService;
-
-    @Autowired
-    CategoryService categoryService;
-
-    @Autowired
-    MessageService messageService;
-
-    @Autowired
-    PageService pageService;
-
-    @Autowired
-    ParagraphService paragraphService;
-
-    @Autowired
-    ParagraphTypeService paragraphTypeService;
-
-    @Autowired
-    TagService tagService;
-
-    @Autowired
-    VoteService voteService;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    ParatagTypeService paratagTypeService;
-
-    @Autowired
-    ParapageTypeService parapageTypeService;
+public class InitService extends AbstractAutowire {
 
     public static Map<String, AbstractService> serviceMap = new HashMap<>();
 
@@ -63,13 +28,8 @@ public class InitService {
 
         System.out.println(allClasses.size());*/
 
-        serviceMap.put("Page", pageService);
-        serviceMap.put("Category", categoryService);
-    }
-
-    public static <T>T get(Class c){
-        System.out.println(c);
-        return (T) serviceMap.get(c.getSimpleName().replace("Service", ""));
+        serviceMap.put("page", pageService);
+        serviceMap.put("category", categoryService);
     }
 
 }
