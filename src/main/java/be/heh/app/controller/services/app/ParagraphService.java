@@ -3,6 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.ParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.ParagraphValidator;
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Paragraph;
@@ -13,15 +14,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParagraphService extends AbstractService<Paragraph> {
 
-    public Paragraph insertParagraph(ParagraphValidator paragraphValidator) {
+    @Override
+    public void add(AbstractValidator abstractValidator) {
+        ParagraphValidator paragraphValidator = (ParagraphValidator) abstractValidator;
+
         if (pageRepository.findById(paragraphValidator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");
         } else if (userRepository.findById(paragraphValidator.getUserId()).isEmpty()) {
@@ -41,12 +43,14 @@ public class ParagraphService extends AbstractService<Paragraph> {
             Page page = pageRepository.findById(paragraphValidator.getPageId()).get();
             page.addParagraph(paragraph);
             pageRepository.save(page);
-            return paragraph;
             //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");
         }
     }
 
-    public Paragraph updateParagraph(ParagraphUpdateValidator paragraphUpdateValidator, int id) {
+    @Override
+    public void update(AbstractValidator abstractValidator, int id) {
+        ParagraphUpdateValidator paragraphUpdateValidator = (ParagraphUpdateValidator) abstractValidator;
+
         if (userRepository.findById(paragraphUpdateValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else if (paragraphRepository.findById(id).isEmpty()) {
@@ -57,7 +61,6 @@ public class ParagraphService extends AbstractService<Paragraph> {
             innerParagraphRepository.save(innerParagraph);
             paragraph.addInnerParagraph(innerParagraph);
             paragraphRepository.save(paragraph);
-            return paragraph;
             //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");
         }
     }

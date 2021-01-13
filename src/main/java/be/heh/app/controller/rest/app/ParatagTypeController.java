@@ -14,16 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Log
 public class ParatagTypeController extends AbstractController {
 
-    /*@GetMapping("/paratagType")
-    public List<ParatagType> getAllParatagType() {
-        return paratagTypeService.getAll();
-    }
-
-    @GetMapping("/paratagType/{id}")
-    public ParatagType getParatagType(@PathVariable("id") int id) {
-        return paratagTypeService.get(id);
-    }
-
+    /*
     @PostMapping("/paratagType")
     public ParatagType insertParatagType(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
         return paratagTypeService.insertParatagType(generalTypeValidator);

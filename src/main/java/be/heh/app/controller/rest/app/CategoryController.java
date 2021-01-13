@@ -2,15 +2,15 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.CategoryValidator;
-import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.repositories.app.PageRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
@@ -21,24 +21,9 @@ public class CategoryController extends AbstractController {
 
 	//TODO super category (lien)
 
-	@GetMapping("/category")
-	public List<Category> getAllCategory() {
-		return categoryService.getAll();
-	}
-
-	@GetMapping("/category/{id}")
-	public Category getCategory(@PathVariable("id") int id) {
-		return categoryService.get(id);
-	}
-
 	@PostMapping("/category")
-	public Category insertCategory(@Valid @RequestBody CategoryValidator categoryValidator) {
-		return categoryService.insertCategory(categoryValidator);
-	}
-
-	@DeleteMapping("/category/{id}")
-	public Category deleteCategory(@PathVariable("id") int id) {
-		return categoryService.deleteCategory(id);
+	public void add(@Valid @RequestBody CategoryValidator categoryValidator) {
+		categoryService.add(categoryValidator);
 	}
 
 }

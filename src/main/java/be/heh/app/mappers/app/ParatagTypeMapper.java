@@ -1,6 +1,5 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.model.facades.app.ParapageTypeFacade;
 import be.heh.app.model.facades.app.ParatagTypeFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

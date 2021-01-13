@@ -6,14 +6,12 @@ import be.heh.app.model.repositories.security.UserSecurityRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
-import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Component
 @Startup

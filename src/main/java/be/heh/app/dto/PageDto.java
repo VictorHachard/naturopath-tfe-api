@@ -1,5 +1,6 @@
 package be.heh.app.dto;
 
+import be.heh.app.dto.commons.AbstractDto;
 import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PageDto {
+public class PageDto extends AbstractDto {
 
     Page page;
 

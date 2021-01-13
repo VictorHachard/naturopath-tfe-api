@@ -1,6 +1,5 @@
-package be.heh.app.dto;
+package be.heh.app.dto.commons;
 
-import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,5 +11,5 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserDto extends AbstractDto {
+public abstract class AbstractDto {
 }

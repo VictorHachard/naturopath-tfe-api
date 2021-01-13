@@ -14,16 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Log
 public class ParapageTypeController extends AbstractController {
 
-    /*@GetMapping("/parapageType")
-    public List<ParapageType> getAllParapageType() {
-        return parapageTypeService.getAll();
-    }
-
-    @GetMapping("/parapageType/{id}")
-    public ParapageType getParapageType(@PathVariable("id") int id) {
-        return parapageTypeService.get(id);
-    }
-
+    /*
     @PostMapping("/parapageType")
     public ParapageType insertParapageType(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
         return parapageTypeService.insertParapageType(generalTypeValidator);

@@ -3,6 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;
@@ -12,15 +13,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class PageService extends AbstractService<Page> {
 
-    public Page insertPage(PageValidator pageValidator) {
+    @Override
+    public void add(AbstractValidator abstractValidator) {
+        PageValidator pageValidator = (PageValidator) abstractValidator;
         if (categoryRepository.findById(pageValidator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
@@ -30,7 +31,6 @@ public class PageService extends AbstractService<Page> {
             innerPageRepository.save(innerPage);
             Page page = pageMapper.map(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
             pageRepository.save(page);
-            return page;
         }
     }
 
@@ -50,14 +50,14 @@ public class PageService extends AbstractService<Page> {
         }
     }
 
-    public Page deletePage(int id) {
+    @Override
+    public void delete(int id) {
         //TODO delete link
         if (!pageRepository.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
         } else {
             Page page = pageRepository.findById(id).get();
             pageRepository.delete(page);
-            return page;
         }
     }
 

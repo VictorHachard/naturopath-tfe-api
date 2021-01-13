@@ -3,14 +3,12 @@ package be.heh.app.controller.rest.app;
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
-import be.heh.app.model.entities.app.Tag;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
@@ -19,24 +17,14 @@ import java.util.List;
 @Log
 public class TagController extends AbstractController {
 
-    @GetMapping("/tag")
-    public List<Tag> getAllTag() {
-        return tagService.getAll();
-    }
-
-    @GetMapping("/tag/{id}")
-    public Tag getTag(@PathVariable("id") int id) {
-        return tagService.get(id);
-    }
-
     @PostMapping("/tag")
-    public Tag insertTag(@Valid @RequestBody TagValidator tagValidator) {
-        return tagService.insertTag(tagValidator);
+    public void add(@Valid @RequestBody TagValidator tagValidator) {
+        tagService.add(tagValidator);
     }
 
     @PostMapping("/tag/update/{id}")
-    public Tag insertTag(@Valid @RequestBody TagUpdateValidator tagUpdateValidator, @PathVariable("id") int id) {
-        return tagService.updateTag(tagUpdateValidator, id);
+    public void update(@Valid @RequestBody TagUpdateValidator tagUpdateValidator, @PathVariable("id") int id) {
+        tagService.update(tagUpdateValidator, id);
     }
 
 }

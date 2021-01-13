@@ -1,5 +1,6 @@
 package be.heh.app.controller.services.commons;
 
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.init.InitRepository;
 import be.heh.app.mappers.app.*;
 import be.heh.app.model.facades.app.*;
@@ -17,7 +18,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Log
-public class AbstractService<I> {
+public abstract class AbstractService<I> {
 
     // Repository
 
@@ -157,36 +158,36 @@ public class AbstractService<I> {
     @Autowired
     ParatagFacade paratagFacade;
 
-    Class typeObject;
-
-    /*@PostConstruct
-    public void init() {
-        String className = this.getClass().getSimpleName().replace("Service", "");
-        System.out.println(className);
-        try {
-            typeObject = Class.forName("be.heh.app.model.entities.app" + className);
-        } catch (Exception e) {
-            try {
-                typeObject = Class.forName("be.heh.app.model.entities.app.security" + className);
-            } catch (Exception e1) {}
-        }
-    }*/
-
     public List<I> getAll() {
         AbstractRepository repository = InitRepository.get(this.getClass());
         if (repository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + typeObject.getSimpleName() + " in the database");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + this.getClass().getSimpleName() + " in the database");
         } else {
             return (List<I>) repository.findAll();
         }
     }
 
     public I get(int id) {
-        AbstractRepository repository = InitRepository.get(typeObject);
+        AbstractRepository repository = InitRepository.get(this.getClass());
         if (!repository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + typeObject.getSimpleName() + " in the database");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + this.getClass().getSimpleName() + " in the database");
         } else {
             return (I) repository.findById(id);
+        }
+    }
+
+    public void add(AbstractValidator abstractValidator) {
+    }
+
+    public void update(AbstractValidator abstractValidator, int id) {
+    }
+
+    public void delete(int id) {
+        AbstractRepository repository = InitRepository.get(this.getClass());
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + this.getClass().getSimpleName() + " in the database");
+        } else {
+            repository.deleteById(id);
         }
     }
 

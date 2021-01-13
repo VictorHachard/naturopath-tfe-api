@@ -2,6 +2,7 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.GeneralTypeValidator;
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.TagType;
 import lombok.AccessLevel;
@@ -11,18 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class TagTypeService extends AbstractService<TagType> {
 
-    public TagType insertTagType(GeneralTypeValidator generalTypeValidator) {
-        TagType tag = tagTypeMapper.map(generalTypeValidator);
-        tagTypeRepository.save(tag);
-        return tag;
+    @Override
+    public void add(AbstractValidator abstractValidator) {
+        GeneralTypeValidator generalTypeValidator = (GeneralTypeValidator) abstractValidator;
+        tagTypeRepository.save(tagTypeMapper.map(generalTypeValidator));
     }
 
     public void linkTagTypeToCategory(int categoryId, int tagTypeId) {

@@ -2,6 +2,7 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.MessageValidator;
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -10,15 +11,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class MessageService extends AbstractService<Message> {
 
-    public Message insertMessage(MessageValidator messageValidator) {
+    @Override
+    public void add(AbstractValidator abstractValidator) {
+        MessageValidator messageValidator = (MessageValidator) abstractValidator;
+
         if (userRepository.findById(messageValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         }
@@ -55,7 +57,6 @@ public class MessageService extends AbstractService<Message> {
         } else { // TODO 2 nouveau inner a ajouter
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "logique  getType est pas bon");
         }
-        return message;
     }
 
 }

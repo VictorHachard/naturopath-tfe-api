@@ -1,15 +1,9 @@
-package be.heh.app.init;
+package be.heh.app.init.data;
 
-import be.heh.app.controller.services.commons.AbstractSecurityService;
-import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 @Startup

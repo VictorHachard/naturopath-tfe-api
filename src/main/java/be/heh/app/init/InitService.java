@@ -1,10 +1,8 @@
 package be.heh.app.init;
 
-import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.services.app.*;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.model.repositories.app.CategoryRepository;
-import be.heh.app.model.repositories.commons.AbstractRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
@@ -19,7 +17,7 @@ import java.util.Map;
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InitController {
+public class InitService {
 
     @Autowired
     TagTypeService tagTypeService;
