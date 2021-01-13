@@ -25,10 +25,7 @@ public class Category extends AbstractLang {
     String description;
 
     @Column(name = "parent")
-    boolean parent;
-
-    @OneToMany
-    List<Category> categoryList;
+    boolean parent; //TODO si il a un enfant true car peut pas etre utliser
 
     @JoinColumn(name = "category_id")
     @ManyToOne
@@ -39,15 +36,6 @@ public class Category extends AbstractLang {
 
     @OneToMany
     List<TagType> tagTypeList;
-
-    public void addCategory(Category ... category) {
-        if (categoryList == null) {
-            categoryList = new ArrayList<>();
-        } if (categoryList.isEmpty()) {
-            parent = true;
-        }
-        categoryList.addAll(Arrays.asList(category));
-    }
 
     public void addParagraphType(ParagraphType ... paragraphType) {
         if (paragraphTypeList == null) {

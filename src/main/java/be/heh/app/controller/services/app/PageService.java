@@ -18,7 +18,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class PageService extends AbstractService {
+public class PageService extends AbstractService<Page> {
 
     public List<Page> getAllPage() {
         if (pageRepository.findAll().isEmpty()) {

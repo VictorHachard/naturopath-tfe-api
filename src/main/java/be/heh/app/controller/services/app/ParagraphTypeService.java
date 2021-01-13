@@ -17,7 +17,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class ParagraphTypeService extends AbstractService {
+public class ParagraphTypeService extends AbstractService<ParagraphType> {
 
     public List<ParagraphType> getAllParagraphType() {
         if (paragraphTypeRepository.findAll().isEmpty()) {

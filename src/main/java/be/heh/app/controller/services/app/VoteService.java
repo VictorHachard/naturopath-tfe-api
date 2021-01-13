@@ -16,7 +16,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class VoteService extends AbstractService {
+public class VoteService extends AbstractService<Vote> {
 
     public List<Vote> getAllVote() {
         if (voteRepository.findAll().isEmpty()) {

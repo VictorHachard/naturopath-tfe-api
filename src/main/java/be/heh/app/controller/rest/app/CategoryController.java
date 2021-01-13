@@ -3,6 +3,7 @@ package be.heh.app.controller.rest.app;
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.model.entities.app.Category;
+import be.heh.app.model.repositories.app.PageRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -17,6 +18,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class CategoryController extends AbstractController {
+
+	//TODO super category (lien)
 
 	@GetMapping("/category")
 	public List<Category> getAllCategory() {

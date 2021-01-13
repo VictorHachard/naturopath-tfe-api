@@ -16,7 +16,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class MessageService extends AbstractService {
+public class MessageService extends AbstractService<Message> {
 
     public List<Message> getAllMessage() {
         if (messageRepository.findAll().isEmpty()) {

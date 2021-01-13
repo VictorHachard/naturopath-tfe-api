@@ -16,7 +16,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class CategoryService extends AbstractService {
+public class CategoryService extends AbstractService<Category> {
 
     public List<Category> getAllCategory() {
         if (categoryRepository.findAll().isEmpty()) {

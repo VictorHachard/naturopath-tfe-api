@@ -14,12 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 // Lombok
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Log
-public abstract class AbstractSecurityService extends AbstractService {
+public abstract class AbstractSecurityService<T> extends AbstractService<T> {
 
     // Repository
-
-    @Autowired
-    UserRepository userRepository;
 
     @Autowired
     UserSecurityRepository userSecurityRepository;
@@ -27,15 +24,9 @@ public abstract class AbstractSecurityService extends AbstractService {
     // Mapper
 
     @Autowired
-    UserMapper userMapper;
-
-    @Autowired
     UserSecurityMapper userSecurityMapper;
 
     // Facade
-
-    @Autowired
-    UserFacade userFacade;
 
     @Autowired
     UserSecurityFacade userSecurityFacade;

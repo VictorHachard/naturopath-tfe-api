@@ -1,19 +1,31 @@
 package be.heh.app.controller.services.commons;
 
+import be.heh.app.init.InitRepo;
 import be.heh.app.mappers.app.*;
 import be.heh.app.model.facades.app.*;
 import be.heh.app.model.repositories.app.*;
+import be.heh.app.model.repositories.commons.AbstractRepository;
+import ch.qos.logback.core.encoder.EchoEncoder;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.annotation.PostConstruct;
+import java.lang.reflect.TypeVariable;
+import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Log
-public abstract class AbstractService {
+public class AbstractService<I> {
 
     // Repository
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     CategoryRepository categoryRepository;
@@ -26,9 +38,6 @@ public abstract class AbstractService {
 
     @Autowired
     InnerParagraphRepository innerParagraphRepository;
-
-    @Autowired
-    UserRepository userRepository;
 
     @Autowired
     InnerPageRepository innerPageRepository;
@@ -73,6 +82,9 @@ public abstract class AbstractService {
 
     @Autowired
     InnerPageMapper innerPageMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Autowired
     PageMapper pageMapper;
@@ -143,27 +155,32 @@ public abstract class AbstractService {
     ParapageFacade parapageFacade;
 
     @Autowired
+    UserFacade userFacade;
+
+    @Autowired
     ParatagFacade paratagFacade;
 
-    /*public List<I> getAll() {
-        if (categoryRepository.findAll().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category in the database");
-        } else {
-            return categoryRepository.findAll();
+    Class typeObject;
+
+    @PostConstruct
+    public void init() {
+        String className = this.getClass().getSimpleName().replace("Service", "");
+        try {
+            typeObject = Class.forName("be.heh.app.model.entities.app" + className);
+        } catch (Exception e) {
+            try {
+                typeObject = Class.forName("be.heh.app.model.entities.app.security" + className);
+            } catch (Exception e1) {}
         }
     }
 
-    TypeVariable[] clazz = this.getClass().getTypeParameters();
-    TypeVariable t = clazz[0];
-    Constructor constructor = t.getClass().getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-    AbstractEntity obj = null;
-        try {
-        obj = (AbstractEntity) constructor.newInstance();
-        obj.setCreatedAt(new Date());
-    } catch (Exception e) {
-        Logger.getLogger("AbstractRepository").info(e.getMessage());
+    public List<I> getAll() {
+        AbstractRepository repository = InitRepo.get(typeObject);
+        if (repository.findAll().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + typeObject.getSimpleName() + " in the database");
+        } else {
+            return (List<I>) repository.findAll();
+        }
     }
-        return (I) obj;*/
 
 }

@@ -17,7 +17,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class TagTypeService extends AbstractService {
+public class TagTypeService extends AbstractService<TagType> {
 
     public List<TagType> getAllTagType() {
         if (tagTypeRepository.findAll().isEmpty()) {

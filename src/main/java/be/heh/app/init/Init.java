@@ -15,14 +15,34 @@ import java.util.List;
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Init extends AbstractSecurityService {
+public class Init {
 
-    static List<User> userList = new ArrayList<>();
+   /* static List<User> userList = new ArrayList<>();
     static List<Category> categoryList = new ArrayList<>();
-    static List<InnerPage> innerPageList = new ArrayList<>();
-    static List<Page> pageList = new ArrayList<>();
+
     static List<TagType> tagTypeList = new ArrayList<>();
     static List<ParagraphType> paragraphTypeList = new ArrayList<>();
+    static List<ParapageType> parapageTypeList = new ArrayList<>();
+    static List<ParatagType> paratagTypeList = new ArrayList<>();
+
+    static List<InnerParagraph> innerParagraphList = new ArrayList<>();
+    static List<Paragraph> paragraphs = new ArrayList<>();
+
+    static List<InnerTag> innerTagList = new ArrayList<>();
+    static List<Tag> tagList = new ArrayList<>();
+
+    static List<InnerParapage> innerParapageList = new ArrayList<>();
+    static List<Parapage> parapageList = new ArrayList<>();
+
+    static List<InnerParatag> innerParatagList = new ArrayList<>();
+    static List<Paratag> paratagList = new ArrayList<>();
+
+    static List<InnerImage> innerImageList = new ArrayList<>();
+    static List<Image> imageList = new ArrayList<>();
+
+    static List<InnerPage> innerPageList = new ArrayList<>();
+    static List<Page> pageList = new ArrayList<>();
+
 
     public void initUser() {
         userList.add(userFacade.newInstance("FR"));
@@ -95,7 +115,7 @@ public class Init extends AbstractSecurityService {
         pageList.forEach(user -> {
             pageRepository.save(user);
         });
-    }
+    }*/
 
 
 }
