@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 // Lombok
@@ -21,5 +23,9 @@ public class ParatagType extends AbstractEntity {
 
     @Column(name = "description")
     String description;
+
+    @JoinColumn(name = "tag_type_id")
+    @ManyToOne
+    TagType tagType;
 
 }
