@@ -32,7 +32,7 @@ public class Paragraph extends AbstractEntity {
     @OneToMany
     List<InnerParagraph> innerParagraphList;
 
-    public void addInnerParagraph(InnerParagraph ... innerParagraph) {
+    public void addInnerParagraph(InnerParagraph... innerParagraph) {
         if (innerParagraphList == null) {
             innerParagraphList = new ArrayList<>();
         }

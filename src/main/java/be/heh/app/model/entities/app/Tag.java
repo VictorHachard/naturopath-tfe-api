@@ -32,7 +32,7 @@ public class Tag extends AbstractEntity {
     @OneToMany
     List<InnerTag> innerTagList;
 
-    public void addInnerTag(InnerTag ... innerTag) {
+    public void addInnerTag(InnerTag... innerTag) {
         if (innerTagList == null) {
             innerTagList = new ArrayList<>();
         }

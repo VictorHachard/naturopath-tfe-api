@@ -47,42 +47,42 @@ public class Page extends AbstractEntity {
     @OneToMany
     List<Image> imageList;
 
-    public void addParagraph(Paragraph ... paragraph) {
+    public void addParagraph(Paragraph... paragraph) {
         if (paragraphList == null) {
             paragraphList = new ArrayList<>();
         }
         paragraphList.addAll(Arrays.asList(paragraph));
     }
 
-    public void addTag(Tag ... tag) {
+    public void addTag(Tag... tag) {
         if (tagList == null) {
             tagList = new ArrayList<>();
         }
         tagList.addAll(Arrays.asList(tag));
     }
 
-    public void addParatag(Paratag ... paratag) {
+    public void addParatag(Paratag... paratag) {
         if (paratagList == null) {
             paratagList = new ArrayList<>();
         }
         paratagList.addAll(Arrays.asList(paratag));
     }
 
-    public void addParapage(Parapage ... parapage) {
+    public void addParapage(Parapage... parapage) {
         if (parapageList == null) {
             parapageList = new ArrayList<>();
         }
         parapageList.addAll(Arrays.asList(parapage));
     }
 
-    public void addInnerPage(InnerPage ... innerPage) {
+    public void addInnerPage(InnerPage... innerPage) {
         if (innerPageList == null) {
             innerPageList = new ArrayList<>();
         }
         innerPageList.addAll(Arrays.asList(innerPage));
     }
 
-    public void addImage(Image ... image) {
+    public void addImage(Image... image) {
         if (imageList == null) {
             imageList = new ArrayList<>();
         }

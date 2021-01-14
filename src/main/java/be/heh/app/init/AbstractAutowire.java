@@ -70,6 +70,12 @@ public class AbstractAutowire {
     @Autowired
     ParatagRepository paratagRepository;
 
+    @Autowired
+    InnerImageRepository innerImageRepository;
+
+    @Autowired
+    ImageRepository imageRepository;
+
     // Mapper
 
     @Autowired
@@ -130,6 +136,9 @@ public class AbstractAutowire {
 
     @Autowired
     TagTypeFacade tagTypeFacade;
+
+    @Autowired
+    VoteFacade voteFacade;
 
     @Autowired
     InnerParapageFacade innerParapageFacade;

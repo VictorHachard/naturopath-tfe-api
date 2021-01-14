@@ -23,7 +23,7 @@ public class CategoryService extends AbstractService<Category> {
 
     public List<CategoryDto> getAllDto() {
         List<CategoryDto> categoryDtoList = new ArrayList<>();
-        categoryFacade.getAllParent().forEach(category->{
+        categoryRepository.findAllParent().forEach(category -> {
             CategoryDto categoryDto = getRecursive(category);
             categoryDtoList.add(categoryDto);
 
@@ -37,7 +37,7 @@ public class CategoryService extends AbstractService<Category> {
 
     private CategoryDto getRecursive(Category category) {
         CategoryDto categoryDto = categoryMapper.get(category);
-        List<Category> children = categoryFacade.getAllChildOfCategory(category);
+        List<Category> children = categoryRepository.findAllChild(category);
         categoryDto.setCategoryDtoList(new ArrayList<>());
         if (!children.isEmpty()) {
             children.forEach(children1 -> {

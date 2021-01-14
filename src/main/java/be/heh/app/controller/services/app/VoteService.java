@@ -32,7 +32,7 @@ public class VoteService extends AbstractService<Vote> {
             }
             vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerPage innerPage = innerPageRepository.findById(voteValidator.getTypeId()).get();
-            if (innerPageFacade.userAlreadyVote(innerPage, user)) {
+            if (innerPageFacade.userAlreadyVote(innerPage, user) /*&& innerPageRepository.findVote(user) != null*/) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerPage.isFinalState()) {

@@ -28,7 +28,7 @@ public class Image extends AbstractInner {
     @OneToMany
     List<InnerImage> innerImageList;
 
-    public void addInnerImage(InnerImage ... innerImage) {
+    public void addInnerImage(InnerImage... innerImage) {
         if (innerImageList == null) {
             innerImageList = new ArrayList<>();
         }

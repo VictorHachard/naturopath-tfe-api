@@ -6,9 +6,7 @@ import be.heh.app.model.repositories.app.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class CategoryFacade extends AbstractFacade<Category> {
@@ -38,6 +36,14 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return category;
     }
 
+    public Category newInstance(String name, String description, Category parentCategory) {
+        Category category = new Category();
+        category.setName(name);
+        category.setDescription(description);
+        category.setParentCategory(parentCategory);
+        return category;
+    }
+
     public Category newInstance(String name, String description) {
         Category category = new Category();
         category.setName(name);
@@ -46,7 +52,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return category;
     }
 
-    public List<Category> getAllChildOfCategory(Category c) {
+    /*public List<Category> getAllChildOfCategory(Category c) {
         TypedQuery<Category> typedQuery = entityManager.createNamedQuery(Category.GET_ALL_CHILD_OF_CATEGORY, Category.class);
         typedQuery.setParameter("category", c);
         return getList(typedQuery.getResultList())
@@ -61,6 +67,6 @@ public class CategoryFacade extends AbstractFacade<Category> {
                 .stream()
                 .sorted((c1, c2)->c1.getName().compareTo(c2.getName()))
                 .collect(Collectors.toList());
-    }
+    }*/
 
 }

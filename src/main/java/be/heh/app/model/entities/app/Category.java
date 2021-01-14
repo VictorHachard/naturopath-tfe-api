@@ -11,8 +11,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Category.GET_ALL_CHILD_OF_CATEGORY, query = "select c from Category c where c.parentCategory = :category"),
-        @NamedQuery(name = Category.GET_ALL_PARENT, query = "select c from Category c where c.parentCategory = null")
+        @NamedQuery(name = "Category.findAllChild",
+                query = "select c from Category c where c.parentCategory = :category"),
+        @NamedQuery(name = "Category.findAllParent",
+                query = "select c from Category c where c.parentCategory = null")
 })
 // Lombok
 @ToString
@@ -21,9 +23,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Category extends AbstractLang {
-
-    public static final String GET_ALL_CHILD_OF_CATEGORY = "GET_ALL_CHILD_OF_CATEGORY";
-    public static final String GET_ALL_PARENT = "GET_ALL_PARENT";
 
     @Column(name = "name")
     String name;
@@ -50,7 +49,7 @@ public class Category extends AbstractLang {
     @OneToMany
     List<ParatagType> paratagTypeList;
 
-    public void addParagraphType(ParagraphType ... paragraphType) {
+    public void addParagraphType(ParagraphType... paragraphType) {
         if (paragraphTypeList == null) {
             paragraphTypeList = new ArrayList<>();
         }
@@ -64,7 +63,7 @@ public class Category extends AbstractLang {
         paragraphTypeList.addAll(paragraphType);
     }
 
-    public void addTagType(TagType ... tagType) {
+    public void addTagType(TagType... tagType) {
         if (tagTypeList == null) {
             tagTypeList = new ArrayList<>();
         }
@@ -78,7 +77,7 @@ public class Category extends AbstractLang {
         tagTypeList.addAll(tagType);
     }
 
-    public void addParapageType(ParapageType ... parapageType) {
+    public void addParapageType(ParapageType... parapageType) {
         if (parapageTypeList == null) {
             parapageTypeList = new ArrayList<>();
         }
@@ -92,7 +91,7 @@ public class Category extends AbstractLang {
         parapageTypeList.addAll(parapageType);
     }
 
-    public void addParatagType(ParatagType ... paratagType) {
+    public void addParatagType(ParatagType... paratagType) {
         if (paratagTypeList == null) {
             paratagTypeList = new ArrayList<>();
         }

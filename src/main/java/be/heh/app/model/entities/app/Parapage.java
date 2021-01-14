@@ -32,7 +32,7 @@ public class Parapage extends AbstractEntity {
     @OneToMany
     List<InnerParapage> innerParapageList;
 
-    public void addInnerParapage(InnerParapage ... innerParapage) {
+    public void addInnerParapage(InnerParapage... innerParapage) {
         if (innerParapageList == null) {
             innerParapageList = new ArrayList<>();
         }

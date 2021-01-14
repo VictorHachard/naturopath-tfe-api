@@ -5,6 +5,7 @@ import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.dto.PageDto;
 import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -19,6 +20,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class PageController extends AbstractController {
+
+	@GetMapping("/dto/page/test/test")
+	public User getAfllDto() {
+		System.out.println(innerPageRepository.findById(45).get().getVoteList().get(0).getUser());
+		System.out.println(innerPageRepository.findVote(45, userRepository.findById(1).get()));
+		return innerPageRepository.findVote(45, userRepository.findById(1).get());
+	}
 
 	@GetMapping("/dto/page")
 	public List<PageDto> getAllDto() {

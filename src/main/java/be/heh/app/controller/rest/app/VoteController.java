@@ -24,4 +24,5 @@ public class VoteController extends AbstractController {
         voteService.add(voteValidator);
     }
 
+
 }

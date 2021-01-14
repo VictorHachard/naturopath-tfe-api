@@ -32,7 +32,7 @@ public class Paratag extends AbstractEntity {
     @OneToMany
     List<InnerParatag> innerParatagList;
 
-    public void addInnerParatag(InnerParatag ... innerParatag) {
+    public void addInnerParatag(InnerParatag... innerParatag) {
         if (innerParatagList == null) {
             innerParatagList = new ArrayList<>();
         }
