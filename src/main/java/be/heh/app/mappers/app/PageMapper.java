@@ -21,6 +21,14 @@ public final class PageMapper extends AbstractMapper {
         return pageFacade.newInstance(innerPage, user, category);
     }
 
+    public List<PageDto> getAll(List<Page> pageList) {
+        List<PageDto> pageDtoList = new ArrayList<>();
+        pageList.forEach(page -> {
+            pageDtoList.add(this.get(page));
+        });
+        return pageDtoList;
+    }
+
     public PageDto get(Page page) {
         List<ParagraphDto> paragraphDtoList = new ArrayList<>();
         page.getParagraphList().forEach(paragraph -> {

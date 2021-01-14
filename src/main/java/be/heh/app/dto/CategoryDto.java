@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -26,6 +27,6 @@ public class CategoryDto {
 
     boolean parent;
 
-    Category parentCategory;
+    List<Category> categoryList;
 
 }

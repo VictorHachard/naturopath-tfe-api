@@ -4,6 +4,7 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.PageDto;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;
@@ -13,11 +14,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class PageService extends AbstractService<Page> {
+
+    public List<PageDto> getAllDto() {
+        return pageMapper.getAll(super.getAll());
+    }
+
+    public PageDto getDto(int id) {
+        return pageMapper.get(super.get(id));
+    }
 
     @Override
     public void add(AbstractValidator abstractValidator) {

@@ -1,17 +1,23 @@
 package be.heh.app.init.data;
 
+import be.heh.app.init.AbstractAutowire;
+import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Init {
+public class Init extends AbstractAutowire {
 
-   /* static List<User> userList = new ArrayList<>();
+    static List<User> userList = new ArrayList<>();
     static List<Category> categoryList = new ArrayList<>();
 
     static List<TagType> tagTypeList = new ArrayList<>();
@@ -109,7 +115,7 @@ public class Init {
         pageList.forEach(user -> {
             pageRepository.save(user);
         });
-    }*/
+    }
 
 
 }

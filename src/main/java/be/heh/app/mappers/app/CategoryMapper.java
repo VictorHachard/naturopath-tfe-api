@@ -30,16 +30,11 @@ public final class CategoryMapper extends AbstractMapper {
     }
 
     public List<CategoryDto> getAll(List<Category> categoryList) {
-        List<CategoryDto> categoryDtos = new ArrayList<>();
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
         categoryList.forEach(category -> {
-            categoryDtos.add(new CategoryDto(category.getId(),
-                    category.getCreatedAt(),
-                    category.getName(),
-                    category.getDescription(),
-                    category.isParent(),
-                    category.getParentCategory()));
+            categoryDtoList.add(this.get(category));
         });
-        return categoryDtos;
+        return categoryDtoList;
     }
 
     public CategoryDto get(Category category) {
@@ -48,7 +43,7 @@ public final class CategoryMapper extends AbstractMapper {
                 category.getName(),
                 category.getDescription(),
                 category.isParent(),
-                category.getParentCategory());
+                null);
     }
 
 }

@@ -31,7 +31,7 @@ public class PageDto extends AbstractDto {
 
     String description;
 
-    List<ParagraphDto> paragraphdtoList;
+    List<ParagraphDto> paragraphDtoList;
 
     List<TagDto> tagDtoList;
 
