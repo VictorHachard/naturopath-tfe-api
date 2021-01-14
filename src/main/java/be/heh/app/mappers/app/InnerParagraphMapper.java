@@ -1,7 +1,7 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.ParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.ParagraphValidator;
+import be.heh.app.controller.validators.app.update.ParagraphUpdateValidator;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.app.InnerParagraphFacade;

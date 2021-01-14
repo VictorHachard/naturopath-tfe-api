@@ -18,8 +18,6 @@ import java.util.List;
 @Log
 public class CategoryController extends AbstractController {
 
-	//TODO super category (lien)
-
 	@GetMapping("/dto/category")
 	public List<CategoryDto> getAllDto() {
 		return categoryService.getAllDto();
@@ -33,6 +31,11 @@ public class CategoryController extends AbstractController {
 	@PostMapping("/category")
 	public void add(@Valid @RequestBody CategoryValidator categoryValidator) {
 		categoryService.add(categoryValidator);
+	}
+
+	@PostMapping("/category/update/{id}")
+	public void update(@Valid @RequestBody CategoryValidator categoryValidator, @PathVariable("id") int id) {
+		categoryService.update(categoryValidator, id);
 	}
 
 }

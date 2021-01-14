@@ -1,13 +1,11 @@
 package be.heh.app.dto;
 
-import be.heh.app.model.entities.app.Category;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
 import java.util.List;
 
 // Lombok
@@ -19,14 +17,10 @@ public class CategoryDto {
 
     int id;
 
-    Date createdAt;
-
     String name;
 
     String description;
 
-    boolean parent;
-
-    List<Category> categoryList;
+    List<CategoryDto> categoryDtoList;
 
 }

@@ -74,8 +74,11 @@ public class Init extends AbstractAutowire {
         categoryList.add(categoryFacade.newInstance("Huiles Essentielles", "")); //1
         categoryList.add(categoryFacade.newInstance("Tisane", "")); //2
         categoryList.add(categoryFacade.newInstance("Infusion", "")); //3
+        categoryList.get(3).setParentCategory(categoryList.get(2));
         categoryList.add(categoryFacade.newInstance("Décoction", "")); //4
+        categoryList.get(4).setParentCategory(categoryList.get(2));
         categoryList.add(categoryFacade.newInstance("Macération", "")); //5
+        categoryList.get(5).setParentCategory(categoryList.get(2));
         categoryList.add(categoryFacade.newInstance("Sirop", "")); //6
         categoryList.add(categoryFacade.newInstance("Cataplasme", "")); //7
         categoryList.add(categoryFacade.newInstance("Onguent", "")); //8

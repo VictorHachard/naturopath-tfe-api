@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -24,7 +25,15 @@ public class CategoryValidator extends AbstractValidator {
     @Size(min = 16, max = 1024)
     String description;
 
-    @NotNull(message = "")
-    String lang;
+    // For parent can be null
+    Integer categoryId;
+
+    List<Integer> paragraphTypeIdList;
+
+    List<Integer> tagTypeIdList;
+
+    List<Integer> parapageTypeIdList;
+
+    List<Integer> paratagTypeIdList;
 
 }

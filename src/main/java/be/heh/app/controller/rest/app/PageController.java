@@ -1,8 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
+import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.dto.PageDto;
 import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;

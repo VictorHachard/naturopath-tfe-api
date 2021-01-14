@@ -1,7 +1,7 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
+import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.app.InnerPageFacade;

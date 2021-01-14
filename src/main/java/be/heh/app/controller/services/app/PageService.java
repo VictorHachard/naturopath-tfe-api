@@ -1,8 +1,8 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.PageUpdateValidator;
 import be.heh.app.controller.validators.app.PageValidator;
+import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.PageDto;
 import be.heh.app.model.entities.app.InnerPage;
@@ -64,12 +64,11 @@ public class PageService extends AbstractService<Page> {
     @Override
     public void delete(int id) {
         //TODO delete link
-        if (!pageRepository.findById(id).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-        } else {
-            Page page = pageRepository.findById(id).get();
+        pageRepository.findById(id).ifPresentOrElse((page)->{
             pageRepository.delete(page);
-        }
+        }, ()->{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
+        });
     }
 
 }

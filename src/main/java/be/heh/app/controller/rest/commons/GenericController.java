@@ -5,7 +5,10 @@ import be.heh.app.init.InitService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -26,7 +29,6 @@ public class GenericController {
     }
 
     private void authorized(String objet) {
-        System.out.println(objet);
         if (authorized.contains(objet)) {
             // throw new Exception("BLBAL");
         }
@@ -52,7 +54,7 @@ public class GenericController {
         return (Object) service.get(id);
     }
 
-    @DeleteMapping("/{variable}/{id}")
+    /*@DeleteMapping("/{variable}/{id}")
     public void delete(@PathVariable("variable") String objet, @PathVariable("id") String idS) {
         int id = 0;
         try {
@@ -63,6 +65,6 @@ public class GenericController {
         authorized(objet);
         AbstractService service = InitService.serviceMap.get(objet);
         service.delete(id);
-    }
+    }*/
 
 }
