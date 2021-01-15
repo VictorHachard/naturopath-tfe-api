@@ -32,7 +32,7 @@ public class VoteService extends AbstractService<Vote> {
             }
             vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerPage innerPage = innerPageRepository.findById(voteValidator.getTypeId()).get();
-            if (innerPageFacade.userAlreadyVote(innerPage, user) /*&& innerPageRepository.findVote(user) != null*/) {
+            if (innerPageRepository.findVote(voteValidator.getTypeId(), user) != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerPage.isFinalState()) {
@@ -52,7 +52,7 @@ public class VoteService extends AbstractService<Vote> {
             }
             vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerParagraph innerParagraph = innerParagraphRepository.findById(voteValidator.getTypeId()).get();
-            if (innerParagraphFacade.userAlreadyVote(innerParagraph, user)) {
+            if (innerParagraphRepository.findVote(voteValidator.getTypeId(), user) != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerParagraph.isFinalState()) {
@@ -72,7 +72,7 @@ public class VoteService extends AbstractService<Vote> {
             }
             vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerTag innerTag = innerTagRepository.findById(voteValidator.getTypeId()).get();
-            if (innerTagFacade.userAlreadyVote(innerTag, user)) {
+            if (innerTagRepository.findVote(voteValidator.getTypeId(), user) != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerTag.isFinalState()) {

@@ -1,11 +1,11 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.dto.*;
 import be.heh.app.dto.view.PageViewDto;
-import be.heh.app.dto.view.ParagraphViewDto;
-import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.Category;
+import be.heh.app.model.entities.app.InnerPage;
+import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

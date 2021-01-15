@@ -35,11 +35,9 @@ public abstract class AbstractService<I> extends AbstractAutowire {
         }
     }
 
-    public void add(AbstractValidator abstractValidator) {
-    }
+    public void add(AbstractValidator abstractValidator) { }
 
-    public void update(AbstractValidator abstractValidator, int id) {
-    }
+    public void update(AbstractValidator abstractValidator, int id) { }
 
     public void delete(int id) {
         AbstractRepository repository = InitRepository.get(this.getClass());

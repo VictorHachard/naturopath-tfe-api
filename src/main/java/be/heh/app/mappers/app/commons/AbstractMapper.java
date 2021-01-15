@@ -9,4 +9,5 @@ import lombok.extern.java.Log;
 @FieldDefaults(level = AccessLevel.PROTECTED)
 @Log
 public abstract class AbstractMapper extends AbstractAutowire {
+
 }

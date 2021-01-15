@@ -1,11 +1,8 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.dto.view.ParagraphViewDto;
 import be.heh.app.dto.view.ParapageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.InnerParapage;
-import be.heh.app.model.entities.app.Paragraph;
 import be.heh.app.model.entities.app.Parapage;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.ParapageFacade;
@@ -35,10 +32,15 @@ public final class ParapageMapper extends AbstractMapper {
         return res;
     }
 
-    public ParapageViewDto getView(Parapage paragraph) {
-        InnerParapage innerParapage = parapageRepository.findLastFiltered(paragraph, EnumState.VALADATING).get(0);
-        return new ParapageViewDto(innerParapage.getTitle(),
-                pageMapper.getAllDto(innerParapage.getPageList()));
+    public ParapageViewDto getView(Parapage j) {
+        List<InnerParapage> i = parapageRepository.findLastFiltered(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerParapage k = i.get(0);
+            return new ParapageViewDto(k.getTitle(),
+                    pageMapper.getAllDto(k.getPageList()));
+        }
     }
 
 }

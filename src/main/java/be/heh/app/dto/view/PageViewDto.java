@@ -1,8 +1,5 @@
 package be.heh.app.dto.view;
 
-import be.heh.app.dto.ImageDto;
-import be.heh.app.dto.ParapageDto;
-import be.heh.app.dto.ParatagDto;
 import be.heh.app.dto.commons.AbstractDto;
 import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;

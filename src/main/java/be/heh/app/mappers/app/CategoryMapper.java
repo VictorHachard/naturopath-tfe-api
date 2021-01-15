@@ -51,7 +51,7 @@ public final class CategoryMapper extends AbstractMapper {
                 null);
     }
 
-    public CategoryEditDto getE(Category category) {
+    public CategoryEditDto getEdit(Category category) {
         return new CategoryEditDto(category.getId(),
                 category.getName(),
                 category.getDescription(),

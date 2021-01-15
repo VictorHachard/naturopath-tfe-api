@@ -123,19 +123,16 @@ public class Init extends AbstractAutowire {
 
     public void initPage() {
         Vote vote = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i = innerPageFacade.newInstance("Lavande", "", userList.get(0));
-        i.setEnumState(EnumState.VALIDATED);
+        InnerPage i = innerPageFacade.newInstance("Lavande", "", userList.get(0), EnumState.VALIDATED);
         i.addVote(vote);
 
 
         Vote vote2 = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i2 = innerPageFacade.newInstance("Lavande 2", "", userList.get(0));
-        i2.setEnumState(EnumState.VALIDATED);
+        InnerPage i2 = innerPageFacade.newInstance("Lavande 2", "", userList.get(0), EnumState.VALIDATED);
         i2.addVote(vote2);
 
         Vote vote3 = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i3 = innerPageFacade.newInstance("Lavande 3", "", userList.get(0));
-        i3.setEnumState(EnumState.DRAFT);
+        InnerPage i3 = innerPageFacade.newInstance("Lavande 3", "", userList.get(0), EnumState.VALIDATED);
         i3.addVote(vote3);
 
         Page page = pageFacade.newInstance(i, userList.get(0),

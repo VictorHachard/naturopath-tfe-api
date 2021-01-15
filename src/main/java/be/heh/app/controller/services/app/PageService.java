@@ -22,6 +22,7 @@ import java.util.List;
 @Log
 public class PageService extends AbstractService<Page> {
 
+    //TODO sort by category maybe
     public List<PageViewDto> getAllDto() {
         return pageMapper.getAllDto(super.getAll());
     }
@@ -29,20 +30,6 @@ public class PageService extends AbstractService<Page> {
     public PageViewDto getDto(int id) {
         return pageMapper.getDto(super.get(id));
     }
-
-    /*public List<CategoryViewDto> getAllDto() {
-        List<CategoryViewDto> categoryDtoList = new ArrayList<>();
-        categoryRepository.findAllParent().forEach(category -> {
-            CategoryViewDto categoryDto = getRecursive(category);
-            categoryDtoList.add(categoryDto);
-
-        });
-        return categoryDtoList;
-    }
-
-    public CategoryViewDto getDto(int id) {
-        return getRecursive(super.get(id));
-    }*/
 
     @Override
     public void add(AbstractValidator abstractValidator) {

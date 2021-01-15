@@ -1,11 +1,8 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.dto.view.ParagraphViewDto;
 import be.heh.app.dto.view.ParatagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.InnerParatag;
-import be.heh.app.model.entities.app.Parapage;
 import be.heh.app.model.entities.app.Paratag;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.ParatagFacade;
@@ -36,9 +33,14 @@ public final class ParatagMapper extends AbstractMapper {
     }
 
     public ParatagViewDto getView(Paratag j) {
-        InnerParatag innerParatag = paratagRepository.findLastFiltered(j, EnumState.VALADATING).get(0);
-        return new ParatagViewDto(innerParatag.getTitle(),
-                tagMapper.getAllView(innerParatag.getTagList()));
+        List<InnerParatag> i = paratagRepository.findLastFiltered(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerParatag k = i.get(0);
+            return new ParatagViewDto(k.getTitle(),
+                    tagMapper.getAllView(k.getTagList()));
+        }
     }
 
 }

@@ -1,7 +1,6 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.view.ParagraphViewDto;
-import be.heh.app.dto.view.ParatagTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.Paragraph;
@@ -39,10 +38,15 @@ public final class ParagraphMapper extends AbstractMapper {
         return res;
     }
 
-    public ParagraphViewDto getView(Paragraph paragraph) {
-        InnerParagraph innerParagraph = paragraphRepository.findLastFiltered(paragraph, EnumState.VALADATING).get(0);
-        return new ParagraphViewDto(innerParagraph.getTitle(),
-                innerParagraph.getContent());
+    public ParagraphViewDto getView(Paragraph j) {
+        List<InnerParagraph> i = paragraphRepository.findLastFiltered(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerParagraph k = i.get(0);
+            return new ParagraphViewDto(k.getTitle(),
+                    k.getContent());
+        }
     }
 
 }

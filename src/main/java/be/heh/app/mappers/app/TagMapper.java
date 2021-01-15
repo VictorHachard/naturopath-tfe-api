@@ -1,10 +1,11 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.dto.view.ParagraphViewDto;
-import be.heh.app.dto.view.TagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.InnerTag;
+import be.heh.app.model.entities.app.Tag;
+import be.heh.app.model.entities.app.TagType;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.TagFacade;
 import lombok.AccessLevel;
@@ -37,10 +38,15 @@ public final class TagMapper extends AbstractMapper {
         return res;
     }
 
-    public TagViewDto getView(Tag tag) {
-        InnerTag innerTag = tagRepository.findLastFiltered(tag, EnumState.VALADATING).get(0);
-        return new TagViewDto(innerTag.getName(),
-                innerTag.getContent());
+    public TagViewDto getView(Tag j) {
+        List<InnerTag> i = tagRepository.findLastFiltered(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerTag k = i.get(0);
+            return new TagViewDto(k.getName(),
+                    k.getContent());
+        }
     }
 
 }

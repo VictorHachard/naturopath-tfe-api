@@ -1,12 +1,9 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.view.ImageViewDto;
-import be.heh.app.dto.view.ParagraphViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
-import be.heh.app.model.entities.app.InnerParagraph;
-import be.heh.app.model.entities.app.Paragraph;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.ImageFacade;
 import lombok.AccessLevel;
@@ -35,12 +32,17 @@ public final class ImageMapper extends AbstractMapper {
         return res;
     }
 
-    public ImageViewDto getView(Image image) {
-        InnerImage innerImage = imageRepository.findLastFiltered(image, EnumState.VALADATING).get(0);
-        return new ImageViewDto(innerImage.getTitle(),
-                innerImage.getDescription(),
-                innerImage.getUrl()
-        );
+    public ImageViewDto getView(Image j) {
+        List<InnerImage> i = imageRepository.findLastFiltered(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerImage k = i.get(0);
+            return new ImageViewDto(k.getTitle(),
+                    k.getDescription(),
+                    k.getUrl()
+            );
+        }
     }
 
 }

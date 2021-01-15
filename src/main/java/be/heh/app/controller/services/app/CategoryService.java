@@ -64,7 +64,7 @@ public class CategoryService extends AbstractService<Category> {
     }
 
     private CategoryEditDto getRecursiveEdit(Category category) {
-        CategoryEditDto categoryDto = categoryMapper.getE(category);
+        CategoryEditDto categoryDto = categoryMapper.getEdit(category);
         List<Category> children = categoryRepository.findAllChild(category);
         categoryDto.setCategoryEditDto(new ArrayList<>());
         if (!children.isEmpty()) {

@@ -1,9 +1,7 @@
 package be.heh.app.model.repositories.app;
 
 import be.heh.app.model.entities.app.InnerParatag;
-import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Paratag;
-import be.heh.app.model.entities.app.Tag;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.repositories.commons.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
