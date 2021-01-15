@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.facades.app.InnerImageFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class InnerImageMapper {
+public final class InnerImageMapper extends AbstractMapper {
 
     @Autowired
     InnerImageFacade innerImageFacade;

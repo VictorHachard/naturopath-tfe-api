@@ -1,6 +1,7 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.VoteValidator;
+import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.Vote;
 import be.heh.app.model.facades.app.VoteFacade;
@@ -14,12 +15,12 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class VoteMapper {
+public final class VoteMapper extends AbstractMapper {
 
     @Autowired
     VoteFacade voteFacade;
 
-    public Vote map(VoteValidator voteValidator, User user) {
+    public Vote set(VoteValidator voteValidator, User user) {
         return voteFacade.newInstance(voteValidator.getChoice(), user);
     }
 }

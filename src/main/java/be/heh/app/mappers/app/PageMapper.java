@@ -1,8 +1,12 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.*;
+import be.heh.app.dto.view.PageViewDto;
+import be.heh.app.dto.view.ParagraphViewDto;
+import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -17,70 +21,32 @@ import java.util.List;
 @Log
 public final class PageMapper extends AbstractMapper {
 
-    public Page map(InnerPage innerPage, Category category, User user) {
+    public Page set(InnerPage innerPage, Category category, User user) {
         return pageFacade.newInstance(innerPage, user, category);
     }
 
-    public List<PageDto> getAll(List<Page> pageList) {
-        List<PageDto> pageDtoList = new ArrayList<>();
+    public List<PageViewDto> getAllDto(List<Page> pageList) {
+        List<PageViewDto> pageDtoList = new ArrayList<>();
         pageList.forEach(page -> {
-            pageDtoList.add(this.get(page));
+            pageDtoList.add(this.getDto(page));
         });
         return pageDtoList;
     }
 
-    public PageDto get(Page page) {
-        List<ParagraphDto> paragraphDtoList = new ArrayList<>();
-        page.getParagraphList().forEach(paragraph -> {
-            InnerParagraph innerParagraph = paragraphFacade.getLastNonDraft(paragraph);
-            paragraphDtoList.add(new ParagraphDto(innerParagraph.getTitle(), innerParagraph.getContent()));
-        });
+    public PageViewDto getDto(Page page) {
+        InnerPage innerPage = pageRepository.findLastFiltered(page, EnumState.VALIDATED).get(0);
 
-        List<TagDto> tagDtoList = new ArrayList<>();
-        page.getTagList().forEach(tag -> {
-            InnerTag innerTag = tagFacade.getLastNonDraft(tag);
-            tagDtoList.add(new TagDto(innerTag.getName(), innerTag.getContent()));
-        });
-
-        List<ParapageDto> parapageDtoList = new ArrayList<>();
-        page.getParapageList().forEach(parapage -> {
-            InnerParapage innerParapage = parapageFacade.getLastNonDraft(parapage);
-            List<PageForPageDto> pageForPageDtos = new ArrayList<>();
-            innerParapage.getPageList().forEach(page1 -> {
-                InnerPage page2 = pageFacade.getLastNonDraft(page1);
-                pageForPageDtos.add(new PageForPageDto(page2.getTitle(), page2.getDescription()));
-            });
-            parapageDtoList.add(new ParapageDto(innerParapage.getTitle(), pageForPageDtos
-            ));
-        });
-
-        List<ParatagDto> paratagDtoList = new ArrayList<>(); //TODO
-        /*page.getParatagList().forEach(paratag -> {
-            InnerTag innerTag = paratag.getInnerParatagList().get();
-            tagDtoList.add(new TagDto(innerTag.getName(), innerTag.getContent()));
-        });*/
-
-        List<ImageDto> imageDtos = new ArrayList<>();
-        page.getImageList().forEach(image -> {
-            InnerImage innerImage = imageFacade.getLastNonDraft(image);
-            imageDtos.add(new ImageDto(innerImage.getTitle(),
-                    innerImage.getDescription(),
-                    innerImage.getUrl()));
-        });
-
-        InnerPage innerPage = pageFacade.getLastNonDraft(page);
-
-        return new PageDto(page.getId(),
+        return new PageViewDto(page.getId(),
                 page.getCreatedAt(),
-                page.getCategory(),
+                categoryMapper.getView(page.getCategory()),
                 page.getUser(),
                 innerPage.getTitle(),
                 innerPage.getDescription(),
-                paragraphDtoList,
-                tagDtoList,
-                parapageDtoList,
-                paratagDtoList,
-                imageDtos
+                paragraphMapper.getAllView(page.getParagraphList()),
+                tagMapper.getAllView(page.getTagList()),
+                parapageMapper.getAllView(page.getParapageList()),
+                paratagMapper.getAllView(page.getParatagList()),
+                imageMapper.getAllView(page.getImageList())
         );
     }
 }

@@ -1,7 +1,9 @@
-package be.heh.app.dto;
+package be.heh.app.dto.view;
 
+import be.heh.app.dto.ImageDto;
+import be.heh.app.dto.ParapageDto;
+import be.heh.app.dto.ParatagDto;
 import be.heh.app.dto.commons.AbstractDto;
-import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,13 +19,13 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PageDto extends AbstractDto {
+public class PageViewDto extends AbstractDto {
 
     int id;
 
     Date createdAt;
 
-    Category category;
+    CategoryViewDto categoryViewDto; //TODO utiliser nouveau dto dois envoyer les parent
 
     User user;
 
@@ -31,14 +33,14 @@ public class PageDto extends AbstractDto {
 
     String description;
 
-    List<ParagraphDto> paragraphDtoList;
+    List<ParagraphViewDto> paragraphDtoList;
 
-    List<TagDto> tagDtoList;
+    List<TagViewDto> tagDtoList;
 
-    List<ParapageDto> parapageDtoList;
+    List<ParapageViewDto> parapageDtoList;
 
-    List<ParatagDto> paratagDtoList;
+    List<ParatagViewDto> paratagDtoList;
 
-    List<ImageDto> imageDtoList;
+    List<ImageViewDto> imageDtoList;
 
 }

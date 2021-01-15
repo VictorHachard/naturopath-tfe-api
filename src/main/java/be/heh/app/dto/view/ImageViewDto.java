@@ -1,24 +1,25 @@
-package be.heh.app.dto;
+package be.heh.app.dto.view;
 
 import be.heh.app.dto.commons.AbstractDto;
-import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
+import javax.persistence.Column;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParatagDto extends AbstractDto {
+public class ImageViewDto extends AbstractDto {
 
     String title;
 
-    List<TagViewDto> tagDtoList;
+    String description;
+
+    String url;
 
 }

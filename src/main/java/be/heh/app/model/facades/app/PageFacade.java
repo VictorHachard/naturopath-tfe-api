@@ -1,7 +1,6 @@
 package be.heh.app.model.facades.app;
 
 import be.heh.app.model.entities.app.*;
-import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import be.heh.app.model.repositories.app.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +36,6 @@ public class PageFacade extends AbstractFacade<Page> {
             }
         }
         return true;
-    }
-
-    public InnerPage getLastNonDraft(Page page) {
-        InnerPage innerPage = null;
-        for (InnerPage innerPage1 : page.getInnerPageList()) {
-            if (innerPage1.getEnumState() == EnumState.VALIDATED) {
-                innerPage = innerPage1;
-            }
-        }
-        return innerPage;
     }
 
 }

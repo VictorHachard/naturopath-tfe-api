@@ -1,6 +1,5 @@
-package be.heh.app.dto;
+package be.heh.app.dto.view;
 
-import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +11,14 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParagraphDto extends AbstractDto {
+public class ParatagTypeViewDto {
 
-    String title;
+    int id;
 
-    String content;
+    String name;
+
+    String description;
+
+    TagTypeViewDto tagTypeViewDto;
 
 }

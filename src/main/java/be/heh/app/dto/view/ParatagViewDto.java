@@ -1,7 +1,6 @@
-package be.heh.app.dto;
+package be.heh.app.dto.view;
 
 import be.heh.app.dto.commons.AbstractDto;
-import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParatagDto extends AbstractDto {
+public class ParatagViewDto extends AbstractDto {
 
     String title;
 
-    List<TagViewDto> tagDtoList;
+    List<TagViewDto> tagList;
 
 }

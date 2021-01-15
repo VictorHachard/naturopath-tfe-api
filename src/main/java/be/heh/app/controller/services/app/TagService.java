@@ -32,7 +32,7 @@ public class TagService extends AbstractService<Tag> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
             InnerTag innerTag = new InnerTag();
-            Tag tag = tagMapper.map(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
+            Tag tag = tagMapper.set(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
             if (!pageRepository.findById(tagValidator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Tag don't math the rule");
             } else if (!pageFacade.verifyTypeTag(pageRepository.findById(tagValidator.getPageId()).get(), tag.getTagType())) {
@@ -56,7 +56,7 @@ public class TagService extends AbstractService<Tag> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this id");
         } else {
             Tag tag = tagRepository.findById(id).get();
-            InnerTag innerTag = innerTagMapper.map(tagUpdateValidator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(tagUpdateValidator.getUserId()).get());
+            InnerTag innerTag = innerTagMapper.set(tagUpdateValidator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(tagUpdateValidator.getUserId()).get());
             innerTagRepository.save(innerTag);
             tag.addInnerTag(innerTag);
             tagRepository.save(tag);

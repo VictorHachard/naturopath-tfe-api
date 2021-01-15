@@ -2,6 +2,7 @@ package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
+import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.app.InnerTagFacade;
@@ -15,16 +16,16 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class InnerTagMapper {
+public final class InnerTagMapper extends AbstractMapper {
 
     @Autowired
     InnerTagFacade innerTagFacade;
 
-    public InnerTag map(TagValidator tagValidator, User user) {
+    public InnerTag set(TagValidator tagValidator, User user) {
         return innerTagFacade.newInstance(tagValidator.getName(), tagValidator.getDescription(), user);
     }
 
-    public InnerTag map(TagUpdateValidator tagUpdateValidator, int version, User user) {
+    public InnerTag set(TagUpdateValidator tagUpdateValidator, int version, User user) {
         return innerTagFacade.newInstance(tagUpdateValidator.getName(), tagUpdateValidator.getDescription(), version, user);
     }
 

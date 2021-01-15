@@ -21,7 +21,7 @@ public class TagTypeService extends AbstractService<TagType> {
     @Override
     public void add(AbstractValidator abstractValidator) {
         GeneralTypeValidator generalTypeValidator = (GeneralTypeValidator) abstractValidator;
-        tagTypeRepository.save(tagTypeMapper.map(generalTypeValidator));
+        tagTypeRepository.save(tagTypeMapper.set(generalTypeValidator));
     }
 
     public void linkTagTypeToCategory(int categoryId, int tagTypeId) {

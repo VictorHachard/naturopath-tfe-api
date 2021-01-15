@@ -82,10 +82,16 @@ public class AbstractAutowire {
     InnerPageMapper innerPageMapper;
 
     @Autowired
+    ParatagTypeMapper paratagTypeMapper;
+
+    @Autowired
     UserMapper userMapper;
 
     @Autowired
     PageMapper pageMapper;
+
+    @Autowired
+    ParapageTypeMapper parapageTypeMapper;
 
     @Autowired
     CategoryMapper categoryMapper;
@@ -113,6 +119,16 @@ public class AbstractAutowire {
 
     @Autowired
     MessageMapper messageMapper;
+
+    @Autowired
+    ParapageMapper parapageMapper;
+
+    @Autowired
+    ParatagMapper paratagMapper;
+
+    @Autowired
+    ImageMapper imageMapper;
+
 
     // Facade
 

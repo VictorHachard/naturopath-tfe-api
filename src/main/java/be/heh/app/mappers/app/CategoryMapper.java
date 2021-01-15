@@ -1,7 +1,8 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.CategoryValidator;
-import be.heh.app.dto.CategoryDto;
+import be.heh.app.dto.edit.CategoryEditDto;
+import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.facades.app.CategoryFacade;
@@ -43,11 +44,22 @@ public final class CategoryMapper extends AbstractMapper {
                 paratagTypeList);
     }
 
-    public CategoryDto get(Category category) {
-        return new CategoryDto(category.getId(),
+    public CategoryViewDto getView(Category category) {
+        return new CategoryViewDto(category.getId(),
                 category.getName(),
                 category.getDescription(),
                 null);
+    }
+
+    public CategoryEditDto getE(Category category) {
+        return new CategoryEditDto(category.getId(),
+                category.getName(),
+                category.getDescription(),
+                null,
+                paragraphTypeMapper.getAllView(category.getParagraphTypeList()),
+                tagTypeMapper.getAllView(category.getTagTypeList()),
+                parapageTypeMapper.getAllView(category.getParapageTypeList()),
+                paratagTypeMapper.getAllView(category.getParatagTypeList()));
     }
 
 }

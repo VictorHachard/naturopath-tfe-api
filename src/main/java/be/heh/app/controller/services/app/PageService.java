@@ -4,7 +4,7 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
-import be.heh.app.dto.PageDto;
+import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
 import lombok.AccessLevel;
@@ -22,13 +22,27 @@ import java.util.List;
 @Log
 public class PageService extends AbstractService<Page> {
 
-    public List<PageDto> getAllDto() {
-        return pageMapper.getAll(super.getAll());
+    public List<PageViewDto> getAllDto() {
+        return pageMapper.getAllDto(super.getAll());
     }
 
-    public PageDto getDto(int id) {
-        return pageMapper.get(super.get(id));
+    public PageViewDto getDto(int id) {
+        return pageMapper.getDto(super.get(id));
     }
+
+    /*public List<CategoryViewDto> getAllDto() {
+        List<CategoryViewDto> categoryDtoList = new ArrayList<>();
+        categoryRepository.findAllParent().forEach(category -> {
+            CategoryViewDto categoryDto = getRecursive(category);
+            categoryDtoList.add(categoryDto);
+
+        });
+        return categoryDtoList;
+    }
+
+    public CategoryViewDto getDto(int id) {
+        return getRecursive(super.get(id));
+    }*/
 
     @Override
     public void add(AbstractValidator abstractValidator) {
@@ -38,9 +52,9 @@ public class PageService extends AbstractService<Page> {
         } else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
-            InnerPage innerPage = innerPageMapper.map(pageValidator, userRepository.findById(pageValidator.getUserId()).get());
+            InnerPage innerPage = innerPageMapper.set(pageValidator, userRepository.findById(pageValidator.getUserId()).get());
             innerPageRepository.save(innerPage);
-            Page page = pageMapper.map(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
+            Page page = pageMapper.set(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
             pageRepository.save(page);
         }
     }
@@ -52,7 +66,7 @@ public class PageService extends AbstractService<Page> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
             InnerPage lastInnerPage = pageRepository.findById(id).get().getInnerPageList().get(pageRepository.findById(id).get().getInnerPageList().size() - 1);
-            InnerPage innerPage = innerPageMapper.map(pageUpdateValidator, lastInnerPage.getVersion() + 1, userRepository.findById(pageUpdateValidator.getUserId()).get());
+            InnerPage innerPage = innerPageMapper.set(pageUpdateValidator, lastInnerPage.getVersion() + 1, userRepository.findById(pageUpdateValidator.getUserId()).get());
             innerPageRepository.save(innerPage);
             Page page = pageRepository.findById(id).get();
             page.addInnerPage(innerPage);

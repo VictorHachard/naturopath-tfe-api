@@ -30,7 +30,7 @@ public class VoteService extends AbstractService<Vote> {
             if (innerPageRepository.findById(voteValidator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId");
             }
-            vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
+            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerPage innerPage = innerPageRepository.findById(voteValidator.getTypeId()).get();
             if (innerPageFacade.userAlreadyVote(innerPage, user) /*&& innerPageRepository.findVote(user) != null*/) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
@@ -50,7 +50,7 @@ public class VoteService extends AbstractService<Vote> {
             if (innerParagraphRepository.findById(voteValidator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerParagraph with this typeId");
             }
-            vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
+            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerParagraph innerParagraph = innerParagraphRepository.findById(voteValidator.getTypeId()).get();
             if (innerParagraphFacade.userAlreadyVote(innerParagraph, user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
@@ -70,7 +70,7 @@ public class VoteService extends AbstractService<Vote> {
             if (innerTagRepository.findById(voteValidator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerTag with this typeId");
             }
-            vote = voteMapper.map(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
+            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
             InnerTag innerTag = innerTagRepository.findById(voteValidator.getTypeId()).get();
             if (innerTagFacade.userAlreadyVote(innerTag, user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter

@@ -1,6 +1,8 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.GeneralTypeValidator;
+import be.heh.app.dto.view.ParagraphTypeViewDto;
+import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.ParagraphType;
 import be.heh.app.model.facades.app.ParagraphTypeFacade;
 import lombok.AccessLevel;
@@ -9,17 +11,36 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class ParagraphTypeMapper {
+public final class ParagraphTypeMapper extends AbstractMapper {
 
     @Autowired
     ParagraphTypeFacade paragraphTypeFacade;
 
-    public ParagraphType map(GeneralTypeValidator generalTypeValidator) {
+    public ParagraphType set(GeneralTypeValidator generalTypeValidator) {
         return paragraphTypeFacade.newInstance(generalTypeValidator.getName(), generalTypeValidator.getDescription());
+    }
+
+    public List<ParagraphTypeViewDto> getAllView(List<ParagraphType> j) {
+        List<ParagraphTypeViewDto> res = new ArrayList<>();
+        j.forEach(i -> {
+            res.add(this.getView(i));
+        });
+        return res;
+    }
+
+    public ParagraphTypeViewDto getView(ParagraphType paragraphType) {
+        return new ParagraphTypeViewDto(
+                paragraphType.getId(),
+                paragraphType.getName(),
+                paragraphType.getDescription()
+        );
     }
 
 }

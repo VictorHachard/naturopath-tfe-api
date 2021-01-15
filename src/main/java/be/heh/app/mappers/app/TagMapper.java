@@ -1,9 +1,11 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.model.entities.app.InnerTag;
-import be.heh.app.model.entities.app.Tag;
-import be.heh.app.model.entities.app.TagType;
-import be.heh.app.model.entities.app.User;
+import be.heh.app.dto.view.ParagraphViewDto;
+import be.heh.app.dto.view.TagTypeViewDto;
+import be.heh.app.dto.view.TagViewDto;
+import be.heh.app.mappers.app.commons.AbstractMapper;
+import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.TagFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -11,17 +13,34 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public final class TagMapper {
+public final class TagMapper extends AbstractMapper {
 
     @Autowired
     TagFacade tagFacade;
 
-    public Tag map(InnerTag innerTag, TagType tagType, User user) {
+    public Tag set(InnerTag innerTag, TagType tagType, User user) {
         return tagFacade.newInstance(innerTag, tagType, user);
+    }
+
+    public List<TagViewDto> getAllView(List<Tag> j) {
+        List<TagViewDto> res = new ArrayList<>();
+        j.forEach(i -> {
+            res.add(this.getView(i));
+        });
+        return res;
+    }
+
+    public TagViewDto getView(Tag tag) {
+        InnerTag innerTag = tagRepository.findLastFiltered(tag, EnumState.VALADATING).get(0);
+        return new TagViewDto(innerTag.getName(),
+                innerTag.getContent());
     }
 
 }

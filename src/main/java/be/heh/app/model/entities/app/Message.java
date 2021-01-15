@@ -1,7 +1,6 @@
 package be.heh.app.model.entities.app;
 
 import be.heh.app.model.entities.commons.AbstractEntity;
-import be.heh.app.model.entities.commons.AbstractInner;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

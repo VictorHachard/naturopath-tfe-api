@@ -3,7 +3,8 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
-import be.heh.app.dto.CategoryDto;
+import be.heh.app.dto.edit.CategoryEditDto;
+import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.model.entities.app.Category;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -21,28 +22,55 @@ import java.util.List;
 @Log
 public class CategoryService extends AbstractService<Category> {
 
-    public List<CategoryDto> getAllDto() {
-        List<CategoryDto> categoryDtoList = new ArrayList<>();
+    public List<CategoryViewDto> getAllDto() {
+        List<CategoryViewDto> categoryDtoList = new ArrayList<>();
         categoryRepository.findAllParent().forEach(category -> {
-            CategoryDto categoryDto = getRecursive(category);
+            CategoryViewDto categoryDto = getRecursive(category);
             categoryDtoList.add(categoryDto);
 
         });
         return categoryDtoList;
     }
 
-    public CategoryDto getDto(int id) {
+    public CategoryViewDto getDto(int id) {
         return getRecursive(super.get(id));
     }
 
-    private CategoryDto getRecursive(Category category) {
-        CategoryDto categoryDto = categoryMapper.get(category);
+    public List<CategoryEditDto> getAllEditDto() {
+        List<CategoryEditDto> categoryDtoList = new ArrayList<>();
+        categoryRepository.findAllParent().forEach(category -> {
+            CategoryEditDto categoryDto = getRecursiveEdit(category);
+            categoryDtoList.add(categoryDto);
+
+        });
+        return categoryDtoList;
+    }
+
+    public CategoryEditDto getEditDto(int id) {
+        return getRecursiveEdit(super.get(id));
+    }
+
+    private CategoryViewDto getRecursive(Category category) {
+        CategoryViewDto categoryDto = categoryMapper.getView(category);
         List<Category> children = categoryRepository.findAllChild(category);
-        categoryDto.setCategoryDtoList(new ArrayList<>());
+        categoryDto.setChildCategory(new ArrayList<>());
         if (!children.isEmpty()) {
             children.forEach(children1 -> {
-                CategoryDto CategoryDtoChild = getRecursive(children1);
-                categoryDto.getCategoryDtoList().add(CategoryDtoChild);
+                CategoryViewDto CategoryDtoChild = getRecursive(children1);
+                categoryDto.getChildCategory().add(CategoryDtoChild);
+            });
+        }
+        return categoryDto;
+    }
+
+    private CategoryEditDto getRecursiveEdit(Category category) {
+        CategoryEditDto categoryDto = categoryMapper.getE(category);
+        List<Category> children = categoryRepository.findAllChild(category);
+        categoryDto.setCategoryEditDto(new ArrayList<>());
+        if (!children.isEmpty()) {
+            children.forEach(children1 -> {
+                CategoryEditDto CategoryDtoChild = getRecursiveEdit(children1);
+                categoryDto.getCategoryEditDto().add(CategoryDtoChild);
             });
         }
         return categoryDto;
