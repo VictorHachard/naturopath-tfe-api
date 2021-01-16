@@ -33,7 +33,7 @@ public final class ImageMapper extends AbstractMapper {
     }
 
     public ImageViewDto getView(Image j) {
-        List<InnerImage> i = imageRepository.findLastFiltered(j, EnumState.VALADATING);
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALADATING);
         if (i == null) {
             return null;
         } else {

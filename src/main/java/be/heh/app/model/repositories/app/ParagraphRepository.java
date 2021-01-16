@@ -13,7 +13,14 @@ import java.util.List;
 @Repository
 public interface ParagraphRepository extends AbstractRepository<Paragraph, Integer> {
 
-    @Query(value = "select i from Paragraph p join p.innerParagraphList i where p = :paragraph and i.enumState = :enumState order by i.id desc")
-    List<InnerParagraph> findLastFiltered(@Param("paragraph") Paragraph paragraph, @Param("enumState") EnumState enumState);
+    /**
+     * Return a list of innerParagraph filtered with enumState. The first element of the list is the last one in the
+     * database (desc). A ".get(0)" get you the last element in the database with the filter.
+     * @param paragraph contain the list of innerParagraph
+     * @param enumState the state of the innerImage
+     * @return a list of innerParagraph filtered with enumState
+     */
+    @Query(value = "select i from Paragraph p join p.innerParagraphList i where p = ?1 and i.enumState = ?2 order by i.id desc")
+    List<InnerParagraph> findInnerParagraph(@Param("paragraph") Paragraph paragraph, @Param("enumState") EnumState enumState);
 
 }

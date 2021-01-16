@@ -34,7 +34,7 @@ public final class PageMapper extends AbstractMapper {
     }
 
     public PageViewDto getDto(Page page) {
-        InnerPage innerPage = pageRepository.findLastFiltered(page, EnumState.VALIDATED).get(0);
+        InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
 
         return new PageViewDto(page.getId(),
                 page.getCreatedAt(),

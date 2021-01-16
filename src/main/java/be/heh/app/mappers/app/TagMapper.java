@@ -39,7 +39,7 @@ public final class TagMapper extends AbstractMapper {
     }
 
     public TagViewDto getView(Tag j) {
-        List<InnerTag> i = tagRepository.findLastFiltered(j, EnumState.VALADATING);
+        List<InnerTag> i = tagRepository.findInnerTag(j, EnumState.VALADATING);
         if (i == null) {
             return null;
         } else {

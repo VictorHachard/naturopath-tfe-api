@@ -39,7 +39,7 @@ public final class ParagraphMapper extends AbstractMapper {
     }
 
     public ParagraphViewDto getView(Paragraph j) {
-        List<InnerParagraph> i = paragraphRepository.findLastFiltered(j, EnumState.VALADATING);
+        List<InnerParagraph> i = paragraphRepository.findInnerParagraph(j, EnumState.VALADATING);
         if (i == null) {
             return null;
         } else {

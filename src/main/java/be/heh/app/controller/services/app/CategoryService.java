@@ -52,7 +52,7 @@ public class CategoryService extends AbstractService<Category> {
 
     private CategoryViewDto getRecursive(Category category) {
         CategoryViewDto categoryDto = categoryMapper.getView(category);
-        List<Category> children = categoryRepository.findAllChild(category);
+        List<Category> children = categoryRepository.findChild(category);
         categoryDto.setChildCategory(new ArrayList<>());
         if (!children.isEmpty()) {
             children.forEach(children1 -> {
@@ -65,7 +65,7 @@ public class CategoryService extends AbstractService<Category> {
 
     private CategoryEditDto getRecursiveEdit(Category category) {
         CategoryEditDto categoryDto = categoryMapper.getEdit(category);
-        List<Category> children = categoryRepository.findAllChild(category);
+        List<Category> children = categoryRepository.findChild(category);
         categoryDto.setCategoryEditDto(new ArrayList<>());
         if (!children.isEmpty()) {
             children.forEach(children1 -> {

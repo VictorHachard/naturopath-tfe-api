@@ -13,7 +13,14 @@ import java.util.List;
 @Repository
 public interface ParapageRepository extends AbstractRepository<Parapage, Integer> {
 
-    @Query(value = "select i from Parapage p join p.innerParapageList i where p = :parapage and i.enumState = :enumState order by i.id desc")
-    List<InnerParapage> findLastFiltered(@Param("parapage") Parapage parapage, @Param("enumState") EnumState enumState);
+    /**
+     * Return a list of innerParapage filtered with enumState. The first element of the list is the last one in the
+     * database (desc). A ".get(0)" get you the last element in the database with the filter.
+     * @param parapage contain the list of innerParapage
+     * @param enumState the state of the innerImage
+     * @return a list of innerParapage filtered with enumState
+     */
+    @Query(value = "select i from Parapage p join p.innerParapageList i where p = ?1 and i.enumState = ?2 order by i.id desc")
+    List<InnerParapage> findInnerParapage(@Param("parapage") Parapage parapage, @Param("enumState") EnumState enumState);
 
 }

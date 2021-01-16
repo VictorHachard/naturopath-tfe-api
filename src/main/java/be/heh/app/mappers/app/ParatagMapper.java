@@ -33,7 +33,7 @@ public final class ParatagMapper extends AbstractMapper {
     }
 
     public ParatagViewDto getView(Paratag j) {
-        List<InnerParatag> i = paratagRepository.findLastFiltered(j, EnumState.VALADATING);
+        List<InnerParatag> i = paratagRepository.findInnerParatag(j, EnumState.VALADATING);
         if (i == null) {
             return null;
         } else {

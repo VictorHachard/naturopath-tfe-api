@@ -33,7 +33,7 @@ public final class ParapageMapper extends AbstractMapper {
     }
 
     public ParapageViewDto getView(Parapage j) {
-        List<InnerParapage> i = parapageRepository.findLastFiltered(j, EnumState.VALADATING);
+        List<InnerParapage> i = parapageRepository.findInnerParapage(j, EnumState.VALADATING);
         if (i == null) {
             return null;
         } else {

@@ -10,12 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "Category.findAllChild",
-                query = "select c from Category c where c.parentCategory = :category"),
-        @NamedQuery(name = "Category.findAllParent",
-                query = "select c from Category c where c.parentCategory = null")
-})
 // Lombok
 @ToString
 @NoArgsConstructor

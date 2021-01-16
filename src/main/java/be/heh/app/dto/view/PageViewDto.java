@@ -22,7 +22,7 @@ public class PageViewDto extends AbstractDto {
 
     Date createdAt;
 
-    CategoryViewDto categoryViewDto; //TODO utiliser nouveau dto dois envoyer les parent
+    CategoryViewDto categoryViewDto;
 
     User user;
 

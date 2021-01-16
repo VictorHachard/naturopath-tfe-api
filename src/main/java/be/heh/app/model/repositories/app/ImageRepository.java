@@ -13,7 +13,14 @@ import java.util.List;
 @Repository
 public interface ImageRepository extends AbstractRepository<Image, Integer> {
 
-    @Query(value = "select i from Image p join p.innerImageList i where p = :image and i.enumState = :enumState order by i.id desc")
-    List<InnerImage> findLastFiltered(@Param("image") Image image, @Param("enumState") EnumState enumState);
+    /**
+     * Return a list of innerImage filtered with enumState. The first element of the list is the last one in the
+     * database (desc). A ".get(0)" get you the last element in the database with the filter.
+     * @param image contain the list of innerImage
+     * @param enumState the state of the innerImage
+     * @return a list of innerImage filtered with enumState
+     */
+    @Query(value = "select i from Image p join p.innerImageList i where p = ?1 and i.enumState = ?2 order by i.id desc")
+    List<InnerImage> findInnerImage(@Param("image") Image image, @Param("enumState") EnumState enumState);
 
 }
