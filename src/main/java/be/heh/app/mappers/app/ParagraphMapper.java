@@ -23,11 +23,11 @@ import java.util.List;
 @Log
 public final class ParagraphMapper extends AbstractMapper {
 
-    @Autowired
-    ParagraphFacade paragraphFacade;
-
     public Paragraph set(InnerParagraph innerParagraph, ParagraphType paragraphType, User user) {
-        return paragraphFacade.newInstance(innerParagraph, paragraphType, user);
+        return paragraphFacade.newInstance(
+                innerParagraph,
+                paragraphType,
+                user);
     }
 
     public List<ParagraphViewDto> getAllView(List<Paragraph> j) {
@@ -44,7 +44,8 @@ public final class ParagraphMapper extends AbstractMapper {
             return null;
         } else {
             InnerParagraph k = i.get(0);
-            return new ParagraphViewDto(k.getTitle(),
+            return new ParagraphViewDto(
+                    k.getTitle(),
                     k.getContent());
         }
     }

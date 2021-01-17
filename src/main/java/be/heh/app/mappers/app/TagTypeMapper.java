@@ -20,9 +20,6 @@ import java.util.List;
 @Log
 public final class TagTypeMapper extends AbstractMapper {
 
-    @Autowired
-    TagTypeFacade tagTypeFacade;
-
     public TagType set(GeneralTypeValidator generalTypeValidator) {
         return tagTypeFacade.newInstance(generalTypeValidator.getName(), generalTypeValidator.getDescription());
     }

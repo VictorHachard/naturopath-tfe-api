@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParatagTypeFacade extends AbstractFacade<ParatagType> {
 
-    @Autowired
-    ParatagTypeRepository paratagTypeRepository;
-
     public ParatagType newInstance(String name, String description, TagType tagType) {
         ParatagType paratagType = new ParatagType();
         paratagType.setName(name);

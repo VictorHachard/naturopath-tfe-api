@@ -21,9 +21,6 @@ import java.util.List;
 @Log
 public final class ParatagMapper extends AbstractMapper {
 
-    @Autowired
-    ParatagFacade paratagFacade;
-
     public List<ParatagViewDto> getAllView(List<Paratag> j) {
         List<ParatagViewDto> res = new ArrayList<>();
         j.forEach(i -> {
@@ -38,7 +35,8 @@ public final class ParatagMapper extends AbstractMapper {
             return null;
         } else {
             InnerParatag k = i.get(0);
-            return new ParatagViewDto(k.getTitle(),
+            return new ParatagViewDto(
+                    k.getTitle(),
                     tagMapper.getAllView(k.getTagList()));
         }
     }

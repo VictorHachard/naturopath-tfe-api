@@ -9,8 +9,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerParapageFacade extends AbstractFacade<InnerParapage> {
 
-    @Autowired
-    InnerParapageRepository innerParapageRepository;
-
-
 }

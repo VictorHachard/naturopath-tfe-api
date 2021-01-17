@@ -11,13 +11,11 @@ import java.util.List;
 @Component
 public class CategoryFacade extends AbstractFacade<Category> {
 
-    @Autowired
-    CategoryRepository categoryRepository;
-
     public Category newInstance(String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
         Category res = new Category();
         //Category res = super.newInstance(); //TODO
-        this.updateInstance(res,
+        this.updateInstance(
+                res,
                 name,
                 description,
                 parentCategory,

@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageFacade extends AbstractFacade<Page> {
 
-    @Autowired
-    PageRepository pageRepository;
-
     public Page newInstance(InnerPage innerPage, User user, Category category) {
         Page page = new Page();
         page.addInnerPage(innerPage);

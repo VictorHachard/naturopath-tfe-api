@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class VoteFacade extends AbstractFacade<Vote> {
 
-    @Autowired
-    VoteRepository voteRepository;
-
     public Vote newInstance(int choice, User user) {
         Vote vote = new Vote();
         vote.setChoice(choice);

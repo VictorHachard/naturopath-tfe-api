@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade extends AbstractFacade<User> {
 
-    @Autowired
-    UserRepository userRepository;
-
     public User newInstance(String lang) {
         //User res = super.newInstance(); //TODO
         User res = new User();

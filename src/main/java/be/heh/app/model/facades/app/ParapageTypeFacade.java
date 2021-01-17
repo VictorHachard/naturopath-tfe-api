@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParapageTypeFacade extends AbstractFacade<ParapageType> {
 
-    @Autowired
-    ParapageTypeRepository parapageTypeRepository;
-
     public ParapageType newInstance(String name, String description) {
         ParapageType parapageType = new ParapageType();
         parapageType.setName(name);

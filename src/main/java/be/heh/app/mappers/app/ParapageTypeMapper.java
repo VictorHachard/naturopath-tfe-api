@@ -19,9 +19,6 @@ import java.util.List;
 @Log
 public final class ParapageTypeMapper extends AbstractMapper {
 
-    @Autowired
-    ParapageTypeFacade parapageTypeFacade;
-
     public List<ParapageTypeViewDto> getAllView(List<ParapageType> j) {
         List<ParapageTypeViewDto> res = new ArrayList<>();
         j.forEach(i -> {

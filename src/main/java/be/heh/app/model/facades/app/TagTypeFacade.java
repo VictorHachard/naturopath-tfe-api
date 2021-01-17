@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TagTypeFacade extends AbstractFacade<TagType> {
 
-    @Autowired
-    TagTypeRepository tagTypeRepository;
-
     public TagType newInstance(String name, String description) {
         TagType tagType = new TagType();
         tagType.setName(name);

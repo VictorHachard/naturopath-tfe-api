@@ -20,11 +20,10 @@ import java.util.List;
 @Log
 public final class ParagraphTypeMapper extends AbstractMapper {
 
-    @Autowired
-    ParagraphTypeFacade paragraphTypeFacade;
-
     public ParagraphType set(GeneralTypeValidator generalTypeValidator) {
-        return paragraphTypeFacade.newInstance(generalTypeValidator.getName(), generalTypeValidator.getDescription());
+        return paragraphTypeFacade.newInstance(
+                generalTypeValidator.getName(),
+                generalTypeValidator.getDescription());
     }
 
     public List<ParagraphTypeViewDto> getAllView(List<ParagraphType> j) {

@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParagraphFacade extends AbstractFacade<Paragraph> {
 
-    @Autowired
-    ParagraphRepository paragraphRepository;
-
     public Paragraph newInstance(InnerParagraph innerParagraph, ParagraphType paragraphType, User user) {
         Paragraph paragraph = new Paragraph();
         paragraph.addInnerParagraph(innerParagraph);

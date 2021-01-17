@@ -22,7 +22,10 @@ import java.util.List;
 public final class PageMapper extends AbstractMapper {
 
     public Page set(InnerPage innerPage, Category category, User user) {
-        return pageFacade.newInstance(innerPage, user, category);
+        return pageFacade.newInstance(
+                innerPage,
+                user,
+                category);
     }
 
     public List<PageViewDto> getAllDto(List<Page> pageList) {
@@ -36,7 +39,8 @@ public final class PageMapper extends AbstractMapper {
     public PageViewDto getDto(Page page) {
         InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
 
-        return new PageViewDto(page.getId(),
+        return new PageViewDto(
+                page.getId(),
                 page.getCreatedAt(),
                 categoryMapper.getView(page.getCategory()),
                 page.getUser(),

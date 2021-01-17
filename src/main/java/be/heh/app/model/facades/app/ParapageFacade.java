@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParapageFacade extends AbstractFacade<Parapage> {
 
-    @Autowired
-    ParapageRepository parapageRepository;
-
     public Parapage newInstance(InnerParapage innerParapage, ParapageType parapageType, User user) {
         Parapage parapage = new Parapage();
         parapage.addInnerParapage(innerParapage);

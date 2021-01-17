@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageFacade extends AbstractFacade<Message> {
 
-    @Autowired
-    MessageRepository messageRepository;
-
     public Message newInstance(String content, User user) {
         Message message = new Message();
         message.setContent(content);

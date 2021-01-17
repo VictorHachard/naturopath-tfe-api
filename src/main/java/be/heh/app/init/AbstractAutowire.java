@@ -154,6 +154,9 @@ public abstract class AbstractAutowire {
     TagTypeFacade tagTypeFacade;
 
     @Autowired
+    MessageFacade messageFacade;
+
+    @Autowired
     VoteFacade voteFacade;
 
     @Autowired

@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerPageFacade extends AbstractFacade<InnerPage> {
 
-    @Autowired
-    InnerPageRepository innerPageRepository;
-
     public InnerPage newInstance(String title, String description, User user) {
         InnerPage innerPage = new InnerPage();
         innerPage.setUser(user);

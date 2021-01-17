@@ -9,7 +9,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerImageFacade extends AbstractFacade<InnerImage> {
 
-    @Autowired
-    InnerImageRepository innerImageRepository;
-
 }

@@ -17,10 +17,9 @@ import org.springframework.stereotype.Component;
 @Log
 public final class VoteMapper extends AbstractMapper {
 
-    @Autowired
-    VoteFacade voteFacade;
-
     public Vote set(VoteValidator voteValidator, User user) {
-        return voteFacade.newInstance(voteValidator.getChoice(), user);
+        return voteFacade.newInstance(
+                voteValidator.getChoice(),
+                user);
     }
 }

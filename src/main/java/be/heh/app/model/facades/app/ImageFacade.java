@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ImageFacade extends AbstractFacade<Image> {
 
-    @Autowired
-    ImageRepository imageRepository;
-
     public Image newInstance(InnerImage innerImage, User user) {
         Image image = new Image();
         image.addInnerImage(innerImage);

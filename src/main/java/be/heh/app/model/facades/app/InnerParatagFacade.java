@@ -9,7 +9,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
 
-    @Autowired
-    InnerParatagRepository innerParatagRepository;
-
 }

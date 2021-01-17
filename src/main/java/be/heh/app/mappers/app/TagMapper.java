@@ -44,7 +44,8 @@ public final class TagMapper extends AbstractMapper {
             return null;
         } else {
             InnerTag k = i.get(0);
-            return new TagViewDto(k.getName(),
+            return new TagViewDto(
+                    k.getName(),
                     k.getContent());
         }
     }

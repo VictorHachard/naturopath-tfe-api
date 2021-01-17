@@ -21,9 +21,6 @@ import java.util.List;
 @Log
 public final class ParapageMapper extends AbstractMapper {
 
-    @Autowired
-    ParapageFacade parapageFacade;
-
     public List<ParapageViewDto> getAllView(List<Parapage> j) {
         List<ParapageViewDto> res = new ArrayList<>();
         j.forEach(i -> {
@@ -38,7 +35,8 @@ public final class ParapageMapper extends AbstractMapper {
             return null;
         } else {
             InnerParapage k = i.get(0);
-            return new ParapageViewDto(k.getTitle(),
+            return new ParapageViewDto(
+                    k.getTitle(),
                     pageMapper.getAllDto(k.getPageList()));
         }
     }

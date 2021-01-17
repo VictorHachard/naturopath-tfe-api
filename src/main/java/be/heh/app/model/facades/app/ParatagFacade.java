@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParatagFacade extends AbstractFacade<Paratag> {
 
-    @Autowired
-    ParatagRepository paratagRepository;
-
     public Paratag newInstance(InnerParatag innerParatag, ParatagType paratagType, User user) {
         Paratag paratag = new Paratag();
         paratag.addInnerParatag(innerParatag);

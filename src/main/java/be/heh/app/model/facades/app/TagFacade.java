@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TagFacade extends AbstractFacade<Tag> {
 
-    @Autowired
-    TagRepository tagRepository;
-
     public Tag newInstance(InnerTag innerTag, TagType tagType, User user) {
         Tag tag = new Tag();
         tag.addInnerTag(innerTag);

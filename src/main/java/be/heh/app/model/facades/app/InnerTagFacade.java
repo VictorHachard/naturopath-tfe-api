@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerTagFacade extends AbstractFacade<InnerTag> {
 
-    @Autowired
-    InnerTagRepository innerTagRepository;
-
     public InnerTag newInstance(String name, String content, User user) {
         InnerTag innerTag = new InnerTag();
         innerTag.setUser(user);

@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParagraphTypeFacade extends AbstractFacade<ParagraphType> {
 
-    @Autowired
-    ParagraphTypeRepository paragraphTypeRepository;
-
     public ParagraphType newInstance(String name, String description) {
         ParagraphType paragraphType = new ParagraphType();
         paragraphType.setName(name);

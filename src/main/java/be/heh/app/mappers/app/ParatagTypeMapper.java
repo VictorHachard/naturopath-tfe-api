@@ -19,9 +19,6 @@ import java.util.List;
 @Log
 public final class ParatagTypeMapper extends AbstractMapper {
 
-    @Autowired
-    ParatagTypeFacade paratagTypeFacade;
-
     public List<ParatagTypeViewDto> getAllView(List<ParatagType> j) {
         List<ParatagTypeViewDto> res = new ArrayList<>();
         j.forEach(i -> {
