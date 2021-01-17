@@ -15,7 +15,9 @@ public class CategoryFacade extends AbstractFacade<Category> {
     CategoryRepository categoryRepository;
 
     public Category newInstance(String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        return this.updateInstance(new Category(),
+        Category res = new Category();
+        //Category res = super.newInstance(); //TODO
+        this.updateInstance(res,
                 name,
                 description,
                 parentCategory,
@@ -23,6 +25,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
                 tagTypeList,
                 parapageTypeList,
                 paratagTypeList);
+        return res;
     }
 
     public Category updateInstance(Category category, String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
@@ -37,19 +40,20 @@ public class CategoryFacade extends AbstractFacade<Category> {
     }
 
     public Category newInstance(String name, String description, Category parentCategory) {
-        Category category = new Category();
-        category.setName(name);
-        category.setDescription(description);
-        category.setParentCategory(parentCategory);
-        return category;
+        Category res = new Category();
+        //Category res = super.newInstance(); //TODO
+        res.setName(name);
+        res.setDescription(description);
+        res.setParentCategory(parentCategory);
+        return res;
     }
 
     public Category newInstance(String name, String description) {
-        Category category = new Category();
-        category.setName(name);
-        category.setDescription(description);
-        category.setLang("EN");
-        return category;
+        Category res = new Category();
+        //Category res = super.newInstance(); //TODO
+        res.setName(name);
+        res.setDescription(description);
+        return res;
     }
 
     /*public List<Category> getAllChildOfCategory(Category c) {

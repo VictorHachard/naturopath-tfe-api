@@ -19,20 +19,20 @@ public class VoteService extends AbstractService<Vote> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        VoteValidator voteValidator = (VoteValidator) abstractValidator;
+        VoteValidator validator = (VoteValidator) abstractValidator;
 
-        if (userRepository.findById(voteValidator.getUserId()).isEmpty()) {
+        if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         }
-        User user = userRepository.findById(voteValidator.getUserId()).get();
+        User user = userRepository.findById(validator.getUserId()).get();
         Vote vote;
-        if (voteValidator.getType().equals("InnerPage")) {
-            if (innerPageRepository.findById(voteValidator.getTypeId()).isEmpty()) {
+        if (validator.getType().equals("InnerPage")) {
+            if (innerPageRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId");
             }
-            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
-            InnerPage innerPage = innerPageRepository.findById(voteValidator.getTypeId()).get();
-            if (!innerPageRepository.hasVoted(voteValidator.getTypeId(), user)) {
+            vote = voteMapper.set(validator, userRepository.findById(validator.getUserId()).get());
+            InnerPage innerPage = innerPageRepository.findById(validator.getTypeId()).get();
+            if (!innerPageRepository.hasVoted(validator.getTypeId(), user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerPage.isFinalState()) {
@@ -46,13 +46,13 @@ public class VoteService extends AbstractService<Vote> {
                     innerPageRepository.save(innerPage);
                 }
             }
-        } else if (voteValidator.getType().equals("InnerParagraph")) {
-            if (innerParagraphRepository.findById(voteValidator.getTypeId()).isEmpty()) {
+        } else if (validator.getType().equals("InnerParagraph")) {
+            if (innerParagraphRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerParagraph with this typeId");
             }
-            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
-            InnerParagraph innerParagraph = innerParagraphRepository.findById(voteValidator.getTypeId()).get();
-            if (!innerParagraphRepository.hasVoted(voteValidator.getTypeId(), user)) {
+            vote = voteMapper.set(validator, userRepository.findById(validator.getUserId()).get());
+            InnerParagraph innerParagraph = innerParagraphRepository.findById(validator.getTypeId()).get();
+            if (!innerParagraphRepository.hasVoted(validator.getTypeId(), user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerParagraph.isFinalState()) {
@@ -66,13 +66,13 @@ public class VoteService extends AbstractService<Vote> {
                     innerParagraphRepository.save(innerParagraph);
                 }
             }
-        } else if (voteValidator.getType().equals("InnerTag")) {
-            if (innerTagRepository.findById(voteValidator.getTypeId()).isEmpty()) {
+        } else if (validator.getType().equals("InnerTag")) {
+            if (innerTagRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerTag with this typeId");
             }
-            vote = voteMapper.set(voteValidator, userRepository.findById(voteValidator.getUserId()).get());
-            InnerTag innerTag = innerTagRepository.findById(voteValidator.getTypeId()).get();
-            if (!innerTagRepository.hasVoted(voteValidator.getTypeId(), user)) {
+            vote = voteMapper.set(validator, userRepository.findById(validator.getUserId()).get());
+            InnerTag innerTag = innerTagRepository.findById(validator.getTypeId()).get();
+            if (!innerTagRepository.hasVoted(validator.getTypeId(), user)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId"); //dejavoter
             } else {
                 if (!innerTag.isFinalState()) {

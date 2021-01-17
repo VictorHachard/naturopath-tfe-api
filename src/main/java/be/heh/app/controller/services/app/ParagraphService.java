@@ -22,25 +22,25 @@ public class ParagraphService extends AbstractService<Paragraph> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        ParagraphValidator paragraphValidator = (ParagraphValidator) abstractValidator;
+        ParagraphValidator validator = (ParagraphValidator) abstractValidator;
 
-        if (pageRepository.findById(paragraphValidator.getPageId()).isEmpty()) {
+        if (pageRepository.findById(validator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");
-        } else if (userRepository.findById(paragraphValidator.getUserId()).isEmpty()) {
+        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else if (paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).isEmpty()) {
+        } else if (paragraphTypeRepository.findById(validator.getParagraphTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this paragraphTypeId");
         } else {
-            InnerParagraph innerParagraph = innerParagraphMapper.set(paragraphValidator, userRepository.findById(paragraphValidator.getUserId()).get());
-            Paragraph paragraph = paragraphMapper.set(innerParagraph, paragraphTypeRepository.findById(paragraphValidator.getParagraphTypeId()).get(), userRepository.findById(paragraphValidator.getUserId()).get());
-            if (!pageRepository.findById(paragraphValidator.getPageId()).get().getCategory().getParagraphTypeList().contains(paragraph.getParagraphType())) {
+            InnerParagraph innerParagraph = innerParagraphMapper.set(validator, userRepository.findById(validator.getUserId()).get());
+            Paragraph paragraph = paragraphMapper.set(innerParagraph, paragraphTypeRepository.findById(validator.getParagraphTypeId()).get(), userRepository.findById(validator.getUserId()).get());
+            if (!pageRepository.findById(validator.getPageId()).get().getCategory().getParagraphTypeList().contains(paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The paragraph don't math the rule");
-            } else if (!pageFacade.verifyTypeParagraph(pageRepository.findById(paragraphValidator.getPageId()).get(), paragraph.getParagraphType())) {
+            } else if (!pageFacade.verifyTypeParagraph(pageRepository.findById(validator.getPageId()).get(), paragraph.getParagraphType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the paragraph is duplicate");
             }
             innerParagraphRepository.save(innerParagraph);
             paragraphRepository.save(paragraph);
-            Page page = pageRepository.findById(paragraphValidator.getPageId()).get();
+            Page page = pageRepository.findById(validator.getPageId()).get();
             page.addParagraph(paragraph);
             pageRepository.save(page);
             //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");
@@ -49,15 +49,15 @@ public class ParagraphService extends AbstractService<Paragraph> {
 
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
-        ParagraphUpdateValidator paragraphUpdateValidator = (ParagraphUpdateValidator) abstractValidator;
+        ParagraphUpdateValidator validator = (ParagraphUpdateValidator) abstractValidator;
 
-        if (userRepository.findById(paragraphUpdateValidator.getUserId()).isEmpty()) {
+        if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else if (paragraphRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Paragraph with this id");
         } else {
             Paragraph paragraph = paragraphRepository.findById(id).get();
-            InnerParagraph innerParagraph = innerParagraphMapper.set(paragraphUpdateValidator, paragraph.getInnerParagraphList().get(paragraph.getInnerParagraphList().size() - 1).getVersion() + 1, userRepository.findById(paragraphUpdateValidator.getUserId()).get());
+            InnerParagraph innerParagraph = innerParagraphMapper.set(validator, paragraph.getInnerParagraphList().get(paragraph.getInnerParagraphList().size() - 1).getVersion() + 1, userRepository.findById(validator.getUserId()).get());
             innerParagraphRepository.save(innerParagraph);
             paragraph.addInnerParagraph(innerParagraph);
             paragraphRepository.save(paragraph);

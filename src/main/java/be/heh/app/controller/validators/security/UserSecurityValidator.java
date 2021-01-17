@@ -1,5 +1,6 @@
 package be.heh.app.controller.validators.security;
 
+import be.heh.app.controller.validators.commons.AbstractValidator;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class UserValidator {
+public class UserSecurityValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
@@ -33,12 +34,12 @@ public class UserValidator {
     @NotNull(message = "")
     @NotEmpty
     @Pattern(regexp = "[A-Z][a-zA-Z]*", message = "Firstname must start with a capitalized letter")
-    String first_name;
+    String firstName;
 
     @NotNull(message = "")
     @NotEmpty
     @Pattern(regexp = "[A-Z][a-zA-Z]*", message = "Lastname must start with a capitalized letter")
-    String last_name;
+    String lastName;
 
     @NotNull(message = "")
     String birth;

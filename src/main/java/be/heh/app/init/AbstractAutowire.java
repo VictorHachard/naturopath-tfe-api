@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 // Lombok
 @FieldDefaults(level = AccessLevel.PROTECTED)
 @Log
-public class AbstractAutowire {
+public abstract class AbstractAutowire {
 
     // Repository
 

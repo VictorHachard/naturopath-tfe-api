@@ -35,63 +35,63 @@ public class UserSecurity implements Serializable {
     String password;
 
     @Column(name = "first_name")
-    String first_name;
+    String firstName;
 
     @Column(name = "last_name")
-    String last_name;
+    String lastName;
 
     @Column(name = "birth")
     @Temporal(TemporalType.DATE)
     Date birth;
 
     @Column(name = "validation_token", unique = true)
-    String validation_token;
+    String validationToken;
 
     @Column(name = "confirm_set")
     @Temporal(TemporalType.TIMESTAMP)
-    Date confirm_set;
+    Date confirmSet;
 
     @Column(name = "confirmed_at")
     @Temporal(TemporalType.TIMESTAMP)
-    Date confirmed_at;
+    Date confirmedAt;
 
     @Column(name = "reset_token", unique = true)
-    String reset_token;
+    String resetToken;
 
     @Column(name = "reset_set")
     @Temporal(TemporalType.TIMESTAMP)
-    Date reset_set;
+    Date resetSet;
 
     @Column(name = "reset_at")
     @Temporal(TemporalType.TIMESTAMP)
-    Date reset_at;
+    Date resetAt;
 
     @Column(name = "delete_token", unique = true)
-    String delete_token;
+    String deleteToken;
 
     @Column(name = "delete_set")
     @Temporal(TemporalType.TIMESTAMP)
-    Date delete_set;
+    Date deleteSet;
 
     @Column(name = "permission")
     @Enumerated(EnumType.STRING)
     EnumPermission enumPermission;
 
     @Column(name = "all_emails")
-    int all_emails;
+    int allEmails; // 0 - no, 1 - yes
 
     @Column(name = "accept_terms")
-    int accept_terms;
+    int acceptTerms;
 
     @Column(name = "last_connection")
     @Temporal(TemporalType.TIMESTAMP)
-    Date last_connection;
+    Date lastConnection;
 
     @Column(name = "profile_privacy")
-    int profile_privacy;
+    int profilePrivacy; // 0 - private, 1 - public
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    Date created_at;
+    Date createdAt;
 
 }

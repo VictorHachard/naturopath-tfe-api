@@ -41,7 +41,6 @@ public class CategoryService extends AbstractService<Category> {
         categoryRepository.findAllParent().forEach(category -> {
             CategoryEditDto categoryDto = getRecursiveEdit(category);
             categoryDtoList.add(categoryDto);
-
         });
         return categoryDtoList;
     }
@@ -78,49 +77,49 @@ public class CategoryService extends AbstractService<Category> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        CategoryValidator categoryValidator = (CategoryValidator) abstractValidator;
-        if (categoryValidator.getCategoryId() != null && categoryRepository.findById(categoryValidator.getCategoryId()).isEmpty()) {
+        CategoryValidator validator = (CategoryValidator) abstractValidator;
+        if (validator.getCategoryId() != null && categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (categoryValidator.getParagraphTypeIdList() != null && paragraphTypeRepository.findAllById(categoryValidator.getParagraphTypeIdList()).isEmpty()) {
+        } else if (validator.getParagraphTypeIdList() != null && paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParagraphTypeIdList");
-        } else if (categoryValidator.getTagTypeIdList() != null && tagTypeRepository.findAllById(categoryValidator.getTagTypeIdList()).isEmpty()) {
+        } else if (validator.getTagTypeIdList() != null && tagTypeRepository.findAllById(validator.getTagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getTagTypeIdList");
-        } else if (categoryValidator.getParapageTypeIdList() != null && parapageTypeRepository.findAllById(categoryValidator.getParapageTypeIdList()).isEmpty()) {
+        } else if (validator.getParapageTypeIdList() != null && parapageTypeRepository.findAllById(validator.getParapageTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParapageTypeIdList");
-        } else if (categoryValidator.getParatagTypeIdList() != null && paratagTypeRepository.findAllById(categoryValidator.getParatagTypeIdList()).isEmpty()) {
+        } else if (validator.getParatagTypeIdList() != null && paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParatagTypeIdList");
         }
-        categoryRepository.save(categoryMapper.set(categoryValidator,
-                categoryValidator.getCategoryId() != null ? categoryRepository.findById(categoryValidator.getCategoryId()).get() : null,
-                categoryValidator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(categoryValidator.getParagraphTypeIdList()) : new ArrayList<>(),
-                categoryValidator.getTagTypeIdList() != null ? tagTypeRepository.findAllById(categoryValidator.getTagTypeIdList()) : new ArrayList<>(),
-                categoryValidator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(categoryValidator.getParapageTypeIdList()) : new ArrayList<>(),
-                categoryValidator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(categoryValidator.getParatagTypeIdList()) : new ArrayList<>()));
+        categoryRepository.save(categoryMapper.set(validator,
+                validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null,
+                validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
+                validator.getTagTypeIdList() != null ? tagTypeRepository.findAllById(validator.getTagTypeIdList()) : new ArrayList<>(),
+                validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
+                validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>()));
     }
 
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
-        CategoryValidator categoryValidator = (CategoryValidator) abstractValidator;
+        CategoryValidator validator = (CategoryValidator) abstractValidator;
         if (categoryRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (categoryRepository.findById(categoryValidator.getCategoryId()).isEmpty()) {
+        } else if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (paragraphTypeRepository.findAllById(categoryValidator.getParagraphTypeIdList()).isEmpty()) {
+        } else if (paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (tagTypeRepository.findAllById(categoryValidator.getTagTypeIdList()).isEmpty()) {
+        } else if (tagTypeRepository.findAllById(validator.getTagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (parapageTypeRepository.findAllById(categoryValidator.getParapageTypeIdList()).isEmpty()) {
+        } else if (parapageTypeRepository.findAllById(validator.getParapageTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (paratagTypeRepository.findAllById(categoryValidator.getParatagTypeIdList()).isEmpty()) {
+        } else if (paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         }
         categoryRepository.save(categoryMapper.set(categoryRepository.findById(id).get(),
-                categoryValidator,
-                categoryRepository.findById(categoryValidator.getCategoryId()).get(),
-                paragraphTypeRepository.findAllById(categoryValidator.getParagraphTypeIdList()),
-                tagTypeRepository.findAllById(categoryValidator.getTagTypeIdList()),
-                parapageTypeRepository.findAllById(categoryValidator.getParapageTypeIdList()),
-                paratagTypeRepository.findAllById(categoryValidator.getParatagTypeIdList())));
+                validator,
+                categoryRepository.findById(validator.getCategoryId()).get(),
+                paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()),
+                tagTypeRepository.findAllById(validator.getTagTypeIdList()),
+                parapageTypeRepository.findAllById(validator.getParapageTypeIdList()),
+                paratagTypeRepository.findAllById(validator.getParatagTypeIdList())));
     }
 
     @Override

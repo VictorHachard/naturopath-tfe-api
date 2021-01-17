@@ -22,23 +22,23 @@ public class TagService extends AbstractService<Tag> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        TagValidator tagValidator = (TagValidator) abstractValidator;
+        TagValidator validator = (TagValidator) abstractValidator;
 
-        if (pageRepository.findById(tagValidator.getPageId()).isEmpty()) {
+        if (pageRepository.findById(validator.getPageId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this categoryId");
-        } else if (userRepository.findById(tagValidator.getUserId()).isEmpty()) {
+        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else if (tagTypeRepository.findById(tagValidator.getTagTypeId()).isEmpty()) {
+        } else if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
             InnerTag innerTag = new InnerTag();
-            Tag tag = tagMapper.set(innerTag, tagTypeRepository.findById(tagValidator.getTagTypeId()).get(), userRepository.findById(tagValidator.getUserId()).get());
-            if (!pageRepository.findById(tagValidator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
+            Tag tag = tagMapper.set(innerTag, tagTypeRepository.findById(validator.getTagTypeId()).get(), userRepository.findById(validator.getUserId()).get());
+            if (!pageRepository.findById(validator.getPageId()).get().getCategory().getTagTypeList().contains(tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Tag don't math the rule");
-            } else if (!pageFacade.verifyTypeTag(pageRepository.findById(tagValidator.getPageId()).get(), tag.getTagType())) {
+            } else if (!pageFacade.verifyTypeTag(pageRepository.findById(validator.getPageId()).get(), tag.getTagType())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The rule of the tag is duplicate");
             }
-            Page page = pageRepository.findById(tagValidator.getPageId()).get();
+            Page page = pageRepository.findById(validator.getPageId()).get();
             page.addTag(tag);
 
             tagRepository.save(tag);
@@ -48,15 +48,15 @@ public class TagService extends AbstractService<Tag> {
 
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
-        TagUpdateValidator tagUpdateValidator = (TagUpdateValidator) abstractValidator;
+        TagUpdateValidator validator = (TagUpdateValidator) abstractValidator;
 
-        if (userRepository.findById(tagUpdateValidator.getUserId()).isEmpty()) {
+        if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else if (tagRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this id");
         } else {
             Tag tag = tagRepository.findById(id).get();
-            InnerTag innerTag = innerTagMapper.set(tagUpdateValidator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(tagUpdateValidator.getUserId()).get());
+            InnerTag innerTag = innerTagMapper.set(validator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(validator.getUserId()).get());
             innerTagRepository.save(innerTag);
             tag.addInnerTag(innerTag);
             tagRepository.save(tag);

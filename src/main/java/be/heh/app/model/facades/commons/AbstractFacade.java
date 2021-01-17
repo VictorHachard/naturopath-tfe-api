@@ -1,17 +1,18 @@
 package be.heh.app.model.facades.commons;
 
+import be.heh.app.init.AbstractAutowire;
 import be.heh.app.model.entities.commons.AbstractEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.TypeVariable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-public abstract class AbstractFacade<T> {
+public abstract class AbstractFacade<T> extends AbstractAutowire {
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -24,7 +25,7 @@ public abstract class AbstractFacade<T> {
         AbstractEntity obj = null;
         try {
             obj = (AbstractEntity) constructor.newInstance();
-            obj.setCreatedAt(new Date());
+            obj.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         } catch (Exception e) {
             Logger.getLogger("AbstractRepository").info(e.getMessage());
         }

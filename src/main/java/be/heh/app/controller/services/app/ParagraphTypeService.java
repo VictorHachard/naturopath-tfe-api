@@ -20,8 +20,8 @@ public class ParagraphTypeService extends AbstractService<ParagraphType> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        GeneralTypeValidator generalTypeValidator = (GeneralTypeValidator) abstractValidator;
-        paragraphTypeRepository.save(paragraphTypeMapper.set(generalTypeValidator));
+        GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
+        paragraphTypeRepository.save(paragraphTypeMapper.set(validator));
     }
 
     public void linkParagraphTypeToCategory(int categoryId, int paragraphTypeId) {

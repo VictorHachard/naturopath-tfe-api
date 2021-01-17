@@ -13,9 +13,10 @@ public class UserFacade extends AbstractFacade<User> {
     UserRepository userRepository;
 
     public User newInstance(String lang) {
-        User user = new User();
-        user.setLang(lang);
-        return user;
+        //User res = super.newInstance(); //TODO
+        User res = new User();
+        res.setLang(lang);
+        return res;
     }
 
 }

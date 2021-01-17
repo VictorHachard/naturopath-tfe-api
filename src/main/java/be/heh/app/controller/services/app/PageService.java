@@ -33,32 +33,33 @@ public class PageService extends AbstractService<Page> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        PageValidator pageValidator = (PageValidator) abstractValidator;
-        if (categoryRepository.findById(pageValidator.getCategoryId()).isEmpty()) {
+        PageValidator validator = (PageValidator) abstractValidator;
+        if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (userRepository.findById(pageValidator.getUserId()).isEmpty()) {
+        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
-            InnerPage innerPage = innerPageMapper.set(pageValidator, userRepository.findById(pageValidator.getUserId()).get());
+            InnerPage innerPage = innerPageMapper.set(validator, userRepository.findById(validator.getUserId()).get());
             innerPageRepository.save(innerPage);
-            Page page = pageMapper.set(innerPage, categoryRepository.findById(pageValidator.getCategoryId()).get(), userRepository.findById(pageValidator.getUserId()).get());
+            Page page = pageMapper.set(innerPage, categoryRepository.findById(validator.getCategoryId()).get(), userRepository.findById(validator.getUserId()).get());
             pageRepository.save(page);
         }
     }
 
-    public Page updatePage(PageUpdateValidator pageUpdateValidator, int id) {
+    @Override
+    public void update(AbstractValidator abstractValidator, int id) {
+        PageUpdateValidator validator = (PageUpdateValidator) abstractValidator;
         if (pageRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-        } else if (userRepository.findById(pageUpdateValidator.getUserId()).isEmpty()) {
+        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
             InnerPage lastInnerPage = pageRepository.findById(id).get().getInnerPageList().get(pageRepository.findById(id).get().getInnerPageList().size() - 1);
-            InnerPage innerPage = innerPageMapper.set(pageUpdateValidator, lastInnerPage.getVersion() + 1, userRepository.findById(pageUpdateValidator.getUserId()).get());
+            InnerPage innerPage = innerPageMapper.set(validator, lastInnerPage.getVersion() + 1, userRepository.findById(validator.getUserId()).get());
             innerPageRepository.save(innerPage);
             Page page = pageRepository.findById(id).get();
             page.addInnerPage(innerPage);
             pageRepository.save(page);
-            return page;
         }
     }
 

@@ -1,6 +1,7 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.mappers.app.commons.AbstractMapper;
+import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -11,4 +12,10 @@ import org.springframework.stereotype.Component;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public final class UserMapper extends AbstractMapper {
+
+    public User set() {
+        User res = userFacade.newInstance();
+        return res;
+    }
+
 }

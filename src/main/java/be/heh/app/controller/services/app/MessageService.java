@@ -19,38 +19,38 @@ public class MessageService extends AbstractService<Message> {
 
     @Override
     public void add(AbstractValidator abstractValidator) {
-        MessageValidator messageValidator = (MessageValidator) abstractValidator;
+        MessageValidator validator = (MessageValidator) abstractValidator;
 
-        if (userRepository.findById(messageValidator.getUserId()).isEmpty()) {
+        if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         }
-        User user = userRepository.findById(messageValidator.getUserId()).get();
+        User user = userRepository.findById(validator.getUserId()).get();
         Message message;
-        if (messageValidator.getType().equals("InnerPage")) {
-            message = messageMapper.set(messageValidator.getContent(), user);
-            if (innerPageRepository.findById(messageValidator.getTypeId()).isEmpty()) {
+        if (validator.getType().equals("InnerPage")) {
+            message = messageMapper.set(validator.getContent(), user);
+            if (innerPageRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no innerPage with this typeId");
             }
-            InnerPage innerPage = innerPageRepository.findById(messageValidator.getTypeId()).get();
+            InnerPage innerPage = innerPageRepository.findById(validator.getTypeId()).get();
             messageRepository.save(message);
             innerPage.addMessage(message);
             innerPageRepository.save(innerPage);
-        } else if (messageValidator.getType().equals("InnerParagraph")) {
-            message = messageMapper.set(messageValidator.getContent(), user);
-            if (innerPageRepository.findById(messageValidator.getTypeId()).isEmpty()) {
+        } else if (validator.getType().equals("InnerParagraph")) {
+            message = messageMapper.set(validator.getContent(), user);
+            if (innerPageRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerParagraph with this typeId");
             }
-            InnerParagraph innerParagraph = innerParagraphRepository.findById(messageValidator.getTypeId()).get();
+            InnerParagraph innerParagraph = innerParagraphRepository.findById(validator.getTypeId()).get();
             messageRepository.save(message);
             innerParagraph.addMessage(message);
             innerParagraphRepository.save(innerParagraph);
 
-        } else if (messageValidator.getType().equals("InnerTag")) {
-            message = messageMapper.set(messageValidator.getContent(), user);
-            if (innerTagRepository.findById(messageValidator.getTypeId()).isEmpty()) {
+        } else if (validator.getType().equals("InnerTag")) {
+            message = messageMapper.set(validator.getContent(), user);
+            if (innerTagRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerTag with this typeId");
             }
-            InnerTag innerTag = innerTagRepository.findById(messageValidator.getTypeId()).get();
+            InnerTag innerTag = innerTagRepository.findById(validator.getTypeId()).get();
             messageRepository.save(message);
             innerTag.addMessage(message);
             innerTagRepository.save(innerTag);

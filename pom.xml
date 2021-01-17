@@ -5,14 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.heh</groupId>
     <artifactId>tfe</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>demo-1</name>
+    <version>1.0</version>
+    <name>tfe-api</name>
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>11</java.version>
     </properties>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
