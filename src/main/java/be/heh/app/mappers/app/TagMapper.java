@@ -33,18 +33,23 @@ public final class TagMapper extends AbstractMapper {
     public List<TagViewDto> getAllView(List<Tag> j) {
         List<TagViewDto> res = new ArrayList<>();
         j.forEach(i -> {
-            res.add(this.getView(i));
+            TagViewDto d = this.getView(i);
+            if (d != null) {
+                res.add(d);
+            }
         });
         return res;
     }
 
     public TagViewDto getView(Tag j) {
-        List<InnerTag> i = tagRepository.findInnerTag(j, EnumState.VALADATING);
-        if (i == null) {
+        List<InnerTag> i = tagRepository.findInnerTag(j, EnumState.VALIDATED);
+        if (i == null || i.isEmpty()) {
             return null;
         } else {
             InnerTag k = i.get(0);
             return new TagViewDto(
+                    k.getId(),
+                    tagTypeMapper.getView(j.getTagType()),
                     k.getName(),
                     k.getContent());
         }

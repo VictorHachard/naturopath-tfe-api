@@ -50,6 +50,10 @@ public class Init extends AbstractAutowire {
         paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , "", tagTypeList.get(2))); //0
     }
 
+    public void initParapageType() {
+        parapageTypeList.add(parapageTypeFacade.newInstance("" , "")); //0
+    }
+
     public void initParagraphType() {
         paragraphTypeList.addAll(Arrays.asList(
                 paragraphTypeFacade.newInstance("Habitat et culture", ""), //0
@@ -123,16 +127,15 @@ public class Init extends AbstractAutowire {
 
     public void initPage() {
         Vote vote = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i = innerPageFacade.newInstance("Lavande", "", userList.get(0), EnumState.VALIDATED);
+        InnerPage i = innerPageFacade.init("Lavande", "");
         i.addVote(vote);
 
-
         Vote vote2 = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i2 = innerPageFacade.newInstance("Lavande 2", "", userList.get(0), EnumState.VALIDATED);
+        InnerPage i2 = innerPageFacade.init("Lavande 2", "");
         i2.addVote(vote2);
 
         Vote vote3 = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i3 = innerPageFacade.newInstance("Lavande 3", "", userList.get(0), EnumState.VALIDATED);
+        InnerPage i3 = innerPageFacade.init("Lavande 3", "");
         i3.addVote(vote3);
 
         Page page = pageFacade.newInstance(i, userList.get(0),
@@ -146,8 +149,8 @@ public class Init extends AbstractAutowire {
     }
 
     public void initTag() {
-        tagList.add(tagFacade.newInstance(innerTagFacade.newInstance("Phénols", "", userList.get(0)), tagTypeList.get(2), userList.get(0))); //0
-        tagList.add(tagFacade.newInstance(innerTagFacade.newInstance("Astéracées", "", userList.get(0)), tagTypeList.get(1), userList.get(0))); //1
+        tagList.add(tagFacade.newInstance(innerTagFacade.init("Phénols", ""), tagTypeList.get(2), userList.get(0))); //0
+        tagList.add(tagFacade.newInstance(innerTagFacade.init("Astéracées", ""), tagTypeList.get(1), userList.get(0))); //1
     }
 
     public void initParagraph() {
@@ -157,14 +160,19 @@ public class Init extends AbstractAutowire {
     @PostConstruct
     public void init() {
         initUser();
-        initParagraphType();
-        initTagType();
-        initParatagType();
-        initCategory();
-        initPage();
         userList.forEach(user -> {
             userRepository.save(user);
         });
+
+        initParagraphType();
+        initTagType();
+        initParapageType();
+        initParatagType();
+        initCategory();
+        initPage();
+        initParagraph();
+        initTag();
+
         paragraphTypeList.forEach(user -> {
             paragraphTypeRepository.save(user);
         });

@@ -4,11 +4,9 @@ import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.dto.view.ParagraphTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.ParagraphType;
-import be.heh.app.model.facades.app.ParagraphTypeFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -34,11 +32,11 @@ public final class ParagraphTypeMapper extends AbstractMapper {
         return res;
     }
 
-    public ParagraphTypeViewDto getView(ParagraphType paragraphType) {
+    public ParagraphTypeViewDto getView(ParagraphType j) {
         return new ParagraphTypeViewDto(
-                paragraphType.getId(),
-                paragraphType.getName(),
-                paragraphType.getDescription()
+                j.getId(),
+                j.getName(),
+                j.getDescription()
         );
     }
 

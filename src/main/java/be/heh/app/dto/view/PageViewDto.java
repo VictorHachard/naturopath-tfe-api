@@ -13,12 +13,9 @@ import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
 public class PageViewDto extends AbstractDto {
-
-    int id;
 
     Date createdAt;
 
@@ -39,5 +36,19 @@ public class PageViewDto extends AbstractDto {
     List<ParatagViewDto> paratagDtoList;
 
     List<ImageViewDto> imageDtoList;
+
+    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, User user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<TagViewDto> tagDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
+        super(id);
+        this.createdAt = createdAt;
+        this.categoryViewDto = categoryViewDto;
+        this.user = user;
+        this.title = title;
+        this.description = description;
+        this.paragraphDtoList = paragraphDtoList;
+        this.tagDtoList = tagDtoList;
+        this.parapageDtoList = parapageDtoList;
+        this.paratagDtoList = paratagDtoList;
+        this.imageDtoList = imageDtoList;
+    }
 
 }

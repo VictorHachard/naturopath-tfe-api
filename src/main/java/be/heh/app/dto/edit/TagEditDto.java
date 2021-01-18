@@ -1,4 +1,4 @@
-package be.heh.app.dto;
+package be.heh.app.dto.edit;
 
 import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
@@ -9,15 +9,12 @@ import lombok.experimental.FieldDefaults;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
-public class PageForPageDto {
+public class TagEditDto extends AbstractDto {
 
-    int id;
-
-    String title;
-
-    String description;
+    public TagEditDto(int id) {
+        super(id);
+    }
 
 }

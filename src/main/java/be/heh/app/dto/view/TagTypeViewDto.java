@@ -9,15 +9,18 @@ import lombok.experimental.FieldDefaults;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
 public class TagTypeViewDto extends AbstractDto {
 
-    int id;
-
     String name;
 
     String description;
+
+    public TagTypeViewDto(int id, String name, String description) {
+        super(id);
+        this.name = name;
+        this.description = description;
+    }
 
 }

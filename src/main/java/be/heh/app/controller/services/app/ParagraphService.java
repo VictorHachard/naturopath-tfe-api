@@ -4,6 +4,8 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.ParagraphValidator;
 import be.heh.app.controller.validators.app.update.ParagraphUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.view.ParagraphViewDto;
+import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Paragraph;
@@ -14,11 +16,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParagraphService extends AbstractService<Paragraph> {
+
+    public List<ParagraphViewDto> getAllDto() {
+        return paragraphMapper.getAllView(super.getAll());
+    }
+
+    public ParagraphViewDto getDto(int id) {
+        return paragraphMapper.getView(super.get(id));
+    }
 
     @Override
     public void add(AbstractValidator abstractValidator) {

@@ -34,6 +34,7 @@ public final class ImageMapper extends AbstractMapper {
         } else {
             InnerImage k = i.get(0);
             return new ImageViewDto(
+                    k.getId(),
                     k.getTitle(),
                     k.getDescription(),
                     k.getUrl()

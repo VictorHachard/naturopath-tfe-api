@@ -14,7 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParapageDto extends AbstractDto {
+public class ParapageDto {
+
+    int id;
 
     String title;
 

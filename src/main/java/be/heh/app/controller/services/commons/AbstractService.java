@@ -35,9 +35,16 @@ public abstract class AbstractService<I> extends AbstractAutowire {
         }
     }
 
-    public void add(AbstractValidator abstractValidator) { }
+    public void add(AbstractValidator abstractValidator) {
 
-    public void update(AbstractValidator abstractValidator, int id) { }
+    }
+
+    public void update(AbstractValidator abstractValidator, int id) {
+        AbstractRepository repository = InitRepository.get(this.getClass());
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + this.getClass().getSimpleName() + " in the database");
+        }
+    }
 
     public void delete(int id) {
         AbstractRepository repository = InitRepository.get(this.getClass());

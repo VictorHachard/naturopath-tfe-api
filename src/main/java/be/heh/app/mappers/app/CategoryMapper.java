@@ -31,15 +31,18 @@ public final class CategoryMapper extends AbstractMapper {
         return category;
     }
 
-    /*public Category set(CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        return this.set(new Category(),
-                categoryValidator,
+    public void setUpdate(Category category, CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+        categoryFacade.updateInstance(
+                category,
+                categoryValidator.getName(),
+                categoryValidator.getDescription(),
                 category1,
                 paragraphTypeList,
                 tagTypeList,
                 parapageTypeList,
-                paratagTypeList);
-    }*/
+                paratagTypeList
+        );
+    }
 
     public CategoryViewDto getView(Category category) {
         return new CategoryViewDto(

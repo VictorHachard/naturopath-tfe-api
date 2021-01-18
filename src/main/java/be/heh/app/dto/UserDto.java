@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserDto extends AbstractDto {
+public class UserDto {
 
 }

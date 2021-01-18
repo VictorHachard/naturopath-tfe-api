@@ -4,6 +4,7 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Tag;
@@ -14,11 +15,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class TagService extends AbstractService<Tag> {
+
+    public List<TagViewDto> getAllDto() {
+        return tagMapper.getAllView(super.getAll());
+    }
+
+    public TagViewDto getDto(int id) {
+        return tagMapper.getView(super.get(id));
+    }
 
     @Override
     public void add(AbstractValidator abstractValidator) {

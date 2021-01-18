@@ -4,8 +4,6 @@ import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.app.InnerParagraphRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,6 +26,16 @@ public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
         innerParagraph.setTitle(title);
         innerParagraph.setVersion(version);
         innerParagraph.setEnumState(EnumState.DRAFT);
+        return innerParagraph;
+    }
+
+    public InnerParagraph init(String title, String content) {
+        InnerParagraph innerParagraph = new InnerParagraph();
+        innerParagraph.setUser(userRepository.findById(0).get());
+        innerParagraph.setContent(content);
+        innerParagraph.setTitle(title);
+        innerParagraph.setVersion(0);
+        innerParagraph.setEnumState(EnumState.VALIDATED);
         return innerParagraph;
     }
 

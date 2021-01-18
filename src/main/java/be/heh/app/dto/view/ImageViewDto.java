@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
 public class ImageViewDto extends AbstractDto {
@@ -19,5 +18,12 @@ public class ImageViewDto extends AbstractDto {
     String description;
 
     String url;
+
+    public ImageViewDto(int id, String title, String description, String url) {
+        super(id);
+        this.title = title;
+        this.description = description;
+        this.url = url;
+    }
 
 }

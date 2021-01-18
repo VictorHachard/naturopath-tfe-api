@@ -4,8 +4,6 @@ import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.app.InnerTagRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +16,17 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
         innerTag.setName(name);
         innerTag.setVersion(0);
         innerTag.setEnumState(EnumState.DRAFT);
+        return innerTag;
+    }
+
+    // Init
+    public InnerTag init(String name, String content) {
+        InnerTag innerTag = new InnerTag();
+        innerTag.setUser(userRepository.findById(0).get());
+        innerTag.setContent(content);
+        innerTag.setName(name);
+        innerTag.setVersion(0);
+        innerTag.setEnumState(EnumState.VALIDATED);
         return innerTag;
     }
 

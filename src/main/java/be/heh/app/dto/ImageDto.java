@@ -12,7 +12,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ImageDto extends AbstractDto {
+public class ImageDto {
+
+    int id;
 
     String title;
 

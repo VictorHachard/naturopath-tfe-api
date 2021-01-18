@@ -24,5 +24,4 @@ public class UserController extends AbstractController {
         categoryService.update(categoryValidator, id);
     }*/
 
-
 }

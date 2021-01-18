@@ -9,15 +9,18 @@ import lombok.experimental.FieldDefaults;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
 public class ParagraphTypeViewDto extends AbstractDto {
 
-    int id;
-
     String name;
 
     String description;
+
+    public ParagraphTypeViewDto(int id, String name, String description) {
+        super(id);
+        this.name = name;
+        this.description = description;
+    }
 
 }

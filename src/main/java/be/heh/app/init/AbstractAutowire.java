@@ -129,7 +129,6 @@ public abstract class AbstractAutowire {
     @Autowired
     ImageMapper imageMapper;
 
-
     // Facade
 
     @Autowired

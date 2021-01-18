@@ -1,12 +1,8 @@
 package be.heh.app.controller.rest.commons;
 
-import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.init.InitService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +30,7 @@ public class GenericController {
         }
     }
 
-    @GetMapping("/{variable}")
+    /*@GetMapping("/{variable}")
     public List getAll(@PathVariable("variable") String objet) {
         authorized(objet);
         AbstractService service = InitService.serviceMap.get(objet);
@@ -42,25 +38,21 @@ public class GenericController {
     }
 
     @GetMapping("/{variable}/{id}")
-    public Object get(@PathVariable("variable") String objet, @PathVariable("id") String idS) {
-        int id = 0;
-        try {
-            id = Integer.parseInt(idS);
-        } catch (Exception e) {
-            return null;
+    public Object get(@PathVariable("variable") String objet, @PathVariable("id") String str) {
+        int id = Utils.StringToInt(str);
+        if (id == 0) {
+            //TODO erreur
         }
         authorized(objet);
         AbstractService service = InitService.serviceMap.get(objet);
         return (Object) service.get(id);
-    }
+    }*/
 
     /*@DeleteMapping("/{variable}/{id}")
-    public void delete(@PathVariable("variable") String objet, @PathVariable("id") String idS) {
-        int id = 0;
-        try {
-            id = Integer.parseInt(idS);
-        } catch (Exception e) {
-            throw e;
+    public void delete(@PathVariable("variable") String objet, @PathVariable("id") String str) {
+        int id = Utils.StringToInt(str);
+        if (id == 0) {
+            //TODO erreur
         }
         authorized(objet);
         AbstractService service = InitService.serviceMap.get(objet);

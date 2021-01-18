@@ -11,7 +11,6 @@ import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 @Getter
 @Setter
 public class ParatagViewDto extends AbstractDto {
@@ -19,5 +18,11 @@ public class ParatagViewDto extends AbstractDto {
     String title;
 
     List<TagViewDto> tagList;
+
+    public ParatagViewDto(int id, String title, List<TagViewDto> tagList) {
+        super(id);
+        this.title = title;
+        this.tagList = tagList;
+    }
 
 }

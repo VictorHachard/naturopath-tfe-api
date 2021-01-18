@@ -5,8 +5,6 @@ import be.heh.app.model.entities.app.Parapage;
 import be.heh.app.model.entities.app.ParapageType;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.app.ParapageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
