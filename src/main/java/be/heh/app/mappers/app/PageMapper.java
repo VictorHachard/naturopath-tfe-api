@@ -43,7 +43,7 @@ public final class PageMapper extends AbstractMapper {
                 page.getId(),
                 page.getCreatedAt(),
                 categoryMapper.getView(page.getCategory()),
-                page.getUser(),
+                userMapper.getView(page.getUser()),
                 innerPage.getTitle(),
                 innerPage.getDescription(),
                 paragraphMapper.getAllView(page.getParagraphList()),

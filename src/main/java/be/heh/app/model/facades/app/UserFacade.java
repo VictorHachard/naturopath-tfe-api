@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade extends AbstractFacade<User> {
 
-    public User newInstance(String lang) {
+    // Init
+    public User init(String username) {
         //User res = super.newInstance(); //TODO
         User res = new User();
-        res.setLang(lang);
+        res.setUsername(username);
         return res;
     }
 

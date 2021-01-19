@@ -1,6 +1,5 @@
 package be.heh.app.dto;
 
-import be.heh.app.dto.commons.AbstractDto;
 import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

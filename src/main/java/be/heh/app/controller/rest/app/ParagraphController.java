@@ -4,7 +4,6 @@ import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.ParagraphValidator;
 import be.heh.app.controller.validators.app.update.ParagraphUpdateValidator;
 import be.heh.app.dto.view.ParagraphViewDto;
-import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

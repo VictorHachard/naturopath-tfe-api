@@ -223,4 +223,5 @@ public abstract class AbstractAutowire {
     @Autowired
     ParapageTypeService parapageTypeService;
 
+
 }

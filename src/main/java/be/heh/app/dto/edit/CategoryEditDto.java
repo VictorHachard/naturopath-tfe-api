@@ -6,7 +6,6 @@ import be.heh.app.dto.view.ParapageTypeViewDto;
 import be.heh.app.dto.view.ParatagTypeViewDto;
 import be.heh.app.dto.view.TagTypeViewDto;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;

@@ -5,7 +5,6 @@ import be.heh.app.controller.validators.app.ParagraphValidator;
 import be.heh.app.controller.validators.app.update.ParagraphUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.view.ParagraphViewDto;
-import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Paragraph;

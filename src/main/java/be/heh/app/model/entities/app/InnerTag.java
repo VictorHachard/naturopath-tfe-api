@@ -19,7 +19,7 @@ public class InnerTag extends AbstractInner {
     @Column(name = "names")
     String name;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 2500)
     String content;
 
 }

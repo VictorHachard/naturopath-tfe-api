@@ -1,7 +1,6 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.view.ParapageViewDto;
-import be.heh.app.dto.view.ParatagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParapage;
 import be.heh.app.model.entities.app.Parapage;

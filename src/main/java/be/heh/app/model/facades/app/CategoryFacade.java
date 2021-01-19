@@ -35,7 +35,8 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return category;
     }
 
-    public Category newInstance(String name, String description, Category parentCategory) {
+    // Init
+    public Category init(String name, String description, Category parentCategory) {
         Category res = new Category();
         //Category res = super.newInstance(); //TODO
         res.setName(name);
@@ -44,7 +45,8 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return res;
     }
 
-    public Category newInstance(String name, String description) {
+    // Init
+    public Category init(String name, String description) {
         Category res = new Category();
         //Category res = super.newInstance(); //TODO
         res.setName(name);

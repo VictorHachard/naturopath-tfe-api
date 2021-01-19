@@ -19,7 +19,7 @@ public class InnerParagraph extends AbstractInner {
     @Column(name = "title")
     String title;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 2500)
     String content;
 
 }

@@ -32,7 +32,7 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
     // Init
     public InnerPage init(String title, String description) {
         InnerPage innerPage = new InnerPage();
-        innerPage.setUser(userRepository.findById(0).get());
+        innerPage.setUser(userRepository.findById(1).get());
         innerPage.setDescription(description);
         innerPage.setTitle(title);
         innerPage.setVersion(0);

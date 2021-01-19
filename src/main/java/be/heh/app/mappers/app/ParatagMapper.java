@@ -39,6 +39,8 @@ public final class ParatagMapper extends AbstractMapper {
             return new ParatagViewDto(
                     k.getId(),
                     k.getTitle(),
+                    paratagTypeMapper.getView(j.getParatagType()),
+                    k.getContent(),
                     tagMapper.getAllView(k.getTagList()));
         }
     }

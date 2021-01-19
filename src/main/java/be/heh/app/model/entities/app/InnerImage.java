@@ -19,7 +19,7 @@ public class InnerImage extends AbstractInner {
     @Column(name = "title")
     String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2500)
     String description;
 
     @Column(name = "url")

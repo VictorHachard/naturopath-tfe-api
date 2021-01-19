@@ -31,7 +31,7 @@ public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
 
     public InnerParagraph init(String title, String content) {
         InnerParagraph innerParagraph = new InnerParagraph();
-        innerParagraph.setUser(userRepository.findById(0).get());
+        innerParagraph.setUser(userRepository.findById(1).get());
         innerParagraph.setContent(content);
         innerParagraph.setTitle(title);
         innerParagraph.setVersion(0);

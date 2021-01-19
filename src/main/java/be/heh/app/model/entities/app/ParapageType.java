@@ -19,7 +19,7 @@ public class ParapageType extends AbstractEntity {
     @Column(name = "name")
     String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2500)
     String description;
 
 }

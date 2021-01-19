@@ -22,7 +22,7 @@ public class Message extends AbstractEntity {
     @ManyToOne
     User user;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 2500)
     String content;
 
     /*@JoinColumn(name = "inner_id")

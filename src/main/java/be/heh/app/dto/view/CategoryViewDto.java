@@ -2,7 +2,6 @@ package be.heh.app.dto.view;
 
 import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -27,4 +26,5 @@ public class CategoryViewDto extends AbstractDto {
         this.description = description;
         this.childCategory = childCategory;
     }
+    
 }

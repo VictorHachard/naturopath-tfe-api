@@ -1,9 +1,7 @@
 package be.heh.app.dto.view;
 
 import be.heh.app.dto.commons.AbstractDto;
-import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -19,36 +17,36 @@ public class PageViewDto extends AbstractDto {
 
     Date createdAt;
 
-    CategoryViewDto categoryViewDto;
+    CategoryViewDto category;
 
-    User user;
+    UserViewDto user;
 
     String title;
 
     String description;
 
-    List<ParagraphViewDto> paragraphDtoList;
+    List<ParagraphViewDto> paragraphList;
 
-    List<TagViewDto> tagDtoList;
+    List<TagViewDto> tagList;
 
-    List<ParapageViewDto> parapageDtoList;
+    List<ParapageViewDto> parapageList;
 
-    List<ParatagViewDto> paratagDtoList;
+    List<ParatagViewDto> paratagList;
 
-    List<ImageViewDto> imageDtoList;
+    List<ImageViewDto> imageList;
 
-    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, User user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<TagViewDto> tagDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
+    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, UserViewDto user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<TagViewDto> tagDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
         super(id);
         this.createdAt = createdAt;
-        this.categoryViewDto = categoryViewDto;
+        this.category = categoryViewDto;
         this.user = user;
         this.title = title;
         this.description = description;
-        this.paragraphDtoList = paragraphDtoList;
-        this.tagDtoList = tagDtoList;
-        this.parapageDtoList = parapageDtoList;
-        this.paratagDtoList = paratagDtoList;
-        this.imageDtoList = imageDtoList;
+        this.paragraphList = paragraphDtoList;
+        this.tagList = tagDtoList;
+        this.parapageList = parapageDtoList;
+        this.paratagList = paratagDtoList;
+        this.imageList = imageDtoList;
     }
 
 }

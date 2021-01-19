@@ -2,7 +2,6 @@ package be.heh.app.dto.view;
 
 import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -17,13 +16,13 @@ public class ParatagTypeViewDto extends AbstractDto {
 
     String description;
 
-    TagTypeViewDto tagTypeViewDto;
+    TagTypeViewDto tagType;
 
-    public ParatagTypeViewDto(int id, String name, String description, TagTypeViewDto tagTypeViewDto) {
+    public ParatagTypeViewDto(int id, String name, String description, TagTypeViewDto tagType) {
         super(id);
         this.name = name;
         this.description = description;
-        this.tagTypeViewDto = tagTypeViewDto;
+        this.tagType = tagType;
     }
 
 }

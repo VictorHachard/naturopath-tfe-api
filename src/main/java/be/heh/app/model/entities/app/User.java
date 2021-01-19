@@ -23,6 +23,9 @@ public class User extends AbstractEntity {
     @OneToOne
     UserSecurity userSecurity;
 
+    @Column(name = "username")
+    String username;
+
     @Column(name = "lang")
     String lang;
 

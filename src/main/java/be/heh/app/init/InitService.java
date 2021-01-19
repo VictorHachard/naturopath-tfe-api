@@ -16,16 +16,33 @@ import java.util.Map;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InitService extends AbstractAutowire {
 
-    /*public static Map<String, AbstractService> serviceMap = new HashMap<>();
+    public static Map<String, AbstractService> serviceMap = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        serviceMap.put("page", pageService);
-        serviceMap.put("category", categoryService);
+        serviceMap.put("Category", categoryService);
+        //serviceMap.put("Image", imageService);
+        //serviceMap.put("InnerImage", innerImageService);
+        //serviceMap.put("InnerPage", innerPageService);
+        //serviceMap.put("InnerParagraph", innerParagraphService);
+        //serviceMap.put("InnerParapage", innerParapageService);
+        //serviceMap.put("InnerParatag", innerParatagService);
+        //serviceMap.put("InnerTag", innerTagService);
+        serviceMap.put("Message", messageService);
+        serviceMap.put("Page", pageService);
+        serviceMap.put("Paragraph", paragraphService);
+        serviceMap.put("ParagraphType", paragraphTypeService);
+        //serviceMap.put("Parapage", parapageService);
+        serviceMap.put("ParapageType", parapageTypeService);
+        //serviceMap.put("Paratag", paratagService);
+        serviceMap.put("Tag", tagService);
+        serviceMap.put("TagType", tagTypeService);
+        serviceMap.put("User", userService);
+        serviceMap.put("Vote", voteService);
     }
 
     public static <T>T get(Class c) {
         return (T) serviceMap.get(c.getSimpleName().replace("Service", "")); //TODO
-    }*/
+    }
 
 }

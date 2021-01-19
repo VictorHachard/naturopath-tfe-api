@@ -2,7 +2,6 @@ package be.heh.app.dto.edit;
 
 import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
