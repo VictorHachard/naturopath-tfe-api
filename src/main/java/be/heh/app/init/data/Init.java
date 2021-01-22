@@ -123,15 +123,15 @@ public class Init extends AbstractAutowire {
     }
 
     public void initTag() {
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Acides-phénols", "acide rosmarinique, dérivés de l’acide caféique"), tagTypeList.get(2), userList.get(0))); //0
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Huile essentielle", "alcools (menthol), cétones (menthone, pulégone), esters, oxydes, monoterpènes, sesquiterpènes"), tagTypeList.get(2), userList.get(0))); //1
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Triterpènes", ""), tagTypeList.get(2), userList.get(0))); //2
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Cires", ""), tagTypeList.get(2), userList.get(0))); //3
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Flavonoïdes ", ""), tagTypeList.get(2), userList.get(0))); //4
+        tagList.add(tagFacade.init(innerTagFacade.init("Acides-phénols", "acide rosmarinique, dérivés de l’acide caféique"), tagTypeList.get(2))); //0
+        tagList.add(tagFacade.init(innerTagFacade.init("Huile essentielle", "alcools (menthol), cétones (menthone, pulégone), esters, oxydes, monoterpènes, sesquiterpènes"), tagTypeList.get(2))); //1
+        tagList.add(tagFacade.init(innerTagFacade.init("Triterpènes", ""), tagTypeList.get(2))); //2
+        tagList.add(tagFacade.init(innerTagFacade.init("Cires", ""), tagTypeList.get(2))); //3
+        tagList.add(tagFacade.init(innerTagFacade.init("Flavonoïdes ", ""), tagTypeList.get(2))); //4
 
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Lamiacées", ""), tagTypeList.get(1), userList.get(0))); //5
+        tagList.add(tagFacade.init(innerTagFacade.init("Lamiacées", ""), tagTypeList.get(1))); //5
 
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Mentha x piperita L", ""), tagTypeList.get(0), userList.get(0))); //6
+        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", ""), tagTypeList.get(0))); //6
     }
 
     public void initParatag() {
@@ -141,23 +141,23 @@ public class Init extends AbstractAutowire {
     }
 
     public void initParagraph() {
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "C’est une plante herbacée aromatique, vivace, à stolons traçants, pouvant atteindre 0,60 cm a 1m de hauteur. C’est un hybride entre la menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata). La Menthe est originaire d’Angleterre.  Généralement cultivée, on la trouve maintenant en Europe en Asie et en Amérique du Nord. La menthe poivrée se plaire sur une terre aérée et pas trop humide, dans un endroit a moitié ombragé. Nous pouvons récolter la plante en été, avant la floraison. Il est possible de rabattre la plante en été afin de la forcer à produire une autre mise à fleur."), paragraphTypeList.get(0), userList.get(0))); //0
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "La menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata) ont des vertus médicinales plus ou moins identiques bien que moins prononcées."), paragraphTypeList.get(1), userList.get(0))); //1
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "att"), paragraphTypeList.get(2), userList.get(0))); //2
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "L’huile essentielle est très antibactérienne. Le menthol est l’un de ces principaux constituants. Il est antiseptique, fongicide, et anesthésiante pour la peau. Elle peut être sur certaines personnes irritante.\n" +
-                "Lorsque la menthe poivrée est entière, elle a un effet antispasmodique sur l’appareil digestif. Des etudes ont prouvés son efficacité pour lutter contre les inflammations du colon."), paragraphTypeList.get(3), userList.get(0))); //3
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "La partie aérienne, idéalement les feuilles."), paragraphTypeList.get(4), userList.get(0))); //4
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "L’infusion, boire 150ml après chaque repas pour une meilleure digestion.\n" +
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "C’est une plante herbacée aromatique, vivace, à stolons traçants, pouvant atteindre 0,60 cm a 1m de hauteur. C’est un hybride entre la menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata). La Menthe est originaire d’Angleterre.  Généralement cultivée, on la trouve maintenant en Europe en Asie et en Amérique du Nord. La menthe poivrée se plaire sur une terre aérée et pas trop humide, dans un endroit a moitié ombragé. Nous pouvons récolter la plante en été, avant la floraison. Il est possible de rabattre la plante en été afin de la forcer à produire une autre mise à fleur."), paragraphTypeList.get(0))); //0
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "La menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata) ont des vertus médicinales plus ou moins identiques bien que moins prononcées."), paragraphTypeList.get(1))); //1
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "att"), paragraphTypeList.get(2))); //2
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "L’huile essentielle est très antibactérienne. Le menthol est l’un de ces principaux constituants. Il est antiseptique, fongicide, et anesthésiante pour la peau. Elle peut être sur certaines personnes irritante.\n" +
+                "Lorsque la menthe poivrée est entière, elle a un effet antispasmodique sur l’appareil digestif. Des etudes ont prouvés son efficacité pour lutter contre les inflammations du colon."), paragraphTypeList.get(3))); //3
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "La partie aérienne, idéalement les feuilles."), paragraphTypeList.get(4))); //4
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "L’infusion, boire 150ml après chaque repas pour une meilleure digestion.\n" +
                 "Remarque :\n" +
                 "En infusion courte (2-3 minutes) la plante aura des vertus stimulantes et excitantes.\n" +
-                "En infusion longue (5-10 minutes) la plante aura des vertus calmantes et sédatives\n" +
+                "En infusion longue (5-10 minutes) la plante aura des vertus calmantes et sédatives.\n" +
                 "La lotion, faite à partir de l’infusion s’utilisera sur les peaux irritées.\n" +
-                "L’Huile essentielle, la diluer et se masser les tempes avec, en cas de maux de têtes."), paragraphTypeList.get(5), userList.get(0))); //4
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "Ne pas utiliser la menthe poivrée chez les enfants de moins de 7 ans.\n" +
+                "L’Huile essentielle, la diluer et se masser les tempes avec, en cas de maux de têtes."), paragraphTypeList.get(5))); //4
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "Ne pas utiliser la menthe poivrée chez les enfants de moins de 7 ans.\n" +
                 "Ne pas utiliser l’huile essentielle de menthe poivrée chez les enfants de moins de 12 ans.\n" +
                 "Elle ne possède pas vraiment de toxicité chez les plus âgés, mais il reste conseillé de l’utiliser en doses modérées, car à haute dose, elle peut mener a des états d’agitation nocturne et/ou a des phases de cauchemars.\n" +
-                "De plus, la plante ne doit pas être utilisée simultanément avec des plantes contenant du camphre ou du thymol ni lors d’un traitement a base de résine végétales."), paragraphTypeList.get(6), userList.get(0))); //4
-        paragraphList.add(paragraphFacade.newInstance(innerParagraphFacade.init("Super para", "Aucune."), paragraphTypeList.get(7), userList.get(0))); //4
+                "De plus, la plante ne doit pas être utilisée simultanément avec des plantes contenant du camphre ou du thymol ni lors d’un traitement a base de résine végétales."), paragraphTypeList.get(6))); //4
+        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "Aucune."), paragraphTypeList.get(7))); //4
     }
 
     public void initPage() {
@@ -165,7 +165,7 @@ public class Init extends AbstractAutowire {
         InnerPage i = innerPageFacade.init("Menthe poivrée", "");
         i.addVote(vote);
 
-        Page page = pageFacade.newInstance(i, userList.get(0),
+        Page page = pageFacade.init(i,
                 categoryList.get(1));
 
         page.addTag(tagList.get(6), tagList.get(5));

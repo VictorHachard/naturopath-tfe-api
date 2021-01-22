@@ -18,4 +18,13 @@ public class ParagraphFacade extends AbstractFacade<Paragraph> {
         return res;
     }
 
+    // Init
+    public Paragraph init(InnerParagraph innerParagraph, ParagraphType paragraphType) {
+        Paragraph res = super.newInstance();
+        res.addInnerParagraph(innerParagraph);
+        res.setParagraphType(paragraphType);
+        res.setUser(userRepository.findById(1).get());
+        return res;
+    }
+
 }

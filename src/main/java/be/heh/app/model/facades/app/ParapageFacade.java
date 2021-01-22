@@ -18,4 +18,13 @@ public class ParapageFacade extends AbstractFacade<Parapage> {
         return res;
     }
 
+    // Init
+    public Parapage init(InnerParapage innerParapage, ParapageType parapageType) {
+        Parapage res = super.newInstance();
+        res.addInnerParapage(innerParapage);
+        res.setParapageType(parapageType);
+        res.setUser(userRepository.findById(1).get());
+        return res;
+    }
+
 }

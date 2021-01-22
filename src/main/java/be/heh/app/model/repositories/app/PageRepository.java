@@ -1,5 +1,6 @@
 package be.heh.app.model.repositories.app;
 
+import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -22,5 +23,14 @@ public interface PageRepository extends AbstractRepository<Page, Integer> {
      */
     @Query(value = "select i from Page p join p.innerPageList i where p = ?1 and i.enumState = ?2 order by i.id desc")
     List<InnerPage> findInnerPage(@Param("page") Page page, @Param("enumState") EnumState enumState);
+
+    //TODO sort by args, limit
+    /**
+     * Return a list of all pages belonging to a category.
+     * @param category the category
+     * @return a list of pages
+     */
+    @Query("select p from Page p where p.category = ?1 and p.enumState = ?2")
+    List<Page> findAllByCategory(@Param("enumState") EnumState enumState, @Param("category") Category category);
 
 }

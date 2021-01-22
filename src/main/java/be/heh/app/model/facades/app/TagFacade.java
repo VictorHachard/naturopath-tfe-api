@@ -18,4 +18,13 @@ public class TagFacade extends AbstractFacade<Tag> {
         return res;
     }
 
+    // Init
+    public Tag init(InnerTag innerTag, TagType tagType) {
+        Tag res = super.newInstance();
+        res.addInnerTag(innerTag);
+        res.setTagType(tagType);
+        res.setUser(userRepository.findById(1).get());
+        return res;
+    }
+
 }
