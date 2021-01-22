@@ -24,16 +24,4 @@ public class TagTypeService extends AbstractService<TagType> {
         tagTypeRepository.save(tagTypeMapper.set(validator));
     }
 
-    public void linkTagTypeToCategory(int categoryId, int tagTypeId) {
-        if (categoryRepository.findById(categoryId).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (tagTypeRepository.findById(tagTypeId).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this tagTypeId");
-        } else {
-            Category category = categoryRepository.findById(categoryId).get();
-            category.addTagType(tagTypeRepository.findById(tagTypeId).get());
-            categoryRepository.save(category);
-        }
-    }
-
 }

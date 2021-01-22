@@ -27,15 +27,13 @@ public class PageViewDto extends AbstractDto {
 
     List<ParagraphViewDto> paragraphList;
 
-    List<TagViewDto> tagList;
-
     List<ParapageViewDto> parapageList;
 
     List<ParatagViewDto> paratagList;
 
     List<ImageViewDto> imageList;
 
-    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, UserViewDto user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<TagViewDto> tagDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
+    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, UserViewDto user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
         super(id);
         this.createdAt = createdAt;
         this.category = categoryViewDto;
@@ -43,7 +41,6 @@ public class PageViewDto extends AbstractDto {
         this.title = title;
         this.description = description;
         this.paragraphList = paragraphDtoList;
-        this.tagList = tagDtoList;
         this.parapageList = parapageDtoList;
         this.paratagList = paratagDtoList;
         this.imageList = imageDtoList;

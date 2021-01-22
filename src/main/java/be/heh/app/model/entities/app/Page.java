@@ -36,8 +36,8 @@ public class Page extends AbstractEntity {
     @OneToMany
     List<Paragraph> paragraphList;
 
-    @OneToMany
-    List<Tag> tagList;
+    /*@OneToMany
+    List<Tag> tagList;*/
 
     @OneToMany
     List<Parapage> parapageList;
@@ -53,13 +53,6 @@ public class Page extends AbstractEntity {
             paragraphList = new ArrayList<>();
         }
         paragraphList.addAll(Arrays.asList(paragraph));
-    }
-
-    public void addTag(Tag... tag) {
-        if (tagList == null) {
-            tagList = new ArrayList<>();
-        }
-        tagList.addAll(Arrays.asList(tag));
     }
 
     public void addParatag(Paratag... paratag) {

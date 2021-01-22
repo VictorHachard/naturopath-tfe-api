@@ -47,7 +47,6 @@ public final class PageMapper extends AbstractMapper {
                 innerPage.getTitle(),
                 innerPage.getDescription(),
                 paragraphMapper.getAllView(page.getParagraphList()),
-                tagMapper.getAllView(page.getTagList()),
                 parapageMapper.getAllView(page.getParapageList()),
                 paratagMapper.getAllView(page.getParatagList()),
                 imageMapper.getAllView(page.getImageList())

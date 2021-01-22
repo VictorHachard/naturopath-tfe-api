@@ -82,8 +82,6 @@ public class CategoryService extends AbstractService<Category> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + categoryRepository.getClass().getSimpleName().replace("Repository", "") + " with this categoryId");
         } else if (validator.getParagraphTypeIdList() != null && paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParagraphTypeIdList");
-        } else if (validator.getTagTypeIdList() != null && tagTypeRepository.findAllById(validator.getTagTypeIdList()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getTagTypeIdList");
         } else if (validator.getParapageTypeIdList() != null && parapageTypeRepository.findAllById(validator.getParapageTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParapageTypeIdList");
         } else if (validator.getParatagTypeIdList() != null && paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
@@ -93,7 +91,6 @@ public class CategoryService extends AbstractService<Category> {
                 validator,
                 validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null,
                 validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
-                validator.getTagTypeIdList() != null ? tagTypeRepository.findAllById(validator.getTagTypeIdList()) : new ArrayList<>(),
                 validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
                 validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>()));
     }
@@ -106,8 +103,6 @@ public class CategoryService extends AbstractService<Category> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (tagTypeRepository.findAllById(validator.getTagTypeIdList()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (parapageTypeRepository.findAllById(validator.getParapageTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
@@ -119,7 +114,6 @@ public class CategoryService extends AbstractService<Category> {
                 validator,
                 validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null,
                 validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
-                validator.getTagTypeIdList() != null ? tagTypeRepository.findAllById(validator.getTagTypeIdList()) : new ArrayList<>(),
                 validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
                 validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>());
         categoryRepository.save(category);

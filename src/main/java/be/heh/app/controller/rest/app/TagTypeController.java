@@ -21,9 +21,4 @@ public class TagTypeController extends AbstractController {
         tagTypeService.add(generalTypeValidator);
     }
 
-    @PostMapping("/tagType/{tagTypeId}/linkToCategory/{categoryId}")
-    public void linkTagTypeToCategory(@PathVariable("categoryId") int categoryId, @PathVariable("tagTypeId") int tagTypeId) {
-        tagTypeService.linkTagTypeToCategory(categoryId, tagTypeId);
-    }
-
 }

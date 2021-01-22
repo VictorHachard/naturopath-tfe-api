@@ -26,19 +26,16 @@ public class CategoryEditDto extends AbstractDto {
 
     List<ParagraphTypeViewDto> ParagraphTypeViewDtoList;
 
-    List<TagTypeViewDto> tagTypeViewDtoList;
-
     List<ParapageTypeViewDto> parapageTypeViewDtoList;
 
     List<ParatagTypeViewDto> paratagTypeViewDtoList;
 
-    public CategoryEditDto(int id, String name, String description, List<be.heh.app.dto.edit.CategoryEditDto> categoryEditDto, List<ParagraphTypeViewDto> paragraphTypeViewDtoList, List<TagTypeViewDto> tagTypeViewDtoList, List<ParapageTypeViewDto> parapageTypeViewDtoList, List<ParatagTypeViewDto> paratagTypeViewDtoList) {
+    public CategoryEditDto(int id, String name, String description, List<be.heh.app.dto.edit.CategoryEditDto> categoryEditDto, List<ParagraphTypeViewDto> paragraphTypeViewDtoList, List<ParapageTypeViewDto> parapageTypeViewDtoList, List<ParatagTypeViewDto> paratagTypeViewDtoList) {
         super(id);
         this.name = name;
         this.description = description;
         CategoryEditDto = categoryEditDto;
         ParagraphTypeViewDtoList = paragraphTypeViewDtoList;
-        this.tagTypeViewDtoList = tagTypeViewDtoList;
         this.parapageTypeViewDtoList = parapageTypeViewDtoList;
         this.paratagTypeViewDtoList = paratagTypeViewDtoList;
     }

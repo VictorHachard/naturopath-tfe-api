@@ -19,26 +19,24 @@ import java.util.List;
 public final class CategoryMapper extends AbstractMapper {
 
     //TODO
-    public Category set(CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+    public Category set(CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
         Category category = categoryFacade.newInstance(
                 categoryValidator.getName(),
                 categoryValidator.getDescription(),
                 category1,
                 paragraphTypeList,
-                tagTypeList,
                 parapageTypeList,
                 paratagTypeList);
         return category;
     }
 
-    public void setUpdate(Category category, CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+    public void setUpdate(Category category, CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
         categoryFacade.updateInstance(
                 category,
                 categoryValidator.getName(),
                 categoryValidator.getDescription(),
                 category1,
                 paragraphTypeList,
-                tagTypeList,
                 parapageTypeList,
                 paratagTypeList
         );
@@ -59,7 +57,6 @@ public final class CategoryMapper extends AbstractMapper {
                 category.getDescription(),
                 null,
                 paragraphTypeMapper.getAllView(category.getParagraphTypeList()),
-                tagTypeMapper.getAllView(category.getTagTypeList()),
                 parapageTypeMapper.getAllView(category.getParapageTypeList()),
                 paratagTypeMapper.getAllView(category.getParatagTypeList()));
     }

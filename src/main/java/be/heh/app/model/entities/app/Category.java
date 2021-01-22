@@ -35,9 +35,6 @@ public class Category extends AbstractLang {
     List<ParagraphType> paragraphTypeList;
 
     @OneToMany
-    List<TagType> tagTypeList;
-
-    @OneToMany
     List<ParapageType> parapageTypeList;
 
     @OneToMany
@@ -55,20 +52,6 @@ public class Category extends AbstractLang {
             paragraphTypeList = new ArrayList<>();
         }
         paragraphTypeList.addAll(paragraphType);
-    }
-
-    public void addTagType(TagType... tagType) {
-        if (tagTypeList == null) {
-            tagTypeList = new ArrayList<>();
-        }
-        tagTypeList.addAll(Arrays.asList(tagType));
-    }
-
-    public void addAllTagType(List<TagType> tagType) {
-        if (tagTypeList == null) {
-            tagTypeList = new ArrayList<>();
-        }
-        tagTypeList.addAll(tagType);
     }
 
     public void addParapageType(ParapageType... parapageType) {

@@ -30,8 +30,6 @@ public class CategoryValidator extends AbstractValidator {
 
     List<Integer> paragraphTypeIdList;
 
-    List<Integer> tagTypeIdList;
-
     List<Integer> parapageTypeIdList;
 
     List<Integer> paratagTypeIdList;

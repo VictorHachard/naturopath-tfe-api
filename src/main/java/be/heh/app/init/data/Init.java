@@ -2,6 +2,7 @@ package be.heh.app.init.data;
 
 import be.heh.app.init.AbstractAutowire;
 import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.enumeration.EnumSize;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
@@ -46,7 +47,9 @@ public class Init extends AbstractAutowire {
     }
 
     public void initParatagType() {
-        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , "", tagTypeList.get(2))); //0
+        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin" , "", tagTypeList.get(0))); //0
+        paratagTypeList.add(paratagTypeFacade.newInstance("Famille" , "", tagTypeList.get(1))); //1
+        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , "", tagTypeList.get(2))); //2
     }
 
     public void initParapageType() {
@@ -112,11 +115,9 @@ public class Init extends AbstractAutowire {
                 paragraphTypeList.get(7));
 
         categoryList.get(0).addParatagType(
-                paratagTypeList.get(0));
-
-        categoryList.get(0).addTagType(
-                tagTypeList.get(0),
-                tagTypeList.get(1));
+                paratagTypeList.get(0),
+                paratagTypeList.get(1),
+                paratagTypeList.get(2));
 
         // Huiles Essentielles - 1
 
@@ -137,7 +138,15 @@ public class Init extends AbstractAutowire {
     public void initParatag() {
         InnerParatag i = innerParatagFacade.init("tr", "");
         i.addTag(tagList.get(0), tagList.get(1),tagList.get(2),tagList.get(3), tagList.get(4));
-        paratagList.add(paratagFacade.newInstance(i, paratagTypeList.get(0), userList.get(0)));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(2), EnumSize.LARGE));
+
+        i = innerParatagFacade.init("tr", "");
+        i.addTag(tagList.get(6));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(0), EnumSize.SMALL));
+
+        i = innerParatagFacade.init("tr", "");
+        i.addTag(tagList.get(5));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(1), EnumSize.SMALL));
     }
 
     public void initParagraph() {
@@ -168,11 +177,9 @@ public class Init extends AbstractAutowire {
         Page page = pageFacade.init(i,
                 categoryList.get(1));
 
-        page.addTag(tagList.get(6), tagList.get(5));
-
         page.addParagraph(paragraphList.get(0), paragraphList.get(1), paragraphList.get(2), paragraphList.get(3), paragraphList.get(4), paragraphList.get(5), paragraphList.get(6), paragraphList.get(7));
 
-        page.addParatag(paratagList.get(0));
+        page.addParatag(paratagList.get(0), paratagList.get(1), paratagList.get(2));
 
         pageList.add(page
         ); //0
