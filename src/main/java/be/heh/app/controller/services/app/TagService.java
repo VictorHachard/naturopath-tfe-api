@@ -6,7 +6,6 @@ import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerTag;
-import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.Tag;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

@@ -3,10 +3,13 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
+import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -29,6 +32,14 @@ public class PageService extends AbstractService<Page> {
 
     public PageViewDto getDto(int id) {
         return pageMapper.getDto(super.get(id));
+    }
+
+    public List<PageByCategoryViewDto> getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {
+        if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
+        }
+        //TODO findAllByCategory not empty
+        return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
     }
 
     @Override

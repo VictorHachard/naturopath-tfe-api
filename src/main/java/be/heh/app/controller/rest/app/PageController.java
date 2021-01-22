@@ -3,6 +3,8 @@ package be.heh.app.controller.rest.app;
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
+import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
+import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -29,14 +31,19 @@ public class PageController extends AbstractController {
 		return pageService.getAllDto();
 	}
 
+	@PostMapping("/dto/pageByCategory")
+	public List<PageByCategoryViewDto> getAllPageByCategoryDto(@Valid @RequestBody PagesByCategoryDtoValidator validator) {
+		return pageService.getAllPageByCategoryDto(validator);
+	}
+
 	@PostMapping("/page")
 	public void add(@Valid @RequestBody PageValidator pageValidator) {
 		pageService.add(pageValidator);
 	}
 
 	@PostMapping("/page/update/{id}")
-	public void update(@Valid @RequestBody PageUpdateValidator pageUpdateValidator, @PathVariable("id") int id) {
-		pageService.update(pageUpdateValidator, id);
+	public void update(@Valid @RequestBody PageUpdateValidator validator, @PathVariable("id") int id) {
+		pageService.update(validator, id);
 	}
 
 }

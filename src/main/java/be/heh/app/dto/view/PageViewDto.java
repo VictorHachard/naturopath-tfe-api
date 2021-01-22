@@ -1,7 +1,7 @@
 package be.heh.app.dto.view;
 
-import be.heh.app.dto.commons.AbstractDto;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -11,9 +11,12 @@ import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Getter
 @Setter
-public class PageViewDto extends AbstractDto {
+public class PageViewDto {
+
+    int id;
 
     Date createdAt;
 
@@ -32,18 +35,5 @@ public class PageViewDto extends AbstractDto {
     List<ParatagViewDto> paratagList;
 
     List<ImageViewDto> imageList;
-
-    public PageViewDto(int id, Date createdAt, CategoryViewDto categoryViewDto, UserViewDto user, String title, String description, List<ParagraphViewDto> paragraphDtoList, List<ParapageViewDto> parapageDtoList, List<ParatagViewDto> paratagDtoList, List<ImageViewDto> imageDtoList) {
-        super(id);
-        this.createdAt = createdAt;
-        this.category = categoryViewDto;
-        this.user = user;
-        this.title = title;
-        this.description = description;
-        this.paragraphList = paragraphDtoList;
-        this.parapageList = parapageDtoList;
-        this.paratagList = paratagDtoList;
-        this.imageList = imageDtoList;
-    }
 
 }

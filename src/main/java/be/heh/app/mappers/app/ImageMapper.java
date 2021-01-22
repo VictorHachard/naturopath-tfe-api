@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.view.ImageForPageByCategoryViewDto;
 import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Image;
@@ -39,6 +40,16 @@ public final class ImageMapper extends AbstractMapper {
                     k.getDescription(),
                     k.getUrl()
             );
+        }
+    }
+
+    public ImageForPageByCategoryViewDto getImageForPageByCategoryView(Image j) {
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALADATING);
+        if (i == null) {
+            return null;
+        } else {
+            InnerImage k = i.get(0);
+            return new ImageForPageByCategoryViewDto(k.getUrl());
         }
     }
 

@@ -1,4 +1,4 @@
-package be.heh.app.dto.commons;
+package be.heh.app.dto.view;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,12 +7,12 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 // Lombok
-@FieldDefaults(level = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 @Setter
-public abstract class AbstractDto {
+public class ImageForPageByCategoryViewDto {
 
-    int id;
+    String url;
 
 }

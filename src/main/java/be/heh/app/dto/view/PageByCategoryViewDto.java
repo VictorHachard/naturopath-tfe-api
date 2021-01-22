@@ -1,31 +1,28 @@
 package be.heh.app.dto.view;
 
-import be.heh.app.model.entities.app.enumeration.EnumSize;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
+import java.util.Date;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParatagViewDto {
+public class PageByCategoryViewDto {
 
     int id;
 
+    Date createdAt;
+
     String title;
 
-    ParatagTypeViewDto paratagType;
+    String description;
 
-    String content;
-
-    EnumSize size;
-
-    List<TagViewDto> tagList;
+    ImageForPageByCategoryViewDto image;
 
 }

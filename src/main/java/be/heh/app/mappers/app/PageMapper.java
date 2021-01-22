@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Category;
@@ -51,5 +52,21 @@ public final class PageMapper extends AbstractMapper {
                 paratagMapper.getAllView(page.getParatagList()),
                 imageMapper.getAllView(page.getImageList())
         );
+    }
+
+    public List<PageByCategoryViewDto> getAllPageByCategoryDto(List<Page> pageList) {
+        List<PageByCategoryViewDto> res = new ArrayList<>();
+        pageList.forEach(page -> {
+            InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
+
+            res.add(new PageByCategoryViewDto(
+                    page.getId(),
+                    page.getCreatedAt(),
+                    innerPage.getTitle(),
+                    innerPage.getDescription(),
+                    page.getImageList().size() == 0 ? null : imageMapper.getImageForPageByCategoryView(page.getImageList().get(0))
+            ));
+        });
+        return res;
     }
 }

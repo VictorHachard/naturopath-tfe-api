@@ -31,6 +31,15 @@ public interface PageRepository extends AbstractRepository<Page, Integer> {
      * @return a list of pages
      */
     @Query("select p from Page p where p.category = ?1 and p.enumState = ?2")
-    List<Page> findAllByCategory(@Param("enumState") EnumState enumState, @Param("category") Category category);
+    List<Page> findAllByCategory(@Param("category") Category category, @Param("enumState") EnumState enumState);
+
+    //TODO sort by args, limit
+    /**
+     * Return a list of all pages belonging to a category.
+     * @param categoryId the id of the category
+     * @return a list of pages
+     */
+    @Query("select p from Page p where p.category.id = ?1 and p.enumState = ?2")
+    List<Page> findAllByCategoryById(@Param("categoryId") int categoryId, @Param("enumState") EnumState enumState);
 
 }

@@ -1,6 +1,9 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.Category;
+import be.heh.app.model.entities.app.ParagraphType;
+import be.heh.app.model.entities.app.ParapageType;
+import be.heh.app.model.entities.app.ParatagType;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
 
