@@ -10,13 +10,13 @@ public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
 
     // Init
     public InnerParatag init(String title, String content) {
-        InnerParatag innerParatag = new InnerParatag();
-        innerParatag.setUser(userRepository.findById(1).get());
-        innerParatag.setContent(content);
-        innerParatag.setTitle(title);
-        innerParatag.setVersion(0);
-        innerParatag.setEnumState(EnumState.VALIDATED);
-        return innerParatag;
+        InnerParatag res = super.newInstance();
+        res.setUser(userRepository.findById(1).get());
+        res.setContent(content);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.VALIDATED);
+        return res;
     }
 
 }

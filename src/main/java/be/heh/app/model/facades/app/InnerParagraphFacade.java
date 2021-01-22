@@ -10,33 +10,33 @@ import org.springframework.stereotype.Component;
 public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
 
     public InnerParagraph newInstance(String title, String content, User user) {
-        InnerParagraph innerParagraph = new InnerParagraph();
-        innerParagraph.setUser(user);
-        innerParagraph.setContent(content);
-        innerParagraph.setTitle(title);
-        innerParagraph.setVersion(0);
-        innerParagraph.setEnumState(EnumState.DRAFT);
-        return innerParagraph;
+        InnerParagraph res = super.newInstance();
+        res.setUser(user);
+        res.setContent(content);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
     public InnerParagraph newInstance(String title, String content, int version, User user) {
-        InnerParagraph innerParagraph = new InnerParagraph();
-        innerParagraph.setUser(user);
-        innerParagraph.setContent(content);
-        innerParagraph.setTitle(title);
-        innerParagraph.setVersion(version);
-        innerParagraph.setEnumState(EnumState.DRAFT);
-        return innerParagraph;
+        InnerParagraph res = super.newInstance();
+        res.setUser(user);
+        res.setContent(content);
+        res.setTitle(title);
+        res.setVersion(version);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
     public InnerParagraph init(String title, String content) {
-        InnerParagraph innerParagraph = new InnerParagraph();
-        innerParagraph.setUser(userRepository.findById(1).get());
-        innerParagraph.setContent(content);
-        innerParagraph.setTitle(title);
-        innerParagraph.setVersion(0);
-        innerParagraph.setEnumState(EnumState.VALIDATED);
-        return innerParagraph;
+        InnerParagraph res = super.newInstance();
+        res.setUser(userRepository.findById(1).get());
+        res.setContent(content);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.VALIDATED);
+        return res;
     }
 
 }

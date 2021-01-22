@@ -10,8 +10,7 @@ import java.util.List;
 public class CategoryFacade extends AbstractFacade<Category> {
 
     public Category newInstance(String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<TagType> tagTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        Category res = new Category();
-        //Category res = super.newInstance(); //TODO
+        Category res = super.newInstance();
         this.updateInstance(
                 res,
                 name,
@@ -37,8 +36,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
 
     // Init
     public Category init(String name, String description, Category parentCategory) {
-        Category res = new Category();
-        //Category res = super.newInstance(); //TODO
+        Category res = super.newInstance();
         res.setName(name);
         res.setDescription(description);
         res.setParentCategory(parentCategory);
@@ -47,8 +45,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
 
     // Init
     public Category init(String name, String description) {
-        Category res = new Category();
-        //Category res = super.newInstance(); //TODO
+        Category res = super.newInstance();
         res.setName(name);
         res.setDescription(description);
         return res;

@@ -10,34 +10,34 @@ import org.springframework.stereotype.Component;
 public class InnerPageFacade extends AbstractFacade<InnerPage> {
 
     public InnerPage newInstance(String title, String description, User user) {
-        InnerPage innerPage = new InnerPage();
-        innerPage.setUser(user);
-        innerPage.setDescription(description);
-        innerPage.setTitle(title);
-        innerPage.setVersion(0);
-        innerPage.setEnumState(EnumState.DRAFT);
-        return innerPage;
+        InnerPage res = super.newInstance();
+        res.setUser(user);
+        res.setDescription(description);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
     public InnerPage newInstance(String title, String description, int version, User user) {
-        InnerPage innerPage = new InnerPage();
-        innerPage.setUser(user);
-        innerPage.setDescription(description);
-        innerPage.setTitle(title);
-        innerPage.setVersion(version);
-        innerPage.setEnumState(EnumState.DRAFT);
-        return innerPage;
+        InnerPage res = super.newInstance();
+        res.setUser(user);
+        res.setDescription(description);
+        res.setTitle(title);
+        res.setVersion(version);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
     // Init
     public InnerPage init(String title, String description) {
-        InnerPage innerPage = new InnerPage();
-        innerPage.setUser(userRepository.findById(1).get());
-        innerPage.setDescription(description);
-        innerPage.setTitle(title);
-        innerPage.setVersion(0);
-        innerPage.setEnumState(EnumState.VALIDATED);
-        return innerPage;
+        InnerPage res = super.newInstance();
+        res.setUser(userRepository.findById(1).get());
+        res.setDescription(description);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.VALIDATED);
+        return res;
     }
 
 }

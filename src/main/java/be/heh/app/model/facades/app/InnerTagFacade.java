@@ -10,34 +10,34 @@ import org.springframework.stereotype.Component;
 public class InnerTagFacade extends AbstractFacade<InnerTag> {
 
     public InnerTag newInstance(String name, String content, User user) {
-        InnerTag innerTag = new InnerTag();
-        innerTag.setUser(user);
-        innerTag.setContent(content);
-        innerTag.setName(name);
-        innerTag.setVersion(0);
-        innerTag.setEnumState(EnumState.DRAFT);
-        return innerTag;
+        InnerTag res = super.newInstance();
+        res.setUser(user);
+        res.setContent(content);
+        res.setName(name);
+        res.setVersion(0);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
     // Init
     public InnerTag init(String name, String content) {
-        InnerTag innerTag = new InnerTag();
-        innerTag.setUser(userRepository.findById(1).get());
-        innerTag.setContent(content);
-        innerTag.setName(name);
-        innerTag.setVersion(0);
-        innerTag.setEnumState(EnumState.VALIDATED);
-        return innerTag;
+        InnerTag res = super.newInstance();
+        res.setUser(userRepository.findById(1).get());
+        res.setContent(content);
+        res.setName(name);
+        res.setVersion(0);
+        res.setEnumState(EnumState.VALIDATED);
+        return res;
     }
 
     public InnerTag newInstance(String name, String content, int version, User user) {
-        InnerTag innerTag = new InnerTag();
-        innerTag.setUser(user);
-        innerTag.setContent(content);
-        innerTag.setName(name);
-        innerTag.setVersion(version);
-        innerTag.setEnumState(EnumState.DRAFT);
-        return innerTag;
+        InnerTag res = super.newInstance();
+        res.setUser(user);
+        res.setContent(content);
+        res.setName(name);
+        res.setVersion(version);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
     }
 
 }

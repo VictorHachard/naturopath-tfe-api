@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public class PageFacade extends AbstractFacade<Page> {
 
     public Page newInstance(InnerPage innerPage, User user, Category category) {
-        Page page = new Page();
-        page.addInnerPage(innerPage);
-        page.setUser(user);
-        page.setCategory(category);
-        return page;
+        Page res = super.newInstance();
+        res.addInnerPage(innerPage);
+        res.setUser(user);
+        res.setCategory(category);
+        return res;
     }
 
     public boolean verifyTypeParagraph(Page page, ParagraphType type) {

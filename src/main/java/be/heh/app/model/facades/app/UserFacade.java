@@ -9,8 +9,7 @@ public class UserFacade extends AbstractFacade<User> {
 
     // Init
     public User init(String username) {
-        //User res = super.newInstance(); //TODO
-        User res = new User();
+        User res = super.newInstance();
         res.setUsername(username);
         return res;
     }

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 public class TagFacade extends AbstractFacade<Tag> {
 
     public Tag newInstance(InnerTag innerTag, TagType tagType, User user) {
-        Tag tag = new Tag();
-        tag.addInnerTag(innerTag);
-        tag.setTagType(tagType);
-        tag.setUser(user);
-        return tag;
+        Tag res = super.newInstance();
+        res.addInnerTag(innerTag);
+        res.setTagType(tagType);
+        res.setUser(user);
+        return res;
     }
 
 }

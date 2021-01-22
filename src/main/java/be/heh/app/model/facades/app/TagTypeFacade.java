@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 public class TagTypeFacade extends AbstractFacade<TagType> {
 
     public TagType newInstance(String name, String description) {
-        TagType tagType = new TagType();
-        tagType.setName(name);
-        tagType.setDescription(description);
-        return tagType;
+        TagType res = super.newInstance();
+        res.setName(name);
+        res.setDescription(description);
+        return res;
     }
 
 }

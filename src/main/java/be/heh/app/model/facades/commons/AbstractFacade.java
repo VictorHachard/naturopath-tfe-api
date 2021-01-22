@@ -2,33 +2,30 @@ package be.heh.app.model.facades.commons;
 
 import be.heh.app.init.AbstractAutowire;
 import be.heh.app.model.entities.commons.AbstractEntity;
+import lombok.extern.java.Log;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.TypeVariable;
+import java.lang.reflect.ParameterizedType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
+@Log
 public abstract class AbstractFacade<T> extends AbstractAutowire {
 
     @PersistenceContext
     protected EntityManager entityManager;
 
     public T newInstance() {
-        TypeVariable[] clazz = this.getClass().getTypeParameters();
-        TypeVariable t = clazz[0];
-        Constructor constructor = t.getClass().getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
         AbstractEntity obj = null;
         try {
-            obj = (AbstractEntity) constructor.newInstance();
-            obj.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            Object instance = ((Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]).newInstance();
+            obj = (AbstractEntity) instance;
         } catch (Exception e) {
-            Logger.getLogger("AbstractRepository").info(e.getMessage());
+            log.info("AbstractRepository " + e.getMessage());
         }
+        obj.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return (T) obj;
     }
 

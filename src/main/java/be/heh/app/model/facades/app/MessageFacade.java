@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class MessageFacade extends AbstractFacade<Message> {
 
     public Message newInstance(String content, User user) {
-        Message message = new Message();
-        message.setContent(content);
-        message.setUser(user);
-        return message;
+        Message res = super.newInstance();
+        res.setContent(content);
+        res.setUser(user);
+        return res;
     }
 
 }

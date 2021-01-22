@@ -124,7 +124,7 @@ public class Init extends AbstractAutowire {
 
     public void initTag() {
         tagList.add(tagFacade.newInstance(innerTagFacade.init("Acides-phénols", "acide rosmarinique, dérivés de l’acide caféique"), tagTypeList.get(2), userList.get(0))); //0
-        tagList.add(tagFacade.newInstance(innerTagFacade.init("Huile essentielle", "alcools (menthol), cétones (menthone, pulégone), esters, oxydes, monoterpènes, sesquiterpènes "), tagTypeList.get(2), userList.get(0))); //1
+        tagList.add(tagFacade.newInstance(innerTagFacade.init("Huile essentielle", "alcools (menthol), cétones (menthone, pulégone), esters, oxydes, monoterpènes, sesquiterpènes"), tagTypeList.get(2), userList.get(0))); //1
         tagList.add(tagFacade.newInstance(innerTagFacade.init("Triterpènes", ""), tagTypeList.get(2), userList.get(0))); //2
         tagList.add(tagFacade.newInstance(innerTagFacade.init("Cires", ""), tagTypeList.get(2), userList.get(0))); //3
         tagList.add(tagFacade.newInstance(innerTagFacade.init("Flavonoïdes ", ""), tagTypeList.get(2), userList.get(0))); //4

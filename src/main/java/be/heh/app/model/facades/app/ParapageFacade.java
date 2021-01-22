@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 public class ParapageFacade extends AbstractFacade<Parapage> {
 
     public Parapage newInstance(InnerParapage innerParapage, ParapageType parapageType, User user) {
-        Parapage parapage = new Parapage();
-        parapage.addInnerParapage(innerParapage);
-        parapage.setParapageType(parapageType);
-        parapage.setUser(user);
-        return parapage;
+        Parapage res = super.newInstance();
+        res.addInnerParapage(innerParapage);
+        res.setParapageType(parapageType);
+        res.setUser(user);
+        return res;
     }
 
 }

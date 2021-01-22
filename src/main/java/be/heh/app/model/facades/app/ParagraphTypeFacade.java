@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 public class ParagraphTypeFacade extends AbstractFacade<ParagraphType> {
 
     public ParagraphType newInstance(String name, String description) {
-        ParagraphType paragraphType = new ParagraphType();
-        paragraphType.setName(name);
-        paragraphType.setDescription(description);
-        return paragraphType;
+        ParagraphType res = super.newInstance();
+        res.setName(name);
+        res.setDescription(description);
+        return res;
     }
 
 }

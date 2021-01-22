@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 public class ParagraphFacade extends AbstractFacade<Paragraph> {
 
     public Paragraph newInstance(InnerParagraph innerParagraph, ParagraphType paragraphType, User user) {
-        Paragraph paragraph = new Paragraph();
-        paragraph.addInnerParagraph(innerParagraph);
-        paragraph.setParagraphType(paragraphType);
-        paragraph.setUser(user);
-        return paragraph;
+        Paragraph res = super.newInstance();
+        res.addInnerParagraph(innerParagraph);
+        res.setParagraphType(paragraphType);
+        res.setUser(user);
+        return res;
     }
 
 }

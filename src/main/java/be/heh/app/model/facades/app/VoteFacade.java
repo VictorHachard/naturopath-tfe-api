@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class VoteFacade extends AbstractFacade<Vote> {
 
     public Vote newInstance(int choice, User user) {
-        Vote vote = new Vote();
-        vote.setChoice(choice);
-        vote.setUser(user);
-        return vote;
+        Vote res = super.newInstance();
+        res.setChoice(choice);
+        res.setUser(user);
+        return res;
     }
 
 }
