@@ -94,6 +94,12 @@ public abstract class AbstractAutowire {
     ParapageTypeMapper parapageTypeMapper;
 
     @Autowired
+    InnerParatagMapper innerParatagMapper;
+
+    @Autowired
+    InnerParapageMapper innerParapageMapper;
+
+    @Autowired
     CategoryMapper categoryMapper;
 
     @Autowired

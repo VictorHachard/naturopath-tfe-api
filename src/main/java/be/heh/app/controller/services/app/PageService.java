@@ -5,6 +5,7 @@ import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.InnerPage;
@@ -32,6 +33,10 @@ public class PageService extends AbstractService<Page> {
 
     public PageViewDto getDto(int id) {
         return pageMapper.getDto(super.get(id));
+    }
+
+    public PageEditDto getEditDto(int id) {
+        return pageMapper.getEditDto(super.get(id));
     }
 
     public List<PageByCategoryViewDto> getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {

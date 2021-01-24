@@ -4,6 +4,7 @@ import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
+import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
@@ -24,6 +25,11 @@ public class PageController extends AbstractController {
 	@GetMapping("/dto/page/{id}")
 	public PageViewDto getDto(@PathVariable("id") int id) {
 		return pageService.getDto(id);
+	}
+
+	@GetMapping("/dtoedit/page/{id}")
+	public PageEditDto getEditDto(@PathVariable("id") int id) {
+		return pageService.getEditDto(id);
 	}
 
 	@GetMapping("/dto/page")

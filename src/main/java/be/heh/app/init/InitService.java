@@ -1,6 +1,7 @@
 package be.heh.app.init;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.utils.Utils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
@@ -42,7 +43,7 @@ public class InitService extends AbstractAutowire {
     }
 
     public static <T>T get(Class c) {
-        return (T) serviceMap.get(c.getSimpleName().replace("Service", "")); //TODO
+        return (T) serviceMap.get(Utils.upperFirstChar(c.getSimpleName().replace("Service", ""))); //TODO
     }
 
 }

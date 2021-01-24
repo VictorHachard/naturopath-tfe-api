@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -56,17 +57,30 @@ public final class PageMapper extends AbstractMapper {
 
     public List<PageByCategoryViewDto> getAllPageByCategoryDto(List<Page> pageList) {
         List<PageByCategoryViewDto> res = new ArrayList<>();
-        pageList.forEach(page -> {
-            InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
+        pageList.forEach(i -> {
+            InnerPage innerPage = pageRepository.findInnerPage(i, EnumState.VALIDATED).get(0);
 
             res.add(new PageByCategoryViewDto(
-                    page.getId(),
-                    page.getCreatedAt(),
+                    i.getId(),
+                    i.getCreatedAt(),
                     innerPage.getTitle(),
                     innerPage.getDescription(),
-                    page.getImageList().size() == 0 ? null : imageMapper.getImageForPageByCategoryView(page.getImageList().get(0))
+                    i.getImageList().size() == 0 ? null : imageMapper.getImageForPageByCategoryView(i.getImageList().get(0))
             ));
         });
         return res;
     }
+
+    public PageEditDto getEditDto(Page page) {
+        return new PageEditDto(
+                page.getId(),
+                categoryMapper.getView(page.getCategory()),
+                userMapper.getView(page.getUser()),
+                innerPageMapper.getAllEditDto(page.getInnerPageList()),
+                paragraphMapper.getAllEditDto(page.getParagraphList()),
+                paratagMapper.getAllEditDto(page.getParatagList()),
+                parapageMapper.getAllEditDto(page.getParapageList())
+        );
+    }
+
 }

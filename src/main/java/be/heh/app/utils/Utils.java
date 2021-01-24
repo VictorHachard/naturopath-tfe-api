@@ -52,6 +52,12 @@ public class Utils {
         return retStr;
     }
 
+    public static String upperFirstChar(String str) {
+        char[] array = str.toCharArray();
+        array[0] = Character.toUpperCase(array[0]);
+        return new String(array);
+    }
+
     public static int StringToInt(String str) {
         int id = 0;
         try {

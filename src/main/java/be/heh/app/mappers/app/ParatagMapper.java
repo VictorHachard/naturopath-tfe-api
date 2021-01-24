@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.edit.ParatagEditDto;
 import be.heh.app.dto.view.ParatagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParatag;
@@ -43,6 +44,22 @@ public final class ParatagMapper extends AbstractMapper {
                     k.getContent(),
                     tagMapper.getAllView(k.getTagList()));
         }
+    }
+
+    public List<ParatagEditDto> getAllEditDto(List<Paratag> list) {
+        List<ParatagEditDto> res = new ArrayList<>();
+        list.forEach(i -> {
+            res.add(this.getEditDto(i));
+        });
+        return res;
+    }
+
+    public ParatagEditDto getEditDto(Paratag i) {
+        return new ParatagEditDto(
+                i.getId(),
+                paratagTypeMapper.getView(i.getParatagType()),
+                innerParatagMapper.getAllEditDto(i.getInnerParatagList())
+        );
     }
 
 }

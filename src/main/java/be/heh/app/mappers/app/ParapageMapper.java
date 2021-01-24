@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.edit.ParapageEditDto;
 import be.heh.app.dto.view.ParapageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParapage;
@@ -41,6 +42,22 @@ public final class ParapageMapper extends AbstractMapper {
                     k.getTitle(),
                     pageMapper.getAllDto(k.getPageList()));
         }
+    }
+
+    public List<ParapageEditDto> getAllEditDto(List<Parapage> list) {
+        List<ParapageEditDto> res = new ArrayList<>();
+        list.forEach(i -> {
+            res.add(this.getEditDto(i));
+        });
+        return res;
+    }
+
+    public ParapageEditDto getEditDto(Parapage i) {
+        return new ParapageEditDto(
+                i.getId(),
+                parapageTypeMapper.getView(i.getParapageType()),
+                innerParapageMapper.getAllEditDto(i.getInnerParapageList())
+        );
     }
 
 }

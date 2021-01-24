@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.edit.ParagraphEditDto;
 import be.heh.app.dto.view.ParagraphViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParagraph;
@@ -51,6 +52,22 @@ public final class ParagraphMapper extends AbstractMapper {
                     k.getTitle(),
                     k.getContent());
         }
+    }
+
+    public List<ParagraphEditDto> getAllEditDto(List<Paragraph> list) {
+        List<ParagraphEditDto> res = new ArrayList<>();
+        list.forEach(i -> {
+            res.add(this.getEditDto(i));
+        });
+        return res;
+    }
+
+    public ParagraphEditDto getEditDto(Paragraph i) {
+        return new ParagraphEditDto(
+                i.getId(),
+                paragraphTypeMapper.getView(i.getParagraphType()),
+                innerParagraphMapper.getAllEditDto(i.getInnerParagraphList())
+        );
     }
 
 }
