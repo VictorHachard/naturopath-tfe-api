@@ -1,5 +1,6 @@
 package be.heh.app.dto.view;
 
+import be.heh.app.model.entities.app.enumeration.EnumSize;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,5 +21,7 @@ public class ParatagTypeViewDto {
     String description;
 
     TagTypeViewDto tagType;
+
+    EnumSize size;
 
 }

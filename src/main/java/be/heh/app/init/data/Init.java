@@ -47,9 +47,9 @@ public class Init extends AbstractAutowire {
     }
 
     public void initParatagType() {
-        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin" , "", tagTypeList.get(0))); //0
-        paratagTypeList.add(paratagTypeFacade.newInstance("Famille" , "", tagTypeList.get(1))); //1
-        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , "", tagTypeList.get(2))); //2
+        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin" , "", tagTypeList.get(0), EnumSize.SMALL)); //0
+        paratagTypeList.add(paratagTypeFacade.newInstance("Famille" , "", tagTypeList.get(1), EnumSize.SMALL)); //1
+        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , "", tagTypeList.get(2), EnumSize.LARGE)); //2
     }
 
     public void initParapageType() {
@@ -138,15 +138,15 @@ public class Init extends AbstractAutowire {
     public void initParatag() {
         InnerParatag i = innerParatagFacade.init("tr", "");
         i.addTag(tagList.get(0), tagList.get(1),tagList.get(2),tagList.get(3), tagList.get(4));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(2), EnumSize.LARGE));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(2)));
 
         i = innerParatagFacade.init("tr", "");
         i.addTag(tagList.get(6));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(0), EnumSize.SMALL));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
 
         i = innerParatagFacade.init("tr", "");
         i.addTag(tagList.get(5));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(1), EnumSize.SMALL));
+        paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
     }
 
     public void initParagraph() {

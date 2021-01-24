@@ -1,11 +1,13 @@
 package be.heh.app.model.entities.app;
 
-import be.heh.app.model.entities.app.enumeration.EnumSize;
 import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,9 +28,6 @@ public class Paratag extends AbstractEntity {
     @JoinColumn(name = "user_id")
     @ManyToOne
     User user;
-
-    @Column(name = "enum_size")
-    EnumSize enumSize;
 
     @OneToMany
     List<InnerParatag> innerParatagList;

@@ -1,5 +1,6 @@
 package be.heh.app.model.entities.app;
 
+import be.heh.app.model.entities.app.enumeration.EnumSize;
 import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,6 +24,9 @@ public class ParatagType extends AbstractEntity {
 
     @Column(name = "description", length = 2500)
     String description;
+
+    @Column(name = "enum_size")
+    EnumSize enumSize;
 
     @JoinColumn(name = "tag_type_id")
     @ManyToOne

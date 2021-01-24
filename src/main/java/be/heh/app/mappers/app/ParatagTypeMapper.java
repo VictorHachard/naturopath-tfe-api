@@ -30,7 +30,8 @@ public final class ParatagTypeMapper extends AbstractMapper {
                 paratagType.getId(),
                 paratagType.getName(),
                 paratagType.getDescription(),
-                tagTypeMapper.getView(paratagType.getTagType())
+                tagTypeMapper.getView(paratagType.getTagType()),
+                paratagType.getEnumSize()
         );
     }
 

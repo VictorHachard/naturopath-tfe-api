@@ -24,12 +24,12 @@ public class CategoryEditDto {
 
     String description;
 
-    List<CategoryEditDto> CategoryEditDto;
+    List<CategoryEditDto> childCategory;
 
-    List<ParagraphTypeViewDto> ParagraphTypeViewDtoList;
+    List<ParagraphTypeViewDto> paragraphType;
 
-    List<ParapageTypeViewDto> parapageTypeViewDtoList;
+    List<ParapageTypeViewDto> parapageType;
 
-    List<ParatagTypeViewDto> paratagTypeViewDtoList;
+    List<ParatagTypeViewDto> paratagType;
 
 }
