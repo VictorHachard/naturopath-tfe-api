@@ -23,18 +23,19 @@ public final class CategoryMapper extends AbstractMapper {
 
     //TODO
     public Category set(CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        Category category = categoryFacade.newInstance(
+        /*Category category = categoryFacade.newInstance(
                 categoryValidator.getName(),
                 categoryValidator.getDescription(),
                 category1,
                 paragraphTypeList,
                 parapageTypeList,
                 paratagTypeList);
-        return category;
+        return category;*/
+        return null;
     }
 
     public void setUpdate(Category category, CategoryValidator categoryValidator, Category category1, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        categoryFacade.updateInstance(
+        /*categoryFacade.updateInstance(
                 category,
                 categoryValidator.getName(),
                 categoryValidator.getDescription(),
@@ -42,7 +43,7 @@ public final class CategoryMapper extends AbstractMapper {
                 paragraphTypeList,
                 parapageTypeList,
                 paratagTypeList
-        );
+        );*/
     }
 
     public CategoryViewDto getView(Category category) {
@@ -54,14 +55,7 @@ public final class CategoryMapper extends AbstractMapper {
     }
 
     public CategoryEditDto getEdit(Category category) {
-        return new CategoryEditDto(
-                category.getId(),
-                category.getName(),
-                category.getDescription(),
-                null,
-                paragraphTypeMapper.getAllView(category.getParagraphTypeList()),
-                parapageTypeMapper.getAllView(category.getParapageTypeList()),
-                paratagTypeMapper.getAllView(category.getParatagTypeList()));
+        return null; //TODO
     }
 
 }

@@ -2,7 +2,6 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.PageValidator;
-import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
@@ -27,7 +26,7 @@ public class PageController extends AbstractController {
 		return pageService.getDto(id);
 	}
 
-	@GetMapping("/dtoedit/page/{id}")
+	@GetMapping("/dto/edit/page/{id}")
 	public PageEditDto getEditDto(@PathVariable("id") int id) {
 		return pageService.getEditDto(id);
 	}
@@ -43,13 +42,8 @@ public class PageController extends AbstractController {
 	}
 
 	@PostMapping("/page")
-	public void add(@Valid @RequestBody PageValidator pageValidator) {
-		pageService.add(pageValidator);
-	}
-
-	@PostMapping("/page/update/{id}")
-	public void update(@Valid @RequestBody PageUpdateValidator validator, @PathVariable("id") int id) {
-		pageService.update(validator, id);
+	public int add(@Valid @RequestBody PageValidator pageValidator) {
+		return pageService.addC(pageValidator);
 	}
 
 }

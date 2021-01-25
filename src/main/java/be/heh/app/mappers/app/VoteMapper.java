@@ -35,7 +35,9 @@ public final class VoteMapper extends AbstractMapper {
 
     public VoteViewDto getViewDto(Vote vote) {
         return new VoteViewDto(
-                vote.getId()
+                vote.getId(),
+                userMapper.getView(vote.getUser()),
+                vote.getChoice()
         );
     }
 

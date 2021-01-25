@@ -22,6 +22,10 @@ public class InnerParagraphEditDto {
 
     int version;
 
+    int favour;
+
+    int against;
+
     List<VoteViewDto> voteList;
 
     List<MessageViewDto> messageList;

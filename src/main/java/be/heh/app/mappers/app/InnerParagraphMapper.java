@@ -1,11 +1,12 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.ParagraphValidator;
-import be.heh.app.controller.validators.app.update.ParagraphUpdateValidator;
+import be.heh.app.controller.validators.app.InnerParagraphValidator;
+import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.dto.edit.InnerParagraphEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParagraph;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.Vote;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -20,19 +21,21 @@ import java.util.List;
 @Log
 public final class InnerParagraphMapper extends AbstractMapper {
 
-    public InnerParagraph set(ParagraphValidator paragraphValidator, User user) {
+    public InnerParagraph set(User user) {
+        return innerParagraphFacade.newInstance(user);
+    }
+
+    public InnerParagraph set(InnerParagraphValidator paragraphValidator, User user) {
         return innerParagraphFacade.newInstance(
                 paragraphValidator.getTitle(),
                 paragraphValidator.getContent(),
-                user);
+                user
+        );
     }
 
-    public InnerParagraph set(ParagraphUpdateValidator paragraphUpdateValidator, int version, User user) {
-        return innerParagraphFacade.newInstance(
-                paragraphUpdateValidator.getTitle(),
-                paragraphUpdateValidator.getContent(),
-                version,
-                user);
+    public void update(InnerParagraph innerParagraph, InnerParagraphUpdateValidator validator) {
+        innerParagraph.setTitle(validator.getTitle());
+        innerParagraph.setContent(validator.getContent());
     }
 
     public List<InnerParagraphEditDto> getAllEditDto(List<InnerParagraph> list) {
@@ -44,9 +47,22 @@ public final class InnerParagraphMapper extends AbstractMapper {
     }
 
     public InnerParagraphEditDto getEditDto(InnerParagraph i) {
+        int a = 0;
+        int f = 0;
+        for (Vote v : i.getVoteList()) {
+            if (v.getChoice() == 0) {
+                a += 1;
+            }
+        }
+        for (Vote v : i.getVoteList()) {
+            f += v.getChoice();
+        }
+
         return new InnerParagraphEditDto(
                 i.getId(),
                 i.getVersion(),
+                f,
+                a,
                 voteMapper.getAllViewDto(i.getVoteList()),
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),

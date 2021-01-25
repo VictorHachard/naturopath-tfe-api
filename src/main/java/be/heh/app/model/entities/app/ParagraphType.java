@@ -1,6 +1,6 @@
 package be.heh.app.model.entities.app;
 
-import be.heh.app.model.entities.commons.AbstractEntity;
+import be.heh.app.model.entities.commons.AbstractType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class ParagraphType extends AbstractEntity {
+public class ParagraphType extends AbstractType {
 
     @Column(name = "name")
     String name;

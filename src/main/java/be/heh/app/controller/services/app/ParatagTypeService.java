@@ -12,4 +12,5 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParatagTypeService extends AbstractService<ParatagType> {
+
 }

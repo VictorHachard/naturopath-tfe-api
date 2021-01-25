@@ -3,6 +3,8 @@ package be.heh.app.mappers.app;
 import be.heh.app.dto.edit.InnerParatagEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParatag;
+import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.Vote;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -17,6 +19,10 @@ import java.util.List;
 @Log
 public class InnerParatagMapper extends AbstractMapper {
 
+    public InnerParatag set(User user) {
+        return innerParatagFacade.newInstance(user);
+    }
+
     public List<InnerParatagEditDto> getAllEditDto(List<InnerParatag> list) {
         List<InnerParatagEditDto> res = new ArrayList<>();
         list.forEach(i -> {
@@ -26,9 +32,22 @@ public class InnerParatagMapper extends AbstractMapper {
     }
 
     public InnerParatagEditDto getEditDto(InnerParatag i) {
+        int a = 0;
+        int f = 0;
+        for (Vote v : i.getVoteList()) {
+            if (v.getChoice() == 0) {
+                a += 1;
+            }
+        }
+        for (Vote v : i.getVoteList()) {
+            f += v.getChoice();
+        }
+
         return new InnerParatagEditDto(
                 i.getId(),
                 i.getVersion(),
+                f,
+                a,
                 voteMapper.getAllViewDto(i.getVoteList()),
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),

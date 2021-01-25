@@ -1,4 +1,4 @@
-package be.heh.app.controller.validators.app.update;
+package be.heh.app.controller.validators.app;
 
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import lombok.AccessLevel;
@@ -13,17 +13,21 @@ import javax.validation.constraints.Size;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-public class ParagraphUpdateValidator extends AbstractValidator {
+public class InnerPageValidator extends AbstractValidator {
 
     @NotNull(message = "")
-    @Size(min = 8, max = 128)
     @NotEmpty
+    @Size(min = 8, max = 128)
     String title;
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 128, max = 8182)
-    String content;
+    @Size(min = 64, max = 1024)
+    String description;
+
+    @NotNull(message = "")
+    @Min(1)
+    int pageId;
 
     @NotNull(message = "")
     @Min(1)

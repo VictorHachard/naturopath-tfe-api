@@ -1,5 +1,6 @@
 package be.heh.app.model.entities.app;
 
+import be.heh.app.model.entities.commons.AbstractEntity;
 import be.heh.app.model.entities.commons.AbstractType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,12 +15,12 @@ import javax.persistence.Entity;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class ParapageType extends AbstractType {
+public class SortedType extends AbstractEntity {
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "order_f")
+    int order;
 
-    @Column(name = "description", length = 2500)
-    String description;
+    @Column(name = "abstract_type")
+    AbstractType abstractType;
 
 }

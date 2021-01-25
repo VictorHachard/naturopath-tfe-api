@@ -23,6 +23,10 @@ public class InnerParatagEditDto {
 
     int version;
 
+    int favour;
+
+    int against;
+
     List<VoteViewDto> voteList;
 
     List<MessageViewDto> messageList;

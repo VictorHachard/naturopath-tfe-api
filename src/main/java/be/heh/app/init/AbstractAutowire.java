@@ -20,6 +20,9 @@ public abstract class AbstractAutowire {
     UserRepository userRepository;
 
     @Autowired
+    SortedTypeRepository sortedTypeRepository;
+
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Autowired
@@ -82,6 +85,9 @@ public abstract class AbstractAutowire {
     InnerPageMapper innerPageMapper;
 
     @Autowired
+    SortedTypeMapper sortedTypeMapper;
+
+    @Autowired
     ParatagTypeMapper paratagTypeMapper;
 
     @Autowired
@@ -139,6 +145,9 @@ public abstract class AbstractAutowire {
 
     @Autowired
     CategoryFacade categoryFacade;
+
+    @Autowired
+    SortedTypeFacade sortedTypeFacade;
 
     @Autowired
     InnerTagFacade innerTagFacade;
@@ -209,6 +218,9 @@ public abstract class AbstractAutowire {
     PageService pageService;
 
     @Autowired
+    InnerPageService innerPageService;
+
+    @Autowired
     ParagraphService paragraphService;
 
     @Autowired
@@ -216,6 +228,9 @@ public abstract class AbstractAutowire {
 
     @Autowired
     TagService tagService;
+
+    @Autowired
+    InnerParagraphService innerParagraphService;
 
     @Autowired
     VoteService voteService;

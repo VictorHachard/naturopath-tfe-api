@@ -5,6 +5,8 @@ import be.heh.app.dto.view.ParatagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerParatag;
 import be.heh.app.model.entities.app.Paratag;
+import be.heh.app.model.entities.app.ParatagType;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +21,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public final class ParatagMapper extends AbstractMapper {
+
+    public Paratag set(InnerParatag innerParatag, ParatagType paratagType, User user) {
+        return paratagFacade.newInstance(
+                innerParatag,
+                paratagType,
+                user);
+    }
 
     public List<ParatagViewDto> getAllView(List<Paratag> j) {
         List<ParatagViewDto> res = new ArrayList<>();

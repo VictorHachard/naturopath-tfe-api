@@ -1,9 +1,7 @@
 package be.heh.app.model.facades.app;
 
 import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.entities.app.ParagraphType;
-import be.heh.app.model.entities.app.ParapageType;
-import be.heh.app.model.entities.app.ParatagType;
+import be.heh.app.model.entities.app.SortedType;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
 
@@ -12,26 +10,22 @@ import java.util.List;
 @Component
 public class CategoryFacade extends AbstractFacade<Category> {
 
-    public Category newInstance(String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+    public Category newInstance(String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
         Category res = super.newInstance();
         this.updateInstance(
                 res,
                 name,
                 description,
                 parentCategory,
-                paragraphTypeList,
-                parapageTypeList,
-                paratagTypeList);
+                sortedTypeList);
         return res;
     }
 
-    public Category updateInstance(Category category, String name, String description, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+    public Category updateInstance(Category category, String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
         category.setName(name);
         category.setDescription(description);
         category.setParentCategory(parentCategory);
-        category.addAllParagraphType(paragraphTypeList);
-        category.addAllParapageType(parapageTypeList);
-        category.addAllParatagType(paratagTypeList);
+        category.addType(sortedTypeList);
         return category;
     }
 

@@ -87,17 +87,17 @@ public class CategoryService extends AbstractService<Category> {
         } else if (validator.getParatagTypeIdList() != null && paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParatagTypeIdList");
         }
-        categoryRepository.save(categoryMapper.set(
+        /*categoryRepository.save(categoryMapper.set(
                 validator,
                 validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null,
                 validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
                 validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
-                validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>()));
+                validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>()));*/
     }
 
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
-        super.update(abstractValidator, id);
+        /*super.update(abstractValidator, id);
         CategoryValidator validator = (CategoryValidator) abstractValidator;
         if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
@@ -116,7 +116,7 @@ public class CategoryService extends AbstractService<Category> {
                 validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
                 validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
                 validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>());
-        categoryRepository.save(category);
+        categoryRepository.save(category);*/
     }
 
     @Override

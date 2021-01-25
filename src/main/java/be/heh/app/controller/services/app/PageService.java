@@ -2,14 +2,12 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.PageValidator;
-import be.heh.app.controller.validators.app.update.PageUpdateValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageViewDto;
-import be.heh.app.model.entities.app.InnerPage;
-import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -47,46 +45,43 @@ public class PageService extends AbstractService<Page> {
         return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
     }
 
-    @Override
-    public void add(AbstractValidator abstractValidator) {
+    public int addC(AbstractValidator abstractValidator) {
         PageValidator validator = (PageValidator) abstractValidator;
+        Page page;
         if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
-            InnerPage innerPage = innerPageMapper.set(validator, userRepository.findById(validator.getUserId()).get());
+            User user = userRepository.findById(validator.getUserId()).get();
+            InnerPage innerPage = innerPageMapper.set(validator, user);
             innerPageRepository.save(innerPage);
-            Page page = pageMapper.set(innerPage, categoryRepository.findById(validator.getCategoryId()).get(), userRepository.findById(validator.getUserId()).get());
+            page = pageMapper.set(innerPage, categoryRepository.findById(validator.getCategoryId()).get(), user);
+
+            page.getCategory().getSortedTypeList().forEach(sortedType -> {
+                System.out.println(sortedType.toString());
+                if (sortedType.getAbstractType() instanceof ParagraphType) {
+                    page.addParagraph(paragraphMapper.set(innerParagraphMapper.set(user), (ParagraphType) sortedType.getAbstractType(), user));
+                } else if (sortedType.getAbstractType() instanceof ParatagType) {
+                    page.addParatag(paratagMapper.set(innerParatagMapper.set(user), (ParatagType) sortedType.getAbstractType(), user));
+                }
+            });
+            page.getParagraphList().forEach(i -> {
+                i.getInnerParagraphList().forEach(j -> {
+                    innerParagraphRepository.save(j);
+                });
+                paragraphRepository.save(i);
+            });
+            page.getParatagList().forEach(i -> {
+                i.getInnerParatagList().forEach(j -> {
+                    innerParatagRepository.save(j);
+                });
+                paratagRepository.save(i);
+            });
             pageRepository.save(page);
         }
-    }
 
-    @Override
-    public void update(AbstractValidator abstractValidator, int id) {
-        PageUpdateValidator validator = (PageUpdateValidator) abstractValidator;
-        if (pageRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else {
-            InnerPage lastInnerPage = pageRepository.findById(id).get().getInnerPageList().get(pageRepository.findById(id).get().getInnerPageList().size() - 1);
-            InnerPage innerPage = innerPageMapper.set(validator, lastInnerPage.getVersion() + 1, userRepository.findById(validator.getUserId()).get());
-            innerPageRepository.save(innerPage);
-            Page page = pageRepository.findById(id).get();
-            page.addInnerPage(innerPage);
-            pageRepository.save(page);
-        }
-    }
-
-    @Override
-    public void delete(int id) {
-        //TODO delete link
-        pageRepository.findById(id).ifPresentOrElse((page)->{
-            pageRepository.delete(page);
-        }, ()->{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Page with this pageId");
-        });
+        return page.getId();
     }
 
 }

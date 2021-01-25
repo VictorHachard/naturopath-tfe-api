@@ -1,5 +1,6 @@
 package be.heh.app.dto.view;
 
+import be.heh.app.model.entities.commons.AbstractType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +12,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class VoteViewDto {
+public class SortedTypeViewDto {
 
     int id;
 
-    UserViewDto user;
+    int order;
 
-    int choice;
+    AbstractType abstractType;
 
 }

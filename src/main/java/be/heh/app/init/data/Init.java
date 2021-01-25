@@ -104,20 +104,21 @@ public class Init extends AbstractAutowire {
 
         // Plantes - 0
 
-        categoryList.get(0).addParagraphType(
-                paragraphTypeList.get(0),
-                paragraphTypeList.get(1),
-                paragraphTypeList.get(2),
-                paragraphTypeList.get(3),
-                paragraphTypeList.get(4),
-                paragraphTypeList.get(5),
-                paragraphTypeList.get(6),
-                paragraphTypeList.get(7));
+        categoryList.get(0).addType(
+            sortedTypeFacade.newInstance(paragraphTypeList.get(0), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(1), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(2), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(3), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(4), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(5), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(6), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(7), 0),
 
-        categoryList.get(0).addParatagType(
-                paratagTypeList.get(0),
-                paratagTypeList.get(1),
-                paratagTypeList.get(2));
+            sortedTypeFacade.newInstance(paratagTypeList.get(0), 0),
+            sortedTypeFacade.newInstance(paratagTypeList.get(1), 0),
+            sortedTypeFacade.newInstance(paratagTypeList.get(2), 0)
+
+        );
 
         // Huiles Essentielles - 1
 
@@ -177,6 +178,8 @@ public class Init extends AbstractAutowire {
         Page page = pageFacade.init(i,
                 categoryList.get(1));
 
+        paragraphList.get(0).getInnerParagraphList().get(0).addVote(voteFacade.newInstance(0, userList.get(0)), voteFacade.newInstance(1, userList.get(0)), voteFacade.newInstance(0, userList.get(0)));
+
         page.addParagraph(paragraphList.get(0), paragraphList.get(1), paragraphList.get(2), paragraphList.get(3), paragraphList.get(4), paragraphList.get(5), paragraphList.get(6), paragraphList.get(7));
 
         page.addParatag(paratagList.get(0), paratagList.get(1), paratagList.get(2));
@@ -214,29 +217,49 @@ public class Init extends AbstractAutowire {
         paratagTypeList.forEach(paratagType -> {
             paratagTypeRepository.save(paratagType);
         });
-        categoryList.forEach(user -> {
-            categoryRepository.save(user);
+        categoryList.forEach(i -> {
+            if (i.getSortedTypeList() != null)
+                i.getSortedTypeList().forEach(j -> {
+                    sortedTypeRepository.save(j);
+                });
+            categoryRepository.save(i);
         });
         paragraphList.forEach(i -> {
             i.getInnerParagraphList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
                 innerParagraphRepository.save(j);
             });
             paragraphRepository.save(i);
         });
         tagList.forEach(i -> {
             i.getInnerTagList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
                 innerTagRepository.save(j);
             });
             tagRepository.save(i);
         });
         parapageList.forEach(i -> {
             i.getInnerParapageList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
                 innerParapageRepository.save(j);
             });
             parapageRepository.save(i);
         });
         paratagList.forEach(i -> {
             i.getInnerParatagList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
                 innerParatagRepository.save(j);
             });
             paratagRepository.save(i);
@@ -249,9 +272,10 @@ public class Init extends AbstractAutowire {
         });
         pageList.forEach(i -> {
             i.getInnerPageList().forEach(j -> {
-                j.getVoteList().forEach(k -> {
-                    voteRepository.save(k);
-                });
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
                 innerPageRepository.save(j);
             });
             pageRepository.save(i);

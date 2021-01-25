@@ -5,7 +5,10 @@ import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -19,11 +22,6 @@ public class ParagraphTypeController extends AbstractController {
     @PostMapping("/paragraphType")
     public void add(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
         paragraphTypeService.add(generalTypeValidator);
-    }
-
-    @PostMapping("/paragraphType/{paragraphTypeId}/linkToCategory/{categoryId}")
-    public void linkParagraphTypeToCategory(@PathVariable("categoryId") int categoryId, @PathVariable("paragraphTypeId") int paragraphTypeId) {
-        paragraphTypeService.linkParagraphTypeToCategory(categoryId, paragraphTypeId);
     }
 
 }

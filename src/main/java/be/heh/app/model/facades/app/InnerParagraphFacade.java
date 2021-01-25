@@ -9,6 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerParagraphFacade extends AbstractFacade<InnerParagraph> {
 
+    public InnerParagraph newInstance( User user) {
+        InnerParagraph res = super.newInstance();
+        res.setUser(user);
+        res.setVersion(0);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
+    }
+
     public InnerParagraph newInstance(String title, String content, User user) {
         InnerParagraph res = super.newInstance();
         res.setUser(user);

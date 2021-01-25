@@ -1,7 +1,7 @@
 package be.heh.app.model.entities.app;
 
 import be.heh.app.model.entities.app.enumeration.EnumSize;
-import be.heh.app.model.entities.commons.AbstractEntity;
+import be.heh.app.model.entities.commons.AbstractType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class ParatagType extends AbstractEntity {
+public class ParatagType extends AbstractType {
 
     @Column(name = "name")
     String name;

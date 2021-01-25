@@ -1,11 +1,13 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.controller.validators.app.InnerPageValidator;
 import be.heh.app.controller.validators.app.PageValidator;
-import be.heh.app.controller.validators.app.update.PageUpdateValidator;
+import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
 import be.heh.app.dto.edit.InnerPageEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.Vote;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -27,12 +29,17 @@ public final class InnerPageMapper extends AbstractMapper {
                 user);
     }
 
-    public InnerPage set(PageUpdateValidator pageUpdateValidator, int version, User user) {
+    public InnerPage set(InnerPageValidator validator, User user) {
         return innerPageFacade.newInstance(
-                pageUpdateValidator.getTitle(),
-                pageUpdateValidator.getDescription(),
-                version,
-                user);
+                validator.getTitle(),
+                validator.getDescription(),
+                user
+        );
+    }
+
+    public void update(InnerPage innerPage, InnerPageUpdateValidator validator) {
+        innerPage.setTitle(validator.getTitle());
+        innerPage.setDescription(validator.getDescription());
     }
 
     public List<InnerPageEditDto> getAllEditDto(List<InnerPage> list) {
@@ -44,9 +51,22 @@ public final class InnerPageMapper extends AbstractMapper {
     }
 
     public InnerPageEditDto getEditDto(InnerPage i) {
+        int a = 0;
+        int f = 0;
+        for (Vote v : i.getVoteList()) {
+            if (v.getChoice() == 0) {
+                a += 1;
+            }
+        }
+        for (Vote v : i.getVoteList()) {
+            f += v.getChoice();
+        }
+
         return new InnerPageEditDto(
                 i.getId(),
                 i.getVersion(),
+                a,
+                f,
                 voteMapper.getAllViewDto(i.getVoteList()),
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),

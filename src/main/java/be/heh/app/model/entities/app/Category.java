@@ -32,6 +32,23 @@ public class Category extends AbstractLang {
     Category parentCategory;
 
     @OneToMany
+    List<SortedType> sortedTypeList;
+
+    public void addType(SortedType... l) {
+        if (sortedTypeList == null) {
+            sortedTypeList = new ArrayList<>();
+        }
+        sortedTypeList.addAll(Arrays.asList(l));
+    }
+
+    public void addType(List<SortedType> l) {
+        if (sortedTypeList == null) {
+            sortedTypeList = new ArrayList<>();
+        }
+        sortedTypeList.addAll(l);
+    }
+
+    /*@OneToMany
     List<ParagraphType> paragraphTypeList;
 
     @OneToMany
@@ -80,6 +97,6 @@ public class Category extends AbstractLang {
             paratagTypeList = new ArrayList<>();
         }
         paratagTypeList.addAll(paratagType);
-    }
+    }*/
 
 }
