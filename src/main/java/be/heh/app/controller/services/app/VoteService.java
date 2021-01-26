@@ -3,10 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.VoteValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
-import be.heh.app.model.entities.app.InnerPage;
-import be.heh.app.model.entities.app.InnerParagraph;
-import be.heh.app.model.entities.app.User;
-import be.heh.app.model.entities.app.Vote;
+import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -42,6 +39,13 @@ public class VoteService extends AbstractService<Vote> {
             voteRepository.save(vote);
             innerPage.addVote(vote);
             innerPageRepository.save(innerPage);
+
+        } else if (validator.getType().equals("InnerTag")) {
+            InnerTag innerTag = innerTagRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerTag.addVote(vote);
+            innerTagRepository.save(innerTag);
         }
 
         /*

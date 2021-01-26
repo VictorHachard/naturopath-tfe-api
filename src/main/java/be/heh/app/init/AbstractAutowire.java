@@ -209,6 +209,9 @@ public abstract class AbstractAutowire {
     TagTypeService tagTypeService;
 
     @Autowired
+    InnerTagService innerTagService;
+
+    @Autowired
     CategoryService categoryService;
 
     @Autowired

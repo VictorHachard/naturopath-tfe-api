@@ -3,6 +3,7 @@ package be.heh.app.mappers.app;
 import be.heh.app.controller.validators.app.InnerTagValidator;
 import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
+import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import be.heh.app.dto.edit.InnerTagEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.InnerTag;
@@ -42,6 +43,11 @@ public final class InnerTagMapper extends AbstractMapper {
                 tagUpdateValidator.getDescription(),
                 version,
                 user);
+    }
+
+    public void update(InnerTag innerTag, InnerTagUpdateValidator validator) {
+        innerTag.setName(validator.getName());
+        innerTag.setContent(validator.getContent());
     }
 
     public List<InnerTagEditDto> getAllEditDto(List<InnerTag> list) {

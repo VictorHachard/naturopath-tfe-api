@@ -4,6 +4,7 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.InnerTagValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
+import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -34,18 +35,18 @@ public class InnerTagService extends AbstractService<InnerTag> {
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
         //TODO verifiaction
-        InnerParagraphUpdateValidator validator = (InnerParagraphUpdateValidator) abstractValidator;
-        InnerParagraph innerParagraph = innerParagraphRepository.findById(id).get();
-        innerParagraphMapper.update(innerParagraph, validator);
-        innerParagraphRepository.save(innerParagraph);
+        InnerTagUpdateValidator validator = (InnerTagUpdateValidator) abstractValidator;
+        InnerTag innerTag = innerTagRepository.findById(id).get();
+        innerTagMapper.update(innerTag, validator);
+        innerTagRepository.save(innerTag);
     }
 
     public void validation(int id) {
         //TODO verifiaction
-        InnerParagraph innerParagraph = innerParagraphRepository.findById(id).get();
-        System.out.println(innerParagraph.toString());
-        innerParagraph.setEnumState(EnumState.VALIDATING);
-        innerParagraphRepository.save(innerParagraph);
+        InnerTag innerTag = innerTagRepository.findById(id).get();
+        System.out.println(innerTag.toString());
+        innerTag.setEnumState(EnumState.VALIDATING);
+        innerTagRepository.save(innerTag);
     }
 
 }
