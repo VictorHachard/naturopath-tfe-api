@@ -23,7 +23,7 @@ public class InnerParagraphService extends AbstractService<InnerParagraph> {
     public void add(AbstractValidator abstractValidator) {
         //TODO verifiaction
         InnerParagraphValidator validator = (InnerParagraphValidator) abstractValidator;
-        Paragraph paragraph = paragraphRepository.findById(validator.getParagraphTypeId()).get();
+        Paragraph paragraph = paragraphRepository.findById(validator.getParagraphId()).get();
         User user = userRepository.findById(validator.getUserId()).get();
 
         InnerParagraph innerParagraph = innerParagraphMapper.set(validator, user);
@@ -44,7 +44,8 @@ public class InnerParagraphService extends AbstractService<InnerParagraph> {
     public void validation(int id) {
         //TODO verifiaction
         InnerParagraph innerParagraph = innerParagraphRepository.findById(id).get();
-        innerParagraph.setEnumState(EnumState.VALADATING);
+        System.out.println(innerParagraph.toString());
+        innerParagraph.setEnumState(EnumState.VALIDATING);
         innerParagraphRepository.save(innerParagraph);
     }
 

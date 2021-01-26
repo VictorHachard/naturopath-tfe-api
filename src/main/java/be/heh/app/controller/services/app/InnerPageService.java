@@ -38,12 +38,13 @@ public class InnerPageService extends AbstractService<InnerPage> {
         InnerPage innerPage = innerPageRepository.findById(id).get();
         innerPageMapper.update(innerPage, validator);
         innerPageRepository.save(innerPage);
+        System.out.println(10);
     }
 
     public void validation(int id) {
         //TODO verifiaction
         InnerPage innerPage = innerPageRepository.findById(id).get();
-        innerPage.setEnumState(EnumState.VALADATING);
+        innerPage.setEnumState(EnumState.VALIDATING);
         innerPageRepository.save(innerPage);
     }
 

@@ -2,7 +2,7 @@ package be.heh.app.model.entities.app.enumeration;
 
 public enum EnumState {
     DRAFT,
-    VALADATING,
+    VALIDATING,
     VALIDATED,
     NOT_VALIDATED
 

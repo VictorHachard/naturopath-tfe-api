@@ -25,7 +25,23 @@ public class VoteService extends AbstractService<Vote> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         }
         User user = userRepository.findById(validator.getUserId()).get();
-        Vote vote;
+
+        if (validator.getType().equals("InnerParagraph")) {
+            InnerParagraph innerParagraph = innerParagraphRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerParagraph.addVote(vote);
+            innerParagraphRepository.save(innerParagraph);
+
+        } else if (validator.getType().equals("InnerPage")) {
+            InnerPage innerPage = innerPageRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerPage.addVote(vote);
+            innerPageRepository.save(innerPage);
+        }
+
+        /*
         if (validator.getType().equals("InnerPage")) {
             if (innerPageRepository.findById(validator.getTypeId()).isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no InnerPage with this typeId");
@@ -88,7 +104,7 @@ public class VoteService extends AbstractService<Vote> {
             }
         } else { // TODO 2 nouveau inner a ajouter
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "logique  getType est pas bon");
-        }
+        }*/
     }
 
 }

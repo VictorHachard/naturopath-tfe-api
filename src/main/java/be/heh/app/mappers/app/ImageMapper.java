@@ -29,7 +29,7 @@ public final class ImageMapper extends AbstractMapper {
     }
 
     public ImageViewDto getView(Image j) {
-        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALADATING);
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATING);
         if (i == null) {
             return null;
         } else {
@@ -44,7 +44,7 @@ public final class ImageMapper extends AbstractMapper {
     }
 
     public ImageForPageByCategoryViewDto getImageForPageByCategoryView(Image j) {
-        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALADATING);
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATING);
         if (i == null) {
             return null;
         } else {

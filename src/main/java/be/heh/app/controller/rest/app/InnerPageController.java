@@ -24,6 +24,7 @@ public class InnerPageController extends AbstractController {
 
     @PostMapping("/innerPage/update/{id}")
     public void update(@Valid @RequestBody InnerPageUpdateValidator validator, @PathVariable("id") int id) {
+        System.out.println(10);
         innerPageService.update(validator, id);
     }
 

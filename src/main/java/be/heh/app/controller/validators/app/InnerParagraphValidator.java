@@ -27,10 +27,6 @@ public class InnerParagraphValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @Min(1)
-    int paragraphTypeId;
-
-    @NotNull(message = "")
-    @Min(1)
     int paragraphId;
 
     @NotNull(message = "")
