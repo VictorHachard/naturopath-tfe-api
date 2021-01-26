@@ -24,9 +24,6 @@ import java.util.List;
 @Log
 public final class TagMapper extends AbstractMapper {
 
-    @Autowired
-    TagFacade tagFacade;
-
     public Tag set(InnerTag innerTag, TagType tagType, User user) {
         return tagFacade.newInstance(innerTag, tagType, user);
     }

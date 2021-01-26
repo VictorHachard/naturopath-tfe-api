@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.controller.validators.app.InnerTagValidator;
 import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.dto.edit.InnerTagEditDto;
@@ -21,10 +22,17 @@ import java.util.List;
 @Log
 public final class InnerTagMapper extends AbstractMapper {
 
-    public InnerTag set(TagValidator tagValidator, User user) {
+    public InnerTag set(TagValidator validator, User user) {
         return innerTagFacade.newInstance(
-                tagValidator.getName(),
-                tagValidator.getDescription(),
+                validator.getName(),
+                validator.getContent(),
+                user);
+    }
+
+    public InnerTag set(InnerTagValidator validator, User user) {
+        return innerTagFacade.newInstance(
+                validator.getName(),
+                validator.getContent(),
                 user);
     }
 
