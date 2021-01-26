@@ -1,8 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
+import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -29,7 +29,7 @@ public class TagController extends AbstractController {
         return tagService.getDto(id);
     }
 
-    /*@GetMapping("/dto/edit/tag")
+    @GetMapping("/dto/edit/tag")
     public List<TagEditDto> getAllEditDto() {
         return tagService.getAllEditDto();
     }
@@ -37,16 +37,11 @@ public class TagController extends AbstractController {
     @GetMapping("/dto/edit/tag/{id}")
     public TagEditDto getEditDto(@PathVariable("id") int id) {
         return tagService.getEditDto(id);
-    }*/
-
-    @PostMapping("/tag")
-    public void add(@Valid @RequestBody TagValidator tagValidator) {
-        tagService.add(tagValidator);
     }
 
-    @PostMapping("/tag/update/{id}")
-    public void update(@Valid @RequestBody TagUpdateValidator tagUpdateValidator, @PathVariable("id") int id) {
-        tagService.update(tagUpdateValidator, id);
+    @PostMapping("/tag")
+    public int add(@Valid @RequestBody TagValidator tagValidator) {
+        return tagService.addC(tagValidator);
     }
 
 }

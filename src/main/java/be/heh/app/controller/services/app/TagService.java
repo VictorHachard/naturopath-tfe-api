@@ -1,12 +1,13 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.TagUpdateValidator;
 import be.heh.app.controller.validators.app.TagValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Tag;
+import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -30,36 +31,31 @@ public class TagService extends AbstractService<Tag> {
         return tagMapper.getView(super.get(id));
     }
 
-    @Override
-    public void add(AbstractValidator abstractValidator) {
+    public List<TagEditDto> getAllEditDto() {
+        return tagMapper.getAllEditDto(super.getAll());
+    }
+
+    public TagEditDto getEditDto(int id) {
+        return tagMapper.getEditDto(super.get(id));
+    }
+
+    public int addC(AbstractValidator abstractValidator) {
         TagValidator validator = (TagValidator) abstractValidator;
+        Tag tag;
 
         if (userRepository.findById(validator.getUserId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
-            InnerTag innerTag = new InnerTag();
-            Tag tag = tagMapper.set(innerTag, tagTypeRepository.findById(validator.getTagTypeId()).get(), userRepository.findById(validator.getUserId()).get());
-            tagRepository.save(tag);
-        }
-    }
-
-    @Override
-    public void update(AbstractValidator abstractValidator, int id) {
-        TagUpdateValidator validator = (TagUpdateValidator) abstractValidator;
-
-        if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else if (tagRepository.findById(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this id");
-        } else {
-            Tag tag = tagRepository.findById(id).get();
-            InnerTag innerTag = innerTagMapper.set(validator, tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1, userRepository.findById(validator.getUserId()).get());
+            User user = userRepository.findById(validator.getUserId()).get();
+            InnerTag innerTag = innerTagMapper.set(validator, user);
+            tag = tagMapper.set(innerTag, tagTypeRepository.findById(validator.getTagTypeId()).get(), user);
             innerTagRepository.save(innerTag);
-            tag.addInnerTag(innerTag);
             tagRepository.save(tag);
-            //throw new ResponseStatusException(HttpStatus.CREATED, "The rule of the paragraph is duplicate");
+            System.out.println(tag.toString());
         }
+        return tag.getId();
     }
+
 }
