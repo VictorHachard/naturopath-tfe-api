@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -47,7 +48,9 @@ public class TagService extends AbstractService<Tag> {
         if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this tagTypeId");
         }
-        return tagMapper.getAllTagByTagTypeDto(tagRepository.findAllByTagTypeById(validator.getTagTypeId(), EnumState.VALIDATED));
+        List<TagByTagTypeViewDto> res = tagMapper.getAllTagByTagTypeDto(tagRepository.findAllByTagTypeById(validator.getTagTypeId(), EnumState.VALIDATED));
+        Collections.sort(res);
+        return res;
     }
 
     public int addC(AbstractValidator abstractValidator) {

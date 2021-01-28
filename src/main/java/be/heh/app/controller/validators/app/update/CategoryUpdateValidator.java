@@ -1,4 +1,4 @@
-package be.heh.app.controller.validators.app;
+package be.heh.app.controller.validators.app.update;
 
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import lombok.AccessLevel;
@@ -8,11 +8,12 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-public class CategoryValidator extends AbstractValidator {
+public class CategoryUpdateValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
@@ -30,5 +31,7 @@ public class CategoryValidator extends AbstractValidator {
 
     // For parent can be null
     Integer parentCategoryId;
+
+    List<Integer> SortedTypeList;
 
 }

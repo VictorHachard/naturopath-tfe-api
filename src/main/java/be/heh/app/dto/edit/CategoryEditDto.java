@@ -1,8 +1,6 @@
 package be.heh.app.dto.edit;
 
-import be.heh.app.dto.view.ParagraphTypeViewDto;
-import be.heh.app.dto.view.ParapageTypeViewDto;
-import be.heh.app.dto.view.ParatagTypeViewDto;
+import be.heh.app.model.entities.app.SortedType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CategoryEditDto {
+public class CategoryEditDto implements Comparable<CategoryEditDto> {
 
     int id;
 
@@ -26,10 +24,11 @@ public class CategoryEditDto {
 
     List<CategoryEditDto> childCategory;
 
-    List<ParagraphTypeViewDto> paragraphType;
+    List<SortedType> sortedTypeType;
 
-    List<ParapageTypeViewDto> parapageType;
-
-    List<ParatagTypeViewDto> paratagType;
+    @Override
+    public int compareTo(CategoryEditDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TagViewDto {
+public class TagViewDto implements Comparable<TagViewDto> {
 
     int id;
 
@@ -20,5 +20,10 @@ public class TagViewDto {
     String name;
 
     String content;
+
+    @Override
+    public int compareTo(TagViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

@@ -1,10 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.InnerTagValidator;
-import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
-import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

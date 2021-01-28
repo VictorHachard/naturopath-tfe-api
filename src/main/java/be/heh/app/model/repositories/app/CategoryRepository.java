@@ -28,10 +28,17 @@ public interface CategoryRepository extends AbstractRepository<Category, Integer
     List<Category> findChildById(@Param("categoryId") int categoryId);
 
     /**
+     * Return a list containing all the category except child.
+     * @return a list containing all the category except child
+     */
+    @Query("select c from Category c where c.parentCategory = null")
+    List<Category> findAllExceptChild();
+
+    /**
      * Return a list containing all the parents.
      * @return a list containing all the parents
      */
-    @Query("select c from Category c where c.parentCategory = null")
+    @Query("select c from Category c where c.isParent = true")
     List<Category> findAllParent();
 
 }

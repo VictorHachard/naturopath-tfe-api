@@ -2,10 +2,8 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.TagValidator;
-import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.app.view.TagByTagTypeDtoValidator;
 import be.heh.app.dto.edit.TagEditDto;
-import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
 import lombok.AccessLevel;

@@ -73,7 +73,7 @@ public class Init extends AbstractAutowire {
                 categoryFacade.init("Tisanes", "") //0
                 ));
         categoryList.addAll(Arrays.asList(
-                categoryFacade.init("Plantes", ""), //1
+                categoryFacade.init("Plantes", "", true), //1
                 categoryFacade.init("Huiles Essentielles", ""), //2
                 categoryFacade.init("Infusions", "", categoryList.get(0)), //3
                 categoryFacade.init("Décoctions", "", categoryList.get(0)), //4

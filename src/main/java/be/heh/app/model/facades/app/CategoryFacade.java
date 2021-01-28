@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class CategoryFacade extends AbstractFacade<Category> {
 
-    public Category newInstance(String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
+    /*public Category newInstance(String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
         Category res = super.newInstance();
         this.updateInstance(
                 res,
@@ -19,11 +19,12 @@ public class CategoryFacade extends AbstractFacade<Category> {
                 parentCategory,
                 sortedTypeList);
         return res;
-    }
+    }*/
 
-    public Category newInstance(String name, String description, Category parentCategory) {
+    public Category newInstance(String name, String description, Category parentCategory, boolean isParent) {
         Category res = super.newInstance();
         res.setName(name);
+        res.setParent(isParent);
         res.setDescription(description);
         res.setParentCategory(parentCategory);
         return res;
@@ -41,8 +42,18 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public Category init(String name, String description, Category parentCategory) {
         Category res = super.newInstance();
         res.setName(name);
+        res.setParent(false);
         res.setDescription(description);
         res.setParentCategory(parentCategory);
+        return res;
+    }
+
+    // Init
+    public Category init(String name, String description, boolean isParent) {
+        Category res = super.newInstance();
+        res.setName(name);
+        res.setParent(isParent);
+        res.setDescription(description);
         return res;
     }
 
@@ -50,6 +61,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public Category init(String name, String description) {
         Category res = super.newInstance();
         res.setName(name);
+        res.setParent(false);
         res.setDescription(description);
         return res;
     }

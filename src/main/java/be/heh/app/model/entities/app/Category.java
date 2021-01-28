@@ -27,6 +27,9 @@ public class Category extends AbstractLang {
     @Column(name = "order_f")
     int order;
 
+    @Column(name = "is_parent")
+    boolean isParent;
+
     @JoinColumn(name = "category_id")
     @ManyToOne
     Category parentCategory;

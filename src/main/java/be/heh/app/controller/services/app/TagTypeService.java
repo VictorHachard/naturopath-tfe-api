@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,7 +26,9 @@ public class TagTypeService extends AbstractService<TagType> {
     }
 
     public List<TagTypeViewDto> getAllDto() {
-        return tagTypeMapper.getAllView(super.getAll());
+        List<TagTypeViewDto> res = tagTypeMapper.getAllView(super.getAll());
+        Collections.sort(res);
+        return res;
     }
 
 }

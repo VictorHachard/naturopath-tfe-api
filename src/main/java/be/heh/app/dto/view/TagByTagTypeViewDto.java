@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TagByTagTypeViewDto {
+public class TagByTagTypeViewDto implements Comparable<TagByTagTypeViewDto> {
 
     int id;
 
@@ -22,5 +22,10 @@ public class TagByTagTypeViewDto {
     String name;
 
     String content;
+
+    @Override
+    public int compareTo(TagByTagTypeViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

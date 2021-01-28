@@ -1,6 +1,7 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.CategoryValidator;
+import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
 import be.heh.app.dto.edit.CategoryEditDto;
 import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -13,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -21,36 +23,32 @@ import java.util.List;
 @Log
 public final class CategoryMapper extends AbstractMapper {
 
-    //TODO
-    public Category set(CategoryValidator categoryValidator, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        /*Category category = categoryFacade.newInstance(
-                categoryValidator.getName(),
-                categoryValidator.getDescription(),
-                parentCategory,
-                paragraphTypeList,
-                parapageTypeList,
-                paratagTypeList);
-        return category;*/
-        return null;
-    }
-
-    public Category set(CategoryValidator categoryValidator, Category parentCategory) {
+    public Category set(CategoryValidator validator, Category parentCategory) {
         return categoryFacade.newInstance(
-                categoryValidator.getName(),
-                categoryValidator.getDescription(),
-                parentCategory);
+                validator.getName(),
+                validator.getDescription(),
+                parentCategory,
+                validator.isParent());
     }
 
-    public void update(Category category, CategoryValidator categoryValidator, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
+    public void update(Category category, CategoryUpdateValidator validator, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
         /*categoryFacade.updateInstance(
                 category,
-                categoryValidator.getName(),
-                categoryValidator.getDescription(),
+                validator.getName(),
+                validator.getDescription(),
                 parentCategory,
                 paragraphTypeList,
                 parapageTypeList,
                 paratagTypeList
         );*/
+    }
+
+    public List<CategoryViewDto> getAllView(List<Category> j) {
+        List<CategoryViewDto> res = new ArrayList<>();
+        j.forEach(i -> {
+            res.add(this.getView(i));
+        });
+        return res;
     }
 
     public CategoryViewDto getView(Category category) {

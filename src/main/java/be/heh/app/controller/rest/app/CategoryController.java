@@ -2,6 +2,7 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.CategoryValidator;
+import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
 import be.heh.app.dto.edit.CategoryEditDto;
 import be.heh.app.dto.view.CategoryViewDto;
 import lombok.AccessLevel;
@@ -22,6 +23,11 @@ public class CategoryController extends AbstractController {
 	@GetMapping("/dto/category")
 	public List<CategoryViewDto> getAllDto() {
 		return categoryService.getAllDto();
+	}
+
+	@GetMapping("/dto/getAllParent")
+	public List<CategoryViewDto> getAllParentDto() {
+		return categoryService.getAllParentDto();
 	}
 
 	@GetMapping("/dto/category/{id}")
@@ -45,8 +51,8 @@ public class CategoryController extends AbstractController {
 	}
 
 	@PostMapping("/category/update/{id}")
-	public void update(@Valid @RequestBody CategoryValidator categoryValidator, @PathVariable("id") int id) {
-		categoryService.update(categoryValidator, id);
+	public void update(@Valid @RequestBody CategoryUpdateValidator validator, @PathVariable("id") int id) {
+		categoryService.update(validator, id);
 	}
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CategoryViewDto {
+public class CategoryViewDto implements Comparable<CategoryViewDto> {
 
     int id;
 
@@ -22,5 +22,10 @@ public class CategoryViewDto {
     String description;
 
     List<CategoryViewDto> childCategory;
-    
+
+    @Override
+    public int compareTo(CategoryViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
+
 }
