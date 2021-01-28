@@ -2,12 +2,15 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.TagValidator;
+import be.heh.app.controller.validators.app.view.TagByTagTypeDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.TagEditDto;
+import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Tag;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -37,6 +40,14 @@ public class TagService extends AbstractService<Tag> {
 
     public TagEditDto getEditDto(int id) {
         return tagMapper.getEditDto(super.get(id));
+    }
+
+    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(AbstractValidator abstractValidator) {
+        TagByTagTypeDtoValidator validator = (TagByTagTypeDtoValidator) abstractValidator;
+        if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this tagTypeId");
+        }
+        return tagMapper.getAllTagByTagTypeDto(tagRepository.findAllByTagTypeById(validator.getTagTypeId(), EnumState.VALIDATED));
     }
 
     public int addC(AbstractValidator abstractValidator) {

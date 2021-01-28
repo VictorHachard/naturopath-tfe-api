@@ -1,12 +1,11 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.edit.TagEditDto;
+import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.InnerTag;
-import be.heh.app.model.entities.app.Tag;
-import be.heh.app.model.entities.app.TagType;
-import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.app.TagFacade;
 import lombok.AccessLevel;
@@ -67,6 +66,21 @@ public final class TagMapper extends AbstractMapper {
                 tagTypeMapper.getView(j.getTagType()),
                 innerTagMapper.getAllEditDto(j.getInnerTagList())
         );
+    }
+
+    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(List<Tag> tagList) {
+        List<TagByTagTypeViewDto> res = new ArrayList<>();
+        tagList.forEach(i -> {
+            InnerTag innerTag = tagRepository.findInnerTag(i, EnumState.VALIDATED).get(0);
+
+            res.add(new TagByTagTypeViewDto(
+                    i.getId(),
+                    i.getCreatedAt(),
+                    innerTag.getName(),
+                    innerTag.getContent()
+            ));
+        });
+        return res;
     }
 
 }

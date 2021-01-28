@@ -28,10 +28,10 @@ public class CategoryValidator extends AbstractValidator {
     // For parent can be null
     Integer categoryId;
 
-    List<Integer> paragraphTypeIdList;
+    /*List<Integer> paragraphTypeIdList;
 
     List<Integer> parapageTypeIdList;
 
-    List<Integer> paratagTypeIdList;
+    List<Integer> paratagTypeIdList;*/
 
 }

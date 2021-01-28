@@ -75,9 +75,19 @@ public class CategoryService extends AbstractService<Category> {
         return categoryDto;
     }
 
+    public int addC(AbstractValidator abstractValidator) {
+        CategoryValidator validator = (CategoryValidator) abstractValidator;
+        if (validator.getCategoryId() != null && categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + categoryRepository.getClass().getSimpleName().replace("Repository", "") + " with this categoryId");
+        }
+        Category category = categoryMapper.set(validator, validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null);
+        categoryRepository.save(category);
+        return category.getId();
+    }
+
     @Override
     public void add(AbstractValidator abstractValidator) {
-        CategoryValidator validator = (CategoryValidator) abstractValidator;
+        /*CategoryValidator validator = (CategoryValidator) abstractValidator;
         if (validator.getCategoryId() != null && categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + categoryRepository.getClass().getSimpleName().replace("Repository", "") + " with this categoryId");
         } else if (validator.getParagraphTypeIdList() != null && paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()).isEmpty()) {
@@ -86,7 +96,7 @@ public class CategoryService extends AbstractService<Category> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParapageTypeIdList");
         } else if (validator.getParatagTypeIdList() != null && paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this getParatagTypeIdList");
-        }
+        }*/
         /*categoryRepository.save(categoryMapper.set(
                 validator,
                 validator.getCategoryId() != null ? categoryRepository.findById(validator.getCategoryId()).get() : null,

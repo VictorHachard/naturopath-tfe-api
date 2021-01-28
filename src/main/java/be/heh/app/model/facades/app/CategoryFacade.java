@@ -21,6 +21,14 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return res;
     }
 
+    public Category newInstance(String name, String description, Category parentCategory) {
+        Category res = super.newInstance();
+        res.setName(name);
+        res.setDescription(description);
+        res.setParentCategory(parentCategory);
+        return res;
+    }
+
     public Category updateInstance(Category category, String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
         category.setName(name);
         category.setDescription(description);

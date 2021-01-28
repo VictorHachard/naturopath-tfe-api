@@ -4,6 +4,7 @@ import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Tag;
 import be.heh.app.model.entities.app.TagType;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class TagFacade extends AbstractFacade<Tag> {
         Tag res = super.newInstance();
         res.addInnerTag(innerTag);
         res.setTagType(tagType);
+        res.setEnumState(EnumState.VALIDATED);
         res.setUser(userRepository.findById(1).get());
         return res;
     }

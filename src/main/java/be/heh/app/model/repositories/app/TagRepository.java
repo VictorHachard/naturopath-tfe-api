@@ -28,9 +28,22 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
     /**
      * Return a list of all tags belonging to a tagType.
      * @param tagType the tagType
+     * @param enumState the state of the tag
      * @return a list of tag
      */
-    @Query("select t from Tag t where t.tagType = ?1")
-    List<Tag> findAllByTagType(@Param("tagType") TagType tagType);
+    @Query("select t from Tag t where t.tagType = ?1 and t.enumState = ?2")
+    List<Tag> findAllByTagType(@Param("tagType") TagType tagType, @Param("enumState") EnumState enumState);
+
+    //TODO sort by name
+    /**
+     * Return a list of all tags belonging to a tagType.
+     * @param tagTypeId the tagType
+     * @param enumState the state of the tag
+     * @return a list of tag
+     */
+    @Query("select t from Tag t where t.tagType.id = ?1 and t.enumState = ?2")
+    List<Tag> findAllByTagTypeById(@Param("tagType") int tagTypeId, @Param("enumState") EnumState enumState);
+
+
 
 }
