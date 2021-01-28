@@ -28,7 +28,7 @@ public final class CategoryMapper extends AbstractMapper {
                 validator.getName(),
                 validator.getDescription(),
                 parentCategory,
-                validator.isParent());
+                validator.getIsParent());
     }
 
     public void update(Category category, CategoryUpdateValidator validator, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {

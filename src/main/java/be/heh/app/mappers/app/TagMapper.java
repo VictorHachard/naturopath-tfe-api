@@ -1,17 +1,17 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.edit.TagEditDto;
-import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.InnerTag;
+import be.heh.app.model.entities.app.Tag;
+import be.heh.app.model.entities.app.TagType;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
-import be.heh.app.model.facades.app.TagFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

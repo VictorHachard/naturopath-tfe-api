@@ -25,8 +25,7 @@ public class CategoryValidator extends AbstractValidator {
     String description;
 
     @NotNull(message = "")
-    @NotEmpty
-    boolean isParent;
+    Boolean isParent;
 
     // For parent can be null
     Integer parentCategoryId;
