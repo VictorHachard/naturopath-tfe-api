@@ -21,7 +21,7 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
      * @param enumState the state of the innerImage
      * @return a list of innerTag filtered with enumState
      */
-    @Query(value = "select i from Tag p join p.innerTagList i where p = ?1 and i.enumState = ?2 order by i.id desc")
+    @Query("select i from Tag p join p.innerTagList i where p = ?1 and i.enumState = ?2 order by i.id desc")
     List<InnerTag> findInnerTag(@Param("tag") Tag tag, @Param("enumState") EnumState enumState);
 
     /**
@@ -31,7 +31,7 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
      * @param enumState the state of the innerImage
      * @return a list of innerTag filtered with enumState
      */
-    @Query(value = "select i from Tag p join p.innerTagList i where p.id = ?1 and i.enumState = ?2 order by i.id desc")
+    @Query("select i from Tag p join p.innerTagList i where p.id = ?1 and i.enumState = ?2 order by i.id desc")
     List<InnerTag> findInnerTagById(@Param("tag") int tagId, @Param("enumState") EnumState enumState);
 
     /**

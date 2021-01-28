@@ -3,11 +3,22 @@ package be.heh.app.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Enumeration;
 import java.util.List;
 
 public class Utils {
+
+    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+
+    public static String generateNewToken() {
+        byte[] randomBytes = new byte[24];
+        secureRandom.nextBytes(randomBytes);
+        return base64Encoder.encodeToString(randomBytes);
+    }
 
     public static List<Class> getClasses(String packageName)
             throws ClassNotFoundException, IOException {

@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class UserSecurityValidator extends AbstractValidator {
+public class UserSecurityRegisterValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
@@ -30,18 +30,5 @@ public class UserSecurityValidator extends AbstractValidator {
     @NotEmpty
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=*])(?=\\S+$).{6,}", message = "Password must contain at least one lowercase, uppercase, numeric, special character and between six and sixteen characters")
     String password;
-
-    @NotNull(message = "")
-    @NotEmpty
-    @Pattern(regexp = "[A-Z][a-zA-Z]*", message = "Firstname must start with a capitalized letter")
-    String firstName;
-
-    @NotNull(message = "")
-    @NotEmpty
-    @Pattern(regexp = "[A-Z][a-zA-Z]*", message = "Lastname must start with a capitalized letter")
-    String lastName;
-
-    @NotNull(message = "")
-    String birth;
 
 }

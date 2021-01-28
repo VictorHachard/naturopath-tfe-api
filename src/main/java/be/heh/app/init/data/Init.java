@@ -70,10 +70,10 @@ public class Init extends AbstractAutowire {
 
     public void initCategory() {
         categoryList.addAll(Arrays.asList(
-                categoryFacade.init("Tisanes", "") //0
+                categoryFacade.init("Tisanes", "", true) //0
                 ));
         categoryList.addAll(Arrays.asList(
-                categoryFacade.init("Plantes", "", true), //1
+                categoryFacade.init("Plantes", ""), //1
                 categoryFacade.init("Huiles Essentielles", ""), //2
                 categoryFacade.init("Infusions", "", categoryList.get(0)), //3
                 categoryFacade.init("Décoctions", "", categoryList.get(0)), //4
@@ -92,10 +92,10 @@ public class Init extends AbstractAutowire {
                 categoryFacade.init("Poudres", ""), //17
                 categoryFacade.init("Gélules", ""), //18
                 categoryFacade.init("Bains de Plantes", ""), //19
-                categoryFacade.init("init de Bouche ou Gargarismes", ""), //20
-                categoryFacade.init("Bains d’Yeux", ""), //21
+                categoryFacade.init("Bains de Bouche ou Gargarismes", ""), //20
+                categoryFacade.init("Bains Oculaire", ""), //21
                 categoryFacade.init("Collyres", ""), //22
-                categoryFacade.init("Beaumes", ""), //23
+                categoryFacade.init("Baumes", ""), //23
                 categoryFacade.init("Gels", ""), //24
                 categoryFacade.init("Pommades", ""), //25
                 categoryFacade.init("Hydrolats", ""), //26

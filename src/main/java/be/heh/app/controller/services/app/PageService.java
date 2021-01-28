@@ -57,7 +57,7 @@ public class PageService extends AbstractService<Page> {
             InnerPage innerPage = innerPageMapper.set(validator, user);
             innerPageRepository.save(innerPage);
             page = pageMapper.set(innerPage, categoryRepository.findById(validator.getCategoryId()).get(), user);
-
+            //TODO si la category na pas de regle ne pas ajouter de liste
             page.getCategory().getSortedTypeList().forEach(sortedType -> {
                 System.out.println(sortedType.toString());
                 if (sortedType.getAbstractType() instanceof ParagraphType) {
