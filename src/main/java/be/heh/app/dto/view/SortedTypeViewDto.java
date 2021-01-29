@@ -18,7 +18,7 @@ public class SortedTypeViewDto implements Comparable<SortedTypeViewDto> {
 
     int order;
 
-    AbstractType abstractType;
+    int typeId;
 
     String type;
 

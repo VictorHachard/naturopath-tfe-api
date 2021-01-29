@@ -104,19 +104,19 @@ public class Init extends AbstractAutowire {
 
         // Plantes - 0
 
-        categoryList.get(0).addType(
-            sortedTypeFacade.newInstance(paragraphTypeList.get(0), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(1), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(2), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(3), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(4), 10),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(5), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(6), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(7), 0),
+        categoryList.get(1).addType(
+            sortedTypeFacade.newInstance(paragraphTypeList.get(0), 3),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(1), 4),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(2), 5),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(3), 6),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(4), 7),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(5), 8),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(6), 9),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(7), 10),
 
-            sortedTypeFacade.newInstance(paratagTypeList.get(0), 0),
-            sortedTypeFacade.newInstance(paratagTypeList.get(1), 0),
-            sortedTypeFacade.newInstance(paratagTypeList.get(2), 0)
+            sortedTypeFacade.newInstance(paratagTypeList.get(0), 1),
+            sortedTypeFacade.newInstance(paratagTypeList.get(1), 2),
+            sortedTypeFacade.newInstance(paratagTypeList.get(2), 11)
 
         );
 
@@ -171,21 +171,14 @@ public class Init extends AbstractAutowire {
     }
 
     public void initPage() {
-        Vote vote = voteFacade.newInstance(0, userList.get(0));
-        InnerPage i = innerPageFacade.init("Menthe poivrée", "");
-        i.addVote(vote);
-
-        Page page = pageFacade.init(i,
+        Page page = pageFacade.init(innerPageFacade.init("Menthe poivrée", ""),
                 categoryList.get(1));
-
-        paragraphList.get(0).getInnerParagraphList().get(0).addVote(voteFacade.newInstance(0, userList.get(0)), voteFacade.newInstance(1, userList.get(0)), voteFacade.newInstance(0, userList.get(0)));
 
         page.addParagraph(paragraphList.get(0), paragraphList.get(1), paragraphList.get(2), paragraphList.get(3), paragraphList.get(4), paragraphList.get(5), paragraphList.get(6), paragraphList.get(7));
 
         page.addParatag(paratagList.get(0), paratagList.get(1), paratagList.get(2));
 
-        pageList.add(page
-        ); //0
+        pageList.add(page); //0
     }
 
     @PostConstruct

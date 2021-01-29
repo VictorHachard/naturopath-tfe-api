@@ -36,4 +36,6 @@ public class PageViewDto {
 
     List<ImageViewDto> imageList;
 
+    List<SortedTypeViewDto> sortedTypeList;
+
 }

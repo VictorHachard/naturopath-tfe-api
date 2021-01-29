@@ -31,7 +31,7 @@ public class SortedTypeMapper extends AbstractMapper {
         return new SortedTypeViewDto(
                 sortedType.getId(),
                 sortedType.getOrder(),
-                sortedType.getAbstractType(),
+                sortedType.getAbstractType().getId(),
                 sortedType.getAbstractType().getType()
         );
     }
