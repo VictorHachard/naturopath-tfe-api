@@ -10,7 +10,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,16 +18,24 @@ import java.util.List;
 @Log
 public class TagTypeService extends AbstractService<TagType> {
 
-    @Override
-    public void add(AbstractValidator abstractValidator) {
+    public int addC(AbstractValidator abstractValidator) {
         GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
-        tagTypeRepository.save(tagTypeMapper.set(validator));
+        TagType tagType = tagTypeMapper.set(validator);
+        tagTypeRepository.save(tagType);
+        return tagType.getId();
+    }
+
+    @Override
+    public void update(AbstractValidator abstractValidator, int id) {
+        super.update(abstractValidator, id);
+        GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
+        TagType tagType = tagTypeRepository.findById(id).get();
+        tagTypeMapper.update(tagType, validator);
+        tagTypeRepository.save(tagType);
     }
 
     public List<TagTypeViewDto> getAllDto() {
-        List<TagTypeViewDto> res = tagTypeMapper.getAllView(super.getAll());
-        Collections.sort(res);
-        return res;
+        return tagTypeMapper.getAllView(super.getAll());
     }
 
 }

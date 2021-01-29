@@ -44,7 +44,7 @@ public class ParagraphController extends AbstractController {
         paragraphService.add(paragraphValidator);
     }
 
-    @PostMapping("/paragraph/update/{id}")
+    @PutMapping("/paragraph/update/{id}")
     public void update(@Valid @RequestBody ParagraphUpdateValidator paragraphUpdateValidator, @PathVariable("id") int id) {
         paragraphService.update(paragraphUpdateValidator, id);
     }*/

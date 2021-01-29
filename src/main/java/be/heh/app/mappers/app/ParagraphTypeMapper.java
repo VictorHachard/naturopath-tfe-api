@@ -10,6 +10,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -21,7 +22,13 @@ public final class ParagraphTypeMapper extends AbstractMapper {
     public ParagraphType set(GeneralTypeValidator generalTypeValidator) {
         return paragraphTypeFacade.newInstance(
                 generalTypeValidator.getName(),
-                generalTypeValidator.getDescription());
+                generalTypeValidator.getDescription()
+        );
+    }
+
+    public void update(ParagraphType paragraphType, GeneralTypeValidator generalTypeValidator) {
+        paragraphType.setName(generalTypeValidator.getName());
+        paragraphType.setDescription(generalTypeValidator.getDescription());
     }
 
     public List<ParagraphTypeViewDto> getAllView(List<ParagraphType> j) {
@@ -29,6 +36,7 @@ public final class ParagraphTypeMapper extends AbstractMapper {
         j.forEach(i -> {
             res.add(this.getView(i));
         });
+        Collections.sort(res);
         return res;
     }
 

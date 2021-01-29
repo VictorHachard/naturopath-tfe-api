@@ -11,12 +11,17 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParagraphTypeViewDto {
+public class ParagraphTypeViewDto implements Comparable<ParagraphTypeViewDto> {
 
     int id;
 
     String name;
 
     String description;
+
+    @Override
+    public int compareTo(ParagraphTypeViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

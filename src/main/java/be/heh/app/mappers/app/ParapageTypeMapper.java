@@ -9,6 +9,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -22,6 +23,7 @@ public final class ParapageTypeMapper extends AbstractMapper {
         j.forEach(i -> {
             res.add(this.getView(i));
         });
+        Collections.sort(res);
         return res;
     }
 

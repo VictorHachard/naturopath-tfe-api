@@ -9,6 +9,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -22,6 +23,7 @@ public class SortedTypeMapper extends AbstractMapper {
         j.forEach(i -> {
             res.add(this.getView(i));
         });
+        Collections.sort(res);
         return res;
     }
 
@@ -29,7 +31,8 @@ public class SortedTypeMapper extends AbstractMapper {
         return new SortedTypeViewDto(
                 sortedType.getId(),
                 sortedType.getOrder(),
-                sortedType.getAbstractType()
+                sortedType.getAbstractType(),
+                sortedType.getAbstractType().getType()
         );
     }
 

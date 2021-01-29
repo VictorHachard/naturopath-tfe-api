@@ -22,7 +22,7 @@ public class InnerTagController extends AbstractController {
         innerTagService.add(validator);
     }
 
-    @PostMapping("/innerTag/update/{id}")
+    @PutMapping("/innerTag/update/{id}")
     public void update(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("id") int id) {
         innerTagService.update(validator, id);
     }

@@ -15,6 +15,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -48,6 +49,7 @@ public final class CategoryMapper extends AbstractMapper {
         j.forEach(i -> {
             res.add(this.getView(i));
         });
+        Collections.sort(res);
         return res;
     }
 
@@ -60,7 +62,12 @@ public final class CategoryMapper extends AbstractMapper {
     }
 
     public CategoryEditDto getEdit(Category category) {
-        return null; //TODO
+        return new CategoryEditDto(
+                category.getId(),
+                category.getName(),
+                category.getDescription(),
+                null,
+                sortedTypeMapper.getAllView(category.getSortedTypeList()));
     }
 
 }

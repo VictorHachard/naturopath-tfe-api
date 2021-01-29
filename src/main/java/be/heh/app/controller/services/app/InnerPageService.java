@@ -38,7 +38,6 @@ public class InnerPageService extends AbstractService<InnerPage> {
         InnerPage innerPage = innerPageRepository.findById(id).get();
         innerPageMapper.update(innerPage, validator);
         innerPageRepository.save(innerPage);
-        System.out.println(10);
     }
 
     public void validation(int id) {

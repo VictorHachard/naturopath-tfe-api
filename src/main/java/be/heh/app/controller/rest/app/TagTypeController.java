@@ -19,8 +19,13 @@ import java.util.List;
 public class TagTypeController extends AbstractController {
 
     @PostMapping("/tagType")
-    public void add(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
-        tagTypeService.add(generalTypeValidator);
+    public int add(@Valid @RequestBody GeneralTypeValidator validator) {
+        return tagTypeService.addC(validator);
+    }
+
+    @PutMapping("/tagType/update/{id}")
+    public void update(@Valid @RequestBody GeneralTypeValidator validator, @PathVariable("id") int id) {
+        tagTypeService.update(validator, id);
     }
 
     @GetMapping("/dto/tagType")

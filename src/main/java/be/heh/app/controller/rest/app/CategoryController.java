@@ -50,7 +50,7 @@ public class CategoryController extends AbstractController {
 		return categoryService.addC(categoryValidator);
 	}
 
-	@PostMapping("/category/update/{id}")
+	@PutMapping("/category/update/{id}")
 	public void update(@Valid @RequestBody CategoryUpdateValidator validator, @PathVariable("id") int id) {
 		categoryService.update(validator, id);
 	}

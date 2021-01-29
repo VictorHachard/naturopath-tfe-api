@@ -43,7 +43,6 @@ public class CategoryService extends AbstractService<Category> {
             categoryDtoList.add(categoryDto);
 
         });
-        Collections.sort(categoryDtoList);
         return categoryDtoList;
     }
 

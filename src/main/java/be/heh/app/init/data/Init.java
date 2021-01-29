@@ -109,7 +109,7 @@ public class Init extends AbstractAutowire {
             sortedTypeFacade.newInstance(paragraphTypeList.get(1), 0),
             sortedTypeFacade.newInstance(paragraphTypeList.get(2), 0),
             sortedTypeFacade.newInstance(paragraphTypeList.get(3), 0),
-            sortedTypeFacade.newInstance(paragraphTypeList.get(4), 0),
+            sortedTypeFacade.newInstance(paragraphTypeList.get(4), 10),
             sortedTypeFacade.newInstance(paragraphTypeList.get(5), 0),
             sortedTypeFacade.newInstance(paragraphTypeList.get(6), 0),
             sortedTypeFacade.newInstance(paragraphTypeList.get(7), 0),

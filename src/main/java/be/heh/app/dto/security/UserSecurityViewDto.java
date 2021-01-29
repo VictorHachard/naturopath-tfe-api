@@ -17,4 +17,6 @@ public class UserSecurityViewDto {
 
     String username;
 
+    String permission;
+
 }

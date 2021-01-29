@@ -32,4 +32,9 @@ public class ParatagType extends AbstractType {
     @ManyToOne
     TagType tagType;
 
+    @Override
+    public String getType() {
+        return "ParatagType";
+    }
+
 }

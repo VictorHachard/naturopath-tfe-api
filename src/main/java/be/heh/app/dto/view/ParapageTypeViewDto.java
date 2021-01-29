@@ -11,12 +11,17 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParapageTypeViewDto {
+public class ParapageTypeViewDto implements Comparable<ParapageTypeViewDto> {
 
     int id;
 
     String name;
 
     String description;
+
+    @Override
+    public int compareTo(ParapageTypeViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

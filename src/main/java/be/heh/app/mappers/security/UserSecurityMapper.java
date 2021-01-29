@@ -32,7 +32,8 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
     public UserSecurityViewDto getView(UserSecurity user) {
         return new UserSecurityViewDto(
                 user.getId(),
-                user.getUsername());
+                user.getUsername(),
+                user.getEnumPermission().toString());
     }
 
     public UserSecurityViewDto getEdit(UserSecurity user) {

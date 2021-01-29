@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParatagTypeViewDto {
+public class ParatagTypeViewDto implements Comparable<ParatagTypeViewDto> {
 
     int id;
 
@@ -23,5 +23,10 @@ public class ParatagTypeViewDto {
     TagTypeViewDto tagType;
 
     EnumSize size;
+
+    @Override
+    public int compareTo(ParatagTypeViewDto o) {
+        return this.getName().compareTo(o.getName());
+    }
 
 }

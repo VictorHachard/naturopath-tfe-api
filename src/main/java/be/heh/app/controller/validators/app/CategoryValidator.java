@@ -16,7 +16,7 @@ public class CategoryValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 6, max = 32)
+    @Size(min = 4, max = 32)
     String name;
 
     @NotNull(message = "")

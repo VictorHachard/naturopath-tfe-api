@@ -44,6 +44,15 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
         }
     }
 
+    public boolean setConfirmAccount(int id) {
+        if (userSecurityRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
+        } else {
+            userSecurityFacade.setConfirm(userSecurityRepository.findById(id).get());
+            return true;
+        }
+    }
+
     public boolean confirmAccount(AbstractValidator abstractValidator) {
         UserSecurityTokenValidator validator = (UserSecurityTokenValidator) abstractValidator;
         UserSecurity user = userSecurityRepository.findUserByConfirmToken(validator.getToken());

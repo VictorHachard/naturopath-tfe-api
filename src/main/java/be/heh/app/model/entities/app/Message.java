@@ -25,6 +25,9 @@ public class Message extends AbstractEntity {
     @Column(name = "content", length = 2500)
     String content;
 
+    @Column(name = "edited")
+    boolean edited;
+
     /*@JoinColumn(name = "inner_id")
     @ManyToOne
     AbstractInner inner;*/

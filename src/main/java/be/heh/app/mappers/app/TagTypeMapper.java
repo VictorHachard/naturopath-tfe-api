@@ -10,6 +10,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -18,8 +19,16 @@ import java.util.List;
 @Log
 public final class TagTypeMapper extends AbstractMapper {
 
-    public TagType set(GeneralTypeValidator generalTypeValidator) {
-        return tagTypeFacade.newInstance(generalTypeValidator.getName(), generalTypeValidator.getDescription());
+    public TagType set(GeneralTypeValidator validator) {
+        return tagTypeFacade.newInstance(
+                validator.getName(),
+                validator.getDescription()
+        );
+    }
+
+    public void update(TagType tagType, GeneralTypeValidator validator) {
+        tagType.setName(validator.getName());
+        tagType.setDescription(validator.getDescription());
     }
 
     public List<TagTypeViewDto> getAllView(List<TagType> j) {
@@ -27,6 +36,7 @@ public final class TagTypeMapper extends AbstractMapper {
         j.forEach(i -> {
             res.add(this.getView(i));
         });
+        Collections.sort(res);
         return res;
     }
 

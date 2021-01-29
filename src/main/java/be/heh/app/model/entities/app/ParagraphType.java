@@ -22,4 +22,9 @@ public class ParagraphType extends AbstractType {
     @Column(name = "description", length = 2500)
     String description;
 
+    @Override
+    public String getType() {
+        return "ParagraphType";
+    }
+
 }

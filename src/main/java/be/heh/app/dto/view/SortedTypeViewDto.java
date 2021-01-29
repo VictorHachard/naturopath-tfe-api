@@ -12,12 +12,19 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SortedTypeViewDto {
+public class SortedTypeViewDto implements Comparable<SortedTypeViewDto> {
 
     int id;
 
     int order;
 
     AbstractType abstractType;
+
+    String type;
+
+    @Override
+    public int compareTo(SortedTypeViewDto o) {
+        return Integer.compare(this.getOrder(), o.getOrder());
+    }
 
 }

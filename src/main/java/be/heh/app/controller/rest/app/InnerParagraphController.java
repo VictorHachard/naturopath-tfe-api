@@ -22,7 +22,7 @@ public class InnerParagraphController extends AbstractController {
         innerParagraphService.add(validator);
     }
 
-    @PostMapping("/innerParagraph/update/{id}")
+    @PutMapping("/innerParagraph/update/{id}")
     public void update(@Valid @RequestBody InnerParagraphUpdateValidator validator, @PathVariable("id") int id) {
         innerParagraphService.update(validator, id);
     }

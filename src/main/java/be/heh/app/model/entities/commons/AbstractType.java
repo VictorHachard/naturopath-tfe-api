@@ -11,4 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public abstract class AbstractType extends AbstractEntity {
 
+    public String getType() {
+        return "AbstractType";
+    }
+
 }

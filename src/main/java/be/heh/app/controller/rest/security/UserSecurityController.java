@@ -42,6 +42,11 @@ public class UserSecurityController extends AbstractSecurityController {
         return userSecurityService.deleteAccount(validator);
     }
 
+    @PostMapping("/user/set/confirmAccount/{id}")
+    public boolean setConfirmAccount(@PathVariable("id") int id) {
+        return userSecurityService.setConfirmAccount(id);
+    }
+
     @PostMapping("/user/set/resetAccount")
     public boolean setResetAccount(@Valid @RequestBody UserSecuritySetResetValidator validator) {
         return userSecurityService.setResetAccount(validator);

@@ -1,6 +1,6 @@
 package be.heh.app.dto.edit;
 
-import be.heh.app.model.entities.app.SortedType;
+import be.heh.app.dto.view.SortedTypeViewDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class CategoryEditDto implements Comparable<CategoryEditDto> {
 
     List<CategoryEditDto> childCategory;
 
-    List<SortedType> sortedTypeType;
+    List<SortedTypeViewDto> sortedTypeType;
 
     @Override
     public int compareTo(CategoryEditDto o) {

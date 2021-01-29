@@ -42,6 +42,8 @@ public class InitRepository extends AbstractAutowire {
         repositoryMap.put("Tag", tagRepository);
         repositoryMap.put("TagType", tagTypeRepository);
         repositoryMap.put("User", userRepository);
+        repositoryMap.put("SortedType", sortedTypeRepository);
+        repositoryMap.put("ParatagType", paratagTypeRepository);
         repositoryMap.put("Vote", voteRepository);
 
         try {
