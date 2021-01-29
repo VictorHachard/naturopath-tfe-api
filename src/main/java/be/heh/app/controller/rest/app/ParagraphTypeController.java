@@ -33,4 +33,9 @@ public class ParagraphTypeController extends AbstractController {
         return paragraphTypeService.getAllDto();
     }
 
+    @GetMapping("/dto/paragraphType/{id}")
+    public ParagraphTypeViewDto getDto(@PathVariable("id") int id) {
+        return paragraphTypeService.getDto(id);
+    }
+
 }

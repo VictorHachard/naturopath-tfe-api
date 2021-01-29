@@ -38,4 +38,8 @@ public class ParagraphTypeService extends AbstractService<ParagraphType> {
         return paragraphTypeMapper.getAllView(super.getAll());
     }
 
+    public ParagraphTypeViewDto getDto(int id) {
+        return paragraphTypeMapper.getView(super.get(id));
+    }
+
 }

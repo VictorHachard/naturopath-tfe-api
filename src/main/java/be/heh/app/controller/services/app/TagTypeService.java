@@ -38,4 +38,12 @@ public class TagTypeService extends AbstractService<TagType> {
         return tagTypeMapper.getAllView(super.getAll());
     }
 
+    public List<TagTypeViewDto> getAllDtoHaveNotBeAssignedToAParatag() {
+        return tagTypeMapper.getAllDtoHaveNotBeAssignedToAParatag(super.getAll());
+    }
+
+    public TagTypeViewDto getDto(int id) {
+        return tagTypeMapper.getView(super.get(id));
+    }
+
 }

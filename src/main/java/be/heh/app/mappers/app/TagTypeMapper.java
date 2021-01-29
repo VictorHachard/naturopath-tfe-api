@@ -40,6 +40,15 @@ public final class TagTypeMapper extends AbstractMapper {
         return res;
     }
 
+    public List<TagTypeViewDto> getAllDtoHaveNotBeAssignedToAParatag(List<TagType> j) { //TODO
+        List<TagTypeViewDto> res = new ArrayList<>();
+        j.forEach(i -> {
+            res.add(this.getView(i));
+        });
+        Collections.sort(res);
+        return res;
+    }
+
     public TagTypeViewDto getView(TagType tagType) {
         return new TagTypeViewDto(
                 tagType.getId(),

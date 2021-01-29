@@ -1,11 +1,15 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
+import be.heh.app.controller.validators.app.ParatagTypeValidator;
+import be.heh.app.dto.view.ParatagTypeViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
@@ -14,15 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Log
 public class ParatagTypeController extends AbstractController {
 
-    /*
     @PostMapping("/paratagType")
-    public ParatagType insertParatagType(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
-        return paratagTypeService.insertParatagType(generalTypeValidator);
+    public int add(@Valid @RequestBody ParatagTypeValidator validator) {
+        return paratagTypeService.addC(validator);
     }
 
-    @PostMapping("/paratagType/{paratagTypeId}/linkToCategory/{categoryId}")
-    public void linkParagraphTypeToCategory(@PathVariable("categoryId") int categoryId, @PathVariable("paratagTypeId") int paratagTypeId) {
-        paratagTypeService.linkParatagTypeToCategory(categoryId, paratagTypeId);
-    }*/
+    @PutMapping("/paratagType/update/{id}")
+    public void update(@Valid @RequestBody ParatagTypeValidator validator, @PathVariable("id") int id) {
+        paratagTypeService.update(validator, id);
+    }
+
+    @GetMapping("/dto/paratagType")
+    public List<ParatagTypeViewDto> getAllDto() {
+        return paratagTypeService.getAllDto();
+    }
 
 }

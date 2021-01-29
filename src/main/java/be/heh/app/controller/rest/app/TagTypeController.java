@@ -33,4 +33,14 @@ public class TagTypeController extends AbstractController {
         return tagTypeService.getAllDto();
     }
 
+    @GetMapping("/dto/tagTypeHaveNotBeAssignedToAParatag")
+    public List<TagTypeViewDto> getAllDtoHaveNotBeAssignedToAParatag() {
+        return tagTypeService.getAllDtoHaveNotBeAssignedToAParatag();
+    }
+
+    @GetMapping("/dto/tagType/{id}")
+    public TagTypeViewDto getDto(@PathVariable("id") int id) {
+        return tagTypeService.getDto(id);
+    }
+
 }

@@ -1,6 +1,5 @@
 package be.heh.app.dto.view;
 
-import be.heh.app.model.entities.commons.AbstractType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
