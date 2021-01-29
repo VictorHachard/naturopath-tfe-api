@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade extends AbstractFacade<User> {
 
+    public User newInstance(String username) {
+        User res = super.newInstance();
+        res.setUsername(username);
+        return res;
+    }
+
     // Init
     public User init(String username) {
         User res = super.newInstance();

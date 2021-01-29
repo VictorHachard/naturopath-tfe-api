@@ -44,8 +44,8 @@ public class UserSecurity implements Serializable {
     @Temporal(TemporalType.DATE)
     Date birth;
 
-    @Column(name = "validation_token", unique = true)
-    String validationToken;
+    @Column(name = "confirm_token", unique = true)
+    String confirmToken;
 
     @Column(name = "confirm_set")
     @Temporal(TemporalType.TIMESTAMP)

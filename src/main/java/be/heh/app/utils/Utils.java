@@ -14,8 +14,14 @@ public class Utils {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
 
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[24];
+    /**
+     * 24 -> 32 char / 48 -> 60 char So for 24 bytes from the above example you get the 32 chars.
+     * @return  random string in base64 encoding with 32 chars.
+     * In Base64 encoding every char encodes 6 bits of the data.
+     * https://stackoverflow.com/questions/13992972/how-to-create-a-authentication-token-using-java
+     */
+    public static String generateNewToken(int i) {
+        byte[] randomBytes = new byte[i];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
