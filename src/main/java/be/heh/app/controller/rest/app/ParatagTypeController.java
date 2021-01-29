@@ -33,4 +33,9 @@ public class ParatagTypeController extends AbstractController {
         return paratagTypeService.getAllDto();
     }
 
+    @GetMapping("/dto/paratagType/{id}")
+    public ParatagTypeViewDto getDto(@PathVariable("id") int id) {
+        return paratagTypeService.getDto(id);
+    }
+
 }
