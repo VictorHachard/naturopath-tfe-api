@@ -6,7 +6,6 @@ import be.heh.app.controller.validators.security.*;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.security.UserSecurity;
-import be.heh.app.model.facades.security.UserSecurityFacade;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Optional;
 
 @Service
 // Lombok
@@ -35,7 +32,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public UserSecurityViewDto login(AbstractValidator abstractValidator) {
         UserSecurityLoginValidator validator = (UserSecurityLoginValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getUsername(), validator.getEmail());
+        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getEmailOrUsername());
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
@@ -71,7 +68,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public boolean setResetAccount(AbstractValidator abstractValidator) {
         UserSecuritySetResetValidator validator = (UserSecuritySetResetValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getUsername(), validator.getEmail());
+        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getEmailOrUsername());
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
         } else {

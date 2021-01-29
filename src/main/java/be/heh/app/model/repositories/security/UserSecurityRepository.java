@@ -11,12 +11,11 @@ public interface UserSecurityRepository extends AbstractRepository<UserSecurity,
 
     /**
      *
-     * @param username
-     * @param email
+     * @param emailOrUsername
      * @return
      */
-    @Query("select u from UserSecurity u where u.username = ?1 or u.email = ?2")
-    UserSecurity findUserByEmailOrUsername(@Param("username") String username, @Param("email") String email);
+    @Query("select u from UserSecurity u where u.username = ?1 or u.email = ?1")
+    UserSecurity findUserByEmailOrUsername(@Param("emailOrUsername") String emailOrUsername);
 
     /**
      *

@@ -1,8 +1,6 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.security.UserSecurityLoginValidator;
 import be.heh.app.controller.validators.security.UserSecurityRegisterValidator;
-import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.view.UserViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.User;

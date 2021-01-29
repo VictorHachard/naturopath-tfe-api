@@ -3,7 +3,6 @@ package be.heh.app.mappers.security;
 import be.heh.app.controller.validators.security.UserSecurityRegisterValidator;
 import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.security.UserSecurityViewDto;
-import be.heh.app.dto.view.UserViewDto;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.security.UserSecurity;
 import lombok.AccessLevel;
