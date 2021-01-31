@@ -58,68 +58,58 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
 
     }
 
-    public boolean setConfirmAccount(int id) {
-        if (userSecurityRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
-        } else {
-            userSecurityFacade.setConfirm(userSecurityRepository.findById(id).get());
-            return true;
-        }
+    public boolean setConfirmAccount(UserSecurity u) {
+        userSecurityFacade.setConfirm(u);
+        return true;
     }
 
     public boolean confirmAccount(AbstractValidator abstractValidator) {
         UserSecurityTokenValidator validator = (UserSecurityTokenValidator) abstractValidator;
         if (!userSecurityRepository.existsByConfirmToken(validator.getToken())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid or the user doesn't not exist");
         } else {
             UserSecurity user = userSecurityRepository.findByConfirmToken(validator.getToken()).get();
             userSecurityFacade.confirm(user);
+            userSecurityRepository.save(user);
+            System.out.println("User " + user.getUsername() + " has confirm is account");
             return true;
         }
     }
 
-    public UserSecurityViewDto resetAccount(AbstractValidator abstractValidator) {
+    public void resetAccount(AbstractValidator abstractValidator) {
         UserSecurityResetValidator validator = (UserSecurityResetValidator) abstractValidator;
 
         if (!userSecurityRepository.existsByResetToken(validator.getToken())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid or the user doesn't not exist");
         } else {
             UserSecurity user = userSecurityRepository.findByResetToken(validator.getToken()).get();
             userSecurityMapper.reset(validator, user);
-            return null;
-            //return userSecurityMapper.getEdit(user);
+            userSecurityRepository.save(user);
         }
     }
 
-    public boolean setResetAccount(AbstractValidator abstractValidator) {
+    public void setResetAccount(AbstractValidator abstractValidator) {
         UserSecuritySetResetValidator validator = (UserSecuritySetResetValidator) abstractValidator;
         UserSecurity user = userSecurityRepository.findByEmailOrUsername(validator.getEmailOrUsername()).get();
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
         } else {
             userSecurityFacade.setReset(user);
-            return true;
         }
     }
 
-    public boolean deleteAccount(AbstractValidator abstractValidator) {
+    public void deleteAccount(AbstractValidator abstractValidator) {
         UserSecurityTokenValidator validator = (UserSecurityTokenValidator) abstractValidator;
         if (!userSecurityRepository.existsByDeleteToken(validator.getToken())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid or the user doesn't not exist");
         } else {
             //UserSecurity user = userSecurityRepository.findByDeleteToken(validator.getToken()).get();
             //userSecurityRepository.deleteById(id);
-            return true;
         }
     }
 
-    public boolean setDeleteAccount(int id) {
-        if (userSecurityRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
-        } else {
-            //userSecurityFacade.setDelete(userSecurityRepository.findById(id).get());
-            return true;
-        }
+    public void setDeleteAccount(UserSecurity u) {
+        userSecurityFacade.setDelete(u);
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("api/v1/test/")
 public class RestFullController {
 
-	@GetMapping("/all")
+	/*@GetMapping("/all")
 	public List<String> allAccess() {
 		List<String> l = new ArrayList<>();
 		l.add("Public Content");
@@ -44,6 +44,6 @@ public class RestFullController {
 	@PreAuthorize("hasRole('USER')")
 	public String adminAccess() {
 		return "Admin Board.";
-	}
+	}*/
 
 }

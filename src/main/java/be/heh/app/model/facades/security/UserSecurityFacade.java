@@ -32,8 +32,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         res.setUsername(username);
         res.setEmail(email);
         res.setPassword(passwordEncoder.encode(password));
-        res.setAllEmails(1);
-        res.setProfilePrivacy(0);
+        res.setAllEmails(true);
+        res.setIsProfilePrivacy(false);
         this.setConfirm(res);
         return res;
     }
@@ -52,7 +52,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         userSecurity.setConfirmToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setConfirmSet(new Timestamp(System.currentTimeMillis()));
         userSecurity.setConfirmedAt(null);
-        log.info("Validation token for " + userSecurity.getUsername() + " user : " + userSecurity.getConfirmToken());
+        log.info("Validation token for " + userSecurity.getUsername() + " user : " + userSecurity.getConfirmToken()
+                + ", the link is: http://localhost:4200/confirm/" + userSecurity.getConfirmToken());
     }
 
     public void confirm(UserSecurity userSecurity) {
@@ -65,7 +66,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         userSecurity.setResetToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setResetSet(new Timestamp(System.currentTimeMillis()));
         userSecurity.setResetToken(null);
-        log.info("Reset token for " + userSecurity.getUsername() + " user : " + userSecurity.getResetToken());
+        log.info("Reset token for " + userSecurity.getUsername() + " user : " + userSecurity.getResetToken()
+                + ", the link is: http://localhost:4200/reset/" + userSecurity.getResetToken());
     }
 
     public void reset(UserSecurity userSecurity, String password) {
@@ -79,7 +81,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
     public void setDelete(UserSecurity userSecurity) {
         userSecurity.setDeleteToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setDeleteSet(new Timestamp(System.currentTimeMillis()));
-        log.info("Delete token for " + userSecurity.getUsername() + " user : " + userSecurity.getResetToken());
+        log.info("Delete token for " + userSecurity.getUsername() + " user : " + userSecurity.getDeleteToken()
+                + ", the link is: http://localhost:4200/delete/" + userSecurity.getDeleteToken());
     }
 
 }

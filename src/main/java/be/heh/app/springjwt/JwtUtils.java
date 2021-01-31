@@ -37,6 +37,8 @@ public class JwtUtils {
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            // Reset expiration
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken).getBody().setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).getSubject();
             return true;
         } catch (SignatureException e) {
             log.info("Invalid JWT signature: " + e.getMessage());
@@ -51,4 +53,5 @@ public class JwtUtils {
         }
         return false;
     }
+
 }

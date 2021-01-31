@@ -2,6 +2,7 @@ package be.heh.app.mappers.security;
 
 import be.heh.app.controller.validators.security.UserSecurityRegisterValidator;
 import be.heh.app.controller.validators.security.UserSecurityResetValidator;
+import be.heh.app.dto.security.UserSecurityEditDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.security.UserSecurity;
@@ -40,6 +41,25 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
         return new UserSecurityViewDto(
                 null,
                 user.getUsername(),
+                res
+        );
+    }
+
+    public UserSecurityEditDto getEdit(UserSecurity user) {
+        List<String> res = new ArrayList<>();
+        user.getEnumPermissionList().forEach(permission -> {
+            res.add(permission.getName().name());
+        });
+        return new UserSecurityEditDto(
+                null,
+                user.getUsername(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getBirth(),
+                (user.getConfirmedAt() != null),
+                user.getAllEmails(),
+                user.getIsProfilePrivacy(),
                 res
         );
     }

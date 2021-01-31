@@ -2,13 +2,16 @@ package be.heh.app.controller.rest.security;
 
 import be.heh.app.controller.rest.commons.AbstractSecurityController;
 import be.heh.app.controller.validators.security.*;
+import be.heh.app.dto.security.UserSecurityEditDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
+import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.springjwt.JwtUtils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -64,44 +67,51 @@ public class UserSecurityController extends AbstractSecurityController {
         return ResponseEntity.ok(res);
     }
 
+    @GetMapping("dto/edit")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public UserSecurityEditDto getEditDto() {
+        UserSecurity u = (UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userSecurityMapper.getEdit(u);
+    }
+
     @PostMapping("logout")
     public void logout() {
         //TODO
     }
 
     @PostMapping("confirmAccount")
-    public boolean confirmAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
+    public Boolean confirmAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
         return userSecurityService.confirmAccount(validator);
     }
 
     @PostMapping("resetAccount")
-    public UserSecurityViewDto resetAccount(@Valid @RequestBody UserSecurityResetValidator validator) {
-        return userSecurityService.resetAccount(validator);
+    public void resetAccount(@Valid @RequestBody UserSecurityResetValidator validator) {
+        userSecurityService.resetAccount(validator);
     }
 
     @DeleteMapping("deleteAccount")
-    public boolean deleteAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
-        return userSecurityService.deleteAccount(validator);
+    public void deleteAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
+        userSecurityService.deleteAccount(validator);
     }
 
-    @PostMapping("set/confirmAccount/{id}")
-    public boolean setConfirmAccount(@PathVariable("id") int id) {
-        return userSecurityService.setConfirmAccount(id);
+    @PostMapping("set/confirmAccount")
+    public void setConfirmAccount() {
+        userSecurityService.setConfirmAccount(((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
     @PostMapping("set/resetAccount")
-    public boolean setResetAccount(@Valid @RequestBody UserSecuritySetResetValidator validator) {
-        return userSecurityService.setResetAccount(validator);
+    public void setResetAccount(@Valid @RequestBody UserSecuritySetResetValidator validator) {
+        userSecurityService.setResetAccount(validator);
     }
 
-    @PostMapping("set/deleteAccount/{id}")
-    public boolean setDeleteAccount(@PathVariable("id") int id) {
-        return userSecurityService.setDeleteAccount(id);
+    @PostMapping("set/deleteAccount")
+    public void setDeleteAccount() {
+        userSecurityService.setDeleteAccount(((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
     /*@PostMapping("update/{id}")
-    public void update(@Valid @RequestBody UserSecurityRegisterValidator validator, @PathVariable("id") int id) {
-        userSecurityService.update(validator, id);
+    public void update(@Valid @RequestBody UserSecurityRegisterValidator validator) {
+        userSecurityService.update(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }}*/
 
 }

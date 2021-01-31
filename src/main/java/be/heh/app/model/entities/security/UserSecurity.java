@@ -79,17 +79,17 @@ public class UserSecurity implements Serializable, UserDetails {
     Set<Role> enumPermissionList = new HashSet<>();
 
     @Column(name = "all_emails")
-    int allEmails; // 0 - no, 1 - yes
+    Boolean allEmails;
 
     @Column(name = "accept_terms")
-    int acceptTerms;
+    Boolean acceptTerms;
 
     @Column(name = "last_connection")
     @Temporal(TemporalType.TIMESTAMP)
     Date lastConnection;
 
-    @Column(name = "profile_privacy")
-    int profilePrivacy; // 0 - private, 1 - public
+    @Column(name = "is_profile_privacy")
+    Boolean isProfilePrivacy;
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
