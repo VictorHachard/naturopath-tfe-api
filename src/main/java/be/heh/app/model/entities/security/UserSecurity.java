@@ -1,14 +1,16 @@
 package be.heh.app.model.entities.security;
 
 import be.heh.app.model.entities.app.User;
-import be.heh.app.model.entities.security.enumeration.EnumPermission;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 // Lombok
@@ -17,7 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class UserSecurity implements Serializable {
+public class UserSecurity implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue
@@ -44,9 +46,6 @@ public class UserSecurity implements Serializable {
     @Column(name = "birth")
     @Temporal(TemporalType.DATE)
     Date birth;
-
-    @Column(name = "token", unique = true)
-    String token;
 
     @Column(name = "confirm_token", unique = true)
     String confirmToken;
@@ -96,5 +95,45 @@ public class UserSecurity implements Serializable {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt;
+
+    @JsonInclude()
+    @Transient
+    Collection<? extends GrantedAuthority> authorities;
+
+    public void addPermission(Permission... p) {
+        if (enumPermissionList == null) {
+            enumPermissionList = new ArrayList<>();
+        }
+        enumPermissionList.addAll(Arrays.asList(p));
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> list = new ArrayList<>();
+        enumPermissionList.forEach(permission -> {
+            list.add(new SimpleGrantedAuthority("ROLE_" + permission.getEnumPermission().toString()));
+        });
+        return list;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

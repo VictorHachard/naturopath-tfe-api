@@ -1,6 +1,6 @@
 package be.heh.app.model.entities.security;
 
-import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.security.enumeration.EnumPermission;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -22,6 +22,6 @@ public class Permission implements Serializable {
 
     @Column(name = "enum_type")
     @Enumerated(EnumType.STRING)
-    EnumType enumType;
+    EnumPermission enumPermission;
 
 }

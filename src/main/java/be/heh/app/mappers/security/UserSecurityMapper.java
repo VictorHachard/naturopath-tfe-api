@@ -38,14 +38,10 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
             res.add(permission.toString());
         });
         return new UserSecurityViewDto(
-                user.getToken(),
+                null,
                 user.getUsername(),
                 res
         );
-    }
-
-    public UserSecurityViewDto getEdit(UserSecurity user) {
-        return null; //TODO
     }
 
 }
