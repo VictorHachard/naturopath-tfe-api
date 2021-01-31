@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/innerTag/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class InnerTagController extends AbstractController {
 
-    @PostMapping("/innerTag")
+    @PostMapping("")
     public void add(@Valid @RequestBody InnerTagValidator validator) {
         innerTagService.add(validator);
     }
 
-    @PutMapping("/innerTag/update/{id}")
+    @PutMapping("update/{id}")
     public void update(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("id") int id) {
         innerTagService.update(validator, id);
     }
 
-    @PostMapping("/innerTag/validation/{id}")
+    @PostMapping("validation/{id}")
     public void validation(@PathVariable("id") int id) {
         innerTagService.validation(id);
     }

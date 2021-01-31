@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/innerParagraph/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class InnerParagraphController extends AbstractController {
 
-    @PostMapping("/innerParagraph")
+    @PostMapping("")
     public void add(@Valid @RequestBody InnerParagraphValidator validator) {
         innerParagraphService.add(validator);
     }
 
-    @PutMapping("/innerParagraph/update/{id}")
+    @PutMapping("update/{id}")
     public void update(@Valid @RequestBody InnerParagraphUpdateValidator validator, @PathVariable("id") int id) {
         innerParagraphService.update(validator, id);
     }
 
-    @PostMapping("/innerParagraph/validation/{id}")
+    @PostMapping("validation/{id}")
     public void validation(@PathVariable("id") int id) {
         innerParagraphService.validation(id);
     }

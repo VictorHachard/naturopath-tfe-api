@@ -1,4 +1,4 @@
-package be.heh.app;
+package be.heh.app.controller.rest;
 
 import be.heh.app.model.entities.security.UserSecurity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +35,7 @@ public class RestFullController {
 	}
 
 	@GetMapping("/mod")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('OWNER')")
 	public String moderatorAccess() {
 		return "Moderator Board.";
 	}

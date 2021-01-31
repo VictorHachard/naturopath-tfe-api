@@ -19,6 +19,6 @@ public class UserSecurityViewDto {
 
     String username;
 
-    List<String> permissionList;
+    List<String> roleList;
 
 }

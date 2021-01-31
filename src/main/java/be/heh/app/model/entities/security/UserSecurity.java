@@ -1,7 +1,6 @@
 package be.heh.app.model.entities.security;
 
 import be.heh.app.model.entities.app.User;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;

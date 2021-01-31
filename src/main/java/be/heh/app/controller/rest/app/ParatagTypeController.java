@@ -6,34 +6,37 @@ import be.heh.app.dto.view.ParatagTypeViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/paratagType/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParatagTypeController extends AbstractController {
 
-    @PostMapping("/paratagType")
+    @PostMapping("")
+    @PreAuthorize("hasRole('OWNER')")
     public int add(@Valid @RequestBody ParatagTypeValidator validator) {
         return paratagTypeService.addC(validator);
     }
 
-    @PutMapping("/paratagType/update/{id}")
+    @PutMapping("update/{id}")
+    @PreAuthorize("hasRole('OWNER')")
     public void update(@Valid @RequestBody ParatagTypeValidator validator, @PathVariable("id") int id) {
         paratagTypeService.update(validator, id);
     }
 
-    @GetMapping("/dto/paratagType")
+    @GetMapping("dto")
     public List<ParatagTypeViewDto> getAllDto() {
         return paratagTypeService.getAllDto();
     }
 
-    @GetMapping("/dto/paratagType/{id}")
+    @GetMapping("dto/{id}")
     public ParatagTypeViewDto getDto(@PathVariable("id") int id) {
         return paratagTypeService.getDto(id);
     }

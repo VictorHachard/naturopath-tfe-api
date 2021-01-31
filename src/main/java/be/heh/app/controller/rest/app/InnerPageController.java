@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/innerPage/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class InnerPageController extends AbstractController {
 
-    @PostMapping("/innerPage")
+    @PostMapping("")
     public void add(@Valid @RequestBody InnerPageValidator validator) {
         innerPageService.add(validator);
     }
 
-    @PutMapping("/innerPage/update/{id}")
+    @PutMapping("update/{id}")
     public void update(@Valid @RequestBody InnerPageUpdateValidator validator, @PathVariable("id") int id) {
         innerPageService.update(validator, id);
     }
 
-    @PostMapping("/innerPage/validation/{id}")
+    @PostMapping("validation/{id}")
     public void validation(@PathVariable("id") int id) {
         innerPageService.validation(id);
     }

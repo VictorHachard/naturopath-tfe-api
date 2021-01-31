@@ -12,28 +12,28 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/paragraphType/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParagraphTypeController extends AbstractController {
 
-    @PostMapping("/paragraphType")
+    @PostMapping("")
     public int add(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
         return paragraphTypeService.addC(generalTypeValidator);
     }
 
-    @PutMapping("/paragraphType/update/{id}")
+    @PutMapping("update/{id}")
     public void update(@Valid @RequestBody GeneralTypeValidator generalTypeValidator, @PathVariable("id") int id) {
         paragraphTypeService.update(generalTypeValidator, id);
     }
 
-    @GetMapping("/dto/paragraphType")
+    @GetMapping("dto")
     public List<ParagraphTypeViewDto> getAllDto() {
         return paragraphTypeService.getAllDto();
     }
 
-    @GetMapping("/dto/paragraphType/{id}")
+    @GetMapping("dto/{id}")
     public ParagraphTypeViewDto getDto(@PathVariable("id") int id) {
         return paragraphTypeService.getDto(id);
     }

@@ -35,7 +35,7 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
     public UserSecurityViewDto getView(UserSecurity user) {
         List<String> res = new ArrayList<>();
         user.getEnumPermissionList().forEach(permission -> {
-            res.add(permission.toString());
+            res.add(permission.getName().name());
         });
         return new UserSecurityViewDto(
                 null,

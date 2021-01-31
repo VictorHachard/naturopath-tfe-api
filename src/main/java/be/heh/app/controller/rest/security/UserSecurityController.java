@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/userSecurity/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
@@ -31,7 +31,7 @@ public class UserSecurityController extends AbstractSecurityController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @PostMapping("/user/login")
+    @PostMapping("login")
     public ResponseEntity<?> login(@Valid @RequestBody UserSecurityLoginValidator validator) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(validator.getEmailOrUsername(), validator.getPassword()));
@@ -42,52 +42,64 @@ public class UserSecurityController extends AbstractSecurityController {
         UserSecurityViewDto res = userSecurityService.login(validator);
         res.setToken(jwt);
 
-        log.info(jwt + " is the token of user " + res.getUsername());
+        log.info("LOGIN " + jwt + " is the token of user " + res.getUsername());
 
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping("/user/register")
-    public UserSecurityViewDto register(@Valid @RequestBody UserSecurityRegisterValidator validator) {
-        return userSecurityService.addC(validator);
+    @PostMapping("register")
+    public ResponseEntity<?> register(@Valid @RequestBody UserSecurityRegisterValidator validator) {
+        UserSecurityViewDto res = userSecurityService.addC(validator);
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(res.getUsername(), validator.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        res.setToken(jwt);
+
+        log.info("REGISTER " + jwt + " is the token of user " + res.getUsername());
+
+        return ResponseEntity.ok(res);
     }
 
-    @PostMapping("/user/logout")
+    @PostMapping("logout")
     public void logout() {
         //TODO
     }
 
-    @PostMapping("/user/confirmAccount")
+    @PostMapping("confirmAccount")
     public boolean confirmAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
         return userSecurityService.confirmAccount(validator);
     }
 
-    @PostMapping("/user/resetAccount")
+    @PostMapping("resetAccount")
     public UserSecurityViewDto resetAccount(@Valid @RequestBody UserSecurityResetValidator validator) {
         return userSecurityService.resetAccount(validator);
     }
 
-    @DeleteMapping("/user/deleteAccount")
+    @DeleteMapping("deleteAccount")
     public boolean deleteAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
         return userSecurityService.deleteAccount(validator);
     }
 
-    @PostMapping("/user/set/confirmAccount/{id}")
+    @PostMapping("set/confirmAccount/{id}")
     public boolean setConfirmAccount(@PathVariable("id") int id) {
         return userSecurityService.setConfirmAccount(id);
     }
 
-    @PostMapping("/user/set/resetAccount")
+    @PostMapping("set/resetAccount")
     public boolean setResetAccount(@Valid @RequestBody UserSecuritySetResetValidator validator) {
         return userSecurityService.setResetAccount(validator);
     }
 
-    @PostMapping("/user/set/deleteAccount/{id}")
+    @PostMapping("set/deleteAccount/{id}")
     public boolean setDeleteAccount(@PathVariable("id") int id) {
         return userSecurityService.setDeleteAccount(id);
     }
 
-    /*@PostMapping("/user/update/{id}")
+    /*@PostMapping("update/{id}")
     public void update(@Valid @RequestBody UserSecurityRegisterValidator validator, @PathVariable("id") int id) {
         userSecurityService.update(validator, id);
     }}*/

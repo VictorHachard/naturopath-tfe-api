@@ -9,39 +9,41 @@ import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/page/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class PageController extends AbstractController {
 
-	@GetMapping("/dto/page/{id}")
+	@GetMapping("dto/{id}")
 	public PageViewDto getDto(@PathVariable("id") int id) {
 		return pageService.getDto(id);
 	}
 
-	@GetMapping("/dto/edit/page/{id}")
+	@GetMapping("dto/edit/{id}")
 	public PageEditDto getEditDto(@PathVariable("id") int id) {
 		return pageService.getEditDto(id);
 	}
 
-	@GetMapping("/dto/page")
+	@GetMapping("dto")
 	public List<PageViewDto> getAllDto() {
 		return pageService.getAllDto();
 	}
 
-	@PostMapping("/dto/pageByCategory")
+	@PostMapping("dto/pageByCategory")
 	public List<PageByCategoryViewDto> getAllPageByCategoryDto(@Valid @RequestBody PagesByCategoryDtoValidator validator) {
 		return pageService.getAllPageByCategoryDto(validator);
 	}
 
-	@PostMapping("/page")
+	@PostMapping("")
+	@PreAuthorize("hasRole('USER')")
 	public int add(@Valid @RequestBody PageValidator pageValidator) {
 		return pageService.addC(pageValidator);
 	}

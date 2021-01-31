@@ -4,8 +4,6 @@ import be.heh.app.init.AbstractAutowire;
 import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.extern.java.Log;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -14,10 +12,7 @@ import java.util.List;
 @Log
 public abstract class AbstractFacade<T> extends AbstractAutowire {
 
-    @PersistenceContext
-    protected EntityManager entityManager;
-
-    protected int userId = 3;
+    protected int userId = 5;
 
     public T newInstance() {
         AbstractEntity obj = null;

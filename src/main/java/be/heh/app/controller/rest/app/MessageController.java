@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/message/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class MessageController extends AbstractController {
 
-    @PostMapping("/message")
+    @PostMapping("")
     public void add(@Valid @RequestBody MessageValidator validator) {
         messageService.add(validator);
     }
 
-    @PostMapping("/message/update/{id}")
+    @PostMapping("update/{id}")
     public void add(@Valid @RequestBody MessageUpdateValidator validator, @PathVariable("id") int id) {
         messageService.update(validator, id);
     }

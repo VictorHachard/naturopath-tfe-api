@@ -1,6 +1,5 @@
 package be.heh.app.init.data;
 
-import be.heh.app.init.AbstractAutowire;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumSize;
@@ -42,6 +41,8 @@ public class Init extends AbstractSecurityAutowire {
         User u = userFacade.init("Paulin");
         UserSecurity us = userSecurityFacade.newInstance("Paulin", "test@test.test", "Test123*");
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_USER));
+        us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR));
+        us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_OWNER));
         u.setUserSecurity(us);
         userList.add(u);
 

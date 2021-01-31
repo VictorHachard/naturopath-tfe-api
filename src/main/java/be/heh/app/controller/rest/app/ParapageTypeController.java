@@ -12,23 +12,23 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/parapageType/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParapageTypeController extends AbstractController {
 
-    @PostMapping("/parapageType")
+    @PostMapping("")
     public int add(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
         return parapageTypeService.addC(generalTypeValidator);
     }
 
-    @PutMapping("/parapageType/update/{id}")
+    @PutMapping("update/{id}")
     public void update(@Valid @RequestBody GeneralTypeValidator generalTypeValidator, @PathVariable("id") int id) {
         parapageTypeService.update(generalTypeValidator, id);
     }
 
-    @GetMapping("/dto/parapageType")
+    @GetMapping("dto")
     public List<ParapageTypeViewDto> getAllDto() {
         return parapageTypeService.getAllDto();
     }

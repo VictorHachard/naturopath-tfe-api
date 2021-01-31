@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/paragraph/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class ParagraphController extends AbstractController {
 
-    @GetMapping("/dto/paragraph")
+    @GetMapping("dto")
     public List<ParagraphViewDto> getAllDto() {
         return paragraphService.getAllDto();
     }
 
-    @GetMapping("/dto/paragraph/{id}")
+    @GetMapping("dto/{id}")
     public ParagraphViewDto getDto(@PathVariable("id") int id) {
         return paragraphService.getDto(id);
     }

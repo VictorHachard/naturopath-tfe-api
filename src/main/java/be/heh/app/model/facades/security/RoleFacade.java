@@ -13,7 +13,7 @@ public class RoleFacade extends AbstractFacade<Role> {
 
     public Role newInstance(EnumRole e) {
         Role res = new Role();
-        res.setName( e);
+        res.setName(e);
         return res;
     }
 

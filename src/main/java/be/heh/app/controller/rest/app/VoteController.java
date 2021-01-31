@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/vote/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class VoteController extends AbstractController {
 
-    @PostMapping("/vote")
+    @PostMapping("")
     public void add(@Valid @RequestBody VoteValidator voteValidator) {
         voteService.add(voteValidator);
     }

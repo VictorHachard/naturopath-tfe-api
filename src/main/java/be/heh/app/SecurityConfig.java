@@ -27,9 +27,26 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
+            "/api/v1/category/**",
+            "/api/v1/innerPage/**",
+            "/api/v1/innerParagraph/**",
+            "/api/v1/innerTag/**",
+            "/api/v1/message/**",
+            "/api/v1/page/**",
+            "/api/v1/paragraph/**",
+            "/api/v1/paragraphType/**",
+            "/api/v1/parapageType/**",
+            "/api/v1/paratagType/**",
+            "/api/v1/tag/**",
+            "/api/v1/tagType/**",
             "/api/v1/user/**",
-            "/api/v1/test/**"
+            "/api/v1/vote/**",
+            "/api/v1/userSecurity/**",
             // -- swagger ui
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
     };
 
     @Autowired

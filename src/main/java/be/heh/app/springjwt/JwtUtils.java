@@ -1,15 +1,10 @@
 package be.heh.app.springjwt;
 
-import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.security.UserSecurity;
-import be.heh.app.model.repositories.security.UserSecurityRepository;
 import io.jsonwebtoken.*;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
