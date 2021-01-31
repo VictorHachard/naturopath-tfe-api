@@ -10,6 +10,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -30,10 +33,15 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
     }
 
     public UserSecurityViewDto getView(UserSecurity user) {
+        List<String> res = new ArrayList<>();
+        user.getEnumPermissionList().forEach(permission -> {
+            res.add(permission.toString());
+        });
         return new UserSecurityViewDto(
-                user.getId(),
+                user.getToken(),
                 user.getUsername(),
-                user.getEnumPermission().toString());
+                res
+        );
     }
 
     public UserSecurityViewDto getEdit(UserSecurity user) {

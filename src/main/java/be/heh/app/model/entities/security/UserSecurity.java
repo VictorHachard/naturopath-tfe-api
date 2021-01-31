@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 // Lombok
@@ -44,6 +45,9 @@ public class UserSecurity implements Serializable {
     @Temporal(TemporalType.DATE)
     Date birth;
 
+    @Column(name = "token", unique = true)
+    String token;
+
     @Column(name = "confirm_token", unique = true)
     String confirmToken;
 
@@ -73,9 +77,8 @@ public class UserSecurity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     Date deleteSet;
 
-    @Column(name = "permission")
-    @Enumerated(EnumType.STRING)
-    EnumPermission enumPermission;
+    @OneToMany
+    List<Permission> enumPermissionList;
 
     @Column(name = "all_emails")
     int allEmails; // 0 - no, 1 - yes

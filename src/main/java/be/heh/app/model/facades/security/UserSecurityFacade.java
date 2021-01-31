@@ -22,6 +22,7 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         res.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         res.setUsername(username);
         res.setEmail(email);
+        res.setToken(Utils.generateNewToken(24));
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         res.setPassword(passwordEncoder.encode(password));
         res.setAllEmails(1);

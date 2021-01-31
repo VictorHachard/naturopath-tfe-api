@@ -3,6 +3,7 @@ package be.heh.app.init;
 import be.heh.app.controller.services.security.UserSecurityService;
 import be.heh.app.mappers.security.UserSecurityMapper;
 import be.heh.app.model.facades.security.UserSecurityFacade;
+import be.heh.app.model.repositories.security.PermissionRepository;
 import be.heh.app.model.repositories.security.UserSecurityRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -18,6 +19,9 @@ public abstract class AbstractSecurityAutowire extends AbstractAutowire {
 
     @Autowired
     UserSecurityRepository userSecurityRepository;
+
+    @Autowired
+    PermissionRepository permissionRepository;
 
     // Mapper
 

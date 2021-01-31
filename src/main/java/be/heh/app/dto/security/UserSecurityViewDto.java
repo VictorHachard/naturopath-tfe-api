@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -13,10 +15,10 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class UserSecurityViewDto {
 
-    int id;
+    String token;
 
     String username;
 
-    String permission;
+    List<String> permissionList;
 
 }

@@ -6,6 +6,7 @@ import be.heh.app.controller.validators.security.*;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.security.UserSecurity;
+import be.heh.app.utils.Utils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -13,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 // Lombok
@@ -32,7 +35,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public UserSecurityViewDto login(AbstractValidator abstractValidator) {
         UserSecurityLoginValidator validator = (UserSecurityLoginValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getEmailOrUsername());
+        UserSecurity user = userSecurityRepository.findByEmailOrUsername(validator.getEmailOrUsername());
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
@@ -40,6 +43,8 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
         if (!passwordEncoder.matches(validator.getPassword(), user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
+            user.setToken(Utils.generateNewToken(24));
+            userSecurityRepository.save(user);
             return userSecurityMapper.getView(user);
         }
     }
@@ -55,10 +60,10 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public boolean confirmAccount(AbstractValidator abstractValidator) {
         UserSecurityTokenValidator validator = (UserSecurityTokenValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByConfirmToken(validator.getToken());
-        if (user == null) {
+        if (!userSecurityRepository.existsByConfirmToken(validator.getToken())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
         } else {
+            UserSecurity user = userSecurityRepository.findByConfirmToken(validator.getToken()).get();
             userSecurityFacade.confirm(user);
             return true;
         }
@@ -66,10 +71,11 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public UserSecurityViewDto resetAccount(AbstractValidator abstractValidator) {
         UserSecurityResetValidator validator = (UserSecurityResetValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByResetToken(validator.getToken());
-        if (user == null) {
+
+        if (!userSecurityRepository.existsByResetToken(validator.getToken())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
         } else {
+            UserSecurity user = userSecurityRepository.findByResetToken(validator.getToken()).get();
             userSecurityMapper.reset(validator, user);
             return userSecurityMapper.getEdit(user);
         }
@@ -77,7 +83,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public boolean setResetAccount(AbstractValidator abstractValidator) {
         UserSecuritySetResetValidator validator = (UserSecuritySetResetValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByEmailOrUsername(validator.getEmailOrUsername());
+        UserSecurity user = userSecurityRepository.findByEmailOrUsername(validator.getEmailOrUsername());
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
         } else {
@@ -88,10 +94,10 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
 
     public boolean deleteAccount(AbstractValidator abstractValidator) {
         UserSecurityTokenValidator validator = (UserSecurityTokenValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findUserByDeleteToken(validator.getToken());
-        if (user == null) {
+        if (!userSecurityRepository.existsByDeleteToken(validator.getToken())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This token is not valid");
         } else {
+            //UserSecurity user = userSecurityRepository.findByDeleteToken(validator.getToken()).get();
             //userSecurityRepository.deleteById(id);
             return true;
         }
@@ -101,7 +107,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> {
         if (userSecurityRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
         } else {
-            userSecurityFacade.setDelete(userSecurityRepository.findById(id).get());
+            //userSecurityFacade.setDelete(userSecurityRepository.findById(id).get());
             return true;
         }
     }
