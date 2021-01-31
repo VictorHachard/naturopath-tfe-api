@@ -1,8 +1,11 @@
 package be.heh.app.init.data;
 
 import be.heh.app.init.AbstractAutowire;
+import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumSize;
+import be.heh.app.model.entities.security.UserSecurity;
+import be.heh.app.model.entities.security.enumeration.EnumRole;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.omnifaces.cdi.Startup;
@@ -17,7 +20,7 @@ import java.util.List;
 @Startup
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Init extends AbstractAutowire {
+public class Init extends AbstractSecurityAutowire {
 
     static List<User> userList = new ArrayList<>();
     static List<Category> categoryList = new ArrayList<>();
@@ -36,7 +39,12 @@ public class Init extends AbstractAutowire {
 
 
     public void initUser() {
-        userList.add(userFacade.init("Paulin"));
+        User u = userFacade.init("Paulin");
+        UserSecurity us = userSecurityFacade.newInstance("Paulin", "test@test.test", "Test123*");
+        us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_USER));
+        u.setUserSecurity(us);
+        userList.add(u);
+
     }
 
     public void initTagType() {
@@ -185,6 +193,10 @@ public class Init extends AbstractAutowire {
     public void init() {
         initUser();
         userList.forEach(user -> {
+            user.getUserSecurity().getEnumPermissionList().forEach(p -> {
+                permissionRepository.save(p);
+            });
+            userSecurityRepository.save(user.getUserSecurity());
             userRepository.save(user);
         });
 

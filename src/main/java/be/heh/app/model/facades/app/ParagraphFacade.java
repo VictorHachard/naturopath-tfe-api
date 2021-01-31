@@ -23,7 +23,7 @@ public class ParagraphFacade extends AbstractFacade<Paragraph> {
         Paragraph res = super.newInstance();
         res.addInnerParagraph(innerParagraph);
         res.setParagraphType(paragraphType);
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         return res;
     }
 

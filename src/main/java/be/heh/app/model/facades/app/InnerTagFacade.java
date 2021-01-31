@@ -22,7 +22,7 @@ public class InnerTagFacade extends AbstractFacade<InnerTag> {
     // Init
     public InnerTag init(String name, String content) {
         InnerTag res = super.newInstance();
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         res.setContent(content);
         res.setName(name);
         res.setVersion(0);

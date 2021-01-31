@@ -22,7 +22,7 @@ public class PageFacade extends AbstractFacade<Page> {
         Page res = super.newInstance();
         res.setEnumState(EnumState.VALIDATED);
         res.addInnerPage(innerPage);
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         res.setCategory(category);
         return res;
     }

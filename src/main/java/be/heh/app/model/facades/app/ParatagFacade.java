@@ -23,7 +23,7 @@ public class ParatagFacade extends AbstractFacade<Paratag> {
         Paratag res = super.newInstance();
         res.addInnerParatag(innerParatag);
         res.setParatagType(paratagType);
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         return res;
     }
 

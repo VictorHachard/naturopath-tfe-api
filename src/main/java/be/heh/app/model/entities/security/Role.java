@@ -1,6 +1,6 @@
 package be.heh.app.model.entities.security;
 
-import be.heh.app.model.entities.security.enumeration.EnumPermission;
+import be.heh.app.model.entities.security.enumeration.EnumRole;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,14 +14,14 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Permission implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue
     int id;
 
-    @Column(name = "enum_type")
+    @Column(name = "name")
     @Enumerated(EnumType.STRING)
-    EnumPermission enumPermission;
+    EnumRole name;
 
 }

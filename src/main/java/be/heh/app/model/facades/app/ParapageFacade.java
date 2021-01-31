@@ -23,7 +23,7 @@ public class ParapageFacade extends AbstractFacade<Parapage> {
         Parapage res = super.newInstance();
         res.addInnerParapage(innerParapage);
         res.setParapageType(parapageType);
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         return res;
     }
 

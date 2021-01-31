@@ -1,10 +1,15 @@
 package be.heh.app;
 
+import be.heh.app.model.entities.security.UserSecurity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -12,14 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestFullController {
 
 	@GetMapping("/all")
-	public String allAccess() {
-		return "Public Content.";
+	public List<String> allAccess() {
+		List<String> l = new ArrayList<>();
+		l.add("Public Content");
+		return l;
 	}
 
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
+	@PreAuthorize("hasRole('USER')")
+	public List<String> userAccess() {
+
+		UserSecurity userDetails =
+				(UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<String> l = new ArrayList<>();
+		l.add("User Content: " + userDetails.getUsername());
+		return l;
 	}
 
 	@GetMapping("/mod")

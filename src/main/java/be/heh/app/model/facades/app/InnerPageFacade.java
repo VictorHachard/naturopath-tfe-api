@@ -32,7 +32,7 @@ public class InnerPageFacade extends AbstractFacade<InnerPage> {
     // Init
     public InnerPage init(String title, String description) {
         InnerPage res = super.newInstance();
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         res.setDescription(description);
         res.setTitle(title);
         res.setVersion(0);

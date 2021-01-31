@@ -76,8 +76,8 @@ public class UserSecurity implements Serializable, UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     Date deleteSet;
 
-    @OneToMany
-    List<Permission> enumPermissionList;
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<Role> enumPermissionList = new HashSet<>();
 
     @Column(name = "all_emails")
     int allEmails; // 0 - no, 1 - yes
@@ -96,14 +96,7 @@ public class UserSecurity implements Serializable, UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt;
 
-    @JsonInclude()
-    @Transient
-    Collection<? extends GrantedAuthority> authorities;
-
-    public void addPermission(Permission... p) {
-        if (enumPermissionList == null) {
-            enumPermissionList = new ArrayList<>();
-        }
+    public void addPermission(Role... p) {
         enumPermissionList.addAll(Arrays.asList(p));
     }
 
@@ -111,7 +104,7 @@ public class UserSecurity implements Serializable, UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<>();
         enumPermissionList.forEach(permission -> {
-            list.add(new SimpleGrantedAuthority("ROLE_" + permission.getEnumPermission().toString()));
+            list.add(new SimpleGrantedAuthority(permission.getName().name()));
         });
         return list;
     }

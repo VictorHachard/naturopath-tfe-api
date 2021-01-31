@@ -20,7 +20,7 @@ public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
     // Init
     public InnerParatag init(String title, String content) {
         InnerParatag res = super.newInstance();
-        res.setUser(userRepository.findById(1).get());
+        res.setUser(userRepository.findById(this.userId).get());
         res.setContent(content);
         res.setTitle(title);
         res.setVersion(0);

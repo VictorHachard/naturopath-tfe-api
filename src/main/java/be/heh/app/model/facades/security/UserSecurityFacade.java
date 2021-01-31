@@ -1,10 +1,8 @@
 package be.heh.app.model.facades.security;
 
-import be.heh.app.model.entities.security.Permission;
 import be.heh.app.model.entities.security.UserSecurity;
-import be.heh.app.model.entities.security.enumeration.EnumPermission;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.security.PermissionRepository;
+import be.heh.app.model.repositories.security.RoleRepository;
 import be.heh.app.utils.Utils;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,10 @@ import java.util.stream.Collectors;
 public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
 
     @Autowired
-    PermissionFacade permissionFacade;
+    RoleFacade permissionFacade;
 
     @Autowired
-    PermissionRepository permissionRepository;
+    RoleRepository permissionRepository;
 
     public UserSecurity newInstance(String username, String email, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -39,26 +37,18 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         res.setEmail(email);
         res.setPassword(passwordEncoder.encode(password));
         res.setAllEmails(1);
-        Permission p = permissionFacade.newInstance(EnumPermission.USER);
-        permissionRepository.save(p);
-        res.addPermission(p);
         res.setProfilePrivacy(0);
         this.setConfirm(res);
         return res;
     }
 
     public static UserSecurity build(UserSecurity u) {
-        List<GrantedAuthority> authorities = u.getEnumPermissionList().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getEnumPermission().toString()))
-                .collect(Collectors.toList());
-
         UserSecurity res = new UserSecurity();
         res.setId(u.getId());
         res.setUsername(u.getUsername());
         res.setEmail(u.getEmail());
         res.setPassword(u.getPassword());
         res.setEnumPermissionList(u.getEnumPermissionList());
-        res.setAuthorities(authorities);
         return res;
     }
 

@@ -5,7 +5,9 @@ import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.controller.validators.security.*;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.security.Role;
 import be.heh.app.model.entities.security.UserSecurity;
+import be.heh.app.model.entities.security.enumeration.EnumRole;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -28,7 +30,10 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
         UserSecurity userSecurity = userSecurityMapper.set(validator);
         User user = userMapper.set(validator);
+        Role p = permissionMapper.set(EnumRole.ROLE_USER);
         userSecurity.setUser(user);
+        userSecurity.addPermission(p);
+        permissionRepository.save(p);
         userRepository.save(user);
         userSecurityRepository.save(userSecurity);
         return userSecurityMapper.getView(userSecurity);
@@ -47,6 +52,10 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             userSecurityRepository.save(user);
             return userSecurityMapper.getView(user);
         }
+    }
+
+    public void logout() {
+
     }
 
     public boolean setConfirmAccount(int id) {

@@ -17,6 +17,8 @@ public abstract class AbstractFacade<T> extends AbstractAutowire {
     @PersistenceContext
     protected EntityManager entityManager;
 
+    protected int userId = 3;
+
     public T newInstance() {
         AbstractEntity obj = null;
         try {

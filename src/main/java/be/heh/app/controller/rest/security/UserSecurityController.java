@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/v1")
 // Lombok
@@ -49,6 +50,11 @@ public class UserSecurityController extends AbstractSecurityController {
     @PostMapping("/user/register")
     public UserSecurityViewDto register(@Valid @RequestBody UserSecurityRegisterValidator validator) {
         return userSecurityService.addC(validator);
+    }
+
+    @PostMapping("/user/logout")
+    public void logout() {
+        //TODO
     }
 
     @PostMapping("/user/confirmAccount")
