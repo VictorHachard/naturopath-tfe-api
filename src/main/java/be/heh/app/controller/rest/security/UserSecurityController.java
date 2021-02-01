@@ -95,6 +95,7 @@ public class UserSecurityController extends AbstractSecurityController {
     }
 
     @PostMapping("set/confirmAccount")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void setConfirmAccount() {
         userSecurityService.setConfirmAccount(((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
@@ -105,13 +106,15 @@ public class UserSecurityController extends AbstractSecurityController {
     }
 
     @PostMapping("set/deleteAccount")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void setDeleteAccount() {
         userSecurityService.setDeleteAccount(((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
-    /*@PostMapping("update/{id}")
+    @PutMapping("update")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void update(@Valid @RequestBody UserSecurityRegisterValidator validator) {
-        userSecurityService.update(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
-    }}*/
+        userSecurityService.update(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
 
 }

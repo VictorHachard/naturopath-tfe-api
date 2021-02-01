@@ -22,6 +22,7 @@ import java.util.List;
 public class Init extends AbstractSecurityAutowire {
 
     static List<User> userList = new ArrayList<>();
+    static List<UserSecurity> userSecurityList = new ArrayList<>();
     static List<Category> categoryList = new ArrayList<>();
 
     static List<TagType> tagTypeList = new ArrayList<>();
@@ -43,7 +44,8 @@ public class Init extends AbstractSecurityAutowire {
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_USER));
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR));
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_OWNER));
-        u.setUserSecurity(us);
+        us.setUser(u);
+        userSecurityList.add(us);
         userList.add(u);
 
     }
@@ -193,12 +195,12 @@ public class Init extends AbstractSecurityAutowire {
     @PostConstruct
     public void init() {
         initUser();
-        userList.forEach(user -> {
-            user.getUserSecurity().getEnumPermissionList().forEach(p -> {
+        userSecurityList.forEach(user -> {
+            user.getEnumPermissionList().forEach(p -> {
                 permissionRepository.save(p);
             });
-            userSecurityRepository.save(user.getUserSecurity());
-            userRepository.save(user);
+            userRepository.save(user.getUser());
+            userSecurityRepository.save(user);
         });
 
         initParagraphType();

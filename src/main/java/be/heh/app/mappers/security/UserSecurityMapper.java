@@ -29,6 +29,10 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
         return res;
     }
 
+    public void update(UserSecurity userSecurity, UserSecurityRegisterValidator validator) {
+        userSecurityFacade.update(userSecurity, validator.getUsername(), validator.getEmail());
+    }
+
     public void reset(UserSecurityResetValidator validator, UserSecurity user) {
         userSecurityFacade.reset(user, validator.getPassword());
     }

@@ -38,9 +38,18 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         return res;
     }
 
+    public void update(UserSecurity userSecurity, String username, String email) {
+        userSecurity.setUsername(username);
+        if (!userSecurity.getEmail().equals(email)) {
+            userSecurity.setEmail(email);
+            this.setConfirm(userSecurity);
+        }
+    }
+
     public static UserSecurity build(UserSecurity u) {
         UserSecurity res = new UserSecurity();
         res.setId(u.getId());
+        res.setUser(u.getUser());
         res.setUsername(u.getUsername());
         res.setEmail(u.getEmail());
         res.setPassword(u.getPassword());
@@ -84,5 +93,4 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         log.info("Delete token for " + userSecurity.getUsername() + " user : " + userSecurity.getDeleteToken()
                 + ", the link is: http://localhost:4200/delete/" + userSecurity.getDeleteToken());
     }
-
 }

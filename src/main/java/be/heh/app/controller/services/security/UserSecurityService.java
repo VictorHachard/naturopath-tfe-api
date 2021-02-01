@@ -28,6 +28,11 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
 
     public UserSecurityViewDto addC(AbstractValidator abstractValidator) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
+        if (userSecurityRepository.existsByUsername(validator.getUsername())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username is already taken");
+        } else if (userSecurityRepository.existsByEmail(validator.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The email is already taken");
+        }
         UserSecurity userSecurity = userSecurityMapper.set(validator);
         User user = userMapper.set(validator);
         Role p = permissionMapper.set(EnumRole.ROLE_USER);
@@ -49,7 +54,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         if (!passwordEncoder.matches(validator.getPassword(), user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
-            userSecurityRepository.save(user);
+            //TODO last connection
             return userSecurityMapper.getView(user);
         }
     }
@@ -112,9 +117,23 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         userSecurityFacade.setDelete(u);
     }
 
-    @Override
-    public void update(AbstractValidator abstractValidator, int id) {
+    public void update(AbstractValidator abstractValidator, UserSecurity userSecurity) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
+        if (userSecurityRepository.existsByUsername(validator.getUsername()) && !validator.getUsername().equals(userSecurity.getUsername())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username is already taken");
+        } else if (userSecurityRepository.existsByEmail(validator.getEmail()) && !validator.getEmail().equals(userSecurity.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The email is already taken");
+        }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if (!passwordEncoder.matches(validator.getPassword(), userSecurity.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
+        } else {
+            userSecurityMapper.update(userSecurity, validator);
+            System.out.println(userSecurity.toString());
+            userMapper.update(userSecurity.getUser(), validator);
+            userRepository.save(userSecurity.getUser());
+            userSecurityRepository.save(userSecurity);
+        }
     }
 
     @Override
@@ -122,7 +141,6 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
     public UserSecurity loadUserByUsername(String s) throws UsernameNotFoundException {
         UserSecurity user = userSecurityRepository.findByEmailOrUsername(s)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + s));
-
         return userSecurityFacade.build(user);
     }
 }

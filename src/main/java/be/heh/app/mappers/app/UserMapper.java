@@ -19,6 +19,10 @@ public final class UserMapper extends AbstractMapper {
         return userFacade.newInstance(validator.getUsername());
     }
 
+    public void update(User user, UserSecurityRegisterValidator validator) {
+        userFacade.update(user, validator.getUsername());
+    }
+
     public UserViewDto getView(User user) {
         return new UserViewDto(
                 user.getId(),

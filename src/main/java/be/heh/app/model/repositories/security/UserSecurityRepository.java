@@ -19,6 +19,10 @@ public interface UserSecurityRepository extends AbstractRepository<UserSecurity,
     @Query("select u from UserSecurity u where u.username = ?1 or u.email = ?1")
     Optional<UserSecurity> findByEmailOrUsername(@Param("emailOrUsername") String emailOrUsername);
 
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
+
     /**
      *
      * @param confirmToken the token

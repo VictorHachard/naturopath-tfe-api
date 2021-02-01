@@ -13,6 +13,10 @@ public class UserFacade extends AbstractFacade<User> {
         return res;
     }
 
+    public void update(User user, String username) {
+        user.setUsername(username);
+    }
+
     // Init
     public User init(String username) {
         User res = super.newInstance();
