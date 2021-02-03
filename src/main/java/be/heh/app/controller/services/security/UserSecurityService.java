@@ -113,11 +113,17 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         }
     }
 
-    public void setDeleteAccount(UserSecurity u) {
-        userSecurityFacade.setDelete(u);
+    public void setDeleteAccount(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecurityDeleteValidator validator = (UserSecurityDeleteValidator) abstractValidator;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if (!passwordEncoder.matches(validator.getPassword(), userSecurity.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
+        } else {
+            userSecurityFacade.setDelete(userSecurity);
+        }
     }
 
-    public void update(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+    public void updateUsernameEmail(AbstractValidator abstractValidator, UserSecurity userSecurity) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
         if (userSecurityRepository.existsByUsername(validator.getUsername()) && !validator.getUsername().equals(userSecurity.getUsername())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username is already taken");
@@ -129,11 +135,39 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
             userSecurityMapper.update(userSecurity, validator);
-            System.out.println(userSecurity.toString());
             userMapper.update(userSecurity.getUser(), validator);
             userRepository.save(userSecurity.getUser());
             userSecurityRepository.save(userSecurity);
         }
+    }
+
+    public void updateFirstNameLastName(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecurityNameUpdateValidator validator = (UserSecurityNameUpdateValidator) abstractValidator;
+        userSecurityMapper.update(userSecurity, validator);
+        userSecurityRepository.save(userSecurity);
+    }
+
+    public void updatePassword(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecurityPasswordUpdateValidator validator = (UserSecurityPasswordUpdateValidator) abstractValidator;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if (!passwordEncoder.matches(validator.getOldPassword(), userSecurity.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
+        } else {
+            userSecurityFacade.updatePassword(userSecurity, validator.getPassword());
+            userSecurityRepository.save(userSecurity);
+        }
+    }
+
+    public void updateAppearance(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecurityAppearanceUpdateValidator validator = (UserSecurityAppearanceUpdateValidator) abstractValidator;
+        userSecurityFacade.updateAppearance(userSecurity, validator.getDark());
+        userSecurityRepository.save(userSecurity);
+    }
+
+    public void updatePrivacy(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecurityPrivacyUpdateValidator validator = (UserSecurityPrivacyUpdateValidator) abstractValidator;
+        userSecurityFacade.updatePrivacy(userSecurity, validator.getIsPrivate());
+        userSecurityRepository.save(userSecurity);
     }
 
     @Override

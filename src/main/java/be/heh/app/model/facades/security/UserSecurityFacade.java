@@ -2,10 +2,8 @@ package be.heh.app.model.facades.security;
 
 import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.model.facades.commons.AbstractFacade;
-import be.heh.app.model.repositories.security.RoleRepository;
 import be.heh.app.utils.Utils;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,23 +17,21 @@ import java.sql.Timestamp;
 @Log
 public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
 
-    @Autowired
-    RoleFacade permissionFacade;
-
-    @Autowired
-    RoleRepository permissionRepository;
-
     public UserSecurity newInstance(String username, String email, String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         UserSecurity res = new UserSecurity();
         res.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         res.setUsername(username);
         res.setEmail(email);
-        res.setPassword(passwordEncoder.encode(password));
-        res.setAllEmails(true);
-        res.setIsProfilePrivacy(false);
+        res.setIsDark(false);
+        res.setIsProfilePrivacy(true);
+        this.updatePassword(res, password);
         this.setConfirm(res);
         return res;
+    }
+
+    public void updatePassword(UserSecurity userSecurity, String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        userSecurity.setPassword(passwordEncoder.encode(password));
     }
 
     public void update(UserSecurity userSecurity, String username, String email) {
@@ -44,6 +40,19 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
             userSecurity.setEmail(email);
             this.setConfirm(userSecurity);
         }
+    }
+
+    public void updatePrivacy(UserSecurity userSecurity, boolean isPrivate) {
+        userSecurity.setIsProfilePrivacy(isPrivate);
+    }
+
+    public void updateAppearance(UserSecurity userSecurity, boolean dark) {
+        userSecurity.setIsDark(dark);
+    }
+
+    public void updateName(UserSecurity userSecurity, String firstName, String lastName) {
+        userSecurity.setFirstName(firstName);
+        userSecurity.setLastName(lastName);
     }
 
     public static UserSecurity build(UserSecurity u) {
@@ -61,7 +70,7 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         userSecurity.setConfirmToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setConfirmSet(new Timestamp(System.currentTimeMillis()));
         userSecurity.setConfirmedAt(null);
-        log.info("Validation token for " + userSecurity.getUsername() + " user : " + userSecurity.getConfirmToken()
+        log.info("Validation token for " + userSecurity.getUsername() + " user: " + userSecurity.getConfirmToken()
                 + ", the link is: http://localhost:4200/confirm/" + userSecurity.getConfirmToken());
     }
 
@@ -74,8 +83,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
     public void setReset(UserSecurity userSecurity) {
         userSecurity.setResetToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setResetSet(new Timestamp(System.currentTimeMillis()));
-        userSecurity.setResetToken(null);
-        log.info("Reset token for " + userSecurity.getUsername() + " user : " + userSecurity.getResetToken()
+        userSecurity.setResetAt(null);
+        log.info("Reset token for " + userSecurity.getUsername() + " user: " + userSecurity.getResetToken()
                 + ", the link is: http://localhost:4200/reset/" + userSecurity.getResetToken());
     }
 
@@ -90,7 +99,8 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
     public void setDelete(UserSecurity userSecurity) {
         userSecurity.setDeleteToken(Utils.generateNewToken(42));//TODO unique
         userSecurity.setDeleteSet(new Timestamp(System.currentTimeMillis()));
-        log.info("Delete token for " + userSecurity.getUsername() + " user : " + userSecurity.getDeleteToken()
+        log.info("Delete token for " + userSecurity.getUsername() + " user: " + userSecurity.getDeleteToken()
                 + ", the link is: http://localhost:4200/delete/" + userSecurity.getDeleteToken());
     }
+
 }

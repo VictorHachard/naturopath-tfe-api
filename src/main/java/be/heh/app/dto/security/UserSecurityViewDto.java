@@ -21,4 +21,6 @@ public class UserSecurityViewDto {
 
     List<String> roleList;
 
+    Boolean dark;
+
 }

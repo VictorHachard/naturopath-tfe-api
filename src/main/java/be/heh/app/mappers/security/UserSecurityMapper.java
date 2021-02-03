@@ -1,5 +1,6 @@
 package be.heh.app.mappers.security;
 
+import be.heh.app.controller.validators.security.UserSecurityNameUpdateValidator;
 import be.heh.app.controller.validators.security.UserSecurityRegisterValidator;
 import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.security.UserSecurityEditDto;
@@ -33,6 +34,10 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
         userSecurityFacade.update(userSecurity, validator.getUsername(), validator.getEmail());
     }
 
+    public void update(UserSecurity userSecurity, UserSecurityNameUpdateValidator validator) {
+        userSecurityFacade.updateName(userSecurity, validator.getFirstName(), validator.getLastName());
+    }
+
     public void reset(UserSecurityResetValidator validator, UserSecurity user) {
         userSecurityFacade.reset(user, validator.getPassword());
     }
@@ -45,26 +50,31 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
         return new UserSecurityViewDto(
                 null,
                 user.getUsername(),
-                res
+                res,
+                user.getIsDark()
         );
     }
 
     public UserSecurityEditDto getEdit(UserSecurity user) {
-        List<String> res = new ArrayList<>();
+        List<String> roleList = new ArrayList<>();
         user.getEnumPermissionList().forEach(permission -> {
-            res.add(permission.getName().name());
+            roleList.add(permission.getName().name());
+        });
+        List<String> emailList = new ArrayList<>();
+        user.getEnumEmailList().forEach(email -> {
+            emailList.add(email.getName().name());
         });
         return new UserSecurityEditDto(
-                null,
                 user.getUsername(),
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getBirth(),
                 (user.getConfirmedAt() != null),
-                user.getAllEmails(),
                 user.getIsProfilePrivacy(),
-                res
+                user.getIsDark(),
+                roleList,
+                emailList
         );
     }
 

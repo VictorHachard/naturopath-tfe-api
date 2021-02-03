@@ -78,8 +78,11 @@ public class UserSecurity implements Serializable, UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     Set<Role> enumPermissionList = new HashSet<>();
 
-    @Column(name = "all_emails")
-    Boolean allEmails;
+    @ManyToMany(fetch = FetchType.EAGER)
+    List<Email> enumEmailList = new ArrayList<>();
+
+    @Column(name = "is_dark")
+    Boolean isDark;
 
     @Column(name = "accept_terms")
     Boolean acceptTerms;

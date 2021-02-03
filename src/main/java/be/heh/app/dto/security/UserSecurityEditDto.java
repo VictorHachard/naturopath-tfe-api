@@ -16,8 +16,6 @@ import java.util.List;
 @Setter
 public class UserSecurityEditDto {
 
-    String token;
-
     String username;
 
     String email;
@@ -30,10 +28,12 @@ public class UserSecurityEditDto {
 
     Boolean confirmed;
 
-    Boolean allEmails;
+    Boolean isPrivate;
 
-    Boolean isProfilePrivacy;
+    Boolean dark;
 
     List<String> roleList;
+
+    List<String> emailList;
 
 }

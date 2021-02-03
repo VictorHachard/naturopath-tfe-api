@@ -107,14 +107,53 @@ public class UserSecurityController extends AbstractSecurityController {
 
     @PostMapping("set/deleteAccount")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void setDeleteAccount() {
-        userSecurityService.setDeleteAccount(((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    public void setDeleteAccount(@Valid @RequestBody UserSecurityDeleteValidator validator) {
+        userSecurityService.setDeleteAccount(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
     @PutMapping("update")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void update(@Valid @RequestBody UserSecurityRegisterValidator validator) {
-        userSecurityService.update(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    public UserSecurityViewDto updateUsernameEmail(@Valid @RequestBody UserSecurityRegisterValidator validator) {
+        UserSecurity userSecurity = ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        userSecurityService.updateUsernameEmail(validator, userSecurity);
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userSecurity.getUsername(), validator.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserSecurityViewDto userSecurityViewDto = userSecurityMapper.getView(userSecurity);
+        userSecurityViewDto.setToken(jwt);
+
+        log.info("UPDATE " + jwt + " is the token of user " + userSecurityViewDto.getUsername());
+
+        return userSecurityViewDto;
+
+    }
+
+    @PutMapping("updateName")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void updateFirstNameLastName(@Valid @RequestBody UserSecurityNameUpdateValidator validator) {
+        userSecurityService.updateFirstNameLastName(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
+
+    @PutMapping("updatePassword")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void updatePassword(@Valid @RequestBody UserSecurityPasswordUpdateValidator validator) {
+        userSecurityService.updatePassword(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
+
+    @PutMapping("updateAppearance")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void updateAppearance(@Valid @RequestBody UserSecurityAppearanceUpdateValidator validator) {
+        userSecurityService.updateAppearance(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
+
+    @PutMapping("updatePrivacy")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void updatePrivacy(@Valid @RequestBody UserSecurityPrivacyUpdateValidator validator) {
+        userSecurityService.updatePrivacy(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
 }
