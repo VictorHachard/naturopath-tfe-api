@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class UserSecuritySetResetValidator extends AbstractValidator {
 
+    @NotNull(message = "")
+    @NotEmpty
     String emailOrUsername;
 
     @NotNull(message = "")

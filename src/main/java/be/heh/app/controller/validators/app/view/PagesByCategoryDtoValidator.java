@@ -17,4 +17,8 @@ public class PagesByCategoryDtoValidator extends AbstractValidator {
     @Min(1)
     Integer categoryId;
 
+    Integer limit;
+
+    Integer offset;
+
 }

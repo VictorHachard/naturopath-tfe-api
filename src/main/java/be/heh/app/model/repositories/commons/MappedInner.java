@@ -15,7 +15,7 @@ public interface MappedInner<T extends AbstractInner, I> extends AbstractReposit
      * @return true if the user has already voted
      */
     @Query("select case when (count(u) > 0) then true else false end from User u where ?2 in (select vote.user from #{#entityName} t join t.voteList vote where t.id = ?1)")
-    boolean hasVoted(int innerId, User user);
+    Boolean hasVoted(int innerId, User user);
 
     /**
      * Return true if the user has already voted in the innerId given in parameter, false otherwise.
@@ -24,6 +24,6 @@ public interface MappedInner<T extends AbstractInner, I> extends AbstractReposit
      * @return true if the user has already voted
      */
     @Query("select case when (count(u) > 0) then true else false end from User u where ?2 in (select vote.user.id from #{#entityName} t join t.voteList vote where t.id = ?1)")
-    boolean hasVotedById(int innerId, int userId);
+    Boolean hasVotedById(int innerId, int userId);
 
 }

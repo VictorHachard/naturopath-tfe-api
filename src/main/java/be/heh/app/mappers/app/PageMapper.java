@@ -2,6 +2,7 @@ package be.heh.app.mappers.app;
 
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.PageSimplifiedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Category;
@@ -56,12 +57,16 @@ public final class PageMapper extends AbstractMapper {
         );
     }
 
-    public List<PageByCategoryViewDto> getAllPageByCategoryDto(List<Page> pageList) {
-        List<PageByCategoryViewDto> res = new ArrayList<>();
+    public PageByCategoryViewDto getAllPageByCategoryDto(List<Page> pageList) {
+        return this.getAllPageByCategoryDto(pageList, pageList.size());
+    }
+
+    public PageByCategoryViewDto getAllPageByCategoryDto(List<Page> pageList, int size) {
+        List<PageSimplifiedViewDto> res = new ArrayList<>();
         pageList.forEach(i -> {
             InnerPage innerPage = pageRepository.findInnerPage(i, EnumState.VALIDATED).get(0);
 
-            res.add(new PageByCategoryViewDto(
+            res.add(new PageSimplifiedViewDto(
                     i.getId(),
                     i.getCreatedAt(),
                     innerPage.getTitle(),
@@ -69,7 +74,7 @@ public final class PageMapper extends AbstractMapper {
                     i.getImageList().size() == 0 ? null : imageMapper.getImageForPageByCategoryView(i.getImageList().get(0))
             ));
         });
-        return res;
+        return new PageByCategoryViewDto(size, res);
     }
 
     public PageEditDto getEditDto(Page page) {

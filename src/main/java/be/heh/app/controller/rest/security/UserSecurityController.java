@@ -74,11 +74,6 @@ public class UserSecurityController extends AbstractSecurityController {
         return userSecurityMapper.getEdit(u);
     }
 
-    @PostMapping("logout")
-    public void logout() {
-        //TODO
-    }
-
     @PostMapping("confirmAccount")
     public Boolean confirmAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
         return userSecurityService.confirmAccount(validator);

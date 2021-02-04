@@ -6,6 +6,7 @@ import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.PageSimplifiedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // Lombok
@@ -37,12 +39,17 @@ public class PageService extends AbstractService<Page> {
         return pageMapper.getEditDto(super.get(id));
     }
 
-    public List<PageByCategoryViewDto> getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {
+    public PageByCategoryViewDto getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {
         if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         }
         //TODO findAllByCategory not empty
-        return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
+        if (validator.getLimit() != null && validator.getOffset() != null) {
+            List<Page> pageList = pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED);
+            return pageMapper.getAllPageByCategoryDto(pageList.stream().skip(validator.getOffset()).limit(validator.getLimit()).collect(Collectors.toList()), pageList.size()); //TODO optimize the db acces
+        } else {
+            return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
+        }
     }
 
     public int addC(AbstractValidator abstractValidator) {

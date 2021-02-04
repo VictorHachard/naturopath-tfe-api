@@ -65,6 +65,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
 
     public boolean setConfirmAccount(UserSecurity u) {
         userSecurityFacade.setConfirm(u);
+        userSecurityRepository.save(u);
         return true;
     }
 
@@ -100,6 +101,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user doesn't not exist");
         } else {
             userSecurityFacade.setReset(user);
+            userSecurityRepository.save(user);
         }
     }
 
@@ -120,6 +122,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
             userSecurityFacade.setDelete(userSecurity);
+            userSecurityRepository.save(userSecurity);
         }
     }
 

@@ -5,6 +5,7 @@ import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.PageSimplifiedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -39,7 +40,7 @@ public class PageController extends AbstractController {
 	}
 
 	@PostMapping("dto/pageByCategory")
-	public List<PageByCategoryViewDto> getAllPageByCategoryDto(@Valid @RequestBody PagesByCategoryDtoValidator validator) {
+	public PageByCategoryViewDto getAllPageByCategoryDto(@Valid @RequestBody PagesByCategoryDtoValidator validator) {
 		return pageService.getAllPageByCategoryDto(validator);
 	}
 

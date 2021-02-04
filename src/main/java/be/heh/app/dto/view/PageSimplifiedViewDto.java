@@ -7,17 +7,22 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
-import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 @Setter
-public class PageByCategoryViewDto {
+public class PageSimplifiedViewDto {
 
-    int number;
+    int id;
 
-    List<PageSimplifiedViewDto> pageList;
+    Date createdAt;
+
+    String title;
+
+    String description;
+
+    ImageForPageByCategoryViewDto image;
 
 }

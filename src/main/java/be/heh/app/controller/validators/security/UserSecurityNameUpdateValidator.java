@@ -14,11 +14,9 @@ import javax.validation.constraints.NotNull;
 public class UserSecurityNameUpdateValidator extends AbstractValidator {
 
     @NotNull(message = "")
-    @NotEmpty
     String firstName;
 
     @NotNull(message = "")
-    @NotEmpty
     String lastName;
 
 }
