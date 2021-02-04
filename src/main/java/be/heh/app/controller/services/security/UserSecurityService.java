@@ -177,4 +177,5 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + s));
         return userSecurityFacade.build(user);
     }
+
 }

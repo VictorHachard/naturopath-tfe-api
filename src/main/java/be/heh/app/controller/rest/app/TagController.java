@@ -33,25 +33,25 @@ public class TagController extends AbstractController {
     }
 
     @GetMapping("dto/edit")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public List<TagEditDto> getAllEditDto() {
         return tagService.getAllEditDto();
     }
 
     @GetMapping("dto/edit/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public TagEditDto getEditDto(@PathVariable("id") int id) {
         return tagService.getEditDto(id);
     }
 
     @PostMapping("dto/tagByCategory")
-    @PreAuthorize("hasRole('USER')")
-    public List<TagByTagTypeViewDto> getAllPageByCategoryDto(@Valid @RequestBody TagByTagTypeDtoValidator validator) {
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(@Valid @RequestBody TagByTagTypeDtoValidator validator) {
         return tagService.getAllTagByTagTypeDto(validator);
     }
 
     @PostMapping("")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public int add(@Valid @RequestBody TagValidator tagValidator) {
         return tagService.addC(tagValidator);
     }

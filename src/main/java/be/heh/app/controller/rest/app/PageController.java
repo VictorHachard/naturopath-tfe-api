@@ -28,6 +28,7 @@ public class PageController extends AbstractController {
 	}
 
 	@GetMapping("dto/edit/{id}")
+	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
 	public PageEditDto getEditDto(@PathVariable("id") int id) {
 		return pageService.getEditDto(id);
 	}
@@ -43,7 +44,7 @@ public class PageController extends AbstractController {
 	}
 
 	@PostMapping("")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
 	public int add(@Valid @RequestBody PageValidator pageValidator) {
 		return pageService.addC(pageValidator);
 	}

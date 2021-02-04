@@ -32,11 +32,13 @@ public class ParatagTypeController extends AbstractController {
     }
 
     @GetMapping("dto")
+    @PreAuthorize("hasRole('OWNER')")
     public List<ParatagTypeViewDto> getAllDto() {
         return paratagTypeService.getAllDto();
     }
 
     @GetMapping("dto/{id}")
+    @PreAuthorize("hasRole('OWNER')")
     public ParatagTypeViewDto getDto(@PathVariable("id") int id) {
         return paratagTypeService.getDto(id);
     }

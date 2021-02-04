@@ -32,7 +32,7 @@ public class TagTypeController extends AbstractController {
     }
 
     @GetMapping("dto")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public List<TagTypeViewDto> getAllDto() {
         return tagTypeService.getAllDto();
     }
@@ -44,7 +44,7 @@ public class TagTypeController extends AbstractController {
     }
 
     @GetMapping("dto/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public TagTypeViewDto getDto(@PathVariable("id") int id) {
         return tagTypeService.getDto(id);
     }
