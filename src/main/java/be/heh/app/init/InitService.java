@@ -37,6 +37,7 @@ public class InitService extends AbstractAutowire {
         serviceMap.put("ParapageType", parapageTypeService);
         //serviceMap.put("Paratag", paratagService);
         serviceMap.put("Tag", tagService);
+        serviceMap.put("Contact", contactService);
         serviceMap.put("TagType", tagTypeService);
         serviceMap.put("User", userService);
         serviceMap.put("Vote", voteService);

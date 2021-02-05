@@ -51,8 +51,8 @@ public class CategoryController extends AbstractController {
 
 	@PostMapping("")
 	@PreAuthorize("hasRole('OWNER')")
-	public int add(@Valid @RequestBody CategoryValidator categoryValidator) {
-		return categoryService.addC(categoryValidator);
+	public int add(@Valid @RequestBody CategoryValidator validator) {
+		return categoryService.addC(validator);
 	}
 
 	@PutMapping("update/{id}")
