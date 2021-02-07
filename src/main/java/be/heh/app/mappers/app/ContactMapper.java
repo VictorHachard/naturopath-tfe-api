@@ -2,10 +2,8 @@ package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.ContactValidator;
 import be.heh.app.dto.view.ContactViewDto;
-import be.heh.app.dto.view.TagTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Contact;
-import be.heh.app.model.entities.app.TagType;
 import be.heh.app.model.entities.security.UserSecurity;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +11,6 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Component

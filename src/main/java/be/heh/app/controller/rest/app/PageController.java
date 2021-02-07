@@ -5,7 +5,6 @@ import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
-import be.heh.app.dto.view.PageSimplifiedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

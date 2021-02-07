@@ -10,7 +10,6 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Base64;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -35,23 +35,24 @@ public class UserSecurityController extends AbstractSecurityController {
     JwtUtils jwtUtils;
 
     @PostMapping("login")
-    public ResponseEntity<?> login(@Valid @RequestBody UserSecurityLoginValidator validator) {
+    public UserSecurityViewDto login(@Valid @RequestBody UserSecurityLoginValidator validator) {
+        String token = new String(Base64.getDecoder().decode(validator.getToken().replace("Basic ", "")));
+
+        UserSecurityViewDto res = userSecurityService.login(token.substring(0 , token.indexOf(":")), token.substring(token.indexOf(":") + 1));
+
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(validator.getEmailOrUsername(), validator.getPassword()));
+                new UsernamePasswordAuthenticationToken(res.getUsername(), token.substring(token.indexOf(":") + 1)));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserSecurityViewDto res = userSecurityService.login(validator);
         res.setToken(jwt);
 
         log.info("LOGIN " + jwt + " is the token of user " + res.getUsername());
-
-        return ResponseEntity.ok(res);
+        return res;
     }
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@Valid @RequestBody UserSecurityRegisterValidator validator) {
+    public UserSecurityViewDto register(@Valid @RequestBody UserSecurityRegisterValidator validator) {
         UserSecurityViewDto res = userSecurityService.addC(validator);
 
         Authentication authentication = authenticationManager.authenticate(
@@ -59,12 +60,10 @@ public class UserSecurityController extends AbstractSecurityController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
         res.setToken(jwt);
 
         log.info("REGISTER " + jwt + " is the token of user " + res.getUsername());
-
-        return ResponseEntity.ok(res);
+        return res;
     }
 
     @GetMapping("dto/edit")

@@ -44,14 +44,13 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         return userSecurityMapper.getView(userSecurity);
     }
 
-    public UserSecurityViewDto login(AbstractValidator abstractValidator) {
-        UserSecurityLoginValidator validator = (UserSecurityLoginValidator) abstractValidator;
-        UserSecurity user = userSecurityRepository.findByEmailOrUsername(validator.getEmailOrUsername()).get();
+    public UserSecurityViewDto login(String usernameOrEmail, String password) {
+        UserSecurity user = userSecurityRepository.findByEmailOrUsername(usernameOrEmail).get();
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (!passwordEncoder.matches(validator.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
             //TODO last connection

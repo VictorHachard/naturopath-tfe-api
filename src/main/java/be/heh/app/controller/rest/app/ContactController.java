@@ -1,9 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.controller.validators.app.ContactValidator;
-import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.dto.view.ContactViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
