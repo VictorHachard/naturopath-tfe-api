@@ -20,12 +20,7 @@ public class VoteService extends AbstractService<Vote> {
     @Override
     public void add(AbstractValidator abstractValidator) {
         VoteValidator validator = (VoteValidator) abstractValidator;
-
-        if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        }
-        User user = userRepository.findById(validator.getUserId()).get();
-
+        User user = this.getUser();
         if (validator.getType().equals("InnerParagraph")) {
             InnerParagraph innerParagraph = innerParagraphRepository.findById(validator.getTypeId()).get();
             Vote vote = voteMapper.set(validator, user);

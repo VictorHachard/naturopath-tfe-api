@@ -30,8 +30,6 @@ public class CategoryTest {
         category.setDescription("Test2");
         List<Category> categoryList = Arrays.asList(category);
 
-        System.out.println(categoryService);
-
         given(categoryService.getAllCategory()).willReturn(categoryList);
 
         mvc.perform(get("/api/v1/category")

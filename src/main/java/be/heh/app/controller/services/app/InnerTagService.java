@@ -24,9 +24,7 @@ public class InnerTagService extends AbstractService<InnerTag> {
         //TODO verifiaction
         InnerTagValidator validator = (InnerTagValidator) abstractValidator;
         Tag tag = tagRepository.findById(validator.getTagId()).get();
-        User user = userRepository.findById(validator.getUserId()).get();
-
-        InnerTag innerTag = innerTagMapper.set(validator, user);
+        InnerTag innerTag = innerTagMapper.set(validator, this.getUser());
         innerTagRepository.save(innerTag);
         tag.addInnerTag(innerTag);
         tagRepository.save(tag);
@@ -44,7 +42,6 @@ public class InnerTagService extends AbstractService<InnerTag> {
     public void validation(int id) {
         //TODO verifiaction
         InnerTag innerTag = innerTagRepository.findById(id).get();
-        System.out.println(innerTag.toString());
         innerTag.setEnumState(EnumState.VALIDATING);
         innerTagRepository.save(innerTag);
     }

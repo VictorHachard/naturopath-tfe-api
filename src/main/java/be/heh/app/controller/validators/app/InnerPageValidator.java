@@ -29,8 +29,4 @@ public class InnerPageValidator extends AbstractValidator {
     @Min(1)
     int pageId;
 
-    @NotNull(message = "")
-    @Min(1)
-    int userId;
-
 }

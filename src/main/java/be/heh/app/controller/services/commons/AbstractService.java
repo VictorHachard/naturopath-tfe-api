@@ -3,11 +3,14 @@ package be.heh.app.controller.services.commons;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.init.AbstractAutowire;
 import be.heh.app.init.InitRepository;
+import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.model.repositories.commons.AbstractRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -53,6 +56,10 @@ public abstract class AbstractService<I> extends AbstractAutowire {
         } else {
             repository.deleteById(id);
         }
+    }
+
+    protected User getUser() {
+        return ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
     }
 
 }

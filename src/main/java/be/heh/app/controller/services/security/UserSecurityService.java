@@ -45,10 +45,10 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
     }
 
     public UserSecurityViewDto login(String usernameOrEmail, String password) {
-        UserSecurity user = userSecurityRepository.findByEmailOrUsername(usernameOrEmail).get();
-        if (user == null) {
+        if (!userSecurityRepository.existsByEmail(usernameOrEmail) && !userSecurityRepository.existsByUsername(usernameOrEmail)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
+        UserSecurity user = userSecurityRepository.findByEmailOrUsername(usernameOrEmail).get();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
@@ -56,10 +56,6 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             //TODO last connection
             return userSecurityMapper.getView(user);
         }
-    }
-
-    public void logout() {
-
     }
 
     public boolean setConfirmAccount(UserSecurity u) {
@@ -76,7 +72,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             UserSecurity user = userSecurityRepository.findByConfirmToken(validator.getToken()).get();
             userSecurityFacade.confirm(user);
             userSecurityRepository.save(user);
-            System.out.println("User " + user.getUsername() + " has confirm is account");
+            log.info("User " + user.getUsername() + " has confirm is account");
             return true;
         }
     }

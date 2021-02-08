@@ -56,16 +56,13 @@ public class PageService extends AbstractService<Page> {
         Page page;
         if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        } else if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
         } else {
-            User user = userRepository.findById(validator.getUserId()).get();
+            User user = this.getUser();
             InnerPage innerPage = innerPageMapper.set(validator, user);
             innerPageRepository.save(innerPage);
             page = pageMapper.set(innerPage, categoryRepository.findById(validator.getCategoryId()).get(), user);
             //TODO si la category na pas de regle ne pas ajouter de liste
             page.getCategory().getSortedTypeList().forEach(sortedType -> {
-                System.out.println(sortedType.toString());
                 if (sortedType.getAbstractType() instanceof ParagraphType) {
                     page.addParagraph(paragraphMapper.set(innerParagraphMapper.set(user), (ParagraphType) sortedType.getAbstractType(), user));
                 } else if (sortedType.getAbstractType() instanceof ParatagType) {

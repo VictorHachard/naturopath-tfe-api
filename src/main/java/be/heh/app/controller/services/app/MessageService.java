@@ -20,11 +20,7 @@ public class MessageService extends AbstractService<Message> {
     @Override
     public void add(AbstractValidator abstractValidator) {
         MessageValidator validator = (MessageValidator) abstractValidator;
-
-        if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        }
-        User user = userRepository.findById(validator.getUserId()).get();
+        User user = this.getUser();
         Message message;
         if (validator.getType().equals("InnerPage")) {
             message = messageMapper.set(validator.getContent(), user);

@@ -26,8 +26,4 @@ public class TagValidator extends AbstractValidator {
     @Min(1)
     int tagTypeId;
 
-    @NotNull(message = "")
-    @Min(1)
-    int userId;
-
 }

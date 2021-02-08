@@ -24,8 +24,7 @@ public class InnerPageService extends AbstractService<InnerPage> {
         //TODO verifiaction
         InnerPageValidator validator = (InnerPageValidator) abstractValidator;
         Page page = pageRepository.findById(validator.getPageId()).get();
-        User user = userRepository.findById(validator.getUserId()).get();
-        InnerPage innerPage = innerPageMapper.set(validator, user);
+        InnerPage innerPage = innerPageMapper.set(validator, this.getUser());
         innerPageRepository.save(innerPage);
         page.addInnerPage(innerPage);
         pageRepository.save(page);

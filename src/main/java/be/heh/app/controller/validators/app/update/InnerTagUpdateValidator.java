@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+// Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class InnerTagUpdateValidator extends AbstractValidator {

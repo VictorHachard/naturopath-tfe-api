@@ -57,17 +57,14 @@ public class TagService extends AbstractService<Tag> {
         TagValidator validator = (TagValidator) abstractValidator;
         Tag tag;
 
-        if (userRepository.findById(validator.getUserId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no User with this userId");
-        } else if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
+        if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no ParagraphType with this tagTypeId");
         } else {
-            User user = userRepository.findById(validator.getUserId()).get();
+            User user = this.getUser();
             InnerTag innerTag = innerTagMapper.set(validator, user);
             tag = tagMapper.set(innerTag, tagTypeRepository.findById(validator.getTagTypeId()).get(), user);
             innerTagRepository.save(innerTag);
             tagRepository.save(tag);
-            System.out.println(tag.toString());
         }
         return tag.getId();
     }

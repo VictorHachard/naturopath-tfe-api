@@ -29,8 +29,4 @@ public class PageValidator extends AbstractValidator {
     @Min(1)
     int categoryId;
 
-    @NotNull(message = "")
-    @Min(1)
-    int userId;
-
 }

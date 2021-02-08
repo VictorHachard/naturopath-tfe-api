@@ -22,10 +22,6 @@ public class MessageValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @Min(1)
-    int userId;
-
-    @NotNull(message = "")
-    @Min(1)
     int typeId;
 
     @NotNull(message = "")

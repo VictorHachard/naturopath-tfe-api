@@ -22,8 +22,4 @@ public class TagUpdateValidator extends AbstractValidator {
     @NotEmpty
     String description;
 
-    @NotNull(message = "")
-    @Min(1)
-    int userId;
-
 }

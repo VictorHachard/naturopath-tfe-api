@@ -29,8 +29,4 @@ public class InnerTagValidator extends AbstractValidator {
     @Min(1)
     int tagId;
 
-    @NotNull(message = "")
-    @Min(1)
-    int userId;
-
 }
