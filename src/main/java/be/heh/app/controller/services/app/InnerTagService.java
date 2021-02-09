@@ -2,9 +2,12 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.InnerTagValidator;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.InnerTag;
+import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.Tag;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
@@ -20,9 +23,11 @@ public class InnerTagService extends AbstractService<InnerTag> {
 
     public void addC(AbstractValidator abstractValidator, int TagId) {
         //TODO verifiaction
-        InnerTagValidator validator = (InnerTagValidator) abstractValidator;
+        InnerTagUpdateValidator validator = (InnerTagUpdateValidator) abstractValidator;
         Tag tag = tagRepository.findById(TagId).get();
-        InnerTag innerTag = innerTagMapper.set(validator, this.getUser());
+        InnerTag innerTag = innerTagMapper.set(validator,
+                tag.getInnerTagList().get(tag.getInnerTagList().size() - 1).getVersion() + 1,
+                this.getUser());
         innerTagRepository.save(innerTag);
         tag.addInnerTag(innerTag);
         tagRepository.save(tag);
@@ -41,6 +46,17 @@ public class InnerTagService extends AbstractService<InnerTag> {
         //TODO verifiaction
         InnerTag innerTag = super.get(id);
         innerTag.setEnumState(EnumState.VALIDATING);
+        innerTagRepository.save(innerTag);
+    }
+
+    public void addMessage(AbstractValidator abstractValidator, int id) {
+        //TODO verifiaction
+        MessageValidator validator = (MessageValidator) abstractValidator;
+
+        InnerTag innerTag = super.get(id);
+        Message message = messageFacade.newInstance(validator.getContent(), this.getUser());
+        innerTag.addMessage(message);
+        messageRepository.save(message);
         innerTagRepository.save(innerTag);
     }
 

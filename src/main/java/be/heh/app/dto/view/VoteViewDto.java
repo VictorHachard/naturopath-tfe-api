@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -18,5 +20,7 @@ public class VoteViewDto {
     UserViewDto user;
 
     int choice;
+
+    Date createdAt;
 
 }

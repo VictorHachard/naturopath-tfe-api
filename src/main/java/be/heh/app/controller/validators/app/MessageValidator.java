@@ -17,16 +17,7 @@ public class MessageValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 4, max = 2048)
+    @Size(min = 8, max = 2048)
     String content;
-
-    @NotNull(message = "")
-    @Min(1)
-    int typeId;
-
-    @NotNull(message = "")
-    @NotEmpty
-    String type; //InnerPage, InnerParagraph, InnerTag
-
 
 }

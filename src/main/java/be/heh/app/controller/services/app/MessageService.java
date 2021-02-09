@@ -17,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Log
 public class MessageService extends AbstractService<Message> {
 
-    @Override
+    /*@Override
     public void add(AbstractValidator abstractValidator) {
         MessageValidator validator = (MessageValidator) abstractValidator;
         User user = this.getUser();
@@ -58,5 +58,6 @@ public class MessageService extends AbstractService<Message> {
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
         super.update(abstractValidator, id);//TODO edited bool
-    }
+    }*/
+
 }

@@ -10,6 +10,8 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -29,12 +31,17 @@ public final class MessageMapper extends AbstractMapper {
         messageList.forEach(i -> {
             res.add(this.getViewDto(i));
         });
+        Collections.reverse(res);
         return res;
     }
 
     public MessageViewDto getViewDto(Message message) {
         return new MessageViewDto(
-                message.getId()
+                message.getId(),
+                message.getContent(),
+                message.isEdited(),
+                userMapper.getView(message.getUser()),
+                message.getCreatedAt()
         );
     }
 

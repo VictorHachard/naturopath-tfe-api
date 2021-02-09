@@ -1,9 +1,11 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerPage;
+import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
@@ -21,7 +23,10 @@ public class InnerPageService extends AbstractService<InnerPage> {
         //TODO verifiaction
         InnerPageUpdateValidator validator = (InnerPageUpdateValidator) abstractValidator;
         Page page = pageRepository.findById(id).get();
-        InnerPage innerPage = innerPageMapper.set(validator, this.getUser());
+
+        InnerPage innerPage = innerPageMapper.set(validator,
+                page.getInnerPageList().get(page.getInnerPageList().size() - 1).getVersion() + 1,
+                this.getUser());
         innerPageRepository.save(innerPage);
         page.addInnerPage(innerPage);
         pageRepository.save(page);
@@ -40,6 +45,17 @@ public class InnerPageService extends AbstractService<InnerPage> {
         //TODO verifiaction
         InnerPage innerPage = super.get(id);
         innerPage.setEnumState(EnumState.VALIDATING);
+        innerPageRepository.save(innerPage);
+    }
+
+    public void addMessage(AbstractValidator abstractValidator, int id) {
+        //TODO verifiaction
+        MessageValidator validator = (MessageValidator) abstractValidator;
+
+        InnerPage innerPage = super.get(id);
+        Message message = messageFacade.newInstance(validator.getContent(), this.getUser());
+        innerPage.addMessage(message);
+        messageRepository.save(message);
         innerPageRepository.save(innerPage);
     }
 

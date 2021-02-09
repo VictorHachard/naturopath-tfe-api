@@ -16,12 +16,12 @@ public class InnerTagValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 8, max = 128)
+    @Size(min = 2, max = 32)
     String name;
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 64, max = 1024)
+    @Size(min = 32, max = 1024)
     String content;
 
 }

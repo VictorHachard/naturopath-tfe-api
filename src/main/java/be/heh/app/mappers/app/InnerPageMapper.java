@@ -13,6 +13,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -29,7 +30,7 @@ public final class InnerPageMapper extends AbstractMapper {
         );
     }
 
-    public InnerPage set(InnerPageUpdateValidator validator, User user) {
+    public InnerPage set(InnerPageUpdateValidator validator, int version, User user) {
         return innerPageFacade.newInstance(
                 validator.getTitle(),
                 validator.getDescription(),
@@ -47,6 +48,7 @@ public final class InnerPageMapper extends AbstractMapper {
         list.forEach(i -> {
             res.add(this.getEditDto(i));
         });
+        Collections.reverse(res);
         return res;
     }
 
@@ -65,8 +67,8 @@ public final class InnerPageMapper extends AbstractMapper {
         return new InnerPageEditDto(
                 i.getId(),
                 i.getVersion(),
-                a,
                 f,
+                a,
                 voteMapper.getAllViewDto(i.getVoteList()),
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),

@@ -14,6 +14,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -26,14 +27,17 @@ public final class InnerTagMapper extends AbstractMapper {
         return innerTagFacade.newInstance(
                 validator.getName(),
                 validator.getContent(),
-                user);
+                user
+        );
     }
 
-    public InnerTag set(InnerTagValidator validator, User user) {
+    public InnerTag set(InnerTagUpdateValidator validator, int version, User user) {
         return innerTagFacade.newInstance(
                 validator.getName(),
                 validator.getContent(),
-                user);
+                version,
+                user
+        );
     }
 
     public void update(InnerTag innerTag, InnerTagUpdateValidator validator) {
@@ -46,6 +50,7 @@ public final class InnerTagMapper extends AbstractMapper {
         list.forEach(i -> {
             res.add(this.getEditDto(i));
         });
+        Collections.reverse(res);
         return res;
     }
 

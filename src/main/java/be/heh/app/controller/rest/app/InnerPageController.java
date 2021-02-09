@@ -1,6 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
 import be.heh.app.controller.validators.app.validation.InnerPageValidationValidator;
 import lombok.AccessLevel;
@@ -34,6 +35,12 @@ public class InnerPageController extends AbstractController {
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void validation(@Valid @RequestBody InnerPageValidationValidator validator, @PathVariable("id") int id) {
         innerPageService.validation(validator, id);
+    }
+
+    @PostMapping("addMessage/{id}")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void addMessage(@Valid @RequestBody MessageValidator validator, @PathVariable("id") int id) {
+        innerPageService.addMessage(validator, id);
     }
 
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -14,5 +16,13 @@ import lombok.experimental.FieldDefaults;
 public class MessageViewDto {
 
     int id;
+
+    String content;
+
+    Boolean isEdited;
+
+    UserViewDto user;
+
+    Date createdAt;
 
 }

@@ -2,7 +2,10 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.InnerTagValidator;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
+import be.heh.app.controller.validators.app.validation.InnerPageValidationValidator;
+import be.heh.app.controller.validators.app.validation.InnerTagValidationValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -20,7 +23,7 @@ public class InnerTagController extends AbstractController {
 
     @PostMapping("{TagId}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void add(@Valid @RequestBody InnerTagValidator validator, @PathVariable("TagId") int TagId) {
+    public void add(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("TagId") int TagId) {
         innerTagService.addC(validator, TagId);
     }
 
@@ -32,8 +35,14 @@ public class InnerTagController extends AbstractController {
 
     @PostMapping("validation/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void validation(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("id") int id) {
+    public void validation(@Valid @RequestBody InnerTagValidationValidator validator, @PathVariable("id") int id) {
         innerTagService.validation(validator, id);
+    }
+
+    @PostMapping("addMessage/{id}")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+    public void addMessage(@Valid @RequestBody MessageValidator validator, @PathVariable("id") int id) {
+        innerTagService.addMessage(validator, id);
     }
 
 }
