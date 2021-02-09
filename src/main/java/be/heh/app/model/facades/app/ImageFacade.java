@@ -11,7 +11,7 @@ public class ImageFacade extends AbstractFacade<Image> {
 
     public Image newInstance(InnerImage innerImage, User user) {
         Image res = super.newInstance();
-        res.addInnerImage(innerImage);
+        res.add(innerImage);
         res.setUser(user);
         return res;
     }

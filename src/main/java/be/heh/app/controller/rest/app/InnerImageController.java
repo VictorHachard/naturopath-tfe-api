@@ -1,8 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.InnerTagValidator;
-import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
+import be.heh.app.controller.validators.app.InnerImageValidator;
+import be.heh.app.controller.validators.app.update.InnerImageUpdateValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -12,28 +12,28 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1/innerTag/")
+@RequestMapping("api/v1/innerImage/")
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class InnerTagController extends AbstractController {
+public class InnerImageController extends AbstractController {
 
-    @PostMapping("{TagId}")
+    @PostMapping("")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void add(@Valid @RequestBody InnerTagValidator validator, @PathVariable("TagId") int TagId) {
-        innerTagService.addC(validator, TagId);
+    public void add(@Valid @RequestBody InnerImageValidator validator) {
+        innerImageService.add(validator);
     }
 
     @PutMapping("update/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void update(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("id") int id) {
-        innerTagService.update(validator, id);
+    public void update(@Valid @RequestBody InnerImageUpdateValidator validator, @PathVariable("id") int id) {
+        innerImageService.update(validator, id);
     }
 
     @PostMapping("validation/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void validation(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("id") int id) {
-        innerTagService.validation(validator, id);
+    public void validation(@Valid @RequestBody InnerImageUpdateValidator validator, @PathVariable("id") int id) {
+        innerImageService.validation(validator, id);
     }
 
 }

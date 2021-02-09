@@ -6,7 +6,6 @@ import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Tag;
-import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -19,11 +18,10 @@ import org.springframework.stereotype.Service;
 @Log
 public class InnerTagService extends AbstractService<InnerTag> {
 
-    @Override
-    public void add(AbstractValidator abstractValidator) {
+    public void addC(AbstractValidator abstractValidator, int TagId) {
         //TODO verifiaction
         InnerTagValidator validator = (InnerTagValidator) abstractValidator;
-        Tag tag = tagRepository.findById(validator.getTagId()).get();
+        Tag tag = tagRepository.findById(TagId).get();
         InnerTag innerTag = innerTagMapper.set(validator, this.getUser());
         innerTagRepository.save(innerTag);
         tag.addInnerTag(innerTag);
@@ -34,14 +32,14 @@ public class InnerTagService extends AbstractService<InnerTag> {
     public void update(AbstractValidator abstractValidator, int id) {
         //TODO verifiaction
         InnerTagUpdateValidator validator = (InnerTagUpdateValidator) abstractValidator;
-        InnerTag innerTag = innerTagRepository.findById(id).get();
+        InnerTag innerTag = super.get(id);
         innerTagMapper.update(innerTag, validator);
         innerTagRepository.save(innerTag);
     }
 
-    public void validation(int id) {
+    public void validation(AbstractValidator abstractValidator, int id) {
         //TODO verifiaction
-        InnerTag innerTag = innerTagRepository.findById(id).get();
+        InnerTag innerTag = super.get(id);
         innerTag.setEnumState(EnumState.VALIDATING);
         innerTagRepository.save(innerTag);
     }

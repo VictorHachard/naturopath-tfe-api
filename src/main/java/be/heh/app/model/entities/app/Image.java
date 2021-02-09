@@ -1,6 +1,6 @@
 package be.heh.app.model.entities.app;
 
-import be.heh.app.model.entities.commons.AbstractInner;
+import be.heh.app.model.entities.commons.AbstractEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Image extends AbstractInner {
+public class Image extends AbstractEntity {
 
     @JoinColumn(name = "user_id")
     @ManyToOne
@@ -28,7 +28,7 @@ public class Image extends AbstractInner {
     @OneToMany
     List<InnerImage> innerImageList;
 
-    public void addInnerImage(InnerImage... innerImage) {
+    public void add(InnerImage... innerImage) {
         if (innerImageList == null) {
             innerImageList = new ArrayList<>();
         }

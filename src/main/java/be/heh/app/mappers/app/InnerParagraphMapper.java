@@ -1,6 +1,5 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.dto.edit.InnerParagraphEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -25,10 +24,10 @@ public final class InnerParagraphMapper extends AbstractMapper {
         return innerParagraphFacade.newInstance(user);
     }
 
-    public InnerParagraph set(InnerParagraphValidator paragraphValidator, User user) {
+    public InnerParagraph set(InnerParagraphUpdateValidator validator, User user) {
         return innerParagraphFacade.newInstance(
-                paragraphValidator.getTitle(),
-                paragraphValidator.getContent(),
+                validator.getTitle(),
+                validator.getContent(),
                 user
         );
     }

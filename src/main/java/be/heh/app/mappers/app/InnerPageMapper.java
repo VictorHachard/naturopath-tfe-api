@@ -1,6 +1,5 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.InnerPageValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
 import be.heh.app.dto.edit.InnerPageEditDto;
@@ -26,10 +25,11 @@ public final class InnerPageMapper extends AbstractMapper {
         return innerPageFacade.newInstance(
                 pageValidator.getTitle(),
                 pageValidator.getDescription(),
-                user);
+                user
+        );
     }
 
-    public InnerPage set(InnerPageValidator validator, User user) {
+    public InnerPage set(InnerPageUpdateValidator validator, User user) {
         return innerPageFacade.newInstance(
                 validator.getTitle(),
                 validator.getDescription(),

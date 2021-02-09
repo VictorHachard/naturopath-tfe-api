@@ -3,6 +3,7 @@ package be.heh.app.controller.rest.app;
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
+import be.heh.app.controller.validators.app.validation.InnerParagraphValidationValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -18,10 +19,10 @@ import javax.validation.Valid;
 @Log
 public class InnerParagraphController extends AbstractController {
 
-    @PostMapping("")
+    @PostMapping("{paragraphId}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void add(@Valid @RequestBody InnerParagraphValidator validator) {
-        innerParagraphService.add(validator);
+    public void add(@Valid @RequestBody InnerParagraphValidator validator, @PathVariable("paragraphId") int paragraphId) {
+        innerParagraphService.addC(validator, paragraphId);
     }
 
     @PutMapping("update/{id}")
@@ -32,8 +33,8 @@ public class InnerParagraphController extends AbstractController {
 
     @PostMapping("validation/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void validation(@PathVariable("id") int id) {
-        innerParagraphService.validation(id);
+    public void validation(@Valid @RequestBody InnerParagraphValidationValidator validator, @PathVariable("id") int id) {
+        innerParagraphService.validation(validator, id);
     }
 
 }

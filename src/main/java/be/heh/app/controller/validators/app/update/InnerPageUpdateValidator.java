@@ -7,7 +7,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,12 +15,10 @@ public class InnerPageUpdateValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 8, max = 128)
     String title;
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 64, max = 1024)
     String description;
 
 }

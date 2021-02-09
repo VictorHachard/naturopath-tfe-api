@@ -34,7 +34,7 @@ public class PageViewDto {
 
     List<ParatagViewDto> paratagList;
 
-    List<ImageViewDto> imageList;
+    ImageViewDto image;
 
     List<SortedTypeViewDto> sortedTypeList;
 

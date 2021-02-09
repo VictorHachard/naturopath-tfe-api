@@ -122,8 +122,7 @@ public class UserSecurityController extends AbstractSecurityController {
 
         log.info("UPDATE " + jwt + " is the token of user " + userSecurityViewDto.getUsername());
 
-        return userSecurityViewDto;
-
+        return userSecurityViewDto; //TODO if email not confirmed cannot edit email
     }
 
     @PutMapping("updateName")

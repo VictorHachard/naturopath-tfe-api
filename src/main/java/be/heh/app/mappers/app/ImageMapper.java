@@ -5,6 +5,7 @@ import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -20,6 +21,13 @@ import java.util.List;
 @Log
 public final class ImageMapper extends AbstractMapper {
 
+    public Image set(InnerImage innerImage, User user) {
+        return imageFacade.newInstance(
+                innerImage,
+                user
+        );
+    }
+
     public List<ImageViewDto> getAllView(List<Image> j) {
         List<ImageViewDto> res = new ArrayList<>();
         j.forEach(i -> {
@@ -33,13 +41,17 @@ public final class ImageMapper extends AbstractMapper {
         if (i == null) {
             return null;
         } else {
-            InnerImage k = i.get(0);
-            return new ImageViewDto(
-                    k.getId(),
-                    k.getTitle(),
-                    k.getDescription(),
-                    k.getUrl()
-            );
+            if (!i.isEmpty()) {
+                InnerImage k = i.get(0);
+                return new ImageViewDto(
+                        k.getId(),
+                        k.getTitle(),
+                        k.getDescription(),
+                        k.getUrl()
+                );
+            } else {
+                return null;
+            }
         }
     }
 
@@ -48,8 +60,12 @@ public final class ImageMapper extends AbstractMapper {
         if (i == null) {
             return null;
         } else {
-            InnerImage k = i.get(0);
-            return new ImageForPageByCategoryViewDto(k.getUrl());
+            if (!i.isEmpty()) {
+                InnerImage k = i.get(0);
+                return new ImageForPageByCategoryViewDto(k.getUrl());
+            } else {
+                return null;
+            }
         }
     }
 

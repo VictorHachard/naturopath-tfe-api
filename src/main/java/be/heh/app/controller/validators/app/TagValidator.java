@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,10 +17,12 @@ public class TagValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
+    @Size(min = 2, max = 32)
     String name;
 
     @NotNull(message = "")
     @NotEmpty
+    @Size(min = 32, max = 1024)
     String content;
 
     @NotNull(message = "")

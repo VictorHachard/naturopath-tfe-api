@@ -7,9 +7,7 @@ import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 // Lombok
@@ -18,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class VoteService extends AbstractService<Vote> {
 
     @Override
-    public void add(AbstractValidator abstractValidator) {
+    public void add(AbstractValidator abstractValidator) { // TODO check of admin if not it own post id already voted
         VoteValidator validator = (VoteValidator) abstractValidator;
         User user = this.getUser();
         if (validator.getType().equals("InnerParagraph")) {

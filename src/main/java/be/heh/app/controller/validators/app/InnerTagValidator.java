@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,9 +23,5 @@ public class InnerTagValidator extends AbstractValidator {
     @NotEmpty
     @Size(min = 64, max = 1024)
     String content;
-
-    @NotNull(message = "")
-    @Min(1)
-    int tagId;
 
 }

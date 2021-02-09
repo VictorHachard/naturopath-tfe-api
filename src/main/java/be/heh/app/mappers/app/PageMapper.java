@@ -52,7 +52,7 @@ public final class PageMapper extends AbstractMapper {
                 paragraphMapper.getAllView(page.getParagraphList()),
                 parapageMapper.getAllView(page.getParapageList()),
                 paratagMapper.getAllView(page.getParatagList()),
-                imageMapper.getAllView(page.getImageList()),
+                imageMapper.getView(innerPage.getImage()),
                 sortedTypeMapper.getAllView(page.getCategory().getSortedTypeList())
         );
     }
@@ -71,7 +71,7 @@ public final class PageMapper extends AbstractMapper {
                     i.getCreatedAt(),
                     innerPage.getTitle(),
                     innerPage.getDescription(),
-                    i.getImageList().size() == 0 ? null : imageMapper.getImageForPageByCategoryView(i.getImageList().get(0))
+                    imageMapper.getImageForPageByCategoryView(innerPage.getImage())
             ));
         });
         return new PageByCategoryViewDto(size, res);

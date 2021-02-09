@@ -147,6 +147,9 @@ public abstract class AbstractAutowire {
     @Autowired
     ImageMapper imageMapper;
 
+    @Autowired
+    InnerImageMapper innerImageMapper;
+
     // Facade
 
     @Autowired
@@ -212,10 +215,19 @@ public abstract class AbstractAutowire {
     @Autowired
     ImageFacade imageFacade;
 
+    @Autowired
+    InnerImageFacade innerImageFacade;
+
     // Service
 
     @Autowired
     TagTypeService tagTypeService;
+
+    @Autowired
+    InnerImageService innerImageService;
+
+    @Autowired
+    ImageService imageService;
 
     @Autowired
     ContactService contactService;
