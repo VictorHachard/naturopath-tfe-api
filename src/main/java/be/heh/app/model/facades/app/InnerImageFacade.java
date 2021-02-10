@@ -21,11 +21,12 @@ public class InnerImageFacade extends AbstractFacade<InnerImage> {
         return res;
     }
 
-    public InnerImage newInstance(String title, String description, int version, User user) {
+    public InnerImage newInstance(String title, String description, String url, int version, User user) {
         InnerImage res = super.newInstance();
         res.setUser(user);
         res.setDescription(description);
         res.setTitle(title);
+        res.setUrl(url);
         res.setVersion(version);
         res.setEnumState(EnumState.DRAFT);
         return res;

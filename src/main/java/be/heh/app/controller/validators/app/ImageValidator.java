@@ -24,4 +24,8 @@ public class ImageValidator extends AbstractValidator {
     @Size(min = 32, max = 1024)
     String description;
 
+    @NotNull(message = "")
+    @NotEmpty
+    String url;
+
 }

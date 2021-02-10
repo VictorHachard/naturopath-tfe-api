@@ -26,6 +26,7 @@ public final class InnerImageMapper extends AbstractMapper {
         return innerImageFacade.newInstance(
                 validator.getTitle(),
                 validator.getDescription(),
+                validator.getUrl(),
                 0,
                 user
         );
@@ -35,6 +36,7 @@ public final class InnerImageMapper extends AbstractMapper {
         return innerImageFacade.newInstance(
                 validator.getTitle(),
                 validator.getDescription(),
+                validator.getUrl(),
                 version,
                 user
         );
@@ -76,7 +78,8 @@ public final class InnerImageMapper extends AbstractMapper {
                 i.getEnumState().toString(),
                 userMapper.getView(i.getUser()),
                 i.getTitle(),
-                i.getDescription()
+                i.getDescription(),
+                i.getUrl()
         );
     }
 

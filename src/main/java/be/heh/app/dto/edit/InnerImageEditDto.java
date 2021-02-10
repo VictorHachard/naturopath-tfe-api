@@ -38,4 +38,6 @@ public class InnerImageEditDto {
 
     String description;
 
+    String url;
+
 }
