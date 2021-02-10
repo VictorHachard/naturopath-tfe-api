@@ -1,10 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.InnerTagValidator;
 import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
-import be.heh.app.controller.validators.app.validation.InnerPageValidationValidator;
 import be.heh.app.controller.validators.app.validation.InnerTagValidationValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -21,10 +19,10 @@ import javax.validation.Valid;
 @Log
 public class InnerTagController extends AbstractController {
 
-    @PostMapping("{TagId}")
+    @PostMapping("{tagId}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public void add(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("TagId") int TagId) {
-        innerTagService.addC(validator, TagId);
+    public void add(@Valid @RequestBody InnerTagUpdateValidator validator, @PathVariable("tagId") int tagId) {
+        innerTagService.addC(validator, tagId);
     }
 
     @PutMapping("update/{id}")

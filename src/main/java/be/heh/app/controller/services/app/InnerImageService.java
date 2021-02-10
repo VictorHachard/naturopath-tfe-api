@@ -1,11 +1,12 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.InnerImageValidator;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerImageUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
+import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -18,12 +19,13 @@ import org.springframework.stereotype.Service;
 @Log
 public class InnerImageService extends AbstractService<InnerImage> {
 
-    @Override
-    public void add(AbstractValidator abstractValidator) {
+    public void addC(AbstractValidator abstractValidator, int id) {
         //TODO verifiaction
-        InnerImageValidator validator = (InnerImageValidator) abstractValidator;
-        Image image = imageRepository.findById(validator.getImageId()).get();
-        InnerImage innerImage = innerImageMapper.set(validator, this.getUser());
+        InnerImageUpdateValidator validator = (InnerImageUpdateValidator) abstractValidator;
+        Image image = imageRepository.findById(id).get();
+        InnerImage innerImage = innerImageMapper.set(validator,
+                image.getInnerImageList().get(image.getInnerImageList().size() - 1).getVersion() + 1,
+                this.getUser());
         innerImageRepository.save(innerImage);
         image.add(innerImage);
         imageRepository.save(image);
@@ -42,6 +44,17 @@ public class InnerImageService extends AbstractService<InnerImage> {
         //TODO verifiaction
         InnerImage innerImage = super.get(id);
         innerImage.setEnumState(EnumState.VALIDATING);
+        innerImageRepository.save(innerImage);
+    }
+
+    public void addMessage(AbstractValidator abstractValidator, int id) {
+        //TODO verifiaction
+        MessageValidator validator = (MessageValidator) abstractValidator;
+
+        InnerImage innerImage = super.get(id);
+        Message message = messageFacade.newInstance(validator.getContent(), this.getUser());
+        innerImage.addMessage(message);
+        messageRepository.save(message);
         innerImageRepository.save(innerImage);
     }
 

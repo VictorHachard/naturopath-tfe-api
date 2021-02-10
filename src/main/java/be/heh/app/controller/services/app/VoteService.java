@@ -39,6 +39,12 @@ public class VoteService extends AbstractService<Vote> {
             voteRepository.save(vote);
             innerTag.addVote(vote);
             innerTagRepository.save(innerTag);
+        } else if (validator.getType().equals("InnerImage")) {
+            InnerImage innerImage = innerImageRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerImage.addVote(vote);
+            innerImageRepository.save(innerImage);
         }
 
         /*

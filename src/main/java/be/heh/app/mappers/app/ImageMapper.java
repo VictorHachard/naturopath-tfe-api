@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.view.ImageForPageByCategoryViewDto;
 import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -41,7 +42,7 @@ public final class ImageMapper extends AbstractMapper {
         if (i == null) {
             return null;
         } else {
-            if (!i.isEmpty()) {
+            if (!i.isEmpty()) { //Todo remove empty nerver empty
                 InnerImage k = i.get(0);
                 return new ImageViewDto(
                         k.getId(),
@@ -53,6 +54,21 @@ public final class ImageMapper extends AbstractMapper {
                 return null;
             }
         }
+    }
+
+    public List<ImageEditDto> getAllEditDto(List<Image> list) {
+        List<ImageEditDto> res = new ArrayList<>();
+        list.forEach(i -> {
+            res.add(this.getEditDto(i));
+        });
+        return res;
+    }
+
+    public ImageEditDto getEditDto(Image j) {
+        return new ImageEditDto(
+                j.getId(),
+                innerImageMapper.getAllEditDto(j.getInnerImageList())
+        );
     }
 
     public ImageForPageByCategoryViewDto getImageForPageByCategoryView(Image j) {

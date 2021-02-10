@@ -1,11 +1,9 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.InnerTagValidator;
 import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerTagUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
-import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.InnerTag;
 import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.Tag;

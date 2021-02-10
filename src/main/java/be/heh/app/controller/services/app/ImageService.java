@@ -3,6 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.ImageValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
@@ -26,6 +27,10 @@ public class ImageService extends AbstractService<Image> {
 
     public ImageViewDto getDto(int id) {
         return imageMapper.getView(super.get(id));
+    }
+
+    public ImageEditDto getEditDto(int id) {
+        return imageMapper.getEditDto(super.get(id));
     }
 
     public int addC(AbstractValidator abstractValidator) {

@@ -2,6 +2,7 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.ImageValidator;
+import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.view.ImageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -33,13 +34,13 @@ public class ImageController extends AbstractController {
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public List<ImageViewDto> getAllEditDto() {
         return imageService.getAllEditDto();
-    }
+    }*/
 
     @GetMapping("dto/edit/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public ImageViewDto getEditDto(@PathVariable("id") int id) {
+    public ImageEditDto getEditDto(@PathVariable("id") int id) {
         return imageService.getEditDto(id);
-    }*/
+    }
 
     @PostMapping("")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")

@@ -9,16 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InnerTagFacade extends AbstractFacade<InnerTag> {
 
-    public InnerTag newInstance(String name, String content, User user) {
-        InnerTag res = super.newInstance();
-        res.setUser(user);
-        res.setContent(content);
-        res.setName(name);
-        res.setVersion(0);
-        res.setEnumState(EnumState.DRAFT);
-        return res;
-    }
-
     // Init
     public InnerTag init(String name, String content) {
         InnerTag res = super.newInstance();
