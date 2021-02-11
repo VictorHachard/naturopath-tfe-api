@@ -1,4 +1,4 @@
-package be.heh.app.dto.view;
+package be.heh.app.dto.security;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,16 +11,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ContactViewDto {
+public class UserSecuritySimplifiedViewDto {
 
     int id;
 
-    int userSecurityId;
-
     String username;
-
-    String email;
-
-    String content;
 
 }

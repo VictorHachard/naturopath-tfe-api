@@ -4,6 +4,7 @@ import be.heh.app.controller.validators.security.UserSecurityNameUpdateValidator
 import be.heh.app.controller.validators.security.UserSecurityRegisterValidator;
 import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.security.UserSecurityEditDto;
+import be.heh.app.dto.security.UserSecuritySimplifiedViewDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.security.UserSecurity;
@@ -75,6 +76,13 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
                 user.getIsDark(),
                 roleList,
                 emailList
+        );
+    }
+
+    public UserSecuritySimplifiedViewDto getSimplifiedViewDto(UserSecurity user) {
+        return new UserSecuritySimplifiedViewDto(
+                user.getId(),
+                user.getUsername()
         );
     }
 

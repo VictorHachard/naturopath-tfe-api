@@ -17,17 +17,11 @@ import javax.persistence.ManyToOne;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Contact extends AbstractEntity {
+public class TicketContent extends AbstractEntity {
 
     @JoinColumn(name = "user_security_id")
     @ManyToOne
     UserSecurity userSecurity;
-
-    @Column(name = "username")
-    String username;
-
-    @Column(name = "email")
-    String email;
 
     @Column(name = "content", length = 2500)
     String content;

@@ -28,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
             "/api/v1/category/**",
-            "/api/v1/contact/**",
             "/api/v1/innerPage/**",
             "/api/v1/innerParagraph/**",
             "/api/v1/innerTag/**",
@@ -40,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/v1/paratagType/**",
             "/api/v1/tag/**",
             "/api/v1/tagType/**",
+            "/api/v1/ticket/**",
             "/api/v1/user/**",
             "/api/v1/vote/**",
             "/api/v1/userSecurity/**",

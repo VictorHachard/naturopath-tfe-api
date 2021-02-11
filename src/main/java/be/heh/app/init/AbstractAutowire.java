@@ -20,7 +20,10 @@ public abstract class AbstractAutowire {
     UserRepository userRepository;
 
     @Autowired
-    ContactRepository contactRepository;
+    TicketContentRepository ticketContentRepository;
+
+    @Autowired
+    TicketRepository ticketRepository;
 
     @Autowired
     SortedTypeRepository sortedTypeRepository;
@@ -88,7 +91,10 @@ public abstract class AbstractAutowire {
     InnerPageMapper innerPageMapper;
 
     @Autowired
-    ContactMapper contactMapper;
+    TicketMapper ticketMapper;
+
+    @Autowired
+    TicketContentMapper ticketContentMapper;
 
     @Autowired
     SortedTypeMapper sortedTypeMapper;
@@ -156,7 +162,10 @@ public abstract class AbstractAutowire {
     CategoryFacade categoryFacade;
 
     @Autowired
-    ContactFacade contactFacade;
+    TicketContentFacade ticketContentFacade;
+
+    @Autowired
+    TicketFacade ticketFacade;
 
     @Autowired
     SortedTypeFacade sortedTypeFacade;
@@ -230,7 +239,7 @@ public abstract class AbstractAutowire {
     ImageService imageService;
 
     @Autowired
-    ContactService contactService;
+    TicketService ticketService;
 
     @Autowired
     InnerTagService innerTagService;
