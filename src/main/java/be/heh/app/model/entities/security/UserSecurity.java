@@ -46,6 +46,20 @@ public class UserSecurity implements Serializable, UserDetails {
     @Temporal(TemporalType.DATE)
     Date birth;
 
+    @Column(name = "email_auth")
+    Boolean emailAuth;
+
+    @Column(name = "email_auth_token", unique = true)
+    String emailAuthToken;
+
+    @Column(name = "email_auth_set")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date emailAuthSet;
+
+    @Column(name = "email_auth_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date emailAuthAt;
+
     @Column(name = "confirm_token", unique = true)
     String confirmToken;
 

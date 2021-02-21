@@ -52,7 +52,8 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
                 null,
                 user.getUsername(),
                 res,
-                user.getIsDark()
+                user.getIsDark(),
+                user.getEmailAuth() && user.getEmailAuthAt() != null
         );
     }
 
@@ -75,7 +76,8 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
                 user.getIsProfilePrivacy(),
                 user.getIsDark(),
                 roleList,
-                emailList
+                emailList,
+                user.getEmailAuth()
         );
     }
 

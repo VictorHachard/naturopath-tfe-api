@@ -8,10 +8,16 @@ import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.security.Role;
 import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.model.entities.security.enumeration.EnumRole;
+import be.heh.app.springjwt.JwtUtils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,6 +31,12 @@ import javax.transaction.Transactional;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class UserSecurityService extends AbstractSecurityService<UserSecurity> implements UserDetailsService {
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     public UserSecurityViewDto addC(AbstractValidator abstractValidator) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
@@ -54,8 +66,45 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
         } else {
             //TODO last connection
-            return userSecurityMapper.getView(user);
+            UserSecurityViewDto res = userSecurityMapper.getView(user);
+            if (user.getEmailAuth()) {
+                userSecurityFacade.setDoubleEmail(user);
+                userSecurityRepository.save(user);
+            } else {
+                Authentication authentication = authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(res.getUsername(), password));
+
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String jwt = jwtUtils.generateJwtToken(authentication);
+                res.setToken(jwt);
+            }
+            return res;
         }
+    }
+
+    public UserSecurityViewDto confirmDoubleAuth(String usernameOrEmail, String password, String code) {
+        if (!userSecurityRepository.existsByEmail(usernameOrEmail) && !userSecurityRepository.existsByUsername(usernameOrEmail)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
+        }
+        UserSecurity user = userSecurityRepository.findByEmailOrUsername(usernameOrEmail).get();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        UserSecurityViewDto res;
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The password is not correct");
+        } else if (!user.getEmailAuthToken().equals(code)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The code is not correct");
+        } else {
+            res = userSecurityMapper.getView(user);
+            userSecurityFacade.confirmDoubleEmail(user);
+            userSecurityRepository.save(user);
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(res.getUsername(), password));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtUtils.generateJwtToken(authentication);
+            res.setToken(jwt);
+        }
+        return res;
     }
 
     public boolean setConfirmAccount(UserSecurity u) {
@@ -165,6 +214,12 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
     public void updatePrivacy(AbstractValidator abstractValidator, UserSecurity userSecurity) {
         UserSecurityPrivacyUpdateValidator validator = (UserSecurityPrivacyUpdateValidator) abstractValidator;
         userSecurityFacade.updatePrivacy(userSecurity, validator.getIsPrivate());
+        userSecurityRepository.save(userSecurity);
+    }
+
+    public void updateSecurity(AbstractValidator abstractValidator, UserSecurity userSecurity) {
+        UserSecuritySecurityUpdateValidator validator = (UserSecuritySecurityUpdateValidator) abstractValidator;
+        userSecurityFacade.updateSecurity(userSecurity, validator.getEmailAuth());
         userSecurityRepository.save(userSecurity);
     }
 

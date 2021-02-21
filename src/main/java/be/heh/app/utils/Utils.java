@@ -14,6 +14,8 @@ public class Utils {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
 
+    static final String AB = "0123456789";
+
     /**
      * 24 -> 32 char / 48 -> 60 char So for 24 bytes from the above example you get the 32 chars.
      * @return  random string in base64 encoding with 32 chars.
@@ -24,6 +26,14 @@ public class Utils {
         byte[] randomBytes = new byte[i];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
+    }
+
+    public static String randomNumber(int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(AB.charAt(secureRandom.nextInt(AB.length())));
+        }
+        return sb.toString();
     }
 
     public static List<Class> getClasses(String packageName)

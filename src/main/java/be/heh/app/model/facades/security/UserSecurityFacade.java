@@ -22,6 +22,7 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         res.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         res.setUsername(username);
         res.setEmail(email);
+        res.setEmailAuth(true);
         res.setIsDark(false);
         res.setIsProfilePrivacy(true);
         this.updatePassword(res, password);
@@ -44,6 +45,10 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
 
     public void updatePrivacy(UserSecurity userSecurity, boolean isPrivate) {
         userSecurity.setIsProfilePrivacy(isPrivate);
+    }
+
+    public void updateSecurity(UserSecurity userSecurity, boolean emailAuth) {
+        userSecurity.setEmailAuth(emailAuth);
     }
 
     public void updateAppearance(UserSecurity userSecurity, boolean dark) {
@@ -101,6 +106,19 @@ public class UserSecurityFacade extends AbstractFacade<UserSecurity> {
         userSecurity.setDeleteSet(new Timestamp(System.currentTimeMillis()));
         log.info("Delete token for " + userSecurity.getUsername() + " user: " + userSecurity.getDeleteToken()
                 + ", the link is: http://localhost:4200/delete/" + userSecurity.getDeleteToken());
+    }
+
+    public void setDoubleEmail(UserSecurity userSecurity) {
+        userSecurity.setEmailAuthToken(Utils.randomNumber(5));
+        userSecurity.setEmailAuthSet(new Timestamp(System.currentTimeMillis()));
+        userSecurity.setConfirmedAt(null);
+        log.info("DoubleAuth token for " + userSecurity.getUsername() + " user: " + userSecurity.getEmailAuthToken());
+    }
+
+    public void confirmDoubleEmail(UserSecurity userSecurity) {
+        userSecurity.setEmailAuthToken(null);
+        userSecurity.setEmailAuthSet(null);
+        userSecurity.setConfirmedAt(new Timestamp(System.currentTimeMillis()));
     }
 
 }

@@ -40,14 +40,17 @@ public class UserSecurityController extends AbstractSecurityController {
 
         UserSecurityViewDto res = userSecurityService.login(token.substring(0 , token.indexOf(":")), token.substring(token.indexOf(":") + 1));
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(res.getUsername(), token.substring(token.indexOf(":") + 1)));
+        log.info("LOGIN " + res.getToken() + " is the token of user " + res.getUsername());
+        return res;
+    }
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-        res.setToken(jwt);
+    @PostMapping("confirmAuth")
+    public UserSecurityViewDto confirmAuth(@Valid @RequestBody UserSecurityDoubleAuthValidator validator) {
+        String token = new String(Base64.getDecoder().decode(validator.getToken().replace("Basic ", "")));
 
-        log.info("LOGIN " + jwt + " is the token of user " + res.getUsername());
+        UserSecurityViewDto res = userSecurityService.confirmDoubleAuth(token.substring(0 , token.indexOf(":")), token.substring(token.indexOf(":") + 1), validator.getCode());
+
+        log.info("LOGIN D" + res.getToken() + " is the token of user " + res.getUsername());
         return res;
     }
 
@@ -147,6 +150,12 @@ public class UserSecurityController extends AbstractSecurityController {
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void updatePrivacy(@Valid @RequestBody UserSecurityPrivacyUpdateValidator validator) {
         userSecurityService.updatePrivacy(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
+
+    @PutMapping("updateSecurity")
+    @PreAuthorize("hasRole('USER')")
+    public void updateSecurity(@Valid @RequestBody UserSecuritySecurityUpdateValidator validator) {
+        userSecurityService.updateSecurity(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
 }

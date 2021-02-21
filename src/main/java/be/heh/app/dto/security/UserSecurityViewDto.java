@@ -23,4 +23,6 @@ public class UserSecurityViewDto {
 
     Boolean dark;
 
+    Boolean emailAuthValidate;
+
 }

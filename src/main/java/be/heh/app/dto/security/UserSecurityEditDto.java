@@ -36,4 +36,6 @@ public class UserSecurityEditDto {
 
     List<String> emailList;
 
+    Boolean emailAuth;
+
 }
