@@ -97,7 +97,7 @@ public class UserSecurityController extends AbstractSecurityController {
         userSecurityService.resetAccount(validator);
     }
 
-    @DeleteMapping("deleteAccount")
+    @PostMapping("deleteAccount")
     public void deleteAccount(@Valid @RequestBody UserSecurityTokenValidator validator) {
         userSecurityService.deleteAccount(validator);
     }
