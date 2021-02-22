@@ -74,7 +74,6 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
                 String jwt = jwtUtils.generateJwtToken(authentication);
                 res.setToken(jwt);
             }
-            System.out.println(rememberMe);
             if (rememberMe) {
                 CookieRememberMe cookie = cookieRememberMeFacade.newInstance();
                 cookieRememberMeRepository.save(cookie);
@@ -107,7 +106,6 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
             res.setToken(jwt);
-            System.out.println(rememberMe);
             if (rememberMe) {
                 CookieRememberMe cookie = cookieRememberMeFacade.newInstance();
                 cookieRememberMeRepository.save(cookie);
