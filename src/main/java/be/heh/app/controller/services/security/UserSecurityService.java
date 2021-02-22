@@ -5,9 +5,11 @@ import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.controller.validators.security.*;
 import be.heh.app.dto.security.UserSecurityViewDto;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.security.CookieRememberMe;
 import be.heh.app.model.entities.security.Role;
 import be.heh.app.model.entities.security.UserSecurity;
 import be.heh.app.model.entities.security.enumeration.EnumRole;
+import be.heh.app.model.facades.security.CookieRememberMeFacade;
 import be.heh.app.springjwt.JwtUtils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -32,12 +34,6 @@ import javax.transaction.Transactional;
 @Log
 public class UserSecurityService extends AbstractSecurityService<UserSecurity> implements UserDetailsService {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    JwtUtils jwtUtils;
-
     public UserSecurityViewDto addC(AbstractValidator abstractValidator) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
         if (userSecurityRepository.existsByUsername(validator.getUsername())) {
@@ -56,7 +52,7 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         return userSecurityMapper.getView(userSecurity);
     }
 
-    public UserSecurityViewDto login(String usernameOrEmail, String password) {
+    public UserSecurityViewDto login(String usernameOrEmail, String password, boolean rememberMe) {
         if (!userSecurityRepository.existsByEmail(usernameOrEmail) && !userSecurityRepository.existsByUsername(usernameOrEmail)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
@@ -78,11 +74,19 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
                 String jwt = jwtUtils.generateJwtToken(authentication);
                 res.setToken(jwt);
             }
+            System.out.println(rememberMe);
+            if (rememberMe) {
+                CookieRememberMe cookie = cookieRememberMeFacade.newInstance();
+                cookieRememberMeRepository.save(cookie);
+                user.addCookie(cookie);
+                userSecurityRepository.save(user);
+                res.setCookieToken(cookie.getToken());
+            }
             return res;
         }
     }
 
-    public UserSecurityViewDto confirmDoubleAuth(String usernameOrEmail, String password, String code) {
+    public UserSecurityViewDto confirmDoubleAuth(String usernameOrEmail, String password, String code, boolean rememberMe) {
         if (!userSecurityRepository.existsByEmail(usernameOrEmail) && !userSecurityRepository.existsByUsername(usernameOrEmail)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The username or the email is not correct");
         }
@@ -103,6 +107,14 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
             res.setToken(jwt);
+            System.out.println(rememberMe);
+            if (rememberMe) {
+                CookieRememberMe cookie = cookieRememberMeFacade.newInstance();
+                cookieRememberMeRepository.save(cookie);
+                user.addCookie(cookie);
+                userSecurityRepository.save(user);
+                res.setCookieToken(cookie.getToken());
+            }
         }
         return res;
     }

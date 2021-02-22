@@ -43,6 +43,7 @@ public class Init extends AbstractSecurityAutowire {
         UserSecurity us = userSecurityFacade.newInstance("Paulin", "test@test.test", "Test123*");
         us.setIsDark(true);
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_USER));
+        us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_MODERATOR));
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR));
         us.addPermission(permissionFacade.newInstance(EnumRole.ROLE_OWNER));
         us.setUser(u);

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class PermissionMapper extends AbstractSecurityAutowire {
+public final class PermissionMapper extends AbstractSecurityAutowire {
 
     public Role set(EnumRole enumPermission) {
         return permissionFacade.newInstance(enumPermission);

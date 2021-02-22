@@ -1,5 +1,6 @@
 package be.heh.app.init;
 
+import be.heh.app.controller.services.security.CookieRememberMeService;
 import be.heh.app.controller.services.security.UserSecurityService;
 import be.heh.app.mappers.security.PermissionMapper;
 import be.heh.app.mappers.security.UserSecurityMapper;
@@ -37,6 +38,9 @@ public abstract class AbstractSecurityAutowire extends AbstractAutowire {
 
     @Autowired
     UserSecurityService userSecurityService;
+
+    @Autowired
+    CookieRememberMeService cookieRememberMeService;
 
     // Facade
 

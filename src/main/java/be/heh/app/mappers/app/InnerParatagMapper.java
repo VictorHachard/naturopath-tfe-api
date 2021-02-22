@@ -17,7 +17,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class InnerParatagMapper extends AbstractMapper {
+public final class InnerParatagMapper extends AbstractMapper {
 
     public InnerParatag set(User user) {
         return innerParatagFacade.newInstance(user);

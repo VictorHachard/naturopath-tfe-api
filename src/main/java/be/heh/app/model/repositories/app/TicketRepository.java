@@ -25,6 +25,4 @@ public interface TicketRepository extends AbstractRepository<Ticket, Integer>  {
     @Query("select case when (count(c) > 0) then true else false end from Ticket c where c.isClose = false")
     Boolean existsAllOpen();
 
-
-
 }

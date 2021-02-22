@@ -95,6 +95,9 @@ public class UserSecurity implements Serializable, UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     List<Email> enumEmailList = new ArrayList<>();
 
+    @OneToMany()
+    List<CookieRememberMe> cookieList = new ArrayList<>();
+
     @Column(name = "is_dark")
     Boolean isDark;
 
@@ -114,6 +117,10 @@ public class UserSecurity implements Serializable, UserDetails {
 
     public void addPermission(Role... p) {
         enumPermissionList.addAll(Arrays.asList(p));
+    }
+
+    public void addCookie(CookieRememberMe... c) {
+        cookieList.addAll(Arrays.asList(c));
     }
 
     @Override

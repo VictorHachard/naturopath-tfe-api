@@ -28,17 +28,24 @@ import java.util.Base64;
 @Log
 public class UserSecurityController extends AbstractSecurityController {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    JwtUtils jwtUtils;
-
     @PostMapping("login")
     public UserSecurityViewDto login(@Valid @RequestBody UserSecurityLoginValidator validator) {
         String token = new String(Base64.getDecoder().decode(validator.getToken().replace("Basic ", "")));
 
-        UserSecurityViewDto res = userSecurityService.login(token.substring(0 , token.indexOf(":")), token.substring(token.indexOf(":") + 1));
+        UserSecurityViewDto res = userSecurityService.login(token.substring(0, token.indexOf(":")),
+                token.substring(token.indexOf(":") + 1),
+                validator.getRememberMe());
+
+        log.info("LOGIN " + res.getToken() + " is the token of user " + res.getUsername());
+        return res;
+    }
+
+    @PostMapping("connectFromCookie")
+    public UserSecurityViewDto connectFromCookie(@Valid @RequestBody UserSecurityLoginValidator validator) {
+        String token = new String(Base64.getDecoder().decode(validator.getToken().replace("Basic ", "")));
+        System.out.println(token);
+        UserSecurityViewDto res = cookieRememberMeService.login(token.substring(0 , token.indexOf(":")),
+                token.substring(token.indexOf(":") + 1));
 
         log.info("LOGIN " + res.getToken() + " is the token of user " + res.getUsername());
         return res;
@@ -48,7 +55,11 @@ public class UserSecurityController extends AbstractSecurityController {
     public UserSecurityViewDto confirmAuth(@Valid @RequestBody UserSecurityDoubleAuthValidator validator) {
         String token = new String(Base64.getDecoder().decode(validator.getToken().replace("Basic ", "")));
 
-        UserSecurityViewDto res = userSecurityService.confirmDoubleAuth(token.substring(0 , token.indexOf(":")), token.substring(token.indexOf(":") + 1), validator.getCode());
+        UserSecurityViewDto res = userSecurityService.confirmDoubleAuth(
+                token.substring(0, token.indexOf(":")),
+                token.substring(token.indexOf(":") + 1),
+                validator.getCode(),
+                validator.getRememberMe());
 
         log.info("LOGIN D" + res.getToken() + " is the token of user " + res.getUsername());
         return res;

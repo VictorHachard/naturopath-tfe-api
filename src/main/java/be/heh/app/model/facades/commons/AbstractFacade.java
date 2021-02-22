@@ -14,7 +14,7 @@ public abstract class AbstractFacade<T> extends AbstractAutowire {
 
     //protected User user = userRepository.findByUsername("Paulin").get();
 
-    protected int userId = 4;
+    protected int userId = 5;
 
     public T newInstance() {
         AbstractEntity obj = null;

@@ -20,7 +20,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class UserSecurityMapper extends AbstractSecurityAutowire {
+public final class UserSecurityMapper extends AbstractSecurityAutowire {
 
     public UserSecurity set(UserSecurityRegisterValidator validator) {
         UserSecurity res = userSecurityFacade.newInstance(
@@ -53,7 +53,8 @@ public class UserSecurityMapper extends AbstractSecurityAutowire {
                 user.getUsername(),
                 res,
                 user.getIsDark(),
-                user.getEmailAuth() && user.getEmailAuthAt() != null
+                user.getEmailAuth() && user.getEmailAuthAt() != null,
+                null
         );
     }
 

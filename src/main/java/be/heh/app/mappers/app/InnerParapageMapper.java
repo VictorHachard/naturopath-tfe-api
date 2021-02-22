@@ -16,7 +16,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class InnerParapageMapper extends AbstractMapper {
+public final class InnerParapageMapper extends AbstractMapper {
 
     public List<InnerParapageEditDto> getAllEditDto(List<InnerParapage> list) {
         List<InnerParapageEditDto> res = new ArrayList<>();

@@ -20,7 +20,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class TicketMapper extends AbstractMapper {
+public final class TicketMapper extends AbstractMapper {
 
     @Autowired
     UserSecurityMapper userSecurityMapper;

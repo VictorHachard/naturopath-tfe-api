@@ -25,4 +25,6 @@ public class UserSecurityViewDto {
 
     Boolean emailAuthValidate;
 
+    String cookieToken;
+
 }

@@ -16,11 +16,15 @@ import javax.validation.constraints.Pattern;
 @Setter
 public class UserSecurityDoubleAuthValidator extends AbstractValidator {
 
+    @NotNull(message = "")
+    @NotEmpty
     String token;
 
     @NotNull(message = "")
     @NotEmpty
     @Pattern(regexp = "^[0-9]+$", message = "")
     String code;
+
+    Boolean rememberMe;
 
 }

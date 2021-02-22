@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 // Lombok
@@ -23,5 +24,9 @@ public class Role implements Serializable {
     @Column(name = "name")
     @Enumerated(EnumType.STRING)
     EnumRole name;
+
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date createdAt;
 
 }
