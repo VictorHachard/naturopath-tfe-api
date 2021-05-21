@@ -13,6 +13,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class ImageViewDto {
 
+    int parentId;
+
     int id;
 
     String title;

@@ -38,13 +38,14 @@ public final class ImageMapper extends AbstractMapper {
     }
 
     public ImageViewDto getView(Image j) {
-        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATING);
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATED);
         if (i == null) {
             return null;
         } else {
             if (!i.isEmpty()) { //Todo remove empty nerver empty
                 InnerImage k = i.get(0);
                 return new ImageViewDto(
+                        j.getId(),
                         k.getId(),
                         k.getTitle(),
                         k.getDescription(),
@@ -72,7 +73,7 @@ public final class ImageMapper extends AbstractMapper {
     }
 
     public ImageForPageByCategoryViewDto getImageForPageByCategoryView(Image j) {
-        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATING);
+        List<InnerImage> i = imageRepository.findInnerImage(j, EnumState.VALIDATED);
         if (i == null) {
             return null;
         } else {

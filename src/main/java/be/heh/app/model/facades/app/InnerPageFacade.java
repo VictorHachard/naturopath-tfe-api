@@ -1,5 +1,6 @@
 package be.heh.app.model.facades.app;
 
+import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -8,6 +9,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class InnerPageFacade extends AbstractFacade<InnerPage> {
+
+    public InnerPage newInstance(String title, String description, Image image, User user) {
+        InnerPage res = super.newInstance();
+        res.setUser(user);
+        res.setImage(image);
+        res.setDescription(description);
+        res.setTitle(title);
+        res.setVersion(0);
+        res.setEnumState(EnumState.DRAFT);
+        return res;
+    }
 
     public InnerPage newInstance(String title, String description, User user) {
         InnerPage res = super.newInstance();

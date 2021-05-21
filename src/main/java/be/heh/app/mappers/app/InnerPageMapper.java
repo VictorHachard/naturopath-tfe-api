@@ -4,6 +4,7 @@ import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.update.InnerPageUpdateValidator;
 import be.heh.app.dto.edit.InnerPageEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
+import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.Vote;
@@ -30,17 +31,19 @@ public final class InnerPageMapper extends AbstractMapper {
         );
     }
 
-    public InnerPage set(InnerPageUpdateValidator validator, int version, User user) {
+    public InnerPage set(InnerPageUpdateValidator validator, Image image, int version, User user) {
         return innerPageFacade.newInstance(
                 validator.getTitle(),
                 validator.getDescription(),
+                image,
                 user
         );
     }
 
-    public void update(InnerPage innerPage, InnerPageUpdateValidator validator) {
+    public void update(InnerPage innerPage, Image image, InnerPageUpdateValidator validator) {
         innerPage.setTitle(validator.getTitle());
         innerPage.setDescription(validator.getDescription());
+        innerPage.setImage(image);
     }
 
     public List<InnerPageEditDto> getAllEditDto(List<InnerPage> list) {
@@ -74,7 +77,8 @@ public final class InnerPageMapper extends AbstractMapper {
                 i.getEnumState().toString(),
                 userMapper.getView(i.getUser()),
                 i.getTitle(),
-                i.getDescription()
+                i.getDescription(),
+                i.getImage() == null ? null : imageMapper.getView(i.getImage())
         );
     }
 

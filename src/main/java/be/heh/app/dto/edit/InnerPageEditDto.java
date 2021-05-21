@@ -1,5 +1,7 @@
 package be.heh.app.dto.edit;
 
+import be.heh.app.dto.ImageDto;
+import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.dto.view.MessageViewDto;
 import be.heh.app.dto.view.UserViewDto;
 import be.heh.app.dto.view.VoteViewDto;
@@ -37,5 +39,7 @@ public class InnerPageEditDto {
     String title;
 
     String description;
+
+    ImageViewDto image;
 
 }
