@@ -26,8 +26,12 @@ import java.util.stream.Collectors;
 public class PageService extends AbstractService<Page> {
 
     //TODO sort by category maybe
-    public List<PageViewDto> getAllDto() {
+    public List<PageViewDto> getAllDto() { //ICI que les validated
         return pageMapper.getAllDto(super.getAll());
+    }
+
+    public List<PageEditDto> getAllEditDto() { //ICI tout
+        return pageMapper.getAllEditDto(super.getAll());
     }
 
     public PageViewDto getDto(int id) {

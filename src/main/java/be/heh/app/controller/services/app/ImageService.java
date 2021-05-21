@@ -29,6 +29,10 @@ public class ImageService extends AbstractService<Image> {
         return imageMapper.getView(super.get(id));
     }
 
+    public List<ImageEditDto> getAllEditDto() {
+        return imageMapper.getAllEditDto(super.getAll());
+    }
+
     public ImageEditDto getEditDto(int id) {
         return imageMapper.getEditDto(super.get(id));
     }

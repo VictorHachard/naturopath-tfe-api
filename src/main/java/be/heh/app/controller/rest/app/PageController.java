@@ -38,6 +38,11 @@ public class PageController extends AbstractController {
 		return pageService.getAllDto();
 	}
 
+	@GetMapping("dto/edit")
+	public List<PageEditDto> getAllEditDto() {
+		return pageService.getAllEditDto();
+	}
+
 	@PostMapping("dto/pageByCategory")
 	public PageByCategoryViewDto getAllPageByCategoryDto(@Valid @RequestBody PagesByCategoryDtoValidator validator) {
 		return pageService.getAllPageByCategoryDto(validator);

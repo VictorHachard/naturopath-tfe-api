@@ -39,8 +39,23 @@ public final class PageMapper extends AbstractMapper {
         return pageDtoList;
     }
 
+    public List<PageEditDto> getAllEditDto(List<Page> pageList) {
+        List<PageEditDto> pageDtoList = new ArrayList<>();
+        pageList.forEach(page -> {
+            pageDtoList.add(this.getEditDto(page));
+        });
+        return pageDtoList;
+    }
+
     public PageViewDto getDto(Page page) {
-        InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
+        List<InnerPage> innerPageList = pageRepository.findInnerPage(page, EnumState.VALIDATED);
+        InnerPage innerPage;
+
+        if (innerPageList.isEmpty()) { //TODO remove
+            return null;
+        } else {
+            innerPage = innerPageList.get(0);
+        }
 
         return new PageViewDto(
                 page.getId(),

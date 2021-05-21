@@ -36,11 +36,11 @@ public class ImageController extends AbstractController {
         return imageService.getDto(id);
     }
 
-    /*@GetMapping("dto/edit")
+    @GetMapping("dto/edit")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public List<ImageViewDto> getAllEditDto() {
+    public List<ImageEditDto> getAllEditDto() {
         return imageService.getAllEditDto();
-    }*/
+    }
 
     @GetMapping("dto/edit/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
