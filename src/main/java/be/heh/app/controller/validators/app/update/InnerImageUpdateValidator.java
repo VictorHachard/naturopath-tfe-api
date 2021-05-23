@@ -21,8 +21,8 @@ public class InnerImageUpdateValidator extends AbstractValidator {
     @NotEmpty
     String description;
 
-    @NotNull(message = "")
-    @NotEmpty
     String url;
+
+    int imageId;
 
 }

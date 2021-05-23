@@ -3,6 +3,7 @@ package be.heh.app.controller.services.app;
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerImageUpdateValidator;
+import be.heh.app.controller.validators.app.validation.InnerImageValidationValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
@@ -42,6 +43,7 @@ public class InnerImageService extends AbstractService<InnerImage> {
 
     public void validation(AbstractValidator abstractValidator, int id) {
         //TODO verifiaction
+        InnerImageValidationValidator validator = (InnerImageValidationValidator) abstractValidator;
         InnerImage innerImage = super.get(id);
         innerImage.setEnumState(EnumState.VALIDATING);
         innerImageRepository.save(innerImage);
