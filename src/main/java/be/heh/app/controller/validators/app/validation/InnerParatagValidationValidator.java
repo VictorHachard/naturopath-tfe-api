@@ -22,7 +22,7 @@ public class InnerParatagValidationValidator extends AbstractValidator {
 
     @NotNull(message = "")
     @NotEmpty
-    @Size(min = 128, max = 8182)
+    @Size(min = 64, max = 8182)
     String content;
 
     @NotNull(message = "")

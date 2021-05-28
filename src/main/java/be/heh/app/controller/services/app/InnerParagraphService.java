@@ -1,9 +1,12 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerParagraph;
+import be.heh.app.model.entities.app.InnerParatag;
+import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.Paragraph;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
@@ -21,7 +24,9 @@ public class InnerParagraphService extends AbstractService<InnerParagraph> {
         //TODO verifiaction
         InnerParagraphUpdateValidator validator = (InnerParagraphUpdateValidator) abstractValidator;
         Paragraph paragraph = paragraphRepository.findById(paragraphId).get();
-        InnerParagraph innerParagraph = innerParagraphMapper.set(validator, this.getUser());
+        InnerParagraph innerParagraph = innerParagraphMapper.set(validator,
+                paragraph.getInnerParagraphList().get(paragraph.getInnerParagraphList().size() - 1).getVersion() + 1,
+                this.getUser());
         innerParagraphRepository.save(innerParagraph);
         paragraph.addInnerParagraph(innerParagraph);
         paragraphRepository.save(paragraph);
@@ -40,6 +45,17 @@ public class InnerParagraphService extends AbstractService<InnerParagraph> {
         //TODO verifiaction
         InnerParagraph innerParagraph = super.get(id);
         innerParagraph.setEnumState(EnumState.VALIDATING);
+        innerParagraphRepository.save(innerParagraph);
+    }
+
+    public void addMessage(AbstractValidator abstractValidator, int id) {
+        //TODO verifiaction
+        MessageValidator validator = (MessageValidator) abstractValidator;
+
+        InnerParagraph innerParagraph = super.get(id);
+        Message message = messageFacade.newInstance(validator.getContent(), this.getUser());
+        innerParagraph.addMessage(message);
+        messageRepository.save(message);
         innerParagraphRepository.save(innerParagraph);
     }
 

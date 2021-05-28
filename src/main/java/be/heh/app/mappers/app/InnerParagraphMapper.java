@@ -24,10 +24,11 @@ public final class InnerParagraphMapper extends AbstractMapper {
         return innerParagraphFacade.newInstance(user);
     }
 
-    public InnerParagraph set(InnerParagraphUpdateValidator validator, User user) {
+    public InnerParagraph set(InnerParagraphUpdateValidator validator, int version, User user) {
         return innerParagraphFacade.newInstance(
                 validator.getTitle(),
                 validator.getContent(),
+                version,
                 user
         );
     }

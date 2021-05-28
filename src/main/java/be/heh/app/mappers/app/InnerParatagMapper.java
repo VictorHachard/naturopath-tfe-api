@@ -1,7 +1,9 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.CategoryValidator;
+import be.heh.app.controller.validators.app.InnerParatagValidator;
 import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
+import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.update.InnerParatagUpdateValidator;
 import be.heh.app.dto.edit.InnerParatagEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -22,6 +24,15 @@ public final class InnerParatagMapper extends AbstractMapper {
 
     public InnerParatag set(User user) {
         return innerParatagFacade.newInstance(user);
+    }
+
+    public InnerParatag set(InnerParatagValidator validator, int version, User user) {
+        return innerParatagFacade.newInstance(
+                validator.getTitle(),
+                validator.getContent(),
+                version,
+                user
+        );
     }
 
     public void update(InnerParatag innerParatag, InnerParatagUpdateValidator validator) {

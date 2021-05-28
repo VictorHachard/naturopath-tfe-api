@@ -33,6 +33,13 @@ public class VoteService extends AbstractService<Vote> {
             innerPage.addVote(vote);
             innerPageRepository.save(innerPage);
 
+        } else if (validator.getType().equals("InnerParatag")) {
+            InnerParatag innerParatag = innerParatagRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerParatag.addVote(vote);
+            innerParatagRepository.save(innerParatag);
+
         } else if (validator.getType().equals("InnerTag")) {
             InnerTag innerTag = innerTagRepository.findById(validator.getTypeId()).get();
             Vote vote = voteMapper.set(validator, user);
