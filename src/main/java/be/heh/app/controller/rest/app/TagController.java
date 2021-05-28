@@ -2,7 +2,6 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.TagValidator;
-import be.heh.app.controller.validators.app.view.TagByTagTypeDtoValidator;
 import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
@@ -44,10 +43,10 @@ public class TagController extends AbstractController {
         return tagService.getEditDto(id);
     }
 
-    @PostMapping("dto/tagByCategory")
+    @GetMapping("allTagByTagType/dto/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
-    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(@Valid @RequestBody TagByTagTypeDtoValidator validator) {
-        return tagService.getAllTagByTagTypeDto(validator);
+    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(@PathVariable("id") int id) {
+        return tagService.getAllTagByTagTypeDto(id);
     }
 
     @PostMapping("")

@@ -2,7 +2,6 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.TagValidator;
-import be.heh.app.controller.validators.app.view.TagByTagTypeDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
@@ -43,12 +42,11 @@ public class TagService extends AbstractService<Tag> {
         return tagMapper.getEditDto(super.get(id));
     }
 
-    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(AbstractValidator abstractValidator) {
-        TagByTagTypeDtoValidator validator = (TagByTagTypeDtoValidator) abstractValidator;
-        if (tagTypeRepository.findById(validator.getTagTypeId()).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no TagType with this tagTypeId");
+    public List<TagByTagTypeViewDto> getAllTagByTagTypeDto(int id) {
+        if (tagTypeRepository.findById(id).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this tagTypeId");
         }
-        List<TagByTagTypeViewDto> res = tagMapper.getAllTagByTagTypeDto(tagRepository.findAllByTagTypeById(validator.getTagTypeId(), EnumState.VALIDATED));
+        List<TagByTagTypeViewDto> res = tagMapper.getAllTagByTagTypeDto(tagRepository.findAllTagByTagTypeId(id, EnumState.VALIDATED));
         Collections.sort(res);
         return res;
     }

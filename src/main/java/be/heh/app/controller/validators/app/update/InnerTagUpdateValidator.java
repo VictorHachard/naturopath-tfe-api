@@ -13,11 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class InnerTagUpdateValidator extends AbstractValidator {
 
-    @NotNull(message = "")
-    @NotEmpty
     String name;
 
-    @NotNull(message = "")
-    @NotEmpty
     String content;
 }

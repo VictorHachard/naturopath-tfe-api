@@ -14,16 +14,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class InnerPageUpdateValidator extends AbstractValidator {
 
-    @NotNull(message = "")
-    @NotEmpty
     String title;
 
-    @NotNull(message = "")
-    @NotEmpty
     String description;
 
-    @NotNull(message = "")
-    @Min(1)
     int imageId;
 
 }

@@ -24,7 +24,6 @@ public class TagFacade extends AbstractFacade<Tag> {
         Tag res = super.newInstance();
         res.addInnerTag(innerTag);
         res.setTagType(tagType);
-        res.setEnumState(EnumState.VALIDATED);
         res.setUser(userRepository.findById(this.userId).get());
         return res;
     }

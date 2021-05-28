@@ -230,6 +230,9 @@ public abstract class AbstractAutowire {
     // Service
 
     @Autowired
+    InnerParatagService innerParatagService;
+
+    @Autowired
     TagTypeService tagTypeService;
 
     @Autowired

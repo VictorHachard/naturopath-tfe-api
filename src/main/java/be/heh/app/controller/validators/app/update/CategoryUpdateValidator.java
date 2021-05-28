@@ -17,20 +17,13 @@ import java.util.List;
 @Getter
 public class CategoryUpdateValidator extends AbstractValidator {
 
-    @NotNull(message = "")
-    @NotEmpty
-    @Size(min = 4, max = 32)
     String name;
 
-    @NotNull(message = "")
-    @NotEmpty
-    @Size(min = 16, max = 1024)
     String description;
 
     // For parent can be null
     Integer parentCategoryId;
 
-    @NotEmpty(message = "test")
     List<@Valid Pair> sortedTypeList;
 
 }

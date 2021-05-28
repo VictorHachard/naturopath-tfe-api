@@ -1,10 +1,11 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.controller.validators.app.CategoryValidator;
+import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
+import be.heh.app.controller.validators.app.update.InnerParatagUpdateValidator;
 import be.heh.app.dto.edit.InnerParatagEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.InnerParatag;
-import be.heh.app.model.entities.app.User;
-import be.heh.app.model.entities.app.Vote;
+import be.heh.app.model.entities.app.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -21,6 +22,14 @@ public final class InnerParatagMapper extends AbstractMapper {
 
     public InnerParatag set(User user) {
         return innerParatagFacade.newInstance(user);
+    }
+
+    public void update(InnerParatag innerParatag, InnerParatagUpdateValidator validator) {
+        innerParatagFacade.updateInstance(
+                innerParatag,
+                validator.getTitle(),
+                validator.getContent()
+        );
     }
 
     public List<InnerParatagEditDto> getAllEditDto(List<InnerParatag> list) {

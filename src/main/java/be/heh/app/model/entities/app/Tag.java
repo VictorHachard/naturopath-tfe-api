@@ -27,10 +27,7 @@ public class Tag extends AbstractEntity {
     @ManyToOne
     User user;
 
-    @Column(name = "enum_state")
-    EnumState enumState;
-
-    @OneToMany
+    @ManyToMany
     List<InnerTag> innerTagList;
 
     public void addInnerTag(InnerTag... innerTag) {

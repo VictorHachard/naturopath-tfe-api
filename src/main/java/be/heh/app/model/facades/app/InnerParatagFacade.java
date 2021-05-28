@@ -1,10 +1,14 @@
 package be.heh.app.model.facades.app;
 
+import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.InnerParatag;
+import be.heh.app.model.entities.app.SortedType;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
@@ -26,6 +30,12 @@ public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
         res.setVersion(0);
         res.setEnumState(EnumState.VALIDATED);
         return res;
+    }
+
+    public InnerParatag updateInstance(InnerParatag innerParatag, String title, String content) {
+        innerParatag.setTitle(title);
+        innerParatag.setContent(content);
+        return innerParatag;
     }
 
 }

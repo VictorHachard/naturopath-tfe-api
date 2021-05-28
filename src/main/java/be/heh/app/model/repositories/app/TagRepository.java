@@ -40,7 +40,7 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
      * @param enumState the state of the tag
      * @return a list of tag
      */
-    @Query("select t from Tag t where t.tagType = ?1 and t.enumState = ?2")
+    @Query("select t from Tag t join t.innerTagList i where t.tagType = ?1 and i.enumState = ?2")
     List<Tag> findAllByTagType(@Param("tagType") TagType tagType, @Param("enumState") EnumState enumState);
 
     /**
@@ -49,8 +49,8 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
      * @param enumState the state of the tag
      * @return a list of tag
      */
-    @Query("select t from Tag t where t.tagType.id = ?1 and t.enumState = ?2")
-    List<Tag> findAllByTagTypeById(@Param("tagType") int tagTypeId, @Param("enumState") EnumState enumState);
+    @Query("select t from Tag t join t.innerTagList i where t.tagType.id = ?1 and i.enumState = ?2")
+    List<Tag> findAllTagByTagTypeId(@Param("tagType") int tagTypeId, @Param("enumState") EnumState enumState);
 
 
 
