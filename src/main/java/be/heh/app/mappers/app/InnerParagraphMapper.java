@@ -1,5 +1,6 @@
 package be.heh.app.mappers.app;
 
+import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.dto.edit.InnerParagraphEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
@@ -12,6 +13,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -24,7 +26,7 @@ public final class InnerParagraphMapper extends AbstractMapper {
         return innerParagraphFacade.newInstance(user);
     }
 
-    public InnerParagraph set(InnerParagraphUpdateValidator validator, int version, User user) {
+    public InnerParagraph set(InnerParagraphValidator validator, int version, User user) {
         return innerParagraphFacade.newInstance(
                 validator.getTitle(),
                 validator.getContent(),
@@ -43,6 +45,7 @@ public final class InnerParagraphMapper extends AbstractMapper {
         list.forEach(i -> {
             res.add(this.getEditDto(i));
         });
+        Collections.reverse(res);
         return res;
     }
 

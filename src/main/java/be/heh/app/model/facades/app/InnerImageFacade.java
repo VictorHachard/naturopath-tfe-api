@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 public class InnerImageFacade extends AbstractFacade<InnerImage> {
 
     // Init
-    public InnerImage init(String title, String description) {
+    public InnerImage init(String title, String description, String url) {
         InnerImage res = super.newInstance();
         res.setUser(userRepository.findById(this.userId).get());
         res.setDescription(description);
+        res.setUrl(url);
         res.setTitle(title);
         res.setVersion(0);
         res.setEnumState(EnumState.VALIDATED);

@@ -1,6 +1,7 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
@@ -22,7 +23,7 @@ public class InnerParagraphService extends AbstractService<InnerParagraph> {
 
     public void addC(AbstractValidator abstractValidator, int paragraphId) {
         //TODO verifiaction
-        InnerParagraphUpdateValidator validator = (InnerParagraphUpdateValidator) abstractValidator;
+        InnerParagraphValidator validator = (InnerParagraphValidator) abstractValidator;
         Paragraph paragraph = paragraphRepository.findById(paragraphId).get();
         InnerParagraph innerParagraph = innerParagraphMapper.set(validator,
                 paragraph.getInnerParagraphList().get(paragraph.getInnerParagraphList().size() - 1).getVersion() + 1,

@@ -10,6 +10,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -23,6 +24,7 @@ public final class InnerParapageMapper extends AbstractMapper {
         list.forEach(i -> {
             res.add(this.getEditDto(i));
         });
+        Collections.reverse(res);
         return res;
     }
 

@@ -36,6 +36,7 @@ public final class InnerPageMapper extends AbstractMapper {
                 validator.getTitle(),
                 validator.getDescription(),
                 image,
+                version,
                 user
         );
     }

@@ -182,8 +182,14 @@ public class Init extends AbstractSecurityAutowire {
         paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "Aucune."), paragraphTypeList.get(7))); //4
     }
 
+    public void initImage() {
+        Image image = imageFacade.init(innerImageFacade.init("Menthe poivrée", "Une super image de menthe", "init-m-1.jpg"));
+
+        imageList.add(image); //0
+    }
+
     public void initPage() {
-        Page page = pageFacade.init(innerPageFacade.init("Menthe poivrée", ""),
+        Page page = pageFacade.init(innerPageFacade.init("Menthe poivrée", "", imageList.get(0)),
                 categoryList.get(1));
 
         page.addParagraph(paragraphList.get(0), paragraphList.get(1), paragraphList.get(2), paragraphList.get(3), paragraphList.get(4), paragraphList.get(5), paragraphList.get(6), paragraphList.get(7));
@@ -215,6 +221,7 @@ public class Init extends AbstractSecurityAutowire {
         initParatag();
         initParagraph();
 
+        initImage();
         initPage();
 
         paragraphTypeList.forEach(user -> {
