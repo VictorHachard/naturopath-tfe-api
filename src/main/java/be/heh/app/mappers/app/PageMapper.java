@@ -59,6 +59,7 @@ public final class PageMapper extends AbstractMapper {
 
         return new PageViewDto(
                 page.getId(),
+                page.getEnumState().toString(),
                 page.getCreatedAt(),
                 categoryMapper.getView(page.getCategory()),
                 userMapper.getView(page.getUser()),
@@ -95,6 +96,7 @@ public final class PageMapper extends AbstractMapper {
     public PageEditDto getEditDto(Page page) {
         return new PageEditDto(
                 page.getId(),
+                page.getEnumState().toString(),
                 categoryMapper.getView(page.getCategory()),
                 userMapper.getView(page.getUser()),
                 innerPageMapper.getAllEditDto(page.getInnerPageList()),

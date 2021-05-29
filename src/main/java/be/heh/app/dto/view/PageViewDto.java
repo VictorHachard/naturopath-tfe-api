@@ -18,6 +18,8 @@ public class PageViewDto {
 
     int id;
 
+    String enumState;
+
     Date createdAt;
 
     CategoryViewDto category;

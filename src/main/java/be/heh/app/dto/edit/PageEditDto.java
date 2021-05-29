@@ -19,6 +19,8 @@ public class PageEditDto {
 
     int id;
 
+    String enumState;
+
     CategoryViewDto category;
 
     UserViewDto user;

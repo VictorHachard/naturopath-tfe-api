@@ -45,6 +45,7 @@ public final class InnerImageMapper extends AbstractMapper {
     public void update(InnerImage innerImage, InnerImageUpdateValidator validator) {
         innerImage.setTitle(validator.getTitle());
         innerImage.setDescription(validator.getDescription());
+        innerImage.setUrl(validator.getUrl());
     }
 
     public List<InnerImageEditDto> getAllEditDto(List<InnerImage> list) {
