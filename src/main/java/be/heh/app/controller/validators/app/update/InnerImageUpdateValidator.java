@@ -24,7 +24,4 @@ public class InnerImageUpdateValidator extends AbstractValidator {
 
     String url;
 
-    @Min(1)
-    int imageId;
-
 }
