@@ -61,12 +61,18 @@ public class Init extends AbstractSecurityAutowire {
         tagTypeList.add(tagTypeFacade.newInstance("Famille", lorem.getWords(12, 16))); //1
 
         tagTypeList.add(tagTypeFacade.newInstance("Principes actifs", lorem.getWords(12, 16))); //2
+        tagTypeList.add(tagTypeFacade.newInstance("Propriétés", lorem.getWords(12, 16))); //3
+        tagTypeList.add(tagTypeFacade.newInstance("Indications", lorem.getWords(12, 16))); //4
+        tagTypeList.add(tagTypeFacade.newInstance("Contre indications", lorem.getWords(12, 16))); //5
     }
 
     public void initParatagType() {
         paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin" , lorem.getWords(12, 16), tagTypeList.get(0), EnumSize.SMALL)); //0
         paratagTypeList.add(paratagTypeFacade.newInstance("Famille" , lorem.getWords(12, 16), tagTypeList.get(1), EnumSize.SMALL)); //1
         paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , lorem.getWords(12, 16), tagTypeList.get(2), EnumSize.LARGE)); //2
+        paratagTypeList.add(paratagTypeFacade.newInstance("Propriétés" , lorem.getWords(12, 16), tagTypeList.get(3), EnumSize.LARGE)); //3
+        paratagTypeList.add(paratagTypeFacade.newInstance("Indications" , lorem.getWords(12, 16), tagTypeList.get(4), EnumSize.LARGE)); //4
+        paratagTypeList.add(paratagTypeFacade.newInstance("Contre indications" , lorem.getWords(12, 16), tagTypeList.get(5), EnumSize.LARGE)); //5
     }
 
     public void initParapageType() {
@@ -82,13 +88,21 @@ public class Init extends AbstractSecurityAutowire {
                 paragraphTypeFacade.newInstance("Parties utilisées", lorem.getWords(12, 16)), //4
                 paragraphTypeFacade.newInstance("Préparations et usages", lorem.getWords(12, 16)), //5
                 paragraphTypeFacade.newInstance("Toxicité et contre-indication", lorem.getWords(12, 16)), //6
-                paragraphTypeFacade.newInstance("Risques de confusions", lorem.getWords(12, 16)))); //7
+                paragraphTypeFacade.newInstance("Risques de confusions", lorem.getWords(12, 16)), //7
+
+                paragraphTypeFacade.newInstance("Utilisations", lorem.getWords(12, 16)), //8
+                paragraphTypeFacade.newInstance("Précautions", lorem.getWords(12, 16)), //9
+                paragraphTypeFacade.newInstance("Conservation", lorem.getWords(12, 16)), //10
+                paragraphTypeFacade.newInstance("Préparation", lorem.getWords(12, 16)) //11
+
+                ));
+
     }
 
     public void initCategory() {
         categoryList.addAll(Arrays.asList(
                 categoryFacade.init("Tisanes", lorem.getWords(12, 16), true) //0
-                ));
+        ));
         categoryList.addAll(Arrays.asList(
                 categoryFacade.init("Plantes", lorem.getWords(12, 16)), //1
                 categoryFacade.init("Huiles Essentielles", lorem.getWords(12, 16)), //2
@@ -121,7 +135,7 @@ public class Init extends AbstractSecurityAutowire {
 
         // Plantes - 0
 
-        for (Category c : categoryList) {
+        /*for (Category c : categoryList) {
             if (c.isParent()) {
                 continue;
             }
@@ -134,9 +148,9 @@ public class Init extends AbstractSecurityAutowire {
                 c.addType(sortedTypeFacade.newInstance(paratagTypeList.get(i), index));
                 index++;
             }
-        }
+        }*/
 
-        /*categoryList.get(1).addType(
+        categoryList.get(1).addType(
             sortedTypeFacade.newInstance(paragraphTypeList.get(0), 3),
             sortedTypeFacade.newInstance(paragraphTypeList.get(1), 4),
             sortedTypeFacade.newInstance(paragraphTypeList.get(2), 5),
@@ -149,72 +163,130 @@ public class Init extends AbstractSecurityAutowire {
             sortedTypeFacade.newInstance(paratagTypeList.get(0), 1),
             sortedTypeFacade.newInstance(paratagTypeList.get(1), 2),
             sortedTypeFacade.newInstance(paratagTypeList.get(2), 11)
+        );
 
-        );*/
+        categoryList.get(2).addType(
+                sortedTypeFacade.newInstance(paragraphTypeList.get(8), 1),
+                sortedTypeFacade.newInstance(paragraphTypeList.get(9), 2),
+
+                sortedTypeFacade.newInstance(paratagTypeList.get(3), 3),
+                sortedTypeFacade.newInstance(paratagTypeList.get(4), 4)
+        );
+
+        for (int i = 3; i < 29; i++) {
+            categoryList.get(i).addType(
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(8), 1),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(9), 2),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(10), 3),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(11), 4),
+
+                    sortedTypeFacade.newInstance(paratagTypeList.get(3), 5),
+                    sortedTypeFacade.newInstance(paratagTypeList.get(4), 5),
+                    sortedTypeFacade.newInstance(paratagTypeList.get(5), 5)
+            );
+        }
 
     }
 
     public void initTag() {
         tagList.add(tagFacade.init(innerTagFacade.init("Acides-phénols", lorem.getWords(12, 16)), tagTypeList.get(2))); //0
-        tagList.add(tagFacade.init(innerTagFacade.init("Huile essentielle", lorem.getWords(12, 16)), tagTypeList.get(2))); //1
+        tagList.add(tagFacade.init(innerTagFacade.init("Sesquiterpènes", lorem.getWords(12, 16)), tagTypeList.get(2))); //1
         tagList.add(tagFacade.init(innerTagFacade.init("Triterpènes", lorem.getWords(12, 16)), tagTypeList.get(2))); //2
         tagList.add(tagFacade.init(innerTagFacade.init("Cires", lorem.getWords(12, 16)), tagTypeList.get(2))); //3
         tagList.add(tagFacade.init(innerTagFacade.init("Flavonoïdes", lorem.getWords(12, 16)), tagTypeList.get(2))); //4
+        tagList.add(tagFacade.init(innerTagFacade.init("Esters", lorem.getWords(12, 16)), tagTypeList.get(2))); //5
+        tagList.add(tagFacade.init(innerTagFacade.init("Tanins", lorem.getWords(12, 16)), tagTypeList.get(2))); //6
+        tagList.add(tagFacade.init(innerTagFacade.init("Monoterpènes", lorem.getWords(12, 16)), tagTypeList.get(2))); //7
+        tagList.add(tagFacade.init(innerTagFacade.init("Alcaloïdes", lorem.getWords(12, 16)), tagTypeList.get(2))); //8
+        tagList.add(tagFacade.init(innerTagFacade.init("Saponosides", lorem.getWords(12, 16)), tagTypeList.get(2))); //9
+        tagList.add(tagFacade.init(innerTagFacade.init("Diterpènes", lorem.getWords(12, 16)), tagTypeList.get(2))); //10
 
-        tagList.add(tagFacade.init(innerTagFacade.init("Lamiacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //5
+        //vertus
+        tagList.add(tagFacade.init(innerTagFacade.init("Amaigrisant", lorem.getWords(12, 16)), tagTypeList.get(3))); //11
+        tagList.add(tagFacade.init(innerTagFacade.init("Analgesiques", lorem.getWords(12, 16)), tagTypeList.get(3))); //12
+        tagList.add(tagFacade.init(innerTagFacade.init("Anticancers", lorem.getWords(12, 16)), tagTypeList.get(3))); //13
+        tagList.add(tagFacade.init(innerTagFacade.init("Antiseptiques", lorem.getWords(12, 16)), tagTypeList.get(3))); //14
+        tagList.add(tagFacade.init(innerTagFacade.init("Aperitifs", lorem.getWords(12, 16)), tagTypeList.get(3))); //15
+        tagList.add(tagFacade.init(innerTagFacade.init("Aphordisiaques", lorem.getWords(12, 16)), tagTypeList.get(3))); //16
+        tagList.add(tagFacade.init(innerTagFacade.init("Bechiques", lorem.getWords(12, 16)), tagTypeList.get(3))); //17
+        tagList.add(tagFacade.init(innerTagFacade.init("Calmants", lorem.getWords(12, 16)), tagTypeList.get(3))); //18
+        tagList.add(tagFacade.init(innerTagFacade.init("Carminatifs", lorem.getWords(12, 16)), tagTypeList.get(3))); //19
+        tagList.add(tagFacade.init(innerTagFacade.init("Tonique", lorem.getWords(12, 16)), tagTypeList.get(3))); //20
+        tagList.add(tagFacade.init(innerTagFacade.init("Astringent", lorem.getWords(12, 16)), tagTypeList.get(3))); //21
+        tagList.add(tagFacade.init(innerTagFacade.init("Diurétique", lorem.getWords(12, 16)), tagTypeList.get(3))); //22
+        tagList.add(tagFacade.init(innerTagFacade.init("Carminative", lorem.getWords(12, 16)), tagTypeList.get(3))); //23
+        tagList.add(tagFacade.init(innerTagFacade.init("Adoucissant", lorem.getWords(12, 16)), tagTypeList.get(3))); //24
+        tagList.add(tagFacade.init(innerTagFacade.init("Sudorifique", lorem.getWords(12, 16)), tagTypeList.get(3))); //25
+        tagList.add(tagFacade.init(innerTagFacade.init("Hypotenseur", lorem.getWords(12, 16)), tagTypeList.get(3))); //26
+        tagList.add(tagFacade.init(innerTagFacade.init("Antiseptique et Cicatrisant", lorem.getWords(12, 16)), tagTypeList.get(3))); //27
 
-        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", lorem.getWords(12, 16)), tagTypeList.get(0))); //6
+
+        tagList.add(tagFacade.init(innerTagFacade.init("Cannabacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //28
+        tagList.add(tagFacade.init(innerTagFacade.init("Lamiacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //29
+        tagList.add(tagFacade.init(innerTagFacade.init("Caprifoliacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //30
+        tagList.add(tagFacade.init(innerTagFacade.init("Malvacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //31
+        tagList.add(tagFacade.init(innerTagFacade.init("Vitacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //32
+        tagList.add(tagFacade.init(innerTagFacade.init("Fabacées", lorem.getWords(12, 16)), tagTypeList.get(1))); //33
+
+        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", lorem.getWords(12, 16)), tagTypeList.get(0))); //34
+        tagList.add(tagFacade.init(innerTagFacade.init("Melissa Officinalis", lorem.getWords(12, 16)), tagTypeList.get(0))); //35
+        tagList.add(tagFacade.init(innerTagFacade.init("Rosa Gallica", lorem.getWords(12, 16)), tagTypeList.get(0))); //36
+        tagList.add(tagFacade.init(innerTagFacade.init("Salvia Officinalis", lorem.getWords(12, 16)), tagTypeList.get(0))); //37
+        tagList.add(tagFacade.init(innerTagFacade.init("Verbena Officinalis", lorem.getWords(12, 16)), tagTypeList.get(0))); //38
+        tagList.add(tagFacade.init(innerTagFacade.init("Humulus Lupulus", lorem.getWords(12, 16)), tagTypeList.get(0))); //39
+        tagList.add(tagFacade.init(innerTagFacade.init("Articum Lappa", lorem.getWords(12, 16)), tagTypeList.get(0))); //40
+        tagList.add(tagFacade.init(innerTagFacade.init("Artemisia Dracunculus", lorem.getWords(12, 16)), tagTypeList.get(0))); //41
+        tagList.add(tagFacade.init(innerTagFacade.init("Hyssopus Officinalis", lorem.getWords(12, 16)), tagTypeList.get(0))); //42
+        tagList.add(tagFacade.init(innerTagFacade.init("Glechoma Hederacea", lorem.getWords(12, 16)), tagTypeList.get(0))); //43
     }
 
     public void initParatag() {
-        InnerParatag i = innerParatagFacade.init("tr", "");
-        i.addTag(tagList.get(0), tagList.get(1),tagList.get(2),tagList.get(3), tagList.get(4));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(2)));
+        for (int j = 0; j < 10; j++) {
+            InnerParatag i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+            for (int k : Utils.getRandomIdListUnique(2, 8, 10)) {
+                i.addTag(tagList.get(k));
+            }
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(2)));
 
-        i = innerParatagFacade.init("tr", "");
-        i.addTag(tagList.get(6));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
+            i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+            i.addTag(tagList.get(Utils.getRandom(28, 33)));
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
 
-        i = innerParatagFacade.init("tr", "");
-        i.addTag(tagList.get(5));
-        paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
+            i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+            i.addTag(tagList.get(34 + j));
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
+        }
     }
 
     public void initParagraph() {
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "C’est une plante herbacée aromatique, vivace, à stolons traçants, pouvant atteindre 0,60 cm a 1m de hauteur. C’est un hybride entre la menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata). La Menthe est originaire d’Angleterre.  Généralement cultivée, on la trouve maintenant en Europe en Asie et en Amérique du Nord. La menthe poivrée se plaire sur une terre aérée et pas trop humide, dans un endroit a moitié ombragé. Nous pouvons récolter la plante en été, avant la floraison. Il est possible de rabattre la plante en été afin de la forcer à produire une autre mise à fleur."), paragraphTypeList.get(0))); //0
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "La menthe aquatique (Mentha aquatica) et la menthe verte (Mentha spicata) ont des vertus médicinales plus ou moins identiques bien que moins prononcées."), paragraphTypeList.get(1))); //1
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "att"), paragraphTypeList.get(2))); //2
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "L’huile essentielle est très antibactérienne. Le menthol est l’un de ces principaux constituants. Il est antiseptique, fongicide, et anesthésiante pour la peau. Elle peut être sur certaines personnes irritante.\n" +
-                "Lorsque la menthe poivrée est entière, elle a un effet antispasmodique sur l’appareil digestif. Des etudes ont prouvés son efficacité pour lutter contre les inflammations du colon."), paragraphTypeList.get(3))); //3
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "La partie aérienne, idéalement les feuilles."), paragraphTypeList.get(4))); //4
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "L’infusion, boire 150ml après chaque repas pour une meilleure digestion.\n" +
-                "Remarque :\n" +
-                "En infusion courte (2-3 minutes) la plante aura des vertus stimulantes et excitantes.\n" +
-                "En infusion longue (5-10 minutes) la plante aura des vertus calmantes et sédatives.\n" +
-                "La lotion, faite à partir de l’infusion s’utilisera sur les peaux irritées.\n" +
-                "L’Huile essentielle, la diluer et se masser les tempes avec, en cas de maux de têtes."), paragraphTypeList.get(5))); //4
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "Ne pas utiliser la menthe poivrée chez les enfants de moins de 7 ans.\n" +
-                "Ne pas utiliser l’huile essentielle de menthe poivrée chez les enfants de moins de 12 ans.\n" +
-                "Elle ne possède pas vraiment de toxicité chez les plus âgés, mais il reste conseillé de l’utiliser en doses modérées, car à haute dose, elle peut mener a des états d’agitation nocturne et/ou a des phases de cauchemars.\n" +
-                "De plus, la plante ne doit pas être utilisée simultanément avec des plantes contenant du camphre ou du thymol ni lors d’un traitement a base de résine végétales."), paragraphTypeList.get(6))); //4
-        paragraphList.add(paragraphFacade.init(innerParagraphFacade.init("Super para", "Aucune."), paragraphTypeList.get(7))); //4
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.println(j);
+                paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(j)));
+            }
+        }
     }
 
     public void initImage() {
-        Image image = imageFacade.init(innerImageFacade.init("Menthe poivrée", lorem.getWords(12, 16), "init-m-1.jpg"));
-
-        imageList.add(image); //0
+        List<String> nameList = List.of("Menthe poivrée", "Melisse officinale", "Rose", "Sauge", "Verveine citronnée", "Houblon", "Etoile de badiane", "Estragon", "Hysope", "Lierre terrestre");
+        int index = 1;
+        for (String s: nameList) {
+            imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-" + index + ".jpg")));
+            index++;
+        }
     }
 
     public void initPage() {
-        Page page = pageFacade.init(innerPageFacade.init("Menthe poivrée", lorem.getWords(12, 16), imageList.get(0)),
-                categoryList.get(1));
-
-        page.addParagraph(paragraphList.get(0), paragraphList.get(1), paragraphList.get(2), paragraphList.get(3), paragraphList.get(4), paragraphList.get(5), paragraphList.get(6), paragraphList.get(7));
-
-        page.addParatag(paratagList.get(0), paratagList.get(1), paratagList.get(2));
-
-        pageList.add(page); //0
+        List<String> nameList = List.of("Menthe poivrée", "Melisse officinale", "Rose", "Sauge", "Verveine citronnée", "Houblon", "Etoile de badiane", "Estragon", "Hysope", "Lierre terrestre");
+        int index = 0;
+        for (String s: nameList) {
+            Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(index)),
+                    categoryList.get(1));
+            page.addParagraph(paragraphList.get((index * 8)), paragraphList.get(1 + (index * 8)), paragraphList.get(2 + (index * 8)), paragraphList.get(3 + (index * 8)), paragraphList.get(4 + (index * 8)), paragraphList.get(5 + (index * 8)), paragraphList.get(6 + (index * 8)), paragraphList.get(7 + (index * 8)));
+            page.addParatag(paratagList.get((index * 3)), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
+            pageList.add(page);
+            index++;
+        }
     }
 
     @PostConstruct
@@ -241,8 +313,6 @@ public class Init extends AbstractSecurityAutowire {
 
         initImage();
         initPage();
-
-        System.out.println(paragraphTypeList);
 
         paragraphTypeList.forEach(user -> {
             paragraphTypeRepository.save(user);

@@ -93,6 +93,10 @@ public class Utils {
         return id;
     }
 
+    public static int getRandom(int min, int max) {
+        return (int) Math.floor(Math.random()*(max-min +1) + min);
+    }
+
     public static List<Integer> getRandomIdListUnique(int listMinLength, int listMaxLength, int maxRandom) {
         ArrayList<Integer> list = new ArrayList<>();
         int random_int = (int) Math.floor(Math.random()*(listMaxLength-listMinLength +1) + listMinLength);
