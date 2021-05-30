@@ -93,4 +93,15 @@ public class Utils {
         return id;
     }
 
+    public static List<Integer> getRandomIdListUnique(int listMinLength, int listMaxLength, int maxRandom) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int random_int = (int) Math.floor(Math.random()*(listMaxLength-listMinLength +1) + listMinLength);
+        while(list.size() != random_int){
+            int random = (int) Math.floor(Math.random()*(maxRandom +1));
+            if (!list.contains(random)) {
+                list.add(random);
+            }
+        }
+        return list;
+    }
 }
