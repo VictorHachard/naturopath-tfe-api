@@ -73,18 +73,22 @@ public class PageService extends AbstractService<Page> {
                     page.addParatag(paratagMapper.set(innerParatagMapper.set(user), (ParatagType) sortedType.getAbstractType(), user));
                 }
             });
-            page.getParagraphList().forEach(i -> {
-                i.getInnerParagraphList().forEach(j -> {
-                    innerParagraphRepository.save(j);
+            if (page.getParagraphList() != null && !page.getParagraphList().isEmpty()) {
+                page.getParagraphList().forEach(i -> {
+                    i.getInnerParagraphList().forEach(j -> {
+                        innerParagraphRepository.save(j);
+                    });
+                    paragraphRepository.save(i);
                 });
-                paragraphRepository.save(i);
-            });
-            page.getParatagList().forEach(i -> {
-                i.getInnerParatagList().forEach(j -> {
-                    innerParatagRepository.save(j);
+            }
+            if (page.getParatagList() != null && !page.getParatagList().isEmpty()) {
+                page.getParatagList().forEach(i -> {
+                    i.getInnerParatagList().forEach(j -> {
+                        innerParatagRepository.save(j);
+                    });
+                    paratagRepository.save(i);
                 });
-                paratagRepository.save(i);
-            });
+            }
             pageRepository.save(page);
         }
 
