@@ -33,7 +33,10 @@ public final class ImageMapper extends AbstractMapper {
         List<ImageViewDto> res = new ArrayList<>();
         j.forEach(i -> {
             if (i != null) {
-                res.add(this.getView(i));
+                ImageViewDto imageViewDto = this.getView(i);
+                if (imageViewDto != null) {
+                    res.add(this.getView(i));
+                }
             }
         });
         return res;
