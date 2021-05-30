@@ -51,6 +51,10 @@ public class Category extends AbstractLang {
         sortedTypeList.addAll(l);
     }
 
+    public void clearSortedType() {
+        sortedTypeList.clear();
+    }
+
     /*@OneToMany
     List<ParagraphType> paragraphTypeList;
 

@@ -32,16 +32,13 @@ public final class CategoryMapper extends AbstractMapper {
                 validator.getIsParent());
     }
 
-    public void update(Category category, CategoryUpdateValidator validator, Category parentCategory, List<ParagraphType> paragraphTypeList, List<ParapageType> parapageTypeList, List<ParatagType> paratagTypeList) {
-        /*categoryFacade.updateInstance(
+    public void update(Category category, CategoryUpdateValidator validator, Category parentCategory) {
+        categoryFacade.updateInstance(
                 category,
                 validator.getName(),
                 validator.getDescription(),
-                parentCategory,
-                paragraphTypeList,
-                parapageTypeList,
-                paratagTypeList
-        );*/
+                parentCategory
+        );
     }
 
     public List<CategoryViewDto> getAllView(List<Category> j) {

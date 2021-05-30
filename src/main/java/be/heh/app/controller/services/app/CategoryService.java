@@ -4,9 +4,13 @@ import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
+import be.heh.app.controller.validators.commons.Pair;
 import be.heh.app.dto.edit.CategoryEditDto;
 import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.model.entities.app.Category;
+import be.heh.app.model.entities.app.ParagraphType;
+import be.heh.app.model.entities.app.ParatagType;
+import be.heh.app.model.entities.app.SortedType;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -116,16 +120,55 @@ public class CategoryService extends AbstractService<Category> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         } else if (paratagTypeRepository.findAllById(validator.getParatagTypeIdList()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
-        }
+        }*/
+
         Category category = categoryRepository.findById(id).get();
+
+        category.clearSortedType();
+
+        List<Integer> paragraphTypeIdList = new ArrayList<>();
+        List<Integer> paratagTypeIdList = new ArrayList<>();
+
+        int index = 1;
+        SortedType st;
+        for (Pair p: validator.getSortedTypeList()) {
+            switch (p.getType()) {
+                case "ParatagType":
+                    paratagTypeIdList.add(p.getId());
+                    st = sortedTypeFacade.newInstance(paratagTypeRepository.findById(p.getId()).get(), index);
+                    category.addType(st);
+                    sortedTypeRepository.save(st);
+                    break;
+                case "ParagraphType":
+                    paragraphTypeIdList.add(p.getId());
+                    st = sortedTypeFacade.newInstance(paragraphTypeRepository.findById(p.getId()).get(), index);
+                    category.addType(st);
+                    sortedTypeRepository.save(st);
+                    break;
+            }
+            index++;
+        }
+
+        /*List<ParagraphType> paragraphTypeList = paragraphTypeRepository.findAllById(paragraphTypeIdList);
+        List<ParatagType> paratagTypeList = paratagTypeRepository.findAllById(paratagTypeIdList);
+
+        for (Pair p: validator.getSortedTypeList()) {
+            switch (p.getType()) {
+                case "ParatagType":
+                    sortedTypeFacade.newInstance();
+                    break;
+                case "ParagraphType":
+                    sortedTypeFacade.newInstance();
+                    break;
+            }
+        }*/
+
         categoryMapper.update(
                 category,
                 validator,
-                validator.getParentCategoryId() != null ? categoryRepository.findById(validator.getParentCategoryId()).get() : null,
-                validator.getParagraphTypeIdList() != null ? paragraphTypeRepository.findAllById(validator.getParagraphTypeIdList()) : new ArrayList<>(),
-                validator.getParapageTypeIdList() != null ? parapageTypeRepository.findAllById(validator.getParapageTypeIdList()) : new ArrayList<>(),
-                validator.getParatagTypeIdList() != null ? paratagTypeRepository.findAllById(validator.getParatagTypeIdList()) : new ArrayList<>());
-        categoryRepository.save(category);*/
+                validator.getParentCategoryId() != null ? categoryRepository.findById(validator.getParentCategoryId()).get() : null);
+
+        categoryRepository.save(category);
     }
 
     @Override

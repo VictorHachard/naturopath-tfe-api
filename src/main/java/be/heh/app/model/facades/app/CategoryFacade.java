@@ -30,11 +30,10 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return res;
     }
 
-    public Category updateInstance(Category category, String name, String description, Category parentCategory, List<SortedType> sortedTypeList) {
+    public Category updateInstance(Category category, String name, String description, Category parentCategory) {
         category.setName(name);
         category.setDescription(description);
         category.setParentCategory(parentCategory);
-        category.addType(sortedTypeList);
         return category;
     }
 
