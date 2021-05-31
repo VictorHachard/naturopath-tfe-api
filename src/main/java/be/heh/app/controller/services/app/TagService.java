@@ -17,7 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -46,7 +48,7 @@ public class TagService extends AbstractService<Tag> {
         if (tagTypeRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Tag with this tagTypeId");
         }
-        List<TagByTagTypeViewDto> res = tagMapper.getAllTagByTagTypeDto(tagRepository.findAllTagByTagTypeId(id, EnumState.VALIDATED));
+        List<TagByTagTypeViewDto> res = tagMapper.getAllTagByTagTypeDto(new ArrayList<>(new HashSet<>(tagRepository.findAllTagByTagTypeId(id, EnumState.VALIDATED)))); //remove duplicated data (c'est horrible)
         Collections.sort(res);
         return res;
     }

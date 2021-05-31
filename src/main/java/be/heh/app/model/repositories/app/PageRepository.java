@@ -3,6 +3,7 @@ package be.heh.app.model.repositories.app;
 import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.InnerPage;
 import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.repositories.commons.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -52,5 +53,14 @@ public interface PageRepository extends AbstractRepository<Page, Integer> {
      */
     @Query("select p from Page p where p.enumState = 1")
     List<Page> findAllByEnumState(@Param("enumState") EnumState enumState);
+
+    /**
+     * Return a list of all pages belonging to a User and a EnumState.
+     * @param enumState the state of the page
+     * @param user the user of the page
+     * @return a list of pages
+     */
+    @Query("select p from Page p where p.enumState = ?1 and p.user = ?2")
+    List<Page> findAllByEnumStateAndUser(@Param("enumState") EnumState enumState, @Param("user") User user);
 
 }

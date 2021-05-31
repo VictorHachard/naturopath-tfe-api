@@ -67,12 +67,12 @@ public class Init extends AbstractSecurityAutowire {
     }
 
     public void initParatagType() {
-        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin" , lorem.getWords(12, 16), tagTypeList.get(0), EnumSize.SMALL)); //0
-        paratagTypeList.add(paratagTypeFacade.newInstance("Famille" , lorem.getWords(12, 16), tagTypeList.get(1), EnumSize.SMALL)); //1
-        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs" , lorem.getWords(12, 16), tagTypeList.get(2), EnumSize.LARGE)); //2
-        paratagTypeList.add(paratagTypeFacade.newInstance("Propriétés" , lorem.getWords(12, 16), tagTypeList.get(3), EnumSize.LARGE)); //3
-        paratagTypeList.add(paratagTypeFacade.newInstance("Indications" , lorem.getWords(12, 16), tagTypeList.get(4), EnumSize.LARGE)); //4
-        paratagTypeList.add(paratagTypeFacade.newInstance("Contre indications" , lorem.getWords(12, 16), tagTypeList.get(5), EnumSize.LARGE)); //5
+        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin", lorem.getWords(12, 16), tagTypeList.get(0), EnumSize.SMALL)); //0
+        paratagTypeList.add(paratagTypeFacade.newInstance("Famille", lorem.getWords(12, 16), tagTypeList.get(1), EnumSize.SMALL)); //1
+        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs", lorem.getWords(12, 16), tagTypeList.get(2), EnumSize.LARGE)); //2
+        paratagTypeList.add(paratagTypeFacade.newInstance("Propriétés", lorem.getWords(12, 16), tagTypeList.get(3), EnumSize.LARGE)); //3
+        paratagTypeList.add(paratagTypeFacade.newInstance("Indications", lorem.getWords(12, 16), tagTypeList.get(4), EnumSize.LARGE)); //4
+        paratagTypeList.add(paratagTypeFacade.newInstance("Contre indications", lorem.getWords(12, 16), tagTypeList.get(5), EnumSize.LARGE)); //5
     }
 
     public void initParapageType() {
@@ -250,11 +250,11 @@ public class Init extends AbstractSecurityAutowire {
 
             i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
             i.addTag(tagList.get(Utils.getRandom(28, 33)));
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
 
             i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
             i.addTag(tagList.get(34 + j));
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
         }
     }
 
