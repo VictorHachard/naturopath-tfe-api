@@ -44,9 +44,11 @@ public class Init extends AbstractSecurityAutowire {
 
     List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
     List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang");
-    List<String> imageHelp = List.of("i");
+    List<String> imageHelp = List.of("i", "d", "m");
     List<List<String>> nameAllList = List.of(
-            List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre")
+            List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"),
+            List.of("Laurier"),
+            List.of("Sapin")
     );
 
     public void initUser() {
@@ -336,9 +338,9 @@ public class Init extends AbstractSecurityAutowire {
             imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-h-" + index + ".jpg")));
             index++;
         }
-        index = 1;
         int indexImageHelp = 0;
         for (List<String> n: nameAllList) {
+            index = 1;
             for (String s: n) {
                 imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-" + imageHelp.get(indexImageHelp) + "-" + index + ".jpg")));
                 index++;
@@ -354,7 +356,7 @@ public class Init extends AbstractSecurityAutowire {
             Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(indexImage)),
                     categoryList.get(1));
             page.addParagraph(paragraphList.get((index * 8)), paragraphList.get(1 + (index * 8)), paragraphList.get(2 + (index * 8)), paragraphList.get(3 + (index * 8)), paragraphList.get(4 + (index * 8)), paragraphList.get(5 + (index * 8)), paragraphList.get(6 + (index * 8)), paragraphList.get(7 + (index * 8)));
-            page.addParatag(paratagList.get((index * 3)), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
+            page.addParatag(paratagList.get(index * 3), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
             pageList.add(page);
             index++;
             indexImage++;
@@ -366,26 +368,28 @@ public class Init extends AbstractSecurityAutowire {
             Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(indexImage)),
                     categoryList.get(2));
             page.addParagraph(paragraphList.get((index * 2) + offsetParag), paragraphList.get(1 + (index * 2) + offsetParag));
-            page.addParatag(paratagList.get((index * 2) + offsetParat), paratagList.get(1 + (index * 2) + offsetParat));
+            page.addParatag(paratagList.get(index * 2 + offsetParat), paratagList.get(1 + (index * 2) + offsetParat));
             pageList.add(page);
             index++;
             indexImage++;
         }
-        index = 0;
         int offsetParag = (8 * namePlanteList.size()) + (2 * nameHuileList.size());
         int offsetParat = (3 * namePlanteList.size()) + (2 * nameHuileList.size());
+        int indexCategory = 3;
         for (List<String> n: nameAllList) {
+            index = 0;
             for (String s : n) {
                 Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(indexImage)),
-                        categoryList.get(3));
+                        categoryList.get(indexCategory));
                 page.addParagraph(paragraphList.get(index * 3 + offsetParag), paragraphList.get(1 + (index * 3) + offsetParag), paragraphList.get(2 + (index * 3) + offsetParag));
-                page.addParatag(paratagList.get((index * 3) + offsetParat), paratagList.get(1 + (index * 3) + offsetParat), paratagList.get(2 + (index * 3) + offsetParat));
+                page.addParatag(paratagList.get(index * 3 + offsetParat), paratagList.get(1 + (index * 3) + offsetParat), paratagList.get(2 + (index * 3) + offsetParat));
                 pageList.add(page);
                 index++;
                 indexImage++;
             }
-            offsetParag =+ 3 * n.size();
-            offsetParat =+ 3 * n.size();
+            indexCategory++;
+            offsetParag += 3 * n.size();
+            offsetParat += 3 * n.size();
         }
     }
 
