@@ -25,7 +25,7 @@ public class RestFullController {
     @ResponseBody
     @RequestMapping(value = "{url}", method = RequestMethod.GET)
     public ResponseEntity<FileSystemResource> getImageAsResource(@PathVariable("url") String url) {
-        FileSystemResource res = new FileSystemResource("C:/test/" + url);
+        FileSystemResource res = new FileSystemResource("C:/tfe-images/" + url);
         return new ResponseEntity<FileSystemResource>(res, HttpStatus.CREATED);
     }
 

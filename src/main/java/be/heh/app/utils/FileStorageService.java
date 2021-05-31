@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
 
-    private final Path fileStorageLocation = Paths.get("C:\\test\\");
+    private final Path fileStorageLocation = Paths.get("C:\\tfe-images\\");
 
     public String storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
