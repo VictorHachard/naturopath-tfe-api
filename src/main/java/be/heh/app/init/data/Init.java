@@ -43,13 +43,21 @@ public class Init extends AbstractSecurityAutowire {
     static List<Page> pageList = new ArrayList<>();
 
     List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
-    List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang", "Rose");
-    List<String> imageHelp = List.of("i", "d", "m", "s"); //p et h
+    List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang", "Rose", "Cèdre", "Palmarosa", "Cannelle");
+    List<String> imageHelp = List.of("i", "d", "m", "s", "c", "o", "tm" , "vm", "co", "f", "hv", "pf"); //p et h
     List<List<String>> nameAllList = List.of(
-            List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"),
-            List.of("Laurier", "Tiges et Racines"),
-            List.of("Sapin"),
-            List.of("test")
+            List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"), // Infusions
+            List.of("Laurier", "Tiges et Racines"), // Décoctions
+            List.of("Sapin"), // Macérations
+            List.of("Sureau", "Melisse"), // Sirop
+            List.of("Argile"), //Cataplasmes
+            List.of("Aux Herbes", "Consoude", "Violettes"), // Onguents
+            List.of("Ginkgo Biloba", "Calendula", "Nénupha", "Romarin", "Thym" ), // Teintures Mères
+            List.of("Hypocras", "Romarin et Citron"), // Vins Médicinaux
+            List.of("Spiruline de Provence"), // Comprimés
+            List.of("Sauge et Rose Pâle", "Sauge, Lavende et Pissenlit", "Sapin"), // Fumigations
+            List.of("Olive", "Noisette", "Millepertuis", "Noix de Coco", "Blé", "Avocat", "Amande"), // Huiles Végétales
+            List.of("") // Plantes Fraîches
     );
 
     public void initUser() {
