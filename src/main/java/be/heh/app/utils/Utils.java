@@ -97,11 +97,11 @@ public class Utils {
         return (int) Math.floor(Math.random()*(max-min +1) + min);
     }
 
-    public static List<Integer> getRandomIdListUnique(int listMinLength, int listMaxLength, int maxRandom) {
+    public static List<Integer> getRandomIdListUnique(int listMinLength, int listMaxLength, int minRandom, int maxRandom) {
         ArrayList<Integer> list = new ArrayList<>();
-        int random_int = (int) Math.floor(Math.random()*(listMaxLength-listMinLength +1) + listMinLength);
+        int random_int = (int) Math.floor(Math.random()*(listMaxLength - listMinLength +1) + listMinLength);
         while(list.size() != random_int){
-            int random = (int) Math.floor(Math.random()*(maxRandom +1));
+            int random = (int) Math.floor(Math.random()*(maxRandom - minRandom +1) + minRandom);
             if (!list.contains(random)) {
                 list.add(random);
             }

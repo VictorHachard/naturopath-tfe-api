@@ -42,6 +42,8 @@ public class Init extends AbstractSecurityAutowire {
     static List<Image> imageList = new ArrayList<>();
     static List<Page> pageList = new ArrayList<>();
 
+    List<String> namePlanteList = List.of("Menthe poivrée", "Melisse officinale", "Rose", "Sauge", "Verveine citronnée", "Houblon", "Etoile de badiane", "Estragon", "Hysope", "Lierre terrestre");
+    List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe poivrée", "Pamplemousse");
 
     public void initUser() {
         User u = userFacade.init("Paulin");
@@ -176,13 +178,13 @@ public class Init extends AbstractSecurityAutowire {
         for (int i = 3; i < 29; i++) {
             categoryList.get(i).addType(
                     sortedTypeFacade.newInstance(paragraphTypeList.get(8), 1),
-                    sortedTypeFacade.newInstance(paragraphTypeList.get(9), 2),
-                    sortedTypeFacade.newInstance(paragraphTypeList.get(10), 3),
-                    sortedTypeFacade.newInstance(paragraphTypeList.get(11), 4),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(9), 7),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(10), 2),
+                    sortedTypeFacade.newInstance(paragraphTypeList.get(11), 3),
 
-                    sortedTypeFacade.newInstance(paratagTypeList.get(3), 5),
+                    sortedTypeFacade.newInstance(paratagTypeList.get(3), 4),
                     sortedTypeFacade.newInstance(paratagTypeList.get(4), 5),
-                    sortedTypeFacade.newInstance(paratagTypeList.get(5), 5)
+                    sortedTypeFacade.newInstance(paratagTypeList.get(5), 6)
             );
         }
 
@@ -238,12 +240,14 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Artemisia Dracunculus", lorem.getWords(12, 16)), tagTypeList.get(0))); //41
         tagList.add(tagFacade.init(innerTagFacade.init("Hyssopus Officinalis", lorem.getWords(12, 16)), tagTypeList.get(0))); //42
         tagList.add(tagFacade.init(innerTagFacade.init("Glechoma Hederacea", lorem.getWords(12, 16)), tagTypeList.get(0))); //43
+
+        tagList.add(tagFacade.init(innerTagFacade.init("test", lorem.getWords(12, 16)), tagTypeList.get(4))); //44 //indication
     }
 
     public void initParatag() {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < namePlanteList.size(); j++) {
             InnerParatag i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            for (int k : Utils.getRandomIdListUnique(2, 8, 10)) {
+            for (int k : Utils.getRandomIdListUnique(2, 8, 0, 10)) {
                 i.addTag(tagList.get(k));
             }
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(2)));
@@ -256,36 +260,67 @@ public class Init extends AbstractSecurityAutowire {
             i.addTag(tagList.get(34 + j));
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
         }
+
+        for (int j = 0; j < nameHuileList.size(); j++) {
+            InnerParatag i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+            for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                i.addTag(tagList.get(k));
+            }
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(3)));
+
+            i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+            /*for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) { //TODO change 11 27
+                i.addTag(tagList.get(k));
+            }*/
+            i.addTag(tagList.get(44));
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));//TODO change 4
+        }
     }
 
     public void initParagraph() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < namePlanteList.size(); i++) {
             for (int j = 0; j < 8; j++) {
-                System.out.println(j);
                 paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(j)));
             }
+        }
+        for (int i = 0; i < nameHuileList.size(); i++) {
+            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(8)));
+            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(9)));
         }
     }
 
     public void initImage() {
-        List<String> nameList = List.of("Menthe poivrée", "Melisse officinale", "Rose", "Sauge", "Verveine citronnée", "Houblon", "Etoile de badiane", "Estragon", "Hysope", "Lierre terrestre");
         int index = 1;
-        for (String s: nameList) {
+        for (String s: namePlanteList) {
+            imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-" + index + ".jpg")));
+            index++;
+        }
+        for (String s: nameHuileList) {
             imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-" + index + ".jpg")));
             index++;
         }
     }
 
     public void initPage() {
-        List<String> nameList = List.of("Menthe poivrée", "Melisse officinale", "Rose", "Sauge", "Verveine citronnée", "Houblon", "Etoile de badiane", "Estragon", "Hysope", "Lierre terrestre");
         int index = 0;
-        for (String s: nameList) {
+        int index2 = 0;
+        for (String s: namePlanteList) {
             Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(index)),
                     categoryList.get(1));
             page.addParagraph(paragraphList.get((index * 8)), paragraphList.get(1 + (index * 8)), paragraphList.get(2 + (index * 8)), paragraphList.get(3 + (index * 8)), paragraphList.get(4 + (index * 8)), paragraphList.get(5 + (index * 8)), paragraphList.get(6 + (index * 8)), paragraphList.get(7 + (index * 8)));
             page.addParatag(paratagList.get((index * 3)), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
             pageList.add(page);
             index++;
+        }
+
+        for (String s: nameHuileList) {
+            Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(index)),
+                    categoryList.get(2));
+            page.addParagraph(paragraphList.get((index2 * 2) + (8 * namePlanteList.size())), paragraphList.get(1 + (index2 * 2) + (8 * namePlanteList.size())));
+            page.addParatag(paratagList.get((index2 * 2) + (3 * namePlanteList.size())), paratagList.get(1 + (index2 * 2) + (3 * namePlanteList.size())));
+            pageList.add(page);
+            index++;
+            index2++;
         }
     }
 
