@@ -2,6 +2,7 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.TagValidator;
+import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
@@ -24,6 +25,11 @@ public class TagController extends AbstractController {
     @GetMapping("dto")
     public List<TagViewDto> getAllDto() {
         return tagService.getAllDto();
+    }
+
+    @GetMapping("dto/user")
+    public List<TagEditDto> getAllUserDto() {
+        return tagService.getAllUserDto();
     }
 
     @GetMapping("dto/{id}")

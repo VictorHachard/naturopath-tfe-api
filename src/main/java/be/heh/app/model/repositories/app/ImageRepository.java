@@ -2,6 +2,7 @@ package be.heh.app.model.repositories.app;
 
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.repositories.commons.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,5 +23,8 @@ public interface ImageRepository extends AbstractRepository<Image, Integer> {
      */
     @Query(value = "select i from Image p join p.innerImageList i where p = ?1 and i.enumState = ?2 order by i.id desc")
     List<InnerImage> findInnerImage(@Param("image") Image image, @Param("enumState") EnumState enumState);
+
+    @Query(value = "select i from Image i join i.innerImageList inn where i.user = ?1 order by i.id desc")
+    List<Image> findImageByUser(@Param("user") User user);
 
 }

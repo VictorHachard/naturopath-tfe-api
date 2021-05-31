@@ -31,6 +31,11 @@ public class ImageController extends AbstractController {
         return imageService.getAllDto();
     }
 
+    @GetMapping("dto/user")
+    public List<ImageEditDto> getAllUserDto() {
+        return imageService.getAllUserDto();
+    }
+
     @GetMapping("dto/{id}")
     public ImageViewDto getDto(@PathVariable("id") int id) {
         return imageService.getDto(id);

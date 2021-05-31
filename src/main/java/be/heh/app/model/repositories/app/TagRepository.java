@@ -1,8 +1,6 @@
 package be.heh.app.model.repositories.app;
 
-import be.heh.app.model.entities.app.InnerTag;
-import be.heh.app.model.entities.app.Tag;
-import be.heh.app.model.entities.app.TagType;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.repositories.commons.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -52,6 +50,7 @@ public interface TagRepository extends AbstractRepository<Tag, Integer> {
     @Query("select t from Tag t join t.innerTagList i where t.tagType.id = ?1 and i.enumState = ?2")
     List<Tag> findAllTagByTagTypeId(@Param("tagType") int tagTypeId, @Param("enumState") EnumState enumState);
 
-
+    @Query(value = "select i from Tag i join i.innerTagList inn where i.user = ?1 order by i.id desc")
+    List<Tag> findTagByUser(@Param("user") User user);
 
 }

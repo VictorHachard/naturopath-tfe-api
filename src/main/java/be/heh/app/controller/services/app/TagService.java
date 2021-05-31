@@ -32,6 +32,10 @@ public class TagService extends AbstractService<Tag> {
         return tagMapper.getAllView(super.getAll());
     }
 
+    public List<TagEditDto> getAllUserDto() {
+        return tagMapper.getAllEditDto(new ArrayList<>(new HashSet<>(tagRepository.findTagByUser(this.getUser())))); //remove duplicated data (c'est horrible)
+    }
+    
     public TagViewDto getDto(int id) {
         return tagMapper.getView(super.get(id));
     }

@@ -5,14 +5,18 @@ import be.heh.app.controller.validators.app.ImageValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.view.ImageViewDto;
+import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
 import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -23,6 +27,10 @@ public class ImageService extends AbstractService<Image> {
 
     public List<ImageViewDto> getAllDto() {
         return imageMapper.getAllView(super.getAll());
+    }
+
+    public List<ImageEditDto> getAllUserDto() {
+        return imageMapper.getAllEditDto(new ArrayList<>(new HashSet<>(imageRepository.findImageByUser(this.getUser())))); //remove duplicated data (c'est horrible)
     }
 
     public ImageViewDto getDto(int id) {
