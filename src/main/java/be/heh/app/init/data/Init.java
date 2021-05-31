@@ -44,7 +44,10 @@ public class Init extends AbstractSecurityAutowire {
 
     List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
     List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang");
-    List<String> nameInfusionList = List.of("Gingembre", "Menthe", "Laurier", "Sauge");
+    List<String> imageHelp = List.of("i");
+    List<List<String>> nameAllList = List.of(
+            List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre")
+    );
 
     public void initUser() {
         User u = userFacade.init("Paulin");
@@ -279,24 +282,26 @@ public class Init extends AbstractSecurityAutowire {
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));//TODO change 4
         }
 
-        for (int j = 0; j < nameInfusionList.size(); j++) {
-            InnerParatag i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
-                i.addTag(tagList.get(k));
-            }
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(3)));
+        for (int w = 0; w < nameAllList.size(); w++) {
+            for (int j = 0; j < nameAllList.get(w).size(); j++) {
+                InnerParatag i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+                for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                    i.addTag(tagList.get(k));
+                }
+                paratagList.add(paratagFacade.init(i, paratagTypeList.get(3)));
 
-            i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
-                i.addTag(tagList.get(k));
-            }
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));
+                i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+                for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                    i.addTag(tagList.get(k));
+                }
+                paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));
 
-            i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
-                i.addTag(tagList.get(k));
+                i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
+                for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                    i.addTag(tagList.get(k));
+                }
+                paratagList.add(paratagFacade.init(i, paratagTypeList.get(5)));
             }
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(5)));
         }
     }
 
@@ -310,11 +315,13 @@ public class Init extends AbstractSecurityAutowire {
             paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(8)));
             paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(9)));
         }
-        for (int i = 0; i < nameHuileList.size(); i++) {
-            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(8)));
-            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(10)));
-            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(9)));
-            paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(11)));
+        for (int w = 0; w < nameAllList.size(); w++) {
+            for (int j = 0; j < nameAllList.get(w).size(); j++) {
+                paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(8)));
+                paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(10)));
+                paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(9)));
+                paragraphList.add(paragraphFacade.init(innerParagraphFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), paragraphTypeList.get(11)));
+            }
         }
     }
 
@@ -330,9 +337,13 @@ public class Init extends AbstractSecurityAutowire {
             index++;
         }
         index = 1;
-        for (String s: nameInfusionList) {
-            imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-i-" + index + ".jpg")));
-            index++;
+        int indexImageHelp = 0;
+        for (List<String> n: nameAllList) {
+            for (String s: n) {
+                imageList.add(imageFacade.init(innerImageFacade.init(s, lorem.getWords(12, 16), "init-" + imageHelp.get(indexImageHelp) + "-" + index + ".jpg")));
+                index++;
+            }
+            indexImageHelp++;
         }
     }
 
@@ -361,16 +372,20 @@ public class Init extends AbstractSecurityAutowire {
             indexImage++;
         }
         index = 0;
-        for (String s: nameInfusionList) {
-            int offsetParag = (8 * namePlanteList.size()) + (2 * nameHuileList.size());
-            int offsetParat = (3 * namePlanteList.size()) + (2 * nameHuileList.size());
-            Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(indexImage)),
-                    categoryList.get(3));
-            page.addParagraph(paragraphList.get(index * 3 + offsetParag), paragraphList.get(1 + (index * 3) + offsetParag), paragraphList.get(2 + (index * 3) + offsetParag));
-            page.addParatag(paratagList.get((index * 3) + offsetParat), paratagList.get(1 + (index * 3) + offsetParat), paratagList.get(2 + (index * 3) + offsetParat));
-            pageList.add(page);
-            index++;
-            indexImage++;
+        int offsetParag = (8 * namePlanteList.size()) + (2 * nameHuileList.size());
+        int offsetParat = (3 * namePlanteList.size()) + (2 * nameHuileList.size());
+        for (List<String> n: nameAllList) {
+            for (String s : n) {
+                Page page = pageFacade.init(innerPageFacade.init(s, lorem.getWords(12, 16), imageList.get(indexImage)),
+                        categoryList.get(3));
+                page.addParagraph(paragraphList.get(index * 3 + offsetParag), paragraphList.get(1 + (index * 3) + offsetParag), paragraphList.get(2 + (index * 3) + offsetParag));
+                page.addParatag(paratagList.get((index * 3) + offsetParat), paratagList.get(1 + (index * 3) + offsetParat), paratagList.get(2 + (index * 3) + offsetParat));
+                pageList.add(page);
+                index++;
+                indexImage++;
+            }
+            offsetParag =+ 3 * n.size();
+            offsetParat =+ 3 * n.size();
         }
     }
 
