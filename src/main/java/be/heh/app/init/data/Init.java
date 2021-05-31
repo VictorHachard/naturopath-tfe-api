@@ -43,12 +43,13 @@ public class Init extends AbstractSecurityAutowire {
     static List<Page> pageList = new ArrayList<>();
 
     List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
-    List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang");
-    List<String> imageHelp = List.of("i", "d", "m");
+    List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang", "Rose");
+    List<String> imageHelp = List.of("i", "d", "m", "s"); //p et h
     List<List<String>> nameAllList = List.of(
             List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"),
-            List.of("Laurier"),
-            List.of("Sapin")
+            List.of("Laurier", "Tiges et Racines"),
+            List.of("Sapin"),
+            List.of("test")
     );
 
     public void initUser() {
