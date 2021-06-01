@@ -47,12 +47,13 @@ public class PageService extends AbstractService<Page> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");
         }
         //TODO findAllByCategory not empty
-        if (validator.getLimit() != null && validator.getOffset() != null) {
+        /*if (validator.getLimit() != null && validator.getOffset() != null) {
             List<Page> pageList = pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED);
             return pageMapper.getAllPageByCategoryDto(pageList.stream().skip(validator.getOffset()).limit(validator.getLimit()).collect(Collectors.toList()), pageList.size()); //TODO optimize the db acces
         } else {
             return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
-        }
+        }*/
+        return pageMapper.getAllPageByCategoryDto(pageRepository.findAllByCategoryById(validator.getCategoryId(), EnumState.VALIDATED));
     }
 
     public int addC(AbstractValidator abstractValidator) {

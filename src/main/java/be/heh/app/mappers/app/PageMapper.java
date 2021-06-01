@@ -4,11 +4,9 @@ import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageSimplifiedViewDto;
 import be.heh.app.dto.view.PageViewDto;
+import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.entities.app.InnerPage;
-import be.heh.app.model.entities.app.Page;
-import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -82,12 +80,19 @@ public final class PageMapper extends AbstractMapper {
         pageList.forEach(i -> {
             InnerPage innerPage = pageRepository.findInnerPage(i, EnumState.VALIDATED).get(0);
 
+            List<TagViewDto> tagViewDtoList = new ArrayList<>();
+
+            i.getParatagList().forEach(paratag -> {
+                tagViewDtoList.addAll(tagMapper.getAllView(paratagRepository.findInnerParatag(paratag, EnumState.VALIDATED).get(0).getTagList()));
+            });
+
             res.add(new PageSimplifiedViewDto(
                     i.getId(),
                     i.getCreatedAt(),
                     innerPage.getTitle(),
                     innerPage.getDescription(),
-                    imageMapper.getImageForPageByCategoryView(innerPage.getImage())
+                    imageMapper.getImageForPageByCategoryView(innerPage.getImage()),
+                    tagViewDtoList
             ));
         });
         return new PageByCategoryViewDto(size, res);
