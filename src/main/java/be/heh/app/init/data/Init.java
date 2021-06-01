@@ -44,7 +44,7 @@ public class Init extends AbstractSecurityAutowire {
 
     List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
     List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang", "Rose", "Cèdre", "Palmarosa", "Cannelle");
-    List<String> imageHelp = List.of("i", "d", "m", "s", "c", "o", "tm" , "vm", "co", "f", "hv", "pf"); //p et h
+    List<String> imageHelp = List.of("i", "d", "m", "s", "c", "o", "tm" , "vm", "co", "f", "hv", "pf", "e", "mh", "po", "g", "bdp", "bdb", "bo", "col", "b", "ge", "pom", "hy", "mdb", "ef"); //p et h
     List<List<String>> nameAllList = List.of(
             List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"), // Infusions
             List.of("Laurier", "Tiges et Racines"), // Décoctions
@@ -57,7 +57,21 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Spiruline de Provence"), // Comprimés
             List.of("Sauge et Rose Pâle", "Sauge, Lavende et Pissenlit", "Sapin"), // Fumigations
             List.of("Olive", "Noisette", "Millepertuis", "Noix de Coco", "Blé", "Avocat", "Amande"), // Huiles Végétales
-            List.of("") // Plantes Fraîches
+            List.of("Echinacéa angustifolia", "Passiflore "), // Plantes Fraîches
+            List.of("Citron, Gigembre et Miel", "Aloe Vera"), // Élixirs
+            List.of("Pâquerettes", "Pissenlits"), // Macérats Huileux
+            List.of("Menthe", "Piments"), // Poudres
+            List.of("Kudzu"), // Gélules
+            List.of("Sarinette", "Assam"), // Bains de Plantes
+            List.of("Noix de Coco", "Peppermint"), // Bains de Bouche ou Gargarismes
+            List.of("Menthe Poivrée", "Lavende"), // Bains Oculaire
+            List.of("Pissenlit"), //  Collyres
+            List.of("Plantain", "Menthe", "Pissenlit", "Rose", "Calendula", "Romarin"), // Baumes
+            List.of("Menthe Fraiches et Citron", "Citron Vert"), // Gels
+            List.of("Calendula, Guimauve, Camomille, Karité et Beure de Cacao","Miel"), // Pommades
+            List.of("Rose", "Canneberge"), // Hydrolats Macérats de Bourgeons
+            List.of("Sureau", "Tilleul", "Rosier Sauvage"), // Macérats de Bourgeons
+            List.of("Marguerittes et lavende", "Violette") // Élixirs Floraux ou Fleurs de Bach
     );
     
     private String getLittleWord() {
