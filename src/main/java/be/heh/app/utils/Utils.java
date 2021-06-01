@@ -108,4 +108,13 @@ public class Utils {
         }
         return list;
     }
+
+    public static List<String> get3String(String str) {
+        ArrayList<String> res = new ArrayList<>();
+        String[] strList = str.split("");
+        for (int i = 1; i < strList.length - 1; i++) {
+            res.add(strList[i - 1] + strList[i] + strList[i + 1]);
+        }
+        return res;
+    }
 }

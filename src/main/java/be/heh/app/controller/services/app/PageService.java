@@ -6,9 +6,12 @@ import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.PageSearchDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
+import be.heh.app.model.repositories.app.PageRepository;
+import be.heh.app.utils.Utils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -16,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +44,33 @@ public class PageService extends AbstractService<Page> {
 
     public PageEditDto getEditDto(int id) {
         return pageMapper.getEditDto(super.get(id));
+    }
+
+    public List<PageSearchDto> getSearchAllDto(String search) {
+        List<Page> pages = pageRepository.findAllByEnumState(EnumState.VALIDATED);
+        List<Page> pagesRes = new ArrayList<>();
+
+        String[] searchSplited = search.toLowerCase().split(" ");
+        for (Page page : pages) {
+            System.out.println(page.getInnerPageList().get(0).getTitle());
+            String[] titleSplited = page.getInnerPageList().get(0).getTitle().toLowerCase().split(" ");
+            for (String t : titleSplited) {
+                for (String s : searchSplited) {
+                    System.out.println(t + " -- " + s);
+                    for (String ts : Utils.get3String(t)) {
+                        for (String ss : Utils.get3String(s)) {
+                            System.out.println(ts + " -- " + ss);
+                            if (ts.equals(ss) && !pagesRes.contains(page)) {
+                                pagesRes.add(page);
+                                System.out.println("Match" + page.getInnerPageList().get(0).getTitle());
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        return pageMapper.getAllSearchDto(pagesRes);
     }
 
     public PageByCategoryViewDto getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {

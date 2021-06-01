@@ -1,10 +1,12 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
+import be.heh.app.controller.validators.app.PageSearchValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
+import be.heh.app.dto.view.PageSearchDto;
 import be.heh.app.dto.view.PageViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -25,6 +27,11 @@ public class PageController extends AbstractController {
 	@GetMapping("dto/{id}")
 	public PageViewDto getDto(@PathVariable("id") int id) {
 		return pageService.getDto(id);
+	}
+
+	@PostMapping("dto/search")
+	public List<PageSearchDto> getSearchAllDto(@Valid @RequestBody PageSearchValidator pageSearchValidator) {
+		return pageService.getSearchAllDto(pageSearchValidator.getSearch());
 	}
 
 	@GetMapping("dto/edit/{id}")

@@ -1,10 +1,7 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.dto.edit.PageEditDto;
-import be.heh.app.dto.view.PageByCategoryViewDto;
-import be.heh.app.dto.view.PageSimplifiedViewDto;
-import be.heh.app.dto.view.PageViewDto;
-import be.heh.app.dto.view.TagViewDto;
+import be.heh.app.dto.view.*;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -96,6 +93,41 @@ public final class PageMapper extends AbstractMapper {
             ));
         });
         return new PageByCategoryViewDto(size, res);
+    }
+
+    public List<PageSearchDto> getAllSearchDto(List<Page> pages) {
+        List<PageSearchDto> res = new ArrayList<>();
+        for (Page page : pages) {
+            boolean cat = false;
+            int index = 0;
+            for (PageSearchDto psd : res) {
+                if (page.getCategory().getId() == psd.getCategoryViewDto().getId()) {
+                    cat = true;
+                    break;
+                }
+                index++;
+            }
+            if (!cat) {
+                res.add(new PageSearchDto(
+                        categoryMapper.getView(page.getCategory()),
+                        new ArrayList<>()
+                ));
+            }
+            InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
+            PageSimplifiedViewDto2 p2 = new PageSimplifiedViewDto2(
+                    page.getId(),
+                    page.getCreatedAt(),
+                    innerPage.getTitle(),
+                    innerPage.getDescription(),
+                    imageMapper.getImageForPageByCategoryView(innerPage.getImage())
+            );
+            if (!cat) {
+                res.get(res.size() -1).getPageSimplifiedViewDto2List().add(p2);
+            } else {
+                res.get(index).getPageSimplifiedViewDto2List().add(p2);
+            }
+        }
+        return res;
     }
 
     public PageEditDto getEditDto(Page page) {

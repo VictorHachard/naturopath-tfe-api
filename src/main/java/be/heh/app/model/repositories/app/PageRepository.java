@@ -51,7 +51,7 @@ public interface PageRepository extends AbstractRepository<Page, Integer> {
      * @param enumState the state of the page
      * @return a list of pages
      */
-    @Query("select p from Page p where p.enumState = 1")
+    @Query("select p from Page p where p.enumState = ?1")
     List<Page> findAllByEnumState(@Param("enumState") EnumState enumState);
 
     /**
