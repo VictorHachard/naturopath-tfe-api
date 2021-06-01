@@ -56,17 +56,13 @@ public class PageService extends AbstractService<Page> {
             String[] titleSplited = page.getInnerPageList().get(0).getTitle().toLowerCase().split(" ");
             for (String t : titleSplited) {
                 for (String s : searchSplited) {
-                    System.out.println(t + " -- " + s);
                     for (String ts : Utils.get3String(t)) {
                         for (String ss : Utils.get3String(s)) {
-                            System.out.println(ts + " -- " + ss);
                             if (ts.equals(ss) && !pagesRes.contains(page)) {
                                 pagesRes.add(page);
-                                System.out.println("Match" + page.getInnerPageList().get(0).getTitle());
                             }
                         }
                     }
-
                 }
             }
         }
