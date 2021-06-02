@@ -63,4 +63,7 @@ public interface PageRepository extends AbstractRepository<Page, Integer> {
     @Query("select p from Page p where p.enumState = ?1 and p.user = ?2")
     List<Page> findAllByEnumStateAndUser(@Param("enumState") EnumState enumState, @Param("user") User user);
 
+    @Query("select p from Like l join l.page p where l.user = ?1 and l.actualLike = true")
+    List<Page> findAllFavoriteByUser(@Param("user") User user);
+
 }

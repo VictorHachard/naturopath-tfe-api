@@ -119,6 +119,10 @@ public class PageService extends AbstractService<Page> {
         return pageMapper.getAllSearchDto(pagesRes);
     }
 
+    public List<PageSearchDto> getFavoriteAllDto() {
+        return pageMapper.getAllSearchDto(pageRepository.findAllFavoriteByUser(this.getUser()));
+    }
+
     public PageByCategoryViewDto getAllPageByCategoryDto(PagesByCategoryDtoValidator validator) {
         if (categoryRepository.findById(validator.getCategoryId()).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no Category with this categoryId");

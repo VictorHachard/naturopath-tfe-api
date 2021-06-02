@@ -44,6 +44,12 @@ public class PageController extends AbstractController {
 		return pageService.getRecommendedSearchAllDto(pageSearchValidator.getSearch(), pageSearchValidator.getLimit());
 	}
 
+	@GetMapping("dto/favorite")
+	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+	public List<PageSearchDto> getFavoriteAllDto() {
+		return pageService.getFavoriteAllDto();
+	}
+
 	@GetMapping("dto/edit/{id}")
 	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
 	public PageEditDto getEditDto(@PathVariable("id") int id) {
