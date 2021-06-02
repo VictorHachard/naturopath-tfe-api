@@ -31,7 +31,12 @@ public class PageController extends AbstractController {
 
 	@PostMapping("dto/search")
 	public List<PageSearchDto> getSearchAllDto(@Valid @RequestBody PageSearchValidator pageSearchValidator) {
-		return pageService.getSearchAllDto(pageSearchValidator.getSearch());
+		return pageService.getSearchAllDto(pageSearchValidator.getSearch(), pageSearchValidator.getLimit());
+	}
+
+	@PostMapping("dto/search/exact")
+	public List<PageSearchDto> getExactSearchAllDto(@Valid @RequestBody PageSearchValidator pageSearchValidator) {
+		return pageService.getExactSearchAllDto(pageSearchValidator.getSearch(), pageSearchValidator.getLimit());
 	}
 
 	@GetMapping("dto/edit/{id}")

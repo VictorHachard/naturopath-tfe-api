@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,5 +19,9 @@ public class PageSearchValidator extends AbstractValidator {
     @NotEmpty
     @Size(min = 3, max = 256)
     String search;
+
+    int limit;
+
+    boolean justOnePageByCategory;
 
 }

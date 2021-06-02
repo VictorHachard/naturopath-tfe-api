@@ -46,13 +46,13 @@ public class PageService extends AbstractService<Page> {
         return pageMapper.getEditDto(super.get(id));
     }
 
-    public List<PageSearchDto> getSearchAllDto(String search) {
+    public List<PageSearchDto> getSearchAllDto(String search, int limit) {
+        limit = limit == 0 ? 100 : limit;
         List<Page> pages = pageRepository.findAllByEnumState(EnumState.VALIDATED);
         List<Page> pagesRes = new ArrayList<>();
 
         String[] searchSplited = search.toLowerCase().split(" ");
         for (Page page : pages) {
-            System.out.println(page.getInnerPageList().get(0).getTitle());
             String[] titleSplited = page.getInnerPageList().get(0).getTitle().toLowerCase().split(" ");
             for (String t : titleSplited) {
                 for (String s : searchSplited) {
@@ -60,7 +60,34 @@ public class PageService extends AbstractService<Page> {
                         for (String ss : Utils.get3String(s)) {
                             if (ts.equals(ss) && !pagesRes.contains(page)) {
                                 pagesRes.add(page);
+                                limit--;
+                                if (limit <= 0) {
+                                    return pageMapper.getAllSearchDto(pagesRes);
+                                }
                             }
+                        }
+                    }
+                }
+            }
+        }
+        return pageMapper.getAllSearchDto(pagesRes);
+    }
+
+    public List<PageSearchDto> getExactSearchAllDto(String search, int limit) { //exect de du le la
+        limit = limit == 0 ? 100 : limit;
+        List<Page> pages = pageRepository.findAllByEnumState(EnumState.VALIDATED);
+        List<Page> pagesRes = new ArrayList<>();
+
+        String[] searchSplited = search.toLowerCase().split(" ");
+        for (Page page : pages) {
+            String[] titleSplited = page.getInnerPageList().get(0).getTitle().toLowerCase().split(" ");
+            for (String t : titleSplited) {
+                for (String s : searchSplited) {
+                    if (t.equals(s) && !t.equals("le") && !t.equals("la") && !t.equals("de") && !t.equals("et") && !t.equals("du") && !t.equals(",") && !t.equals("ou") && !pagesRes.contains(page)) {
+                        pagesRes.add(page);
+                        limit--;
+                        if (limit <= 0) {
+                            return pageMapper.getAllSearchDto(pagesRes);
                         }
                     }
                 }

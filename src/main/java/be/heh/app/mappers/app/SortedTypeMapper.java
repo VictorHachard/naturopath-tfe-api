@@ -16,7 +16,7 @@ import java.util.List;
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
-public class SortedTypeMapper extends AbstractMapper {
+public final class SortedTypeMapper extends AbstractMapper {
 
     public List<SortedTypeViewDto> getAllView(List<SortedType> j) {
         List<SortedTypeViewDto> res = new ArrayList<>();
