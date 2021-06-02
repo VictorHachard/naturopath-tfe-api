@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PageSimplifiedViewDto2 {
+public class PageSimplifiedRecommendedViewDto {
 
     int id;
 

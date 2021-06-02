@@ -17,6 +17,6 @@ public class PageSearchDto {
 
     CategoryViewDto categoryViewDto;
 
-    List<PageSimplifiedViewDto2> pageSimplifiedViewDto2List;
+    List<PageSimplifiedRecommendedViewDto> pageSimplifiedRecommendedViewDtoList;
 
 }

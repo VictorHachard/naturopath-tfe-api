@@ -114,7 +114,7 @@ public final class PageMapper extends AbstractMapper {
                 ));
             }
             InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
-            PageSimplifiedViewDto2 p2 = new PageSimplifiedViewDto2(
+            PageSimplifiedRecommendedViewDto p2 = new PageSimplifiedRecommendedViewDto(
                     page.getId(),
                     page.getCreatedAt(),
                     innerPage.getTitle(),
@@ -122,9 +122,9 @@ public final class PageMapper extends AbstractMapper {
                     imageMapper.getImageForPageByCategoryView(innerPage.getImage())
             );
             if (!cat) {
-                res.get(res.size() -1).getPageSimplifiedViewDto2List().add(p2);
+                res.get(res.size() -1).getPageSimplifiedRecommendedViewDtoList().add(p2);
             } else {
-                res.get(index).getPageSimplifiedViewDto2List().add(p2);
+                res.get(index).getPageSimplifiedRecommendedViewDtoList().add(p2);
             }
         }
         return res;

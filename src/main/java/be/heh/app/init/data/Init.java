@@ -58,20 +58,20 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Sauge et Rose Pâle", "Sauge, Lavende et Pissenlit", "Sapin"), // Fumigations
             List.of("Olive", "Noisette", "Millepertuis", "Noix de Coco", "Blé", "Avocat", "Amande"), // Huiles Végétales
             List.of("Echinacéa angustifolia", "Passiflore "), // Plantes Fraîches
-            List.of("Citron, Gigembre et Miel", "Aloe Vera"), // Élixirs
-            List.of("Pâquerettes", "Pissenlits"), // Macérats Huileux
-            List.of("Menthe", "Piments"), // Poudres
+            List.of("Citron, Gingembre et Miel", "Aloe Vera"), // Élixirs
+            List.of("Pâquerette", "Pissenlit"), // Macérats Huileux
+            List.of("Menthe", "Piment"), // Poudres
             List.of("Kudzu"), // Gélules
             List.of("Sarinette", "Assam"), // Bains de Plantes
             List.of("Noix de Coco", "Peppermint"), // Bains de Bouche ou Gargarismes
             List.of("Menthe Poivrée", "Lavende"), // Bains Oculaire
             List.of("Pissenlit"), //  Collyres
             List.of("Plantain", "Menthe", "Pissenlit", "Rose", "Calendula", "Romarin"), // Baumes
-            List.of("Menthe Fraiches et Citron", "Citron Vert"), // Gels
+            List.of("Menthe Fraîche et Citron", "Citron Vert"), // Gels
             List.of("Calendula, Guimauve, Camomille, Karité et Beure de Cacao","Miel"), // Pommades
             List.of("Rose", "Canneberge"), // Hydrolats Macérats de Bourgeons
             List.of("Sureau", "Tilleul", "Rosier Sauvage"), // Macérats de Bourgeons
-            List.of("Marguerittes et lavende", "Violette") // Élixirs Floraux ou Fleurs de Bach
+            List.of("Margueritte et Lavende", "Violette") // Élixirs Floraux ou Fleurs de Bach
     );
     
     private String getLittleWord() {
