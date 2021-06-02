@@ -47,6 +47,7 @@ public class InitRepository extends AbstractAutowire {
         repositoryMap.put("Ticket", ticketRepository);
         repositoryMap.put("TicketContent", ticketContentRepository);
         repositoryMap.put("Vote", voteRepository);
+        repositoryMap.put("Like", likeRepository);
 
         try {
             List<Class> allClasses = Utils.getClasses("be.heh.app.model.repositories.app");

@@ -85,6 +85,9 @@ public abstract class AbstractAutowire {
     @Autowired
     ImageRepository imageRepository;
 
+    @Autowired
+    LikeRepository likeRepository;
+
     // Mapper
 
     @Autowired
@@ -136,6 +139,9 @@ public abstract class AbstractAutowire {
     InnerTagMapper innerTagMapper;
 
     @Autowired
+    LikeMapper likeMapper;
+
+    @Autowired
     InnerParagraphMapper innerParagraphMapper;
 
     @Autowired
@@ -160,6 +166,9 @@ public abstract class AbstractAutowire {
 
     @Autowired
     CategoryFacade categoryFacade;
+
+    @Autowired
+    LikeFacade likeFacade;
 
     @Autowired
     TicketContentFacade ticketContentFacade;
@@ -236,6 +245,9 @@ public abstract class AbstractAutowire {
     TagTypeService tagTypeService;
 
     @Autowired
+    LikeService likeService;
+
+    @Autowired
     InnerImageService innerImageService;
 
     @Autowired
@@ -282,6 +294,5 @@ public abstract class AbstractAutowire {
 
     @Autowired
     ParapageTypeService parapageTypeService;
-
 
 }

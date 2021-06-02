@@ -41,6 +41,7 @@ public class InitService extends AbstractAutowire {
         serviceMap.put("TagType", tagTypeService);
         serviceMap.put("User", userService);
         serviceMap.put("Vote", voteService);
+        serviceMap.put("Like", likeService);
     }
 
     public static <T>T get(Class c) {
