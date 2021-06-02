@@ -18,6 +18,8 @@ public class PageSimplifiedViewDto {
 
     int id;
 
+    int like;
+
     Date createdAt;
 
     String title;

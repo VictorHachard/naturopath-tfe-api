@@ -20,4 +20,9 @@ public interface LikeRepository extends AbstractRepository<Like, Integer> {
 
     Boolean existsByPageAndUser(Page page, User user);
 
+    @Query("select l from Like l where l.page = ?1 and l.actualLike = true")
+    List<Like> findAllByPage(@Param("page") Page page);
+
+    Boolean existsByPage(Page page);
+
 }

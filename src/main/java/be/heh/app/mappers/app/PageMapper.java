@@ -76,6 +76,7 @@ public final class PageMapper extends AbstractMapper {
         List<PageSimplifiedViewDto> res = new ArrayList<>();
         pageList.forEach(i -> {
             InnerPage innerPage = pageRepository.findInnerPage(i, EnumState.VALIDATED).get(0);
+            List<Like> likeList = likeRepository.existsByPage(i) ? likeRepository.findAllByPage(i) : null;
 
             List<TagViewDto> tagViewDtoList = new ArrayList<>();
 
@@ -85,6 +86,7 @@ public final class PageMapper extends AbstractMapper {
 
             res.add(new PageSimplifiedViewDto(
                     i.getId(),
+                    likeList != null ? likeList.size() : 0,
                     i.getCreatedAt(),
                     innerPage.getTitle(),
                     innerPage.getDescription(),
