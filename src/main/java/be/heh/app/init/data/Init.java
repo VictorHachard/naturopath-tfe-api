@@ -51,7 +51,7 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Sapin"), // Macérations
             List.of("Sureau", "Melisse"), // Sirop
             List.of("Argile"), //Cataplasmes
-            List.of("Aux Herbes", "Consoude", "Violettes"), // Onguents
+            List.of("Aux Herbes", "Consoude", "Violette"), // Onguents
             List.of("Ginkgo Biloba", "Calendula", "Nénupha", "Romarin", "Thym" ), // Teintures Mères
             List.of("Hypocras", "Romarin et Citron"), // Vins Médicinaux
             List.of("Spiruline de Provence"), // Comprimés
