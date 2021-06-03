@@ -64,7 +64,8 @@ public final class PageMapper extends AbstractMapper {
                 parapageMapper.getAllView(page.getParapageList()),
                 paratagMapper.getAllView(page.getParatagList()),
                 imageMapper.getView(innerPage.getImage()),
-                sortedTypeMapper.getAllView(page.getCategory().getSortedTypeList())
+                sortedTypeMapper.getAllView(page.getCategory().getSortedTypeList()),
+                messageMapper.getAllViewDto(page.getMessageList())
         );
     }
 

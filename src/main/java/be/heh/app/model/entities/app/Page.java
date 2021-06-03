@@ -36,17 +36,21 @@ public class Page extends AbstractEntity {
     @OneToMany
     List<Paragraph> paragraphList;
 
-    /*@OneToMany
-    List<Tag> tagList;*/
-
     @OneToMany
     List<Parapage> parapageList;
 
     @OneToMany
     List<Paratag> paratagList;
 
-    /*@OneToMany
-    List<Image> imageList;*/
+    @OneToMany
+    List<Message> messageList;
+
+    public void addMessage(Message... messages) {
+        if (messageList == null) {
+            messageList = new ArrayList<>();
+        }
+        messageList.addAll(Arrays.asList(messages));
+    }
 
     public void addParagraph(Paragraph... paragraph) {
         if (paragraphList == null) {

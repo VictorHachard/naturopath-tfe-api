@@ -1,6 +1,7 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
@@ -185,6 +186,17 @@ public class PageService extends AbstractService<Page> {
         }
 
         return page.getId();
+    }
+
+    public void addMessage(AbstractValidator abstractValidator, int id) {
+        //TODO verifiaction
+        MessageValidator validator = (MessageValidator) abstractValidator;
+
+        Page page = super.get(id);
+        Message message = messageFacade.newInstance(validator.getContent(), this.getUser());
+        page.addMessage(message);
+        messageRepository.save(message);
+        pageRepository.save(page);
     }
 
 }

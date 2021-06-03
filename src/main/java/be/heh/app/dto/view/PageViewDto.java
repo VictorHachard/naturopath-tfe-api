@@ -40,4 +40,6 @@ public class PageViewDto {
 
     List<SortedTypeViewDto> sortedTypeList;
 
+    List<MessageViewDto> messageList;
+
 }

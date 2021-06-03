@@ -28,8 +28,4 @@ public class Message extends AbstractEntity {
     @Column(name = "edited")
     boolean edited;
 
-    /*@JoinColumn(name = "inner_id")
-    @ManyToOne
-    AbstractInner inner;*/
-
 }

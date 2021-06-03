@@ -1,6 +1,7 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
+import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.PageSearchValidator;
 import be.heh.app.controller.validators.app.PageValidator;
 import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
@@ -80,6 +81,12 @@ public class PageController extends AbstractController {
 	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
 	public int add(@Valid @RequestBody PageValidator pageValidator) {
 		return pageService.addC(pageValidator);
+	}
+
+	@PostMapping("addMessage/{id}")
+	@PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
+	public void addMessage(@Valid @RequestBody MessageValidator validator, @PathVariable("id") int id) {
+		pageService.addMessage(validator, id);
 	}
 
 }
