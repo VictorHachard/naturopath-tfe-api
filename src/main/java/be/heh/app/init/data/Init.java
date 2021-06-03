@@ -129,9 +129,7 @@ public class Init extends AbstractSecurityAutowire {
                 paragraphTypeFacade.newInstance("Précautions", this.getLittleWord()), //9
                 paragraphTypeFacade.newInstance("Conservation", this.getLittleWord()), //10
                 paragraphTypeFacade.newInstance("Préparation", this.getLittleWord()) //11
-
                 ));
-
     }
 
     public void initCategory() {
@@ -264,8 +262,35 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Vitacées", this.getLittleWord()), tagTypeList.get(1))); //32
         tagList.add(tagFacade.init(innerTagFacade.init("Fabacées", this.getLittleWord()), tagTypeList.get(1))); //33
 
+        //indication
+        tagList.add(tagFacade.init(innerTagFacade.init("Nervosité", this.getLittleWord()), tagTypeList.get(4))); //34
+        tagList.add(tagFacade.init(innerTagFacade.init("Anxiété", this.getLittleWord()), tagTypeList.get(4))); //35
+        tagList.add(tagFacade.init(innerTagFacade.init("Angoisse", this.getLittleWord()), tagTypeList.get(4))); //36
+        tagList.add(tagFacade.init(innerTagFacade.init("Agitation", this.getLittleWord()), tagTypeList.get(4))); //37
+        tagList.add(tagFacade.init(innerTagFacade.init("Stress", this.getLittleWord()), tagTypeList.get(4))); //38
+        tagList.add(tagFacade.init(innerTagFacade.init("Irritabilité", this.getLittleWord()), tagTypeList.get(4))); //39
+        tagList.add(tagFacade.init(innerTagFacade.init("Insomnie", this.getLittleWord()), tagTypeList.get(4))); //40
+        tagList.add(tagFacade.init(innerTagFacade.init("Séphalées", this.getLittleWord()), tagTypeList.get(4))); //41
+        tagList.add(tagFacade.init(innerTagFacade.init("Migraine", this.getLittleWord()), tagTypeList.get(4))); //42
+        tagList.add(tagFacade.init(innerTagFacade.init("Fatigue Nerveuse", this.getLittleWord()), tagTypeList.get(4))); //43
+        tagList.add(tagFacade.init(innerTagFacade.init("Crampes Musculaires", this.getLittleWord()), tagTypeList.get(4))); //44
+        tagList.add(tagFacade.init(innerTagFacade.init("Spasmes Digestifs", this.getLittleWord()), tagTypeList.get(4))); //45
+        tagList.add(tagFacade.init(innerTagFacade.init("Éréthisme Cardiaque", this.getLittleWord()), tagTypeList.get(4))); //46
+        tagList.add(tagFacade.init(innerTagFacade.init("Palpitations Cardiaques", this.getLittleWord()), tagTypeList.get(4))); //47
+        tagList.add(tagFacade.init(innerTagFacade.init("Hypertension Artérielle", this.getLittleWord()), tagTypeList.get(4))); //48
+
+        //conte-indication
+        tagList.add(tagFacade.init(innerTagFacade.init("Enfants de moins de 3 ans", this.getLittleWord()), tagTypeList.get(5))); //49
+        tagList.add(tagFacade.init(innerTagFacade.init("Femme enceinte", this.getLittleWord()), tagTypeList.get(5))); //50
+        tagList.add(tagFacade.init(innerTagFacade.init("Femme allaitante", this.getLittleWord()), tagTypeList.get(5))); //51
+        tagList.add(tagFacade.init(innerTagFacade.init("Inflammation du tractus gastro-intestinal ou des voies biliaires", this.getLittleWord()), tagTypeList.get(5))); //52
+        tagList.add(tagFacade.init(innerTagFacade.init("Affection hépatique sévère Fleurs et fruits déconseillés à forte dose car entraînerait un effet laxative/purgatif important", this.getLittleWord()), tagTypeList.get(5))); //53
+        tagList.add(tagFacade.init(innerTagFacade.init("Nausées", this.getLittleWord()), tagTypeList.get(5))); //54
+        tagList.add(tagFacade.init(innerTagFacade.init("Vomissement", this.getLittleWord()), tagTypeList.get(5))); //55
+        tagList.add(tagFacade.init(innerTagFacade.init("Prudence avec les parties car l’oxalate de calcium est responsable de la toxicité", this.getLittleWord()), tagTypeList.get(5))); //56
+
         //nom latin
-        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", this.getLittleWord()), tagTypeList.get(0))); //34
+        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", this.getLittleWord()), tagTypeList.get(0))); //57
         tagList.add(tagFacade.init(innerTagFacade.init("Melissa Officinalis", this.getLittleWord()), tagTypeList.get(0))); //35
         tagList.add(tagFacade.init(innerTagFacade.init("Rosa Gallica", this.getLittleWord()), tagTypeList.get(0))); //36
         tagList.add(tagFacade.init(innerTagFacade.init("Salvia Officinalis", this.getLittleWord()), tagTypeList.get(0))); //37
@@ -276,8 +301,7 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Hyssopus Officinalis", this.getLittleWord()), tagTypeList.get(0))); //42
         tagList.add(tagFacade.init(innerTagFacade.init("Glechoma Hederacea", this.getLittleWord()), tagTypeList.get(0))); //43
 
-        //indication
-        tagList.add(tagFacade.init(innerTagFacade.init("test", this.getLittleWord()), tagTypeList.get(4))); //44
+
     }
 
     public void initParatag() {
@@ -305,11 +329,10 @@ public class Init extends AbstractSecurityAutowire {
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(3)));
 
             i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            /*for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) { //TODO change 11 27
+            for (int k : Utils.getRandomIdListUnique(2, 8, 34, 48)) {
                 i.addTag(tagList.get(k));
-            }*/
-            i.addTag(tagList.get(44));
-            paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));//TODO change 4
+            }
+            paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));
         }
 
         for (int w = 0; w < nameAllList.size(); w++) {
@@ -321,13 +344,13 @@ public class Init extends AbstractSecurityAutowire {
                 paratagList.add(paratagFacade.init(i, paratagTypeList.get(3)));
 
                 i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-                for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                for (int k : Utils.getRandomIdListUnique(2, 8, 34, 48)) {
                     i.addTag(tagList.get(k));
                 }
                 paratagList.add(paratagFacade.init(i, paratagTypeList.get(4)));
 
                 i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-                for (int k : Utils.getRandomIdListUnique(2, 8, 11, 27)) {
+                for (int k : Utils.getRandomIdListUnique(2, 4, 49, 56)) {
                     i.addTag(tagList.get(k));
                 }
                 paratagList.add(paratagFacade.init(i, paratagTypeList.get(5)));
