@@ -46,6 +46,16 @@ public class PageService extends AbstractService<Page> {
         return pageMapper.getEditDto(super.get(id));
     }
 
+    public void publish(int id) {
+        Page p = super.get(id);
+        if (p.getEnumState() == EnumState.DRAFT) {
+            p.setEnumState(EnumState.VALIDATED);
+            pageRepository.save(p);
+        } else {
+            //error
+        }
+    }
+
     public List<PageSearchDto> getSearchAllDto(String search, int limit) {
         limit = limit == 0 ? 100 : limit;
         List<Page> pages = pageRepository.findAllByEnumState(EnumState.VALIDATED);

@@ -29,6 +29,11 @@ public class PageController extends AbstractController {
 		return pageService.getDto(id);
 	}
 
+	@PostMapping("publish/{id}")
+	public void publish(@PathVariable("id") int id) {
+		pageService.publish(id);
+	}
+
 	@PostMapping("dto/search")
 	public List<PageSearchDto> getSearchAllDto(@Valid @RequestBody PageSearchValidator pageSearchValidator) {
 		return pageService.getSearchAllDto(pageSearchValidator.getSearch(), pageSearchValidator.getLimit());

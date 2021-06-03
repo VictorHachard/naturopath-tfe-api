@@ -133,8 +133,36 @@ public final class PageMapper extends AbstractMapper {
     }
 
     public PageEditDto getEditDto(Page page) {
+        int canPublish = 0;
+        boolean canPublishB = false;
+        for (InnerPage t : page.getInnerPageList()) {
+            if (t.getEnumState() == EnumState.VALIDATED) {
+                canPublish += 1;
+                break;
+            }
+        }
+        for (Paragraph t : page.getParagraphList()) {
+            for (InnerParagraph i : t.getInnerParagraphList()) {
+                if (i.getEnumState() == EnumState.VALIDATED) {
+                    canPublish += 1;
+                    break;
+                }
+            }
+        }
+        for (Paratag t : page.getParatagList()) {
+            for (InnerParatag i : t.getInnerParatagList()) {
+                if (i.getEnumState() == EnumState.VALIDATED) {
+                    canPublish += 1;
+                    break;
+                }
+            }
+        }
+
+        canPublishB = (canPublish == page.getParagraphList().size() + page.getParatagList().size() + 1) && page.getEnumState() == EnumState.DRAFT;
+
         return new PageEditDto(
                 page.getId(),
+                canPublishB,
                 page.getEnumState().toString(),
                 categoryMapper.getView(page.getCategory()),
                 userMapper.getView(page.getUser()),
