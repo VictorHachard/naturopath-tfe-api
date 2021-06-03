@@ -20,6 +20,8 @@ public class ParatagTypeViewDto implements Comparable<ParatagTypeViewDto> {
 
     String description;
 
+    boolean alert;
+
     TagTypeViewDto tagType;
 
     EnumSize size;

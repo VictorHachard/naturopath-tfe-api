@@ -95,19 +95,19 @@ public class Init extends AbstractSecurityAutowire {
     public void initTagType() {
         tagTypeList.add(tagTypeFacade.newInstance("Nom latin", this.getLittleWord())); //0
         tagTypeList.add(tagTypeFacade.newInstance("Famille", this.getLittleWord())); //1
-        tagTypeList.add(tagTypeFacade.newInstance("Principes actifs", this.getLittleWord())); //2
+        tagTypeList.add(tagTypeFacade.newInstance("Principes Actifs", this.getLittleWord())); //2
         tagTypeList.add(tagTypeFacade.newInstance("Propriétés", this.getLittleWord())); //3
         tagTypeList.add(tagTypeFacade.newInstance("Indications", this.getLittleWord())); //4
-        tagTypeList.add(tagTypeFacade.newInstance("Contre indications", this.getLittleWord())); //5
+        tagTypeList.add(tagTypeFacade.newInstance("Contre-indications", this.getLittleWord())); //5
     }
 
     public void initParatagType() {
-        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin", this.getLittleWord(), tagTypeList.get(0), EnumSize.SMALL)); //0
-        paratagTypeList.add(paratagTypeFacade.newInstance("Famille", this.getLittleWord(), tagTypeList.get(1), EnumSize.SMALL)); //1
-        paratagTypeList.add(paratagTypeFacade.newInstance("Principes actifs", this.getLittleWord(), tagTypeList.get(2), EnumSize.LARGE)); //2
-        paratagTypeList.add(paratagTypeFacade.newInstance("Propriétés", this.getLittleWord(), tagTypeList.get(3), EnumSize.LARGE)); //3
-        paratagTypeList.add(paratagTypeFacade.newInstance("Indications", this.getLittleWord(), tagTypeList.get(4), EnumSize.LARGE)); //4
-        paratagTypeList.add(paratagTypeFacade.newInstance("Contre indications", this.getLittleWord(), tagTypeList.get(5), EnumSize.LARGE)); //5
+        paratagTypeList.add(paratagTypeFacade.newInstance("Nom latin", this.getLittleWord(), tagTypeList.get(0), EnumSize.SMALL, false)); //0
+        paratagTypeList.add(paratagTypeFacade.newInstance("Famille", this.getLittleWord(), tagTypeList.get(1), EnumSize.SMALL, false)); //1
+        paratagTypeList.add(paratagTypeFacade.newInstance("Principes Actifs", this.getLittleWord(), tagTypeList.get(2), EnumSize.LARGE, false)); //2
+        paratagTypeList.add(paratagTypeFacade.newInstance("Propriétés", this.getLittleWord(), tagTypeList.get(3), EnumSize.LARGE, false)); //3
+        paratagTypeList.add(paratagTypeFacade.newInstance("Indications", this.getLittleWord(), tagTypeList.get(4), EnumSize.LARGE, false)); //4
+        paratagTypeList.add(paratagTypeFacade.newInstance("Contre-indications", this.getLittleWord(), tagTypeList.get(5), EnumSize.LARGE, true)); //5
     }
 
     public void initParapageType() {
@@ -116,19 +116,19 @@ public class Init extends AbstractSecurityAutowire {
 
     public void initParagraphType() {
         paragraphTypeList.addAll(Arrays.asList(
-                paragraphTypeFacade.newInstance("Habitat et culture", this.getLittleWord()), //0
-                paragraphTypeFacade.newInstance("Espèces voisines", this.getLittleWord()), //1
-                paragraphTypeFacade.newInstance("Usages traditionnels et courants", this.getLittleWord()), //2
-                paragraphTypeFacade.newInstance("Recherches en cours", this.getLittleWord()), //3
-                paragraphTypeFacade.newInstance("Parties utilisées", this.getLittleWord()), //4
-                paragraphTypeFacade.newInstance("Préparations et usages", this.getLittleWord()), //5
-                paragraphTypeFacade.newInstance("Toxicité et contre-indication", this.getLittleWord()), //6
-                paragraphTypeFacade.newInstance("Risques de confusions", this.getLittleWord()), //7
+                paragraphTypeFacade.newInstance("Habitat et Culture", this.getLittleWord(), false), //0
+                paragraphTypeFacade.newInstance("Espèces Voisines", this.getLittleWord(), false), //1
+                paragraphTypeFacade.newInstance("Usages Traditionnels et Courants", this.getLittleWord(), false), //2
+                paragraphTypeFacade.newInstance("Recherches en Cours", this.getLittleWord(), false), //3
+                paragraphTypeFacade.newInstance("Parties Utilisées", this.getLittleWord(), false), //4
+                paragraphTypeFacade.newInstance("Préparations et Usages", this.getLittleWord(), false), //5
+                paragraphTypeFacade.newInstance("Toxicité et Contre-indication", this.getLittleWord(), false), //6
+                paragraphTypeFacade.newInstance("Risques de Confusions", this.getLittleWord(), false), //7
 
-                paragraphTypeFacade.newInstance("Utilisations", this.getLittleWord()), //8
-                paragraphTypeFacade.newInstance("Précautions", this.getLittleWord()), //9
-                paragraphTypeFacade.newInstance("Conservation", this.getLittleWord()), //10
-                paragraphTypeFacade.newInstance("Préparation", this.getLittleWord()) //11
+                paragraphTypeFacade.newInstance("Utilisations", this.getLittleWord(), false), //8
+                paragraphTypeFacade.newInstance("Précautions", this.getLittleWord(), false), //9
+                paragraphTypeFacade.newInstance("Conservation", this.getLittleWord(), false), //10
+                paragraphTypeFacade.newInstance("Préparation", this.getLittleWord(), false) //11
                 ));
     }
 

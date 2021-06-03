@@ -20,19 +20,20 @@ import java.util.List;
 public class ParapageTypeService extends AbstractService<ParapageType> {
 
     public int addC(AbstractValidator abstractValidator) {
-        GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
-        ParagraphType paragraphType = paragraphTypeMapper.set(validator);
+        /*GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
+        ParagraphType paragraphType = parapageTypeMapper.set(validator);
         paragraphTypeRepository.save(paragraphType);
-        return paragraphType.getId();
+        return paragraphType.getId();*/
+        return 1;
     }
 
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
-        super.update(abstractValidator, id);
+        /*super.update(abstractValidator, id);
         GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
         ParagraphType paragraphType = paragraphTypeRepository.findById(id).get();
         paragraphTypeMapper.update(paragraphType, validator);
-        paragraphTypeRepository.save(paragraphType);
+        paragraphTypeRepository.save(paragraphType);*/
     }
 
     public List<ParapageTypeViewDto> getAllDto() {

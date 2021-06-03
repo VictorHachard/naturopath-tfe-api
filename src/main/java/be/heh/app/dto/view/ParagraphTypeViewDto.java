@@ -19,6 +19,8 @@ public class ParagraphTypeViewDto implements Comparable<ParagraphTypeViewDto> {
 
     String description;
 
+    boolean alert;
+
     @Override
     public int compareTo(ParagraphTypeViewDto o) {
         return this.getName().compareTo(o.getName());

@@ -26,7 +26,8 @@ public final class ParatagTypeMapper extends AbstractMapper {
                 validator.getName(),
                 validator.getDescription(),
                 tagType,
-                EnumSize.valueOf(validator.getSize())
+                EnumSize.valueOf(validator.getSize()),
+                validator.isAlert()
         );
     }
 
@@ -35,6 +36,7 @@ public final class ParatagTypeMapper extends AbstractMapper {
         paratagType.setDescription(validator.getDescription());
         paratagType.setTagType(tagType);
         paratagType.setEnumSize(EnumSize.valueOf(validator.getSize()));
+        paratagType.setAlert(validator.isAlert());
     }
 
     public List<ParatagTypeViewDto> getAllView(List<ParatagType> j) {
@@ -51,6 +53,7 @@ public final class ParatagTypeMapper extends AbstractMapper {
                 paratagType.getId(),
                 paratagType.getName(),
                 paratagType.getDescription(),
+                paratagType.isAlert(),
                 tagTypeMapper.getView(paratagType.getTagType()),
                 paratagType.getEnumSize()
         );

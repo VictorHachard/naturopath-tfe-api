@@ -32,6 +32,9 @@ public class ParatagType extends AbstractType {
     @ManyToOne
     TagType tagType;
 
+    @Column(name = "alert")
+    boolean alert;
+
     @Override
     public String getType() {
         return "ParatagType";

@@ -1,6 +1,7 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.GeneralTypeValidator;
+import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.dto.view.ParagraphTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.ParagraphType;
@@ -19,16 +20,18 @@ import java.util.List;
 @Log
 public final class ParagraphTypeMapper extends AbstractMapper {
 
-    public ParagraphType set(GeneralTypeValidator generalTypeValidator) {
+    public ParagraphType set(ParagraphTypeValidator validator) {
         return paragraphTypeFacade.newInstance(
-                generalTypeValidator.getName(),
-                generalTypeValidator.getDescription()
+                validator.getName(),
+                validator.getDescription(),
+                validator.isAlert()
         );
     }
 
-    public void update(ParagraphType paragraphType, GeneralTypeValidator generalTypeValidator) {
-        paragraphType.setName(generalTypeValidator.getName());
-        paragraphType.setDescription(generalTypeValidator.getDescription());
+    public void update(ParagraphType paragraphType, ParagraphTypeValidator validator) {
+        paragraphType.setName(validator.getName());
+        paragraphType.setDescription(validator.getDescription());
+        paragraphType.setAlert(validator.isAlert());
     }
 
     public List<ParagraphTypeViewDto> getAllView(List<ParagraphType> j) {
@@ -44,7 +47,8 @@ public final class ParagraphTypeMapper extends AbstractMapper {
         return new ParagraphTypeViewDto(
                 j.getId(),
                 j.getName(),
-                j.getDescription()
+                j.getDescription(),
+                j.isAlert()
         );
     }
 

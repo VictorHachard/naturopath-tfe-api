@@ -2,6 +2,7 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.GeneralTypeValidator;
+import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.view.ParagraphTypeViewDto;
 import be.heh.app.model.entities.app.ParagraphType;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ParagraphTypeService extends AbstractService<ParagraphType> {
 
     public int addC(AbstractValidator abstractValidator) {
-        GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
+        ParagraphTypeValidator validator = (ParagraphTypeValidator) abstractValidator;
         ParagraphType paragraphType = paragraphTypeMapper.set(validator);
         paragraphTypeRepository.save(paragraphType);
         return paragraphType.getId();
@@ -28,7 +29,7 @@ public class ParagraphTypeService extends AbstractService<ParagraphType> {
     @Override
     public void update(AbstractValidator abstractValidator, int id) {
         super.update(abstractValidator, id);
-        GeneralTypeValidator validator = (GeneralTypeValidator) abstractValidator;
+        ParagraphTypeValidator validator = (ParagraphTypeValidator) abstractValidator;
         ParagraphType paragraphType = paragraphTypeRepository.findById(id).get();
         paragraphTypeMapper.update(paragraphType, validator);
         paragraphTypeRepository.save(paragraphType);

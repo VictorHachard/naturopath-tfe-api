@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParatagTypeFacade extends AbstractFacade<ParatagType> {
 
-    public ParatagType newInstance(String name, String description, TagType tagType, EnumSize enumSize) {
+    public ParatagType newInstance(String name, String description, TagType tagType, EnumSize enumSize, boolean alert) {
         ParatagType res = super.newInstance();
         res.setName(name);
         res.setDescription(description);
         res.setTagType(tagType);
+        res.setAlert(alert);
         res.setEnumSize(enumSize);
         return res;
     }
