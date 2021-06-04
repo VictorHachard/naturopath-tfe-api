@@ -2,12 +2,12 @@ package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
 import be.heh.app.controller.validators.app.InnerParapageValidator;
-import be.heh.app.controller.validators.app.InnerParatagValidator;
 import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerParapageUpdateValidator;
-import be.heh.app.controller.validators.app.update.InnerParatagUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.InnerParapage;
+import be.heh.app.model.entities.app.Message;
+import be.heh.app.model.entities.app.Parapage;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

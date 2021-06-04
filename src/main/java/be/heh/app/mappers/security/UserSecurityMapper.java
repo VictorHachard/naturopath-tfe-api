@@ -6,7 +6,6 @@ import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.security.UserSecurityEditDto;
 import be.heh.app.dto.security.UserSecuritySimplifiedViewDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
-import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.security.UserSecurity;
 import lombok.AccessLevel;

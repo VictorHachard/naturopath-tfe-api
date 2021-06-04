@@ -12,7 +12,6 @@ import be.heh.app.dto.view.PageSimplifiedRecommendedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
-import be.heh.app.model.repositories.app.PageRepository;
 import be.heh.app.utils.Utils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +22,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 // Lombok

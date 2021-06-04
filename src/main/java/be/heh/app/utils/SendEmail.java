@@ -4,9 +4,12 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
 
-import java.util.*;
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)

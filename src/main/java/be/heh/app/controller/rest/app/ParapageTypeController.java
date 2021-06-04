@@ -1,10 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.dto.view.ParapageTypeViewDto;
-import be.heh.app.dto.view.ParatagTypeViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

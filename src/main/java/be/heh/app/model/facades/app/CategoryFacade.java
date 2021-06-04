@@ -1,11 +1,8 @@
 package be.heh.app.model.facades.app;
 
 import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.entities.app.SortedType;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class CategoryFacade extends AbstractFacade<Category> {

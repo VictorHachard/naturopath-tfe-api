@@ -1,12 +1,9 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.InnerParapageValidator;
 import be.heh.app.controller.validators.app.MessageValidator;
-import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.update.InnerParapageUpdateValidator;
-import be.heh.app.controller.validators.app.validation.InnerParagraphValidationValidator;
 import be.heh.app.controller.validators.app.validation.InnerParapageValidationValidator;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
-import java.util.List;
 
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)

@@ -6,7 +6,6 @@ import be.heh.app.controller.validators.app.MessageValidator;
 import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.model.entities.app.InnerParagraph;
-import be.heh.app.model.entities.app.InnerParatag;
 import be.heh.app.model.entities.app.Message;
 import be.heh.app.model.entities.app.Paragraph;
 import be.heh.app.model.entities.app.enumeration.EnumState;

@@ -1,7 +1,6 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.dto.view.ParagraphTypeViewDto;
 import lombok.AccessLevel;

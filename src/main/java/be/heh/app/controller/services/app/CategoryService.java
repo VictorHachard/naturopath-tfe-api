@@ -8,8 +8,6 @@ import be.heh.app.controller.validators.commons.Pair;
 import be.heh.app.dto.edit.CategoryEditDto;
 import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.model.entities.app.Category;
-import be.heh.app.model.entities.app.ParagraphType;
-import be.heh.app.model.entities.app.ParatagType;
 import be.heh.app.model.entities.app.SortedType;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

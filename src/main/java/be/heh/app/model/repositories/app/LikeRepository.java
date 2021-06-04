@@ -1,6 +1,5 @@
 package be.heh.app.model.repositories.app;
 
-import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.Like;
 import be.heh.app.model.entities.app.Page;
 import be.heh.app.model.entities.app.User;

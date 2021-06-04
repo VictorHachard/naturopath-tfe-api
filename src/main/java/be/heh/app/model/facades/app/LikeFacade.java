@@ -1,6 +1,8 @@
 package be.heh.app.model.facades.app;
 
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.Like;
+import be.heh.app.model.entities.app.Page;
+import be.heh.app.model.entities.app.User;
 import be.heh.app.model.facades.commons.AbstractFacade;
 import org.springframework.stereotype.Component;
 

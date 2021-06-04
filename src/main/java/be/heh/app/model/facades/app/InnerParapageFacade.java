@@ -1,7 +1,6 @@
 package be.heh.app.model.facades.app;
 
 import be.heh.app.model.entities.app.InnerParapage;
-import be.heh.app.model.entities.app.InnerParatag;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import be.heh.app.model.facades.commons.AbstractFacade;

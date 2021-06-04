@@ -1,11 +1,9 @@
 package be.heh.app.controller.services.app;
 
 import be.heh.app.controller.services.commons.AbstractService;
-import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.view.ParapageTypeViewDto;
-import be.heh.app.model.entities.app.ParagraphType;
 import be.heh.app.model.entities.app.ParapageType;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

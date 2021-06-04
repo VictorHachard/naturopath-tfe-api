@@ -1,6 +1,9 @@
 package be.heh.app.dto.edit;
 
-import be.heh.app.dto.view.*;
+import be.heh.app.dto.view.MessageViewDto;
+import be.heh.app.dto.view.PageSimplifiedRecommendedViewDto;
+import be.heh.app.dto.view.UserViewDto;
+import be.heh.app.dto.view.VoteViewDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

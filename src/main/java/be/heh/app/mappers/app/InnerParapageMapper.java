@@ -1,12 +1,12 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.InnerParagraphValidator;
 import be.heh.app.controller.validators.app.InnerParapageValidator;
-import be.heh.app.controller.validators.app.update.InnerParagraphUpdateValidator;
 import be.heh.app.controller.validators.app.update.InnerParapageUpdateValidator;
 import be.heh.app.dto.edit.InnerParapageEditDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.*;
+import be.heh.app.model.entities.app.InnerParapage;
+import be.heh.app.model.entities.app.User;
+import be.heh.app.model.entities.app.Vote;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

@@ -1,13 +1,9 @@
 package be.heh.app.mappers.app;
 
 import be.heh.app.controller.validators.app.ParagraphTypeValidator;
-import be.heh.app.controller.validators.app.ParatagTypeValidator;
 import be.heh.app.dto.view.ParapageTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
 import be.heh.app.model.entities.app.ParapageType;
-import be.heh.app.model.entities.app.ParatagType;
-import be.heh.app.model.entities.app.TagType;
-import be.heh.app.model.entities.app.enumeration.EnumSize;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;

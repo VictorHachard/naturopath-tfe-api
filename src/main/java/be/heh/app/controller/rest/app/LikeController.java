@@ -1,12 +1,8 @@
 package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
-import be.heh.app.controller.validators.app.CategoryValidator;
 import be.heh.app.controller.validators.app.LikeValidator;
-import be.heh.app.controller.validators.app.update.CategoryUpdateValidator;
 import be.heh.app.controller.validators.app.update.LikeUpdateValidator;
-import be.heh.app.dto.edit.CategoryEditDto;
-import be.heh.app.dto.view.CategoryViewDto;
 import be.heh.app.dto.view.LikeViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -15,7 +11,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/like/")

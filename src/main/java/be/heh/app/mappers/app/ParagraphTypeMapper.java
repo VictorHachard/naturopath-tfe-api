@@ -1,6 +1,5 @@
 package be.heh.app.mappers.app;
 
-import be.heh.app.controller.validators.app.GeneralTypeValidator;
 import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.dto.view.ParagraphTypeViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;

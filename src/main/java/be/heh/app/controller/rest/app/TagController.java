@@ -2,7 +2,6 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.TagValidator;
-import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.edit.TagEditDto;
 import be.heh.app.dto.view.TagByTagTypeViewDto;
 import be.heh.app.dto.view.TagViewDto;
