@@ -129,7 +129,9 @@ public final class PageMapper extends AbstractMapper {
     public List<PageSimplifiedRecommendedViewDto> getAllPageSimplifiedRecommendedViewDto(List<Page> pageList) {
         List<PageSimplifiedRecommendedViewDto> res = new ArrayList<>();
         pageList.forEach(page -> {
-            res.add(this.getPageSimplifiedRecommendedViewDto(page));
+            if (page.getEnumState() == EnumState.VALIDATED) {
+                res.add(this.getPageSimplifiedRecommendedViewDto(page));
+            }
         });
         return res;
     }
@@ -138,6 +140,7 @@ public final class PageMapper extends AbstractMapper {
         InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
         return new PageSimplifiedRecommendedViewDto(
                 page.getId(),
+                page.getCategory().getName(),
                 page.getCreatedAt(),
                 innerPage.getTitle(),
                 innerPage.getDescription(),
@@ -170,8 +173,16 @@ public final class PageMapper extends AbstractMapper {
                 }
             }
         }
+        for (Parapage t : page.getParapageList()) {
+            for (InnerParapage i : t.getInnerParapageList()) {
+                if (i.getEnumState() == EnumState.VALIDATED) {
+                    canPublish += 1;
+                    break;
+                }
+            }
+        }
 
-        canPublishB = (canPublish == page.getParagraphList().size() + page.getParatagList().size() + 1) && page.getEnumState() == EnumState.DRAFT;
+        canPublishB = (canPublish == page.getParagraphList().size() + page.getParatagList().size() +  page.getParapageList().size() + 1) && page.getEnumState() == EnumState.DRAFT;
 
         return new PageEditDto(
                 page.getId(),

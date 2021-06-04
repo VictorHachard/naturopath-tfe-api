@@ -67,6 +67,7 @@ public final class InnerParapageMapper extends AbstractMapper {
                 i.getVersion(),
                 f,
                 a,
+                pageMapper.getAllPageSimplifiedRecommendedViewDto(i.getPageList()),
                 voteMapper.getAllViewDto(i.getVoteList()),
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),

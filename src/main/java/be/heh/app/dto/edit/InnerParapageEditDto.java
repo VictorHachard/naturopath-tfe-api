@@ -1,8 +1,6 @@
 package be.heh.app.dto.edit;
 
-import be.heh.app.dto.view.MessageViewDto;
-import be.heh.app.dto.view.UserViewDto;
-import be.heh.app.dto.view.VoteViewDto;
+import be.heh.app.dto.view.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +23,8 @@ public class InnerParapageEditDto {
     int favour;
 
     int against;
+
+    List<PageSimplifiedRecommendedViewDto> pageList;
 
     List<VoteViewDto> voteList;
 

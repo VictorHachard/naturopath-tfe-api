@@ -18,6 +18,8 @@ public class PageSimplifiedRecommendedViewDto {
 
     int id;
 
+    String category;
+
     Date createdAt;
 
     String title;

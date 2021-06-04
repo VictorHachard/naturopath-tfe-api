@@ -8,12 +8,16 @@ import be.heh.app.controller.validators.app.view.PagesByCategoryDtoValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageSearchDto;
+import be.heh.app.dto.view.PageSimplifiedRecommendedViewDto;
 import be.heh.app.dto.view.PageViewDto;
+import be.heh.app.init.InitRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -65,6 +69,11 @@ public class PageController extends AbstractController {
 	@GetMapping("dto")
 	public List<PageViewDto> getAllDto() {
 		return pageService.getAllDto();
+	}
+
+	@GetMapping("dto/simplified")
+	public List<PageSimplifiedRecommendedViewDto> getAllSimplifiedDto() {
+		return pageService.getAllSimplifiedDto();
 	}
 
 	@GetMapping("dto/edit")

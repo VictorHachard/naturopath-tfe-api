@@ -12,8 +12,6 @@ import java.util.List;
 @Log
 public abstract class AbstractFacade<T> extends AbstractAutowire {
 
-    //protected User user = userRepository.findByUsername("Paulin").get();
-
     protected int userId = 5;
 
     public T newInstance() {

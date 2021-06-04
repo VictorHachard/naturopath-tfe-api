@@ -8,6 +8,7 @@ import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.PageEditDto;
 import be.heh.app.dto.view.PageByCategoryViewDto;
 import be.heh.app.dto.view.PageSearchDto;
+import be.heh.app.dto.view.PageSimplifiedRecommendedViewDto;
 import be.heh.app.dto.view.PageViewDto;
 import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
@@ -37,6 +38,10 @@ public class PageService extends AbstractService<Page> {
 
     public List<PageEditDto> getAllEditDto() { //ICI tout
         return pageMapper.getAllEditDto(super.getAll());
+    }
+
+    public List<PageSimplifiedRecommendedViewDto> getAllSimplifiedDto() {
+        return pageMapper.getAllPageSimplifiedRecommendedViewDto(super.getAll());
     }
 
     public PageViewDto getDto(int id) {
