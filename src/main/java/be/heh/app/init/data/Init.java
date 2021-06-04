@@ -126,7 +126,7 @@ public class Init extends AbstractSecurityAutowire {
                 paragraphTypeFacade.newInstance("Risques de Confusions", this.getLittleWord(), false), //7
 
                 paragraphTypeFacade.newInstance("Utilisations", this.getLittleWord(), false), //8
-                paragraphTypeFacade.newInstance("Précautions", this.getLittleWord(), false), //9
+                paragraphTypeFacade.newInstance("Précautions", this.getLittleWord(), true), //9
                 paragraphTypeFacade.newInstance("Conservation", this.getLittleWord(), false), //10
                 paragraphTypeFacade.newInstance("Préparation", this.getLittleWord(), false) //11
                 ));
