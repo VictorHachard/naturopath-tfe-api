@@ -22,6 +22,9 @@ public class ParapageType extends AbstractType {
     @Column(name = "description", length = 2500)
     String description;
 
+    @Column(name = "alert")
+    boolean alert;
+
     @Override
     public String getType() {
         return "ParapageType";

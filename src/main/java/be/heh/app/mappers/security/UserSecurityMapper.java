@@ -6,6 +6,7 @@ import be.heh.app.controller.validators.security.UserSecurityResetValidator;
 import be.heh.app.dto.security.UserSecurityEditDto;
 import be.heh.app.dto.security.UserSecuritySimplifiedViewDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
+import be.heh.app.dto.view.ImageViewDto;
 import be.heh.app.init.AbstractSecurityAutowire;
 import be.heh.app.model.entities.security.UserSecurity;
 import lombok.AccessLevel;
@@ -58,6 +59,14 @@ public final class UserSecurityMapper extends AbstractSecurityAutowire {
         );
     }
 
+    public List<UserSecurityEditDto> getAllEdit(List<UserSecurity> userList) {
+        List<UserSecurityEditDto> res = new ArrayList<>();
+        userList.forEach(i -> {
+            res.add(this.getEdit(i));
+        });
+        return res;
+    }
+
     public UserSecurityEditDto getEdit(UserSecurity user) {
         List<String> roleList = new ArrayList<>();
         user.getEnumPermissionList().forEach(permission -> {
@@ -68,6 +77,7 @@ public final class UserSecurityMapper extends AbstractSecurityAutowire {
             emailList.add(email.getName().name());
         });
         return new UserSecurityEditDto(
+                user.getId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getFirstName(),

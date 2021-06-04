@@ -3,8 +3,7 @@ package be.heh.app.mappers.app;
 import be.heh.app.dto.edit.ParapageEditDto;
 import be.heh.app.dto.view.ParapageViewDto;
 import be.heh.app.mappers.app.commons.AbstractMapper;
-import be.heh.app.model.entities.app.InnerParapage;
-import be.heh.app.model.entities.app.Parapage;
+import be.heh.app.model.entities.app.*;
 import be.heh.app.model.entities.app.enumeration.EnumState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -20,6 +19,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public final class ParapageMapper extends AbstractMapper {
+
+    public Parapage set(InnerParapage innerParapage, ParapageType parapageType, User user) {
+        return parapageFacade.newInstance(
+                innerParapage,
+                parapageType,
+                user);
+    }
 
     public List<ParapageViewDto> getAllView(List<Parapage> j) {
         List<ParapageViewDto> res = new ArrayList<>();
@@ -41,7 +47,9 @@ public final class ParapageMapper extends AbstractMapper {
             return new ParapageViewDto(
                     k.getId(),
                     k.getTitle(),
-                    pageMapper.getAllDto(k.getPageList()));
+                    k.getContent(),
+                    parapageTypeMapper.getView(j.getParapageType()),
+                    pageMapper.getAllPageSimplifiedRecommendedViewDto(k.getPageList()));
         }
     }
 

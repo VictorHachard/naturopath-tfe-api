@@ -3,7 +3,9 @@ package be.heh.app.controller.services.security;
 import be.heh.app.controller.services.commons.AbstractSecurityService;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.controller.validators.security.*;
+import be.heh.app.dto.security.UserSecurityEditDto;
 import be.heh.app.dto.security.UserSecurityViewDto;
+import be.heh.app.dto.view.TagViewDto;
 import be.heh.app.model.entities.app.User;
 import be.heh.app.model.entities.security.CookieRememberMe;
 import be.heh.app.model.entities.security.Role;
@@ -27,12 +29,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 // Lombok
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Log
 public class UserSecurityService extends AbstractSecurityService<UserSecurity> implements UserDetailsService {
+
+    public List<UserSecurityEditDto> getAllEditDto() {
+        return userSecurityMapper.getAllEdit(userSecurityRepository.findAll());
+    }
 
     public UserSecurityViewDto addC(AbstractValidator abstractValidator) {
         UserSecurityRegisterValidator validator = (UserSecurityRegisterValidator) abstractValidator;
@@ -239,6 +246,29 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
         UserSecurity user = userSecurityRepository.findByEmailOrUsername(s)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + s));
         return userSecurityFacade.build(user);
+    }
+
+    public void forceUpdate(AbstractValidator abstractValidator, int id) {
+        UserForceUpdateValidator validator = (UserForceUpdateValidator) abstractValidator;
+        UserSecurity user = userSecurityRepository.findById(id).get();
+        user.setEmail(validator.getEmail());
+        user.getEnumPermissionList().clear();
+        if (validator.getOwner()) {
+            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_OWNER));
+        }
+        if (validator.getAdministrator()) {
+            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR));
+        }
+        if (validator.getModerator()) {
+            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_MODERATOR));
+        }
+        if (validator.getUser()) {
+            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_USER));
+        }
+        user.getEnumPermissionList().forEach(p -> {
+            permissionRepository.save(p);
+        });
+        userSecurityRepository.save(user);
     }
 
 }

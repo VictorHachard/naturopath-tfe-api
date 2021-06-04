@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParapageTypeFacade extends AbstractFacade<ParapageType> {
 
-    public ParapageType newInstance(String name, String description) {
+    public ParapageType newInstance(String name, String description, boolean alert) {
         ParapageType res = super.newInstance();
         res.setName(name);
+        res.setAlert(alert);
         res.setDescription(description);
         return res;
     }

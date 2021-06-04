@@ -164,6 +164,8 @@ public class PageService extends AbstractService<Page> {
                     page.addParagraph(paragraphMapper.set(innerParagraphMapper.set(user), (ParagraphType) sortedType.getAbstractType(), user));
                 } else if (sortedType.getAbstractType() instanceof ParatagType) {
                     page.addParatag(paratagMapper.set(innerParatagMapper.set(user), (ParatagType) sortedType.getAbstractType(), user));
+                } else if (sortedType.getAbstractType() instanceof ParapageType) {
+                    page.addParapage(parapageMapper.set(innerParapageMapper.set(user), (ParapageType) sortedType.getAbstractType(), user));
                 }
             });
             if (page.getParagraphList() != null && !page.getParagraphList().isEmpty()) {
@@ -180,6 +182,14 @@ public class PageService extends AbstractService<Page> {
                         innerParatagRepository.save(j);
                     });
                     paratagRepository.save(i);
+                });
+            }
+            if (page.getParapageList() != null && !page.getParapageList().isEmpty()) {
+                page.getParapageList().forEach(i -> {
+                    i.getInnerParapageList().forEach(j -> {
+                        innerParapageRepository.save(j);
+                    });
+                    parapageRepository.save(i);
                 });
             }
             pageRepository.save(page);

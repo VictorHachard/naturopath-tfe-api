@@ -2,7 +2,9 @@ package be.heh.app.controller.rest.app;
 
 import be.heh.app.controller.rest.commons.AbstractController;
 import be.heh.app.controller.validators.app.GeneralTypeValidator;
+import be.heh.app.controller.validators.app.ParagraphTypeValidator;
 import be.heh.app.dto.view.ParapageTypeViewDto;
+import be.heh.app.dto.view.ParatagTypeViewDto;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
@@ -21,20 +23,26 @@ public class ParapageTypeController extends AbstractController {
 
     @PostMapping("")
     @PreAuthorize("hasRole('OWNER')")
-    public int add(@Valid @RequestBody GeneralTypeValidator generalTypeValidator) {
-        return parapageTypeService.addC(generalTypeValidator);
+    public int add(@Valid @RequestBody ParagraphTypeValidator validator) {
+        return parapageTypeService.addC(validator);
     }
 
     @PutMapping("update/{id}")
     @PreAuthorize("hasRole('OWNER')")
-    public void update(@Valid @RequestBody GeneralTypeValidator generalTypeValidator, @PathVariable("id") int id) {
-        parapageTypeService.update(generalTypeValidator, id);
+    public void update(@Valid @RequestBody ParagraphTypeValidator validator, @PathVariable("id") int id) {
+        parapageTypeService.update(validator, id);
     }
 
     @GetMapping("dto")
     @PreAuthorize("hasRole('OWNER')")
     public List<ParapageTypeViewDto> getAllDto() {
         return parapageTypeService.getAllDto();
+    }
+
+    @GetMapping("dto/{id}")
+    @PreAuthorize("hasRole('OWNER')")
+    public ParapageTypeViewDto getDto(@PathVariable("id") int id) {
+        return parapageTypeService.getDto(id);
     }
 
 }

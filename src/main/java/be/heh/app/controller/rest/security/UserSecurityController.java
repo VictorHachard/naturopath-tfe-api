@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Base64;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -85,6 +86,12 @@ public class UserSecurityController extends AbstractSecurityController {
     public UserSecurityEditDto getEditDto() {
         UserSecurity u = (UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userSecurityMapper.getEdit(u);
+    }
+
+    @GetMapping("dto/edit/all")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR')")
+    public List<UserSecurityEditDto> getAllEditDto() {
+        return userSecurityService.getAllEditDto();
     }
 
     @PostMapping("confirmAccount")
@@ -167,6 +174,12 @@ public class UserSecurityController extends AbstractSecurityController {
     @PreAuthorize("hasRole('USER')")
     public void updateSecurity(@Valid @RequestBody UserSecuritySecurityUpdateValidator validator) {
         userSecurityService.updateSecurity(validator, ((UserSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
+
+    @PutMapping("forceUpdate/{id}")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR')")
+    public void forceUpdate(@PathVariable("id") int id, @Valid @RequestBody UserForceUpdateValidator validator) {
+        userSecurityService.forceUpdate(validator, id);
     }
 
 }

@@ -19,6 +19,10 @@ public class ParapageViewDto {
 
     String title;
 
-    List<PageViewDto> pageList;
+    String content;
+
+    ParapageTypeViewDto parapageType;
+
+    List<PageSimplifiedRecommendedViewDto> pageList;
 
 }

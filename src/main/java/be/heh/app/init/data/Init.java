@@ -73,6 +73,7 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Sureau", "Tilleul", "Rosier Sauvage"), // Macérats de Bourgeons
             List.of("Margueritte et Lavande", "Violette") // Élixirs Floraux ou Fleurs de Bach
     );
+    List<String> messageList = List.of("Super !", "J'aime cette page !", "Merci pour l'aide", "Merci d'avoir mis que certaines choses étaient dangereuses", "Merci pour les renseignements", "Les paragraphes sont très bien écrits !", "Je cherchais exactement cette page");
     
     private String getLittleWord() {
         String str = lorem.getWords(12, 16) + ".";
@@ -111,7 +112,7 @@ public class Init extends AbstractSecurityAutowire {
     }
 
     public void initParapageType() {
-        parapageTypeList.add(parapageTypeFacade.newInstance("Test1234" , this.getLittleWord())); //0
+        parapageTypeList.add(parapageTypeFacade.newInstance("Ingredients" , this.getLittleWord(), false)); //0
     }
 
     public void initParagraphType() {
@@ -203,7 +204,9 @@ public class Init extends AbstractSecurityAutowire {
                 sortedTypeFacade.newInstance(paragraphTypeList.get(9), 2),
 
                 sortedTypeFacade.newInstance(paratagTypeList.get(3), 3),
-                sortedTypeFacade.newInstance(paratagTypeList.get(4), 4)
+                sortedTypeFacade.newInstance(paratagTypeList.get(4), 4),
+
+                sortedTypeFacade.newInstance(parapageTypeList.get(0), 5)
         );
 
         for (int i = 3; i < 29; i++) {
@@ -215,7 +218,9 @@ public class Init extends AbstractSecurityAutowire {
 
                     sortedTypeFacade.newInstance(paratagTypeList.get(3), 4),
                     sortedTypeFacade.newInstance(paratagTypeList.get(4), 5),
-                    sortedTypeFacade.newInstance(paratagTypeList.get(5), 6)
+                    sortedTypeFacade.newInstance(paratagTypeList.get(5), 6),
+
+                    sortedTypeFacade.newInstance(parapageTypeList.get(0), 7)
             );
         }
 
@@ -284,13 +289,13 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Femme enceinte", this.getLittleWord()), tagTypeList.get(5))); //50
         tagList.add(tagFacade.init(innerTagFacade.init("Femme allaitante", this.getLittleWord()), tagTypeList.get(5))); //51
         tagList.add(tagFacade.init(innerTagFacade.init("Inflammation du tractus gastro-intestinal ou des voies biliaires", this.getLittleWord()), tagTypeList.get(5))); //52
-        tagList.add(tagFacade.init(innerTagFacade.init("Affection hépatique sévère Fleurs et fruits déconseillés à forte dose car entraînerait un effet laxative/purgatif important", this.getLittleWord()), tagTypeList.get(5))); //53
+        tagList.add(tagFacade.init(innerTagFacade.init("Effet laxative/purgatif important", this.getLittleWord()), tagTypeList.get(5))); //53
         tagList.add(tagFacade.init(innerTagFacade.init("Nausées", this.getLittleWord()), tagTypeList.get(5))); //54
         tagList.add(tagFacade.init(innerTagFacade.init("Vomissement", this.getLittleWord()), tagTypeList.get(5))); //55
-        tagList.add(tagFacade.init(innerTagFacade.init("Prudence avec les parties car l’oxalate de calcium est responsable de la toxicité", this.getLittleWord()), tagTypeList.get(5))); //56
+        tagList.add(tagFacade.init(innerTagFacade.init("Prudence car l’oxalate de calcium est responsable de la toxicité", this.getLittleWord()), tagTypeList.get(5))); //56
 
         //nom latin
-        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita L", this.getLittleWord()), tagTypeList.get(0))); //57
+        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita", this.getLittleWord()), tagTypeList.get(0))); //57
         tagList.add(tagFacade.init(innerTagFacade.init("Melissa Officinalis", this.getLittleWord()), tagTypeList.get(0))); //35
         tagList.add(tagFacade.init(innerTagFacade.init("Rosa Gallica", this.getLittleWord()), tagTypeList.get(0))); //36
         tagList.add(tagFacade.init(innerTagFacade.init("Salvia Officinalis", this.getLittleWord()), tagTypeList.get(0))); //37
@@ -300,7 +305,6 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Artemisia Dracunculus", this.getLittleWord()), tagTypeList.get(0))); //41
         tagList.add(tagFacade.init(innerTagFacade.init("Hyssopus Officinalis", this.getLittleWord()), tagTypeList.get(0))); //42
         tagList.add(tagFacade.init(innerTagFacade.init("Glechoma Hederacea", this.getLittleWord()), tagTypeList.get(0))); //43
-
 
     }
 
@@ -317,7 +321,7 @@ public class Init extends AbstractSecurityAutowire {
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(1)));
 
             i = innerParatagFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4));
-            i.addTag(tagList.get(34 + j));
+            i.addTag(tagList.get(57 + j));
             paratagList.add(paratagFacade.init(i, paratagTypeList.get(0)));
         }
 
@@ -408,6 +412,11 @@ public class Init extends AbstractSecurityAutowire {
                     categoryList.get(1));
             page.addParagraph(paragraphList.get((index * 8)), paragraphList.get(1 + (index * 8)), paragraphList.get(2 + (index * 8)), paragraphList.get(3 + (index * 8)), paragraphList.get(4 + (index * 8)), paragraphList.get(5 + (index * 8)), paragraphList.get(6 + (index * 8)), paragraphList.get(7 + (index * 8)));
             page.addParatag(paratagList.get(index * 3), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
+
+            for (int k : Utils.getRandomIdListUnique(2, 6, 0, messageList.size() - 1)) {
+                page.addMessage(messageFacade.init(messageList.get(k)));
+            }
+
             pageList.add(page);
             index++;
             indexImage++;
@@ -420,6 +429,15 @@ public class Init extends AbstractSecurityAutowire {
                     categoryList.get(2));
             page.addParagraph(paragraphList.get((index * 2) + offsetParag), paragraphList.get(1 + (index * 2) + offsetParag));
             page.addParatag(paratagList.get(index * 2 + offsetParat), paratagList.get(1 + (index * 2) + offsetParat));
+
+            for (int k : Utils.getRandomIdListUnique(2, 6, 0, messageList.size() - 1)) {
+                page.addMessage(messageFacade.init(messageList.get(k)));
+            }
+
+            parapageList.add(parapageFacade.init(innerParapageFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), parapageTypeList.get(0)));
+            parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(0));
+            page.addParapage(parapageList.get(parapageList.size() -1));
+
             pageList.add(page);
             index++;
             indexImage++;
@@ -434,6 +452,11 @@ public class Init extends AbstractSecurityAutowire {
                         categoryList.get(indexCategory));
                 page.addParagraph(paragraphList.get(index * 3 + offsetParag), paragraphList.get(1 + (index * 3) + offsetParag), paragraphList.get(2 + (index * 3) + offsetParag));
                 page.addParatag(paratagList.get(index * 3 + offsetParat), paratagList.get(1 + (index * 3) + offsetParat), paratagList.get(2 + (index * 3) + offsetParat));
+
+                for (int k : Utils.getRandomIdListUnique(2, 6, 0, messageList.size() - 1)) {
+                    page.addMessage(messageFacade.init(messageList.get(k)));
+                }
+
                 pageList.add(page);
                 index++;
                 indexImage++;
@@ -478,6 +501,9 @@ public class Init extends AbstractSecurityAutowire {
         paratagTypeList.forEach(paratagType -> {
             paratagTypeRepository.save(paratagType);
         });
+        parapageTypeList.forEach(parapageType -> {
+            parapageTypeRepository.save(parapageType);
+        });
         categoryList.forEach(i -> {
             if (i.getSortedTypeList() != null)
                 i.getSortedTypeList().forEach(j -> {
@@ -505,16 +531,6 @@ public class Init extends AbstractSecurityAutowire {
             });
             tagRepository.save(i);
         });
-        parapageList.forEach(i -> {
-            i.getInnerParapageList().forEach(j -> {
-                if (j.getVoteList() != null)
-                    j.getVoteList().forEach(k -> {
-                        voteRepository.save(k);
-                    });
-                innerParapageRepository.save(j);
-            });
-            parapageRepository.save(i);
-        });
         paratagList.forEach(i -> {
             i.getInnerParatagList().forEach(j -> {
                 if (j.getVoteList() != null)
@@ -531,6 +547,39 @@ public class Init extends AbstractSecurityAutowire {
             });
             imageRepository.save(i);
         });
+
+        int stopIndex = 0;
+        for (Page i : pageList) {
+            System.out.println(i.getInnerPageList().get(0).getTitle());
+            if (namePlanteList.size() - 1 <= stopIndex) {
+                break;
+            }
+            i.getInnerPageList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
+                innerPageRepository.save(j);
+            });
+            i.getMessageList().forEach(m -> {
+                messageRepository.save(m);
+            });
+            pageRepository.save(i);
+            stopIndex++;
+        }
+
+        parapageList.forEach(i -> {
+            i.getInnerParapageList().forEach(j -> {
+                if (j.getVoteList() != null)
+                    j.getVoteList().forEach(k -> {
+                        voteRepository.save(k);
+                    });
+                innerParapageRepository.save(j);
+            });
+            parapageRepository.save(i);
+        });
+
+
         pageList.forEach(i -> {
             i.getInnerPageList().forEach(j -> {
                 if (j.getVoteList() != null)
@@ -538,6 +587,9 @@ public class Init extends AbstractSecurityAutowire {
                         voteRepository.save(k);
                     });
                 innerPageRepository.save(j);
+            });
+            i.getMessageList().forEach(m -> {
+                messageRepository.save(m);
             });
             pageRepository.save(i);
         });

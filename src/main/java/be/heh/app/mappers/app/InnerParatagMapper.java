@@ -37,11 +37,8 @@ public final class InnerParatagMapper extends AbstractMapper {
     }
 
     public void update(InnerParatag innerParatag, InnerParatagUpdateValidator validator) {
-        innerParatagFacade.updateInstance(
-                innerParatag,
-                validator.getTitle(),
-                validator.getContent()
-        );
+        innerParatag.setTitle(validator.getTitle());
+        innerParatag.setContent(validator.getContent());
     }
 
     public List<InnerParatagEditDto> getAllEditDto(List<InnerParatag> list) {

@@ -42,10 +42,4 @@ public class InnerParatagFacade extends AbstractFacade<InnerParatag> {
         return res;
     }
 
-    public InnerParatag updateInstance(InnerParatag innerParatag, String title, String content) {
-        innerParatag.setTitle(title);
-        innerParatag.setContent(content);
-        return innerParatag;
-    }
-
 }

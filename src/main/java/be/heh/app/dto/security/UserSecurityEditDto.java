@@ -16,6 +16,8 @@ import java.util.List;
 @Setter
 public class UserSecurityEditDto {
 
+    int id;
+
     String username;
 
     String email;

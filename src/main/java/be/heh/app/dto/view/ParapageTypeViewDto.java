@@ -19,6 +19,8 @@ public class ParapageTypeViewDto implements Comparable<ParapageTypeViewDto> {
 
     String description;
 
+    boolean alert;
+
     @Override
     public int compareTo(ParapageTypeViewDto o) {
         return this.getName().compareTo(o.getName());

@@ -116,14 +116,7 @@ public final class PageMapper extends AbstractMapper {
                         new ArrayList<>()
                 ));
             }
-            InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
-            PageSimplifiedRecommendedViewDto p2 = new PageSimplifiedRecommendedViewDto(
-                    page.getId(),
-                    page.getCreatedAt(),
-                    innerPage.getTitle(),
-                    innerPage.getDescription(),
-                    imageMapper.getImageForPageByCategoryView(innerPage.getImage())
-            );
+            PageSimplifiedRecommendedViewDto p2 = this.getPageSimplifiedRecommendedViewDto(page);
             if (!cat) {
                 res.get(res.size() -1).getPageSimplifiedRecommendedViewDtoList().add(p2);
             } else {
@@ -131,6 +124,25 @@ public final class PageMapper extends AbstractMapper {
             }
         }
         return res;
+    }
+
+    public List<PageSimplifiedRecommendedViewDto> getAllPageSimplifiedRecommendedViewDto(List<Page> pageList) {
+        List<PageSimplifiedRecommendedViewDto> res = new ArrayList<>();
+        pageList.forEach(page -> {
+            res.add(this.getPageSimplifiedRecommendedViewDto(page));
+        });
+        return res;
+    }
+
+    public PageSimplifiedRecommendedViewDto getPageSimplifiedRecommendedViewDto(Page page) {
+        InnerPage innerPage = pageRepository.findInnerPage(page, EnumState.VALIDATED).get(0);
+        return new PageSimplifiedRecommendedViewDto(
+                page.getId(),
+                page.getCreatedAt(),
+                innerPage.getTitle(),
+                innerPage.getDescription(),
+                imageMapper.getImageForPageByCategoryView(innerPage.getImage())
+        );
     }
 
     public PageEditDto getEditDto(Page page) {
