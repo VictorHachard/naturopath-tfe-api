@@ -25,21 +25,24 @@ public class VoteService extends AbstractService<Vote> {
             voteRepository.save(vote);
             innerParagraph.addVote(vote);
             innerParagraphRepository.save(innerParagraph);
-
         } else if (validator.getType().equals("InnerPage")) {
             InnerPage innerPage = innerPageRepository.findById(validator.getTypeId()).get();
             Vote vote = voteMapper.set(validator, user);
             voteRepository.save(vote);
             innerPage.addVote(vote);
             innerPageRepository.save(innerPage);
-
         } else if (validator.getType().equals("InnerParatag")) {
             InnerParatag innerParatag = innerParatagRepository.findById(validator.getTypeId()).get();
             Vote vote = voteMapper.set(validator, user);
             voteRepository.save(vote);
             innerParatag.addVote(vote);
             innerParatagRepository.save(innerParatag);
-
+        } else if (validator.getType().equals("InnerParapage")) {
+            InnerParapage innerParapage = innerParapageRepository.findById(validator.getTypeId()).get();
+            Vote vote = voteMapper.set(validator, user);
+            voteRepository.save(vote);
+            innerParapage.addVote(vote);
+            innerParapageRepository.save(innerParapage);
         } else if (validator.getType().equals("InnerTag")) {
             InnerTag innerTag = innerTagRepository.findById(validator.getTypeId()).get();
             Vote vote = voteMapper.set(validator, user);

@@ -39,4 +39,6 @@ public class InnerParapageEditDto {
 
     String title;
 
+    String content;
+
 }

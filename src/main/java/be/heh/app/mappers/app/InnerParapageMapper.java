@@ -72,7 +72,8 @@ public final class InnerParapageMapper extends AbstractMapper {
                 messageMapper.getAllViewDto(i.getMessageList()),
                 i.getEnumState().toString(),
                 userMapper.getView(i.getUser()),
-                i.getTitle()
+                i.getTitle(),
+                i.getContent()
         );
     }
 

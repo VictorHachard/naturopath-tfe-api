@@ -23,25 +23,25 @@ public class InnerParapageController extends AbstractController {
     @PostMapping("{paragraphId}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void add(@Valid @RequestBody InnerParapageValidator validator, @PathVariable("paragraphId") int parapageId) {
-        innerParagraphService.addC(validator, parapageId);
+        innerParapageService.addC(validator, parapageId);
     }
 
     @PutMapping("update/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void update(@Valid @RequestBody InnerParapageUpdateValidator validator, @PathVariable("id") int id) {
-        innerParagraphService.update(validator, id);
+        innerParapageService.update(validator, id);
     }
 
     @PostMapping("validation/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void validation(@Valid @RequestBody InnerParapageValidationValidator validator, @PathVariable("id") int id) {
-        innerParagraphService.validation(validator, id);
+        innerParapageService.validation(validator, id);
     }
 
     @PostMapping("addMessage/{id}")
     @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR') or hasRole('USER')")
     public void addMessage(@Valid @RequestBody MessageValidator validator, @PathVariable("id") int id) {
-        innerParagraphService.addMessage(validator, id);
+        innerParapageService.addMessage(validator, id);
     }
 
 }
