@@ -135,14 +135,14 @@ public class Init extends AbstractSecurityAutowire {
 
     public void initCategory() {
         categoryList.addAll(Arrays.asList(
-                categoryFacade.init("Tisanes", this.getLittleWord(), true) //0
+                categoryFacade.init("Plantes", this.getLittleWord()), //0
+                categoryFacade.init("Tisanes", this.getLittleWord(), true) //1
         ));
         categoryList.addAll(Arrays.asList(
-                categoryFacade.init("Plantes", this.getLittleWord()), //1
                 categoryFacade.init("Huiles Essentielles", this.getLittleWord()), //2
-                categoryFacade.init("Infusions", this.getLittleWord(), categoryList.get(0)), //3
-                categoryFacade.init("Décoctions", this.getLittleWord(), categoryList.get(0)), //4
-                categoryFacade.init("Macérations", this.getLittleWord(), categoryList.get(0)), //5
+                categoryFacade.init("Infusions", this.getLittleWord(), categoryList.get(1)), //3
+                categoryFacade.init("Décoctions", this.getLittleWord(), categoryList.get(1)), //4
+                categoryFacade.init("Macérations", this.getLittleWord(), categoryList.get(1)), //5
                 categoryFacade.init("Sirops", this.getLittleWord()), //6
                 categoryFacade.init("Cataplasmes", this.getLittleWord()), //7
                 categoryFacade.init("Onguents", this.getLittleWord()), //8
@@ -184,7 +184,7 @@ public class Init extends AbstractSecurityAutowire {
             }
         }*/
 
-        categoryList.get(1).addType(
+        categoryList.get(0).addType(
             sortedTypeFacade.newInstance(paragraphTypeList.get(0), 3),
             sortedTypeFacade.newInstance(paragraphTypeList.get(1), 4),
             sortedTypeFacade.newInstance(paragraphTypeList.get(2), 5),
@@ -409,7 +409,7 @@ public class Init extends AbstractSecurityAutowire {
         int index = 0;
         for (String s: namePlanteList) {
             Page page = pageFacade.init(innerPageFacade.init(s, this.getLittleWord(), imageList.get(indexImage)),
-                    categoryList.get(1));
+                    categoryList.get(0));
             page.addParagraph(paragraphList.get((index * 8)), paragraphList.get(1 + (index * 8)), paragraphList.get(2 + (index * 8)), paragraphList.get(3 + (index * 8)), paragraphList.get(4 + (index * 8)), paragraphList.get(5 + (index * 8)), paragraphList.get(6 + (index * 8)), paragraphList.get(7 + (index * 8)));
             page.addParatag(paratagList.get(index * 3), paratagList.get(1 + (index * 3)), paratagList.get(2 + (index * 3)));
 

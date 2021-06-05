@@ -24,8 +24,4 @@ public class Vote extends AbstractEntity {
     @JoinColumn(name = "choice")
     int choice; // 0 pour - 1 contre
 
-    /*@JoinColumn(name = "inner_id")
-    @ManyToOne
-    AbstractInner inner;*/
-
 }
