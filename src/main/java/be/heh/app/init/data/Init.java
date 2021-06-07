@@ -42,7 +42,7 @@ public class Init extends AbstractSecurityAutowire {
     static List<Image> imageList = new ArrayList<>();
     static List<Page> pageList = new ArrayList<>();
 
-    List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse Officinale", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre");
+    List<String> namePlanteList = List.of("Menthe Poivrée", "Melisse", "Rose", "Sauge", "Verveine Citronnée", "Houblon", "Etoile de Badiane", "Estragon", "Hysope", "Lierre Terrestre", "Lavande", "Sauge", "Sapin", "Laurier", "Citron", "Violette", "Gingembre");
     List<String> nameHuileList = List.of("Lavande", "Citron", "Sauge", "Tea Tree", "Menthe Poivrée", "Pamplemousse", "Eucalyptus", "Ravintsara", "Géranium Bourbon", "Thym", "Basilic", "Ylang-ylang", "Rose", "Cèdre", "Palmarosa", "Cannelle");
     List<String> imageHelp = List.of("i", "d", "m", "s", "c", "o", "tm" , "vm", "co", "f", "hv", "pf", "e", "mh", "po", "g", "bdp", "bdb", "bo", "col", "b", "ge", "pom", "hy", "mdb", "ef"); //p et h
     List<List<String>> nameAllList = List.of(
@@ -295,7 +295,7 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Prudence car l’oxalate de calcium est responsable de la toxicité", this.getLittleWord()), tagTypeList.get(5))); //56
 
         //nom latin
-        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x piperita", this.getLittleWord()), tagTypeList.get(0))); //57
+        tagList.add(tagFacade.init(innerTagFacade.init("Mentha x pPiperita", this.getLittleWord()), tagTypeList.get(0))); //57
         tagList.add(tagFacade.init(innerTagFacade.init("Melissa Officinalis", this.getLittleWord()), tagTypeList.get(0))); //35
         tagList.add(tagFacade.init(innerTagFacade.init("Rosa Gallica", this.getLittleWord()), tagTypeList.get(0))); //36
         tagList.add(tagFacade.init(innerTagFacade.init("Salvia Officinalis", this.getLittleWord()), tagTypeList.get(0))); //37
@@ -305,7 +305,13 @@ public class Init extends AbstractSecurityAutowire {
         tagList.add(tagFacade.init(innerTagFacade.init("Artemisia Dracunculus", this.getLittleWord()), tagTypeList.get(0))); //41
         tagList.add(tagFacade.init(innerTagFacade.init("Hyssopus Officinalis", this.getLittleWord()), tagTypeList.get(0))); //42
         tagList.add(tagFacade.init(innerTagFacade.init("Glechoma Hederacea", this.getLittleWord()), tagTypeList.get(0))); //43
-
+        tagList.add(tagFacade.init(innerTagFacade.init("Lavandula angustifolia Mill", this.getLittleWord()), tagTypeList.get(0))); //37
+        tagList.add(tagFacade.init(innerTagFacade.init("Salvia", this.getLittleWord()), tagTypeList.get(0))); //38
+        tagList.add(tagFacade.init(innerTagFacade.init("Abies", this.getLittleWord()), tagTypeList.get(0))); //39
+        tagList.add(tagFacade.init(innerTagFacade.init("Laurus Nobilis", this.getLittleWord()), tagTypeList.get(0))); //40
+        tagList.add(tagFacade.init(innerTagFacade.init("Citrus", this.getLittleWord()), tagTypeList.get(0))); //41
+        tagList.add(tagFacade.init(innerTagFacade.init("Viola", this.getLittleWord()), tagTypeList.get(0))); //42
+        tagList.add(tagFacade.init(innerTagFacade.init("Zingiber officinale", this.getLittleWord()), tagTypeList.get(0))); //43
     }
 
     public void initParatag() {
@@ -477,6 +483,7 @@ public class Init extends AbstractSecurityAutowire {
                     for (String t : pagePlanteTitle) {
                         for (String s1 : pageTitle) {
                             if (t.equals(s1) && !t.equals("le") && !t.equals("la") && !t.equals("de") && !t.equals("et") && !t.equals("du") && !t.equals(",") && !t.equals("ou") && !parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).getPageList().contains(pageList.get(indexS))) {
+                                System.out.println(indexS + " " + s + " ");
                                 parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(indexS));
                             }
                         }
@@ -578,9 +585,6 @@ public class Init extends AbstractSecurityAutowire {
 
         int stopIndex = 0;
         for (Page i : pageList) {
-            if (namePlanteList.size() - 1 <= stopIndex) {
-                break;
-            }
             i.getInnerPageList().forEach(j -> {
                 if (j.getVoteList() != null)
                     j.getVoteList().forEach(k -> {
@@ -592,6 +596,9 @@ public class Init extends AbstractSecurityAutowire {
                 messageRepository.save(m);
             });
             pageRepository.save(i);
+            if (namePlanteList.size() - 1 <= stopIndex) {
+                break;
+            }
             stopIndex++;
         }
 
