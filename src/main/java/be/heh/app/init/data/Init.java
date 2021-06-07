@@ -220,7 +220,7 @@ public class Init extends AbstractSecurityAutowire {
                     sortedTypeFacade.newInstance(paratagTypeList.get(4), 5),
                     sortedTypeFacade.newInstance(paratagTypeList.get(5), 6),
 
-                    sortedTypeFacade.newInstance(parapageTypeList.get(0), 7)
+                    sortedTypeFacade.newInstance(parapageTypeList.get(0), 8)
             );
         }
 
@@ -435,7 +435,19 @@ public class Init extends AbstractSecurityAutowire {
             }
 
             parapageList.add(parapageFacade.init(innerParapageFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), parapageTypeList.get(0)));
-            parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(0));
+            String[] pageTitle = s.toLowerCase().replace(",", "").split(" ");
+            int indexS = 0;
+            for (String pageS : this.namePlanteList) {
+                String[] pagePlanteTitle = pageS.toLowerCase().replace(",", "").split(" ");
+                for (String t : pagePlanteTitle) {
+                    for (String s1 : pageTitle) {
+                        if (t.equals(s1) && !t.equals("le") && !t.equals("la") && !t.equals("de") && !t.equals("et") && !t.equals("du") && !t.equals(",") && !t.equals("ou") && !parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).getPageList().contains(pageList.get(indexS))) {
+                            parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(indexS));
+                        }
+                    }
+                }
+                indexS++;
+            }
             page.addParapage(parapageList.get(parapageList.size() -1));
 
             pageList.add(page);
@@ -456,6 +468,22 @@ public class Init extends AbstractSecurityAutowire {
                 for (int k : Utils.getRandomIdListUnique(2, 6, 0, messageList.size() - 1)) {
                     page.addMessage(messageFacade.init(messageList.get(k)));
                 }
+
+                parapageList.add(parapageFacade.init(innerParapageFacade.init(lorem.getTitle(2, 4), lorem.getParagraphs(1, 4)), parapageTypeList.get(0)));
+                String[] pageTitle = s.toLowerCase().replace(",", "").split(" ");
+                int indexS = 0;
+                for (String pageS : this.namePlanteList) {
+                    String[] pagePlanteTitle = pageS.toLowerCase().replace(",", "").split(" ");
+                    for (String t : pagePlanteTitle) {
+                        for (String s1 : pageTitle) {
+                            if (t.equals(s1) && !t.equals("le") && !t.equals("la") && !t.equals("de") && !t.equals("et") && !t.equals("du") && !t.equals(",") && !t.equals("ou") && !parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).getPageList().contains(pageList.get(indexS))) {
+                                parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(indexS));
+                            }
+                        }
+                    }
+                    indexS++;
+                }
+                page.addParapage(parapageList.get(parapageList.size() -1));
 
                 pageList.add(page);
                 index++;
@@ -550,7 +578,6 @@ public class Init extends AbstractSecurityAutowire {
 
         int stopIndex = 0;
         for (Page i : pageList) {
-            System.out.println(i.getInnerPageList().get(0).getTitle());
             if (namePlanteList.size() - 1 <= stopIndex) {
                 break;
             }
