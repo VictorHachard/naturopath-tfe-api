@@ -47,15 +47,15 @@ public class Init extends AbstractSecurityAutowire {
     List<String> imageHelp = List.of("i", "d", "m", "s", "c", "o", "tm" , "vm", "co", "f", "hv", "pf", "e", "mh", "po", "g", "bdp", "bdb", "bo", "col", "b", "ge", "pom", "hy", "mdb", "ef"); //p et h
     List<List<String>> nameAllList = List.of(
             List.of("Thym", "Menthe", "Laurier", "Sauge", "Gingembre"), // Infusions
-            List.of("Laurier", "Tiges et Racines"), // Décoctions
+            List.of("Laurier"), // Décoctions
             List.of("Sapin"), // Macérations
             List.of("Sureau", "Melisse"), // Sirop
-            List.of("Argile"), //Cataplasmes
+            List.of("rose trémière"), //Cataplasmes
             List.of("Aux Herbes", "Consoude", "Violette"), // Onguents
             List.of("Ginkgo Biloba", "Calendula", "Nénupha", "Romarin", "Thym" ), // Teintures Mères
             List.of("Hypocras", "Romarin et Citron"), // Vins Médicinaux
-            List.of("Spiruline de Provence"), // Comprimés
-            List.of("Sauge et Rose Pâle", "Sauge, Lavande et Pissenlit", "Sapin"), // Fumigations
+            List.of("citron"), // Comprimés
+            List.of("Rose Pâle", "Sauge", "Sapin"), // Fumigations
             List.of("Olive", "Noisette", "Millepertuis", "Noix de Coco", "Blé", "Avocat", "Amande"), // Huiles Végétales
             List.of("Echinacéa angustifolia", "Passiflore "), // Plantes Fraîches
             List.of("Citron, Gingembre et Miel", "Aloe Vera"), // Élixirs
@@ -67,11 +67,11 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Menthe Poivrée", "Lavande"), // Bains Oculaire
             List.of("Pissenlit"), //  Collyres
             List.of("Plantain", "Menthe", "Pissenlit", "Rose", "Calendula", "Romarin"), // Baumes
-            List.of("Menthe Fraîche et Citron", "Citron Vert"), // Gels
+            List.of("Citron", "Citron Vert"), // Gels
             List.of("Calendula, Guimauve, Camomille, Karité et Beure de Cacao","Miel"), // Pommades
             List.of("Rose", "Canneberge"), // Hydrolats Macérats de Bourgeons
             List.of("Sureau", "Tilleul", "Rosier Sauvage"), // Macérats de Bourgeons
-            List.of("Margueritte et Lavande", "Violette") // Élixirs Floraux ou Fleurs de Bach
+            List.of("Lavande", "Violette") // Élixirs Floraux ou Fleurs de Bach
     );
     List<String> messageList = List.of("Super !", "J'aime cette page !", "Merci pour l'aide", "Merci d'avoir mis que certaines choses étaient dangereuses", "Merci pour les renseignements", "Les paragraphes sont très bien écrits !", "Je cherchais exactement cette page");
     
