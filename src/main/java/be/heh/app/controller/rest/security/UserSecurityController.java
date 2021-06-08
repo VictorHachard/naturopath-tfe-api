@@ -174,7 +174,7 @@ public class UserSecurityController extends AbstractSecurityController {
     }
 
     @PutMapping("forceUpdate/{id}")
-    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR')")
+    @PreAuthorize("hasRole('OWNER') or hasRole('ADMINISTRATOR') or hasRole('MODERATOR')")
     public void forceUpdate(@PathVariable("id") int id, @Valid @RequestBody UserForceUpdateValidator validator) {
         userSecurityService.forceUpdate(validator, id);
     }

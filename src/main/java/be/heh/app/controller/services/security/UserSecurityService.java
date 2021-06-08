@@ -246,23 +246,26 @@ public class UserSecurityService extends AbstractSecurityService<UserSecurity> i
     public void forceUpdate(AbstractValidator abstractValidator, int id) {
         UserForceUpdateValidator validator = (UserForceUpdateValidator) abstractValidator;
         UserSecurity user = userSecurityRepository.findById(id).get();
-        user.setEmail(validator.getEmail());
         user.getEnumPermissionList().clear();
+        //userSecurityRepository.save(user);
+        System.out.println(validator.toString());
         if (validator.getOwner()) {
-            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_OWNER));
+            Role role = permissionFacade.newInstance(EnumRole.ROLE_OWNER);
+            permissionRepository.save(role);
+            user.getEnumPermissionList().add(role);
+        } if (validator.getAdministrator()) {
+            Role role = permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR);
+            permissionRepository.save(role);
+            user.getEnumPermissionList().add(role);
+        } if (validator.getModerator()) {
+            Role role = permissionFacade.newInstance(EnumRole.ROLE_MODERATOR);
+            permissionRepository.save(role);
+            user.getEnumPermissionList().add(role);
+        } if (validator.getUser()) {
+            Role role = permissionFacade.newInstance(EnumRole.ROLE_USER);
+            permissionRepository.save(role);
+            user.getEnumPermissionList().add(role);
         }
-        if (validator.getAdministrator()) {
-            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_ADMINISTRATOR));
-        }
-        if (validator.getModerator()) {
-            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_MODERATOR));
-        }
-        if (validator.getUser()) {
-            user.getEnumPermissionList().add(permissionFacade.newInstance(EnumRole.ROLE_USER));
-        }
-        user.getEnumPermissionList().forEach(p -> {
-            permissionRepository.save(p);
-        });
         userSecurityRepository.save(user);
     }
 
