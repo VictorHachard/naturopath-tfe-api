@@ -26,8 +26,12 @@ public class CategoryController extends AbstractController {
 		return categoryService.getAllDto();
 	}
 
+	@GetMapping("dto/allInAList")
+	public List<CategoryViewDto> getAllInAList() {
+		return categoryService.getAllInAList();
+	}
+
 	@GetMapping("dto/getAllParent")
-	@PreAuthorize("hasRole('OWNER')")
 	public List<CategoryViewDto> getAllParentDto() {
 		return categoryService.getAllParentDto();
 	}

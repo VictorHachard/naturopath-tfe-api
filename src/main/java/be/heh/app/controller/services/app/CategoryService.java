@@ -34,6 +34,10 @@ public class CategoryService extends AbstractService<Category> {
         return categoryMapper.getAllView(categoryList);
     }
 
+    public List<CategoryViewDto> getAllInAList() {
+        return categoryMapper.getAllView(super.getAll());
+    }
+
     public List<CategoryViewDto> getAllDto() {
         List<CategoryViewDto> categoryDtoList = new ArrayList<>();
         List<Category> categoryList = categoryRepository.findAllExceptChild();

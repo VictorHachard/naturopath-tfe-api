@@ -5,13 +5,16 @@ import be.heh.app.controller.validators.app.ImageValidator;
 import be.heh.app.controller.validators.commons.AbstractValidator;
 import be.heh.app.dto.edit.ImageEditDto;
 import be.heh.app.dto.view.ImageViewDto;
+import be.heh.app.model.entities.app.Category;
 import be.heh.app.model.entities.app.Image;
 import be.heh.app.model.entities.app.InnerImage;
 import be.heh.app.model.entities.app.User;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
