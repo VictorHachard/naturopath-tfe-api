@@ -52,6 +52,7 @@ public final class CategoryMapper extends AbstractMapper {
                 category.getId(),
                 category.getName(),
                 category.getDescription(),
+                category.isParent(),
                 null);
     }
 
@@ -60,6 +61,7 @@ public final class CategoryMapper extends AbstractMapper {
                 category.getId(),
                 category.getName(),
                 category.getDescription(),
+                category.isParent(),
                 null,
                 sortedTypeMapper.getAllView(category.getSortedTypeList()));
     }

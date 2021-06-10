@@ -21,6 +21,8 @@ public class CategoryViewDto implements Comparable<CategoryViewDto> {
 
     String description;
 
+    boolean isParent;
+
     List<CategoryViewDto> childCategory;
 
     @Override

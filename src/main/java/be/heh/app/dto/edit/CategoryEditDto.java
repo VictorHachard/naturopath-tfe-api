@@ -22,6 +22,8 @@ public class CategoryEditDto implements Comparable<CategoryEditDto> {
 
     String description;
 
+    boolean isParent;
+
     List<CategoryEditDto> childCategory;
 
     List<SortedTypeViewDto> sortedTypeType;
