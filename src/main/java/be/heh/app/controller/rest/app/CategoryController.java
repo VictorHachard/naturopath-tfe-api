@@ -36,6 +36,11 @@ public class CategoryController extends AbstractController {
 		return categoryService.getAllParentDto();
 	}
 
+	@GetMapping("dto/getAllChild")
+	public List<CategoryViewDto> getAllChildDto() {
+		return categoryService.getAllChildDto();
+	}
+
 	@GetMapping("dto/{id}")
 	public CategoryViewDto getDto(@PathVariable("id") int id) {
 		return categoryService.getDto(id);

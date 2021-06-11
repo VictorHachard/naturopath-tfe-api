@@ -50,11 +50,11 @@ public class Init extends AbstractSecurityAutowire {
             List.of("Laurier"), // Décoctions
             List.of("Sapin"), // Macérations
             List.of("Sureau", "Melisse"), // Sirop
-            List.of("rose trémière"), //Cataplasmes
+            List.of("Rose Trémière"), //Cataplasmes
             List.of("Aux Herbes", "Consoude", "Violette"), // Onguents
             List.of("Ginkgo Biloba", "Calendula", "Nénupha", "Romarin", "Thym" ), // Teintures Mères
             List.of("Hypocras", "Romarin et Citron"), // Vins Médicinaux
-            List.of("citron"), // Comprimés
+            List.of("Citron"), // Comprimés
             List.of("Rose Pâle", "Sauge", "Sapin"), // Fumigations
             List.of("Olive", "Noisette", "Millepertuis", "Noix de Coco", "Blé", "Avocat", "Amande"), // Huiles Végétales
             List.of("Echinacéa angustifolia", "Passiflore "), // Plantes Fraîches
@@ -483,7 +483,6 @@ public class Init extends AbstractSecurityAutowire {
                     for (String t : pagePlanteTitle) {
                         for (String s1 : pageTitle) {
                             if (t.equals(s1) && !t.equals("le") && !t.equals("la") && !t.equals("de") && !t.equals("et") && !t.equals("du") && !t.equals(",") && !t.equals("ou") && !parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).getPageList().contains(pageList.get(indexS))) {
-                                System.out.println(indexS + " " + s + " ");
                                 parapageList.get(parapageList.size() -1).getInnerParapageList().get(0).addPage(pageList.get(indexS));
                             }
                         }

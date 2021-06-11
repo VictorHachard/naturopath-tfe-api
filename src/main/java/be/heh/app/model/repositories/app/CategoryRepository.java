@@ -41,4 +41,11 @@ public interface CategoryRepository extends AbstractRepository<Category, Integer
     @Query("select c from Category c where c.isParent = true")
     List<Category> findAllParent();
 
+    /**
+     * Return a list containing all the child.
+     * @return a list containing all the child
+     */
+    @Query("select c from Category c where c.isParent = false")
+    List<Category> findAllChild();
+
 }

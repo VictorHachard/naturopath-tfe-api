@@ -34,6 +34,14 @@ public class CategoryService extends AbstractService<Category> {
         return categoryMapper.getAllView(categoryList);
     }
 
+    public List<CategoryViewDto> getAllChildDto() {
+        List<Category> categoryList = categoryRepository.findAllChild();
+        if (categoryList.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no " + this.getClass().getSimpleName() + " in the database");
+        }
+        return categoryMapper.getAllView(categoryList);
+    }
+
     public List<CategoryViewDto> getAllInAList() {
         return categoryMapper.getAllView(super.getAll());
     }
@@ -147,11 +155,7 @@ public class CategoryService extends AbstractService<Category> {
             index++;
         }
 
-        categoryMapper.update(
-                category,
-                validator,
-                validator.getParentCategoryId() != null ? categoryRepository.findById(validator.getParentCategoryId()).get() : null);
-
+        categoryMapper.update(category, validator);
         categoryRepository.save(category);
     }
 

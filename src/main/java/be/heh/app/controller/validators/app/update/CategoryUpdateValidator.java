@@ -18,9 +18,6 @@ public class CategoryUpdateValidator extends AbstractValidator {
 
     String description;
 
-    // For parent can be null
-    Integer parentCategoryId;
-
     List<@Valid Pair> sortedTypeList;
 
 }

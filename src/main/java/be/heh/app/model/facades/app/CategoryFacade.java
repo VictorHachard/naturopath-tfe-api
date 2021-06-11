@@ -27,10 +27,9 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return res;
     }
 
-    public Category updateInstance(Category category, String name, String description, Category parentCategory) {
+    public Category updateInstance(Category category, String name, String description) {
         category.setName(name);
         category.setDescription(description);
-        category.setParentCategory(parentCategory);
         return category;
     }
 

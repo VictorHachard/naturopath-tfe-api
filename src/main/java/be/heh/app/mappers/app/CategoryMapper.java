@@ -29,12 +29,11 @@ public final class CategoryMapper extends AbstractMapper {
                 validator.getIsParent());
     }
 
-    public void update(Category category, CategoryUpdateValidator validator, Category parentCategory) {
+    public void update(Category category, CategoryUpdateValidator validator) {
         categoryFacade.updateInstance(
                 category,
                 validator.getName(),
-                validator.getDescription(),
-                parentCategory
+                validator.getDescription()
         );
     }
 
