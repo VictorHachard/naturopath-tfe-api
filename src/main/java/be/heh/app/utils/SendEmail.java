@@ -17,8 +17,8 @@ import java.util.Properties;
 public class SendEmail implements Runnable {
 
     Session session;
-    final String serviceUsername = "ypcdonotreply@gmail.com";
-    final String servicePassword = "s56f4dsd5f";
+    final String serviceUsername = "test@test.test";
+    final String servicePassword = "test";
     final String url = "http://localhost:4200/";
     final HashMap<String, String> styleHmap = new HashMap<String, String>();
 
@@ -99,8 +99,8 @@ public class SendEmail implements Runnable {
                 "<p style=\"text-align:right;font-size:14px;padding-top:15px\">Sincerely, The Naturopath Team</p>" +
                 "</div>" +
                 "<div class=\"footer\">" +
-                "<p>If you don't have a YPC account, delete this email immediately and contact our <a class=\"a\" href=\"" + this.url + "/contact\">customer service</a>" +
-                "<i>DATE Naturopath</i>" +
+                "<p>If you don't have a Naturopath account, delete this email immediately and contact our <a class=\"a\" href=\"" + this.url + "/contact\">customer service</a>" +
+                "<i>Naturopath</i>" +
                 "</div>" +
                 "</div>";
 
@@ -116,7 +116,6 @@ public class SendEmail implements Runnable {
             message.setContent(body, "text/html");
 
             Transport.send(message);
-            //System.out.println("message sent successfully");
         } catch (MessagingException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
