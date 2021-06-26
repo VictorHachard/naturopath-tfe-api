@@ -1,8 +1,6 @@
-# Naturopath API
+# Naturopath TFE API
 
-Naturopath.
-
-![screenshot](../master/res/naturopath.gif)
+If you want more information there is a report: "naturopath.pdf". In the naturopath-tfe-application repository.
 
 ## Getting Started
 
@@ -36,8 +34,9 @@ Then go to the `localhost:8080` page.
 ## What I Learned
 
 - Java advanced
-- Building an API with Spring
+- Building an API with Spring Boot
 - Swagger
+- PostgreSQL
 
 ## Authors & Contributors
 
