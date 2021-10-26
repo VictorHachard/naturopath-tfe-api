@@ -31,8 +31,8 @@ Then go to the `localhost:8080` page.
 
 ## Documentation
 
--   [Naturopath - local](http://localhost:8080/swagger-ui/index.htm)
--   [Naturopath - internet](https://api.naturopath.com/swagger-ui/index.htm)
+-   [Naturopath - local](http://localhost:8080/swagger-ui/index.html)
+-   [Naturopath - internet](https://api.naturopath.com/swagger-ui/index.html)
 
 ## What I Learned
 
