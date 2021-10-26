@@ -1,5 +1,6 @@
 package be.heh.app.utils;
 
+import be.heh.app.Environment;
 import be.heh.app.utils.exeception.FileStorageException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,7 +15,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
 
-    private final Path fileStorageLocation = Paths.get("C:\\tfe-images\\");
+    private final Path fileStorageLocation = Paths.get(Environment.DATA_FOLDER);
 
     public String storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
