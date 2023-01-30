@@ -1,4 +1,3 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/VictorHachard/naturopath-tfe-api?branch=main)](https://bettercodehub.com/)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7c426f8b413d4c43b8404a2b957af576)](https://www.codacy.com/gh/VictorHachard/naturopath-tfe-api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorHachard/naturopath-tfe-api&amp;utm_campaign=Badge_Grade)
 
 # Naturopath TFE API
