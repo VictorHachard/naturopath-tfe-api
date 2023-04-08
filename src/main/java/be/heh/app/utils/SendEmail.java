@@ -108,18 +108,18 @@ public class SendEmail implements Runnable {
             body = body.replace("class=\"" + pair.getKey() + "\"", "style=\"" + pair.getValue() + "\"");
         }
 
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.to));
-            message.setSubject(this.enumEmail.subject);
-            message.setContent(body, "text/html");
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(username));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.to));
+//            message.setSubject(this.enumEmail.subject);
+//            message.setContent(body, "text/html");
+//
+//            Transport.send(message);
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//        }
     }
 
     private String link(String link, String buttonName) {
