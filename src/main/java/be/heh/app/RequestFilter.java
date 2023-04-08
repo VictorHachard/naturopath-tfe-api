@@ -23,7 +23,7 @@ public class RequestFilter implements Filter {
         if (origin == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
-        if (MailthisApplication.environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL.contains(origin)) {
+        if (Environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL.contains(origin)) {
             response.setHeader("Access-Control-Allow-Origin", origin);
         } else {
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
