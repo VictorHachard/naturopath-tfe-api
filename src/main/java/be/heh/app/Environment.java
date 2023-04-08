@@ -12,6 +12,6 @@ public class Environment {
 
     //Prod
     public static final String DATA_FOLDER = "/var/www/html/naturopath-data/";
-    public static final List<String> ACCESS_CONTROL_ALLOW_ORIGIN_URL = new ArrayList<>(Arrays.asList("https://naturopath.victorhachard.fr/"));
+    public static final List<String> ACCESS_CONTROL_ALLOW_ORIGIN_URL = new ArrayList<>(Arrays.asList("https://naturopath.victorhachard.fr"));
 
 }

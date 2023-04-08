@@ -19,15 +19,14 @@ public class RequestFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
-        for (String url : Environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL) {
-            if (request.getHeader("Origin") == null) {
-                //TODO fix this when request.getHeader("Origin") is null throw an exception and kick the connection
-                response.setHeader("Access-Control-Allow-Origin", "*");
-                break;
-            } else if (request.getHeader("Origin").equals(url)) {
-                response.setHeader("Access-Control-Allow-Origin", url);
-                break;
-            }
+        String origin = request.getHeader("Origin");
+        if (origin == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        if (MailthisApplication.environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL.contains(origin)) {
+            response.setHeader("Access-Control-Allow-Origin", origin);
+        } else {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
         }
 
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
