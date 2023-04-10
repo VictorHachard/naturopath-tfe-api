@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestFullController {
 
     @ResponseBody
-    @RequestMapping(value = "{url}", method = RequestMethod.GET)
+    @GetMapping("{url}")
     public ResponseEntity<FileSystemResource> getImageAsResource(@PathVariable("url") String url) {
         FileSystemResource res = new FileSystemResource(Environment.DATA_FOLDER + url);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
