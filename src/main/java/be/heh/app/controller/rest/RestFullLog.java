@@ -37,36 +37,57 @@ public class RestFullLog {
          // Reverse the order of lines
 
         StringBuilder htmlBuilder = new StringBuilder();
-        htmlBuilder.append("<html>");
-        htmlBuilder.append("<head>");
-        htmlBuilder.append("<title>Logs</title>");
-        htmlBuilder.append("<style>");
-        htmlBuilder.append(".DEBUG {color: #006400;}");
-        htmlBuilder.append(".INFO {color: #0000FF;}");
-        htmlBuilder.append(".WARN {color: #FFA500;}");
-        htmlBuilder.append(".ERROR {color: #FF0000;}");
-        htmlBuilder.append("</style>");
-        htmlBuilder.append("</head>");
-        htmlBuilder.append("<body>");
-        htmlBuilder.append("<pre>");
+        htmlBuilder.append("<html><head><title>Logs</title><style>p {white-space: nowrap;margin: 0;}.DEBUG {color: #006400;}.INFO {color: #0000FF;}.WARN {color: #FFA500;}.ERROR {color: #FF0000;}</style></head><body>");
+
+        htmlBuilder.append("<div><label>Search:</label><input type=\"text\" id=\"searchInput\"></div>");
+
+        htmlBuilder.append("<div style=\"margin: 5px 0;\">");
 
         Pattern pattern = Pattern.compile("\\b(DEBUG|INFO|WARN|ERROR)\\b");
-        Matcher matcher = pattern.matcher(logs);
         int lastEnd = 0;
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
-            String level = matcher.group(1);
-            String colorClass = level.toUpperCase();
-            htmlBuilder.append(logs.substring(lastEnd, start));
-            htmlBuilder.append("<span class=\"" + colorClass + "\">[" + level + "]</span>");
-            lastEnd = end;
-        }
-        htmlBuilder.append(logs.substring(lastEnd));
 
-        htmlBuilder.append("</pre>");
-        htmlBuilder.append("</body>");
-        htmlBuilder.append("</html>");
+        String[] lines = logs.split("\n");
+        for (String line : lines) {
+            Matcher lineMatcher = pattern.matcher(line);
+            StringBuffer lineHtml = new StringBuffer();
+            while (lineMatcher.find()) {
+                int start = lineMatcher.start();
+                int end = lineMatcher.end();
+                String level = lineMatcher.group(1);
+                String colorClass = level.toUpperCase();
+                lineHtml.append(line.substring(lastEnd, start));
+                lineHtml.append("<span class=\"" + colorClass + "\">[" + level + "]</span>");
+                lastEnd = end;
+            }
+            lineHtml.append(line.substring(lastEnd));
+            lastEnd = 0;
+            htmlBuilder.append("<p>" + lineHtml.toString() + "</p>\n");
+        }
+
+        htmlBuilder.append("</div>");
+
+        htmlBuilder.append("<script>\n" +
+                "    const searchInput = document.getElementById('searchInput');\n" +
+                "    const logs = document.querySelectorAll('div p');\n" +
+                "    const clearBtn = document.getElementById('clear-logs');\n" +
+                "\n" +
+                "    // Listen for input on the search box\n" +
+                "    searchInput.addEventListener('input', filterLogs);\n" +
+                "\n" +
+                "    function filterLogs() {\n" +
+                "        const filterValue = searchInput.value.toLowerCase();\n" +
+                "        logs.forEach(log => {\n" +
+                "            const logText = log.innerText.toLowerCase();\n" +
+                "            if (logText.includes(filterValue)) {\n" +
+                "                log.style.display = 'block';\n" +
+                "            } else {\n" +
+                "                log.style.display = 'none';\n" +
+                "            }\n" +
+                "        });\n" +
+                "    }\n" +
+                "</script>");
+        
+        htmlBuilder.append("</body></html>");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_HTML);
