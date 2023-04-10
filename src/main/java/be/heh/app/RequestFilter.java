@@ -24,7 +24,7 @@ public class RequestFilter implements Filter {
         String origin = request.getHeader("Origin");
         String path = request.getRequestURI();
 
-        if (!path.contains("/api/v1/resource/")) {
+        if (!path.equals("/logs") && !path.contains("/api/v1/resource/")) {
             if (origin == null) {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 return;

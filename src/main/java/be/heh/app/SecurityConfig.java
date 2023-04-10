@@ -27,6 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
+            "/logs",
             "/api/v1/resource/**",
             "/api/v1/category/**",
             "/api/v1/innerPage/**",
