@@ -22,13 +22,19 @@ public class RequestFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
 
         String origin = request.getHeader("Origin");
-        if (origin == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
-        if (Environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL.contains(origin)) {
-            response.setHeader("Access-Control-Allow-Origin", origin);
-        } else {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+        String path = request.getRequestURI();
+
+        if (!path.contains("/api/v1/resource/")) {
+            if (origin == null) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                return;
+            }
+            if (Environment.ACCESS_CONTROL_ALLOW_ORIGIN_URL.contains(origin)) {
+                response.setHeader("Access-Control-Allow-Origin", origin);
+            } else {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
         }
 
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
